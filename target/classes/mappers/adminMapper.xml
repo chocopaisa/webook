@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminDAO">
+
+
+	<!-- 대시보드 -->
+	<!-- 오늘 주문 건수 -->
+	<!-- <select id="orderproduct" resultType="Member">
+		SELECT count(order_no)
+		FROM order_list
+		WHERE DATE(#{payment_date}) = DATE(sysdate());	
+	</select> -->
+	
+	<!-- 차트 -->	
+	<!-- 연령대 별 인원 수 구하기 -->
+	<!-- <select id="agechart" resultType="int" parameterType="hashMap">
+		SELECT 
+		    CASE WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 10 and 19 THEN '10대'
+		         WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 20 and 29 THEN '20대'
+		         WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 30 and 39 THEN '30대'
+		         WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 40 and 49 THEN '40대'
+		         WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 50 and 59 THEN '50대'
+		         ELSE '60대이상'
+		         END 
+		FROM customer_info;
+	</select> -->
+	
+	<!-- 월별 매출 -->
+	<select id="monthsales">
+		SELECT month(total_price)
+		FROM order_items
+		WHERE order_no LIKE to_char(sysdate,'YYYY');
+	</select>
+	
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
