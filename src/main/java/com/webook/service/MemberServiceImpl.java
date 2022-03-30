@@ -1,16 +1,13 @@
-package com.webook.member.service;
+package com.webook.service;
 
 import java.util.HashMap;
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.webook.domain.MemberVO;
 import com.webook.member.dao.MemberDAO;
-import com.webook.service.MemberService;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -33,9 +30,6 @@ public class MemberServiceImpl implements MemberService{
 		
 		memberDAO.deleteMember(vo);
 		
-	}
-	public MemberVO getMember(MemberVO vo) {
-		return memberDAO.getMember(vo);
 	}
 
 	public List<MemberVO> getMemberList(HashMap map) {

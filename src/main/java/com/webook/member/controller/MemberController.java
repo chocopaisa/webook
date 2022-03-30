@@ -18,41 +18,27 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping("getMemberList.do")
-	public void getMemberList(String searchCondition, String searchKeyword, Model m) {
-		HashMap map = new HashMap();
-		map.put("searchCondition", searchCondition);
-		map.put("searchKeyword", searchKeyword);
-		
-		System.out.println("searchCondition:" + searchCondition);
-		System.out.println("searchKeyword" + searchKeyword);
-		
-		List<MemberVO> list = memberService.getMemberList(map);
-		m.addAttribute("memberList",list);
-	}
 	
 	@RequestMapping("insertMember.do")
 	public void insertMember() {
 		
 	}
 	
+	//회원가입 정보 저장
 	@RequestMapping("saveMember.do")
 	public String saveMember(MemberVO vo) {
 		memberService.insertMember(vo);
 		return "redirect:getMemberList.do";
 	}
 	
-	@RequestMapping("getMember.do")
-	public void getMember(MemberVO vo, Model m) {
-		m.addAttribute("member",memberService.getMember(vo));
-	}
-	
+	// 회원정보 삭제
 	@RequestMapping("deleteMember.do")
 	public String deleteMember(MemberVO vo) {
 		memberService.deleteMember(vo);
 		return "redirect:getMemberList.do";
 	}
 	
+	// 비밀번호 수정
 	@RequestMapping("updateMember.do")
 	public String updateMember(MemberVO vo) {
 		memberService.updateMember(vo);
