@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!-- 
@@ -79,7 +79,7 @@ table, td, th {
   
   .product-content{
 
-	height: 350px;
+	height: 390px;
   }
 
 /*상품 리스트 책 상세설명 내용 많으면 ... 처리*/
@@ -121,6 +121,8 @@ table, td, th {
 	#navbar > div {
 		display: inline-block;
 	}
+	img{
+	max-height:360px; }
 </style>
 
 </head>
@@ -414,43 +416,29 @@ table, td, th {
 											<td>
 
 												<ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">인문</a>
+													<li>
+													<a href="#!">인문</a>
 														</li>
 												</ul>
 											</td>
 											<td>
 												<ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">국내 시 </a>
+													<li><a href="#!">국내 시 </a>
 														</li>
 												</ul>
 											</td>
 											<td>
 												<ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">정치/사회</a>
+													<li><a href="#!">정치/사회</a>
 														</li>
 												</ul>
 											</td>
 											<td><ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">경제/경영</a>
+													<li ><a href="#!">경제/경영</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">역사.문화</a>
+													<li ><a href="#!">역사.문화</a>
 														
 
 														</li>
@@ -459,45 +447,27 @@ table, td, th {
 
 										<tr>
 											<td><ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">예술</a>
+													<li><a href="#!">예술</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">종교</a>
+													<li><a href="#!">종교</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">교양과학</a>
+													<li><a href="#!">교양과학</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">만화</a>
+													<li><a href="#!">만화</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">자기계발</a>
+													<li><a href="#!">자기계발</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li class="dropdown dropdown-slide"><a href="#!"
-														class="dropdown-toggle" data-toggle="dropdown"
-														data-hover="dropdown" data-delay="350" role="button"
-														aria-haspopup="true" aria-expanded="false">여행</a>
+													<li><a href="#!">여행</a>
 														</li>
 												</ul></td>
 										</tr>
@@ -512,7 +482,7 @@ table, td, th {
 					</div>
 
 				</div>
-
+</div></div></section>
 			
 
 
@@ -520,19 +490,20 @@ table, td, th {
 				<section class="products section">
 					<div class="container">
 						<div class="row">
-							
-							<div class="col-md-3">
+							<c:forEach items="${products}" var="product">
+							<div class="col-xs-6">
+							<div class="col-xs-6">
 								<div class="product-item">
 									<div class="product-thumb" >
 										
-										<img class="img-responsive"  src="images/shop/products/product-1.jpg" alt="product-img" />
+										<img class="img-responsive"  src="${product.product_image }"  alt="product-img" />
 										<div class="preview-meta">
 											<ul>
 												<li>												
 														<a href=""><i class="tf-ion-ios-search-strong"></i></a>
 												</li>
 												
-												<li>
+												<li>	
 													<a href="#!"><i class="tf-ion-android-cart"></i></a>
 												</li>
 											</ul>
@@ -540,172 +511,19 @@ table, td, th {
 									</div>
 								</div>
 							</div>	
-							<div class="col-md-3">
+							<div class="col-xs-6">
 								<div class="product-content">
-									<h4><a class="productTitle" href="product-single.html">만물은 얼음이 있을 뿐이다 그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며 얼마나 아름다우냐?이것을 얼음 속에서 불러 내는 것이 따뜻한 봄바람이다 인생에 따뜻한 봄바람을 불어 보내는 것은 청춘의 끓는 피다청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고 희망의 놀이 뜨고 열락의 새가 운다사랑의풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다 보이는 끝까지 찾아다녀도 목숨이 있는 때까지 방황하여도 보이는 것은 거친 모래뿐일 것이다 이상의 꽃이 없으면 쓸쓸한 인간에 남는이것이다 인류의 역사를 꾸며 내려온 동력은 바로 이것이다 이성은 투명하되 얼음과 같으며 지혜는 날카로우나 갑 속에 든 칼이다 청춘의 끓는 피가 아니더면 인간이 얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다 그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며 얼마나 아름다우냐? 이것을 얼음 속에서 불러 내는 것이 따뜻한 봄바람이다 인생에 따뜻한 봄바람을 불어 보내는 것은 청춘의 끓는 피다 청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고 희망의 놀이 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다 보이는 끝까지 찾아다녀도 목숨이 있는 때까지 방황하여도 보이는 것은 거친 모래뿐일 것이다 이상의 꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게</a></h4>
-									<p class="writer" style="font-size: smaller;">책 작가 이름</p>
-									<p class="price" style="font-weight: bolder;">$200</p><hr/>
-									<p class="productDesc"  >만물은 얼음이 있을 뿐이다 그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며 얼마나 아름다우냐?이것을 얼음 속에서 불러 내는 것이 따뜻한 봄바람이다 인생에 따뜻한 봄바람을 불어 보내는 것은 청춘의 끓는 피다청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고 희망의 놀이 뜨고 열락의 새가 운다사랑의풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다 보이는 끝까지 찾아다녀도 목숨이 있는 때까지 방황하여도 보이는 것은 거친 모래뿐일 것이다 이상의 꽃이 없으면 쓸쓸한 인간에 남는이것이다 인류의 역사를 꾸며 내려온 동력은 바로 이것이다 이성은 투명하되 얼음과 같으며 지혜는 날카로우나 갑 속에 든 칼이다 청춘의 끓는 피가 아니더면 인간이 얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다 그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며 얼마나 아름다우냐? 이것을 얼음 속에서 불러 내는 것이 따뜻한 봄바람이다 인생에 따뜻한 봄바람을 불어 보내는 것은 청춘의 끓는 피다 청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고 희망의 놀이 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다 보이는 끝까지 찾아다녀도 목숨이 있는 때까지 방황하여도 보이는 것은 거친 모래뿐일 것이다 이상의 꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게</p>
+									<h4><a class="productTitle" href="product-single.html">${product.product_name }</a></h4>
+									<p class="writer" style="font-size: smaller;">${product.product_writer}</p>
+									<p class="price" style="font-weight: bolder;">${product.product_price }</p><hr/>
+									<p class="productDesc"  >${product.product_desc }</p>
 								</div>
 							</div>
-							
-				
-				
-				
-								<div class="col-md-3">
-									<div class="product-item">
-										<div class="product-thumb">
-											
-											<img class="img-responsive" src="images/shop/products/product-1.jpg" alt="product-img" />
-											<div class="preview-meta">
-												<ul>
-													<li>
-														<li>												
-															<a href=""><i class="tf-ion-ios-search-strong"></i></a>
-													</li>
-													</li>
-													
-													<li>
-														<a href="#!"><i class="tf-ion-android-cart"></i></a>
-													</li>
-												</ul>
-											  </div>
-										</div>
-									</div>
-								</div>	
-								<div class="col-md-3">
-									<div class="product-content">
-										<h4><a class="productTitle" href="product-single.html">불편한 편의점</a></h4>
-										<p class="writer" style="font-size: smaller;">책 작가 이름</p>
-										<p class="price" style="font-weight: bolder;">$200</p><hr/>
-										<p class="productDesc"  >만물은 얼 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은</p>
-									</div>
-								</div>
-				
-				
-							<div class="col-md-3">
-								<div class="product-item">
-									<div class="product-thumb">
-										
-										<img class="img-responsive" src="images/shop/products/product-1.jpg" alt="product-img" />
-										<div class="preview-meta">
-											<ul>
-												<li>
-													<li>												
-														<a href=""><i class="tf-ion-ios-search-strong"></i></a>
-												</li>
-												</li>
-												
-												<li>
-													<a href="#!"><i class="tf-ion-android-cart"></i></a>
-												</li>
-											</ul>
-										  </div>
-									</div>
-								</div>
-							</div>	
-							<div class="col-md-3">
-								<div class="product-content">
-									<h4><a class="productTitle" href="product-single.html">불편한 편의점</a></h4>
-									<p class="writer" style="font-size: smaller;">책 작가 이름</p>
-									<p class="price" style="font-weight: bolder;">$200</p><hr/>
-									<p class="productDesc"  >만물은 얼 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은</p>
-								</div>
 							</div>
+							</c:forEach>
 				
 				
 				
-							<div class="col-md-3">
-								<div class="product-item">
-									<div class="product-thumb">
-										
-										<img class="img-responsive" src="images/shop/products/product-1.jpg" alt="product-img" />
-										<div class="preview-meta">
-											<ul>
-												<li>
-													<li>												
-														<a href=""><i class="tf-ion-ios-search-strong"></i></a>
-												</li>
-												</li>
-												
-												<li>
-													<a href="#!"><i class="tf-ion-android-cart"></i></a>
-												</li>
-											</ul>
-										  </div>
-									</div>
-								</div>
-							</div>	
-							<div class="col-md-3">
-								<div class="product-content">
-									<h4><a class="productTitle" href="product-single.html">불편한 편의점</a></h4>
-									<p class="writer" style="font-size: smaller;">책 작가 이름</p>
-									<p class="price" style="font-weight: bolder;">$200</p><hr/>
-									<p class="productDesc"  >만물은 얼 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은</p>
-								</div>
-							</div>
-				
-				
-							<div class="col-md-3">
-								<div class="product-item">
-									<div class="product-thumb">
-										
-										<img class="img-responsive" src="images/shop/products/product-1.jpg" alt="product-img" />
-										<div class="preview-meta">
-											<ul>
-												<li>
-													<li>												
-														<a href=""><i class="tf-ion-ios-search-strong"></i></a>
-												</li>
-												</li>
-												
-												<li>
-													<a href="#!"><i class="tf-ion-android-cart"></i></a>
-												</li>
-											</ul>
-										  </div>
-									</div>
-								</div>
-							</div>	
-							<div class="col-md-3">
-								<div class="product-content">
-									<h4><a class="productTitle" href="product-single.html">불편한 편의점</a></h4>
-									<p class="writer" style="font-size: smaller;">책 작가 이름</p>
-									<p class="price" style="font-weight: bolder;">$200</p><hr/>
-									<p class="productDesc"  >만물은 얼 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은</p>
-								</div>
-							</div>
-				
-				
-							<div class="col-md-3">
-								<div class="product-item">
-									<div class="product-thumb">
-										
-										<img class="img-responsive" src="images/shop/products/product-1.jpg" alt="product-img" />
-										<div class="preview-meta">
-											<ul>
-												<li>
-													<li>												
-														<a href=""><i class="tf-ion-ios-search-strong"></i></a>
-												</li>
-												</li>
-												
-												<li>
-													<a href="#!"><i class="tf-ion-android-cart"></i></a>
-												</li>
-											</ul>
-										  </div>
-									</div>
-								</div>
-							</div>	
-							<div class="col-md-3">
-								<div class="product-content">
-									<h4><a class="productTitle" href="product-single.html">불편한 편의점</a></h4>
-									<p class="writer" style="font-size: smaller;">책 작가 이름</p>
-									<p class="price" style="font-weight: bolder;">$200</p><hr/>
-									<p class="productDesc"  >만물은 얼 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은</p>
-								</div>
-							</div>
 				
 				
 							
