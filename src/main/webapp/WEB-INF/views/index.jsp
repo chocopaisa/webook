@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!-- 
 THEME: Aviato | E-commerce template
 VERSION: 1.0.0
@@ -132,24 +135,42 @@ FACEBOOK: https://www.facebook.com/themefisher
             <h2>Best Seller</h2>
           </div>
         </div>
-        <div class="row" id="bestseller">
+        <div id="bestseller">
+        <c:forEach var="idx" begin="0" end="${fn:length(bestSellers) -1 }">
+        
           <!-- 베스트 셀러 -->
           <!-- 한묶음 -->
-          <div class="col-xs-4 col-md-2">
-          <div class="product-item">
-          <div><h3>1</h3></div>
-          <div class="product-thumb">
-          <img class="img-responsive" src="http://image.kyobobook.co.kr/images/book/xlarge/188/x9791161571188.jpg" alt="product-img"/>
-          <div class="preview-meta bg-gray">
-          <h4><a href="#">김호연</a></h4>
-          </div></div>
-          <div class="product-content product-best">
-          <h4><a href="product-single.html">불편한 편의점(40만부 기념 벚꽃 에디션)'</a></h4>
-          <p class="price money">12600</p>
-          </div></div></div>
+          
+	          <c:if test="${idx mod 5 eq 0 }">
+	          <div class="row">
+	          	<div class="col-xs-4 col-md-2 col-md-offset-1">
+	          </c:if>
+	          <c:if test="${idx mod 5 ne 0 }">
+		      	<div class="col-xs-4 col-md-2">
+		      </c:if>
+	          <div class="product-item">
+	          <div><h3>${idx + 1}</h3></div>
+	          <div class="product-thumb">
+	          <img class="img-responsive" src="${bestSellers[idx].product_image}" alt="product-img"/>
+	          <div class="preview-meta bg-gray">
+	          <h4><a href="#">${bestSellers[idx].product_writer}</a></h4>
+	          </div></div>
+	          <div class="product-content product-best">
+	          <h4><a href="product-single.html">${bestSellers[idx].product_name}</a></h4>
+	          <p class="price money">12600</p>
+	          </div>
+	          </div>
+	          </div>
+	          
+          
           <!-- 한묶음 끝-->
           <!-- 베스트셀러끝-->
-        </div>
+        
+        	<c:if test="${(idx+1) mod 5 eq 0 }">
+	          	</div>
+	    	</c:if>
+        </c:forEach>
+      </div>
       </div>
     </section>
 <!-- / 상품목록 -->
