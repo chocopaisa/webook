@@ -32,9 +32,6 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
-	public List<MemberVO> getMemberList(HashMap map) {
-		return memberDAO.getMemberList(map);
-	}
 	
 	
 

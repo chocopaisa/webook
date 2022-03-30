@@ -17,6 +17,5 @@ public interface MemberService {
 	//글 삭제
 	public void deleteMember(MemberVO vo);
 	
-	// 글 목록 조회
-	public List<MemberVO> getMemberList(HashMap map);
+	
 }
