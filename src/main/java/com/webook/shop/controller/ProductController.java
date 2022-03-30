@@ -36,7 +36,7 @@ public class ProductController {
 	public String headerGenre(ProductVO vo, Model m) {
 		vo.setProduct_lang("국내"); // 국내 도서만 나오게 하기
 		List<ProductVO> result = service.genreKo(vo);
-		m.addAttribute("product", result);
+		m.addAttribute("products", result);
 		
 		 return "/shop/shop_korean";
 	}
