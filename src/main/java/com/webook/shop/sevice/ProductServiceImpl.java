@@ -1,4 +1,4 @@
-package com.webook.shop.service;
+package com.webook.shop.sevice;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,8 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.webook.domain.ProductVO;
 import com.webook.shop.dao.ProductDAOImpl;
-import com.webook.shop.domain.ProductVO;
+
 
 @Service("ProducyService")
 public class ProductServiceImpl implements ProductService {
@@ -16,9 +17,9 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDAOImpl productDAO;
 
 	@Override
-	public List<ProductVO> productList(ProductVO vo) {
+	public List<ProductVO> productList(ProductVO vo, int pnum) {
 	
-		return productDAO.productList(vo);
+		return productDAO.productList(vo, pnum);
 	}
 
 	@Override

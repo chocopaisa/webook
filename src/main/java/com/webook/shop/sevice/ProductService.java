@@ -1,16 +1,18 @@
-package com.webook.shop.service;
+package com.webook.shop.sevice;
 
 import java.util.HashMap;
 import java.util.List;
 
-import com.webook.shop.domain.ProductVO;
+import com.webook.domain.ProductVO;
+
+
 
 
 
 public interface ProductService {
 	
 	// 상품 목록
-	List<ProductVO> productList (ProductVO vo);
+	List<ProductVO> productList (ProductVO vo, int pnum);
 	
 	// 상품 검색
 	void productSearch(ProductVO vo);

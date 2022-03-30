@@ -8,7 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.webook.shop.domain.ProductVO;
+import com.webook.domain.ProductVO;
+
 
 @Repository("ProductDAO")
 public class ProductDAOImpl implements ProductDAO {
@@ -16,6 +17,21 @@ public class ProductDAOImpl implements ProductDAO {
 	@Autowired
 	private SqlSessionTemplate session;
 	
+
+	
+
+	
+	@Override
+	public List<ProductVO> productList(ProductVO vo, int pnum) {
+			
+		
+		RowBounds row = new RowBounds(6*(pnum-1),6);
+		List<ProductVO> list = session.selectList("product.mapper.productList",pnum, row);
+
+
+
+		return list;
+	}
 
 
 	@Override
@@ -42,26 +58,6 @@ public class ProductDAOImpl implements ProductDAO {
 		
 	}
 
-	@Override
-	public List<ProductVO> productList(ProductVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	
-		/*@Override
-		public List<ProductVO> productList(ProductVO vo) {
-
-			RowBounds row = new RowBounds(6*(page-1),6);
-			List<ProductVO> list = session.selectList(", vo, row);
-
-
-
-			return null;
-		}
-*/
 
 		
 	}
