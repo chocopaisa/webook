@@ -3,9 +3,9 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="community.mapper">
 
-	<select id="getBookreportList" resultType="CommunityVO">
+	<select id="getBookreportList" resultType="com.webook.domain.CommunityVO">
 		<![CDATA[
-		SELECT * FROM bookreport 
+		SELECT * FROM bookreport
 		WHERE report_kind = #{report_kind}
 		ORDER BY #{bookreport_no} desc
 		]]>		

@@ -16,7 +16,7 @@ public class CommunityDAOImpl implements CommunityDAO {
 	
 	public List<CommunityVO> getBookreportList(CommunityVO vo) {
 		System.out.println("===> Mybatis getBookreportList() 호출");
-		return mybatis.selectList("CommunityDAO.getBookreportList", vo);
+		return mybatis.selectList("community.mapper.getBookreportList", vo);
 	}
 	
 }
