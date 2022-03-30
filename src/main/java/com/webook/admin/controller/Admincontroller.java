@@ -19,8 +19,9 @@ public class Admincontroller {
 	}
 	
 	// 회원 목록 출력
-	@Autowired
-	private MemberService memberService;
+	/*
+	 * @Autowired private MemberService memberService;
+	 */
 	
 	/*
 	 * @RequestMapping("getMemberList.do") public void getMemberList(MemberVO vo,
