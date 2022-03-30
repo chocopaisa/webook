@@ -24,6 +24,7 @@
   		<value>com.webook.domain.OrderItemVO</value>
   		<value>com.webook.domain.OrderVO</value>
   		<value>com.webook.domain.MemberVO</value>
+  		<value>com.webook.domain.ProductVO</value>
   	</list>
   </property>
  </bean>
