@@ -56,7 +56,7 @@
                                     <div class="card-body tab-content" id="report-cu">                                                                         
                                         
                                         <table id="datatablesSimple" class="text-center">
-                                            <thead>
+                                            
                                                 <tr>  
                                                     <th><input type="checkbox" name="checkall" id="checkall"/></th>                                                  
                                                     <th>게시글 제목</th>
@@ -65,26 +65,15 @@
                                                     <th>신고 날짜</th>
                                                     <th>신고 횟수</th>
                                                 </tr>
-                                            </thead>
-                                            
-                                            <tbody >
                                                 <tr>       
-                                                    <td><input type="checkbox" name="chk" class="report-table"></td>                                             
-                                                    <td>욕설 가득 제목</td>
-                                                    <td>hong1</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr>
-                                                <tr>    
-                                                    <td><input type="checkbox" name="'chk" class="report-table"></td>                                                
-                                                    <td>욕설 가득 제목</td>
-                                                    <td>gildong1</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>1</td>
-                                                </tr>                                        
-                                            </tbody>
+                                                    <td></td>                                             
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>                                                                                       
+                                           
                                         </table>  
                                         <button type="button" class="btn btn-danger m-2" id="deletebtn">삭제하기</button>                                      
                                     </div>
