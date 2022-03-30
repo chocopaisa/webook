@@ -12,8 +12,6 @@ public interface MemberDAO {
 	
 	public void deleteMember(MemberVO vo);
 	
-	public MemberVO getMember(MemberVO vo);
-	
 	public List<MemberVO> getMemberList(HashMap map);
 	
 

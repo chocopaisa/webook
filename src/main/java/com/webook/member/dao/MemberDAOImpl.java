@@ -33,11 +33,6 @@ public class MemberDAOImpl implements MemberDAO{
 		mybatis.delete("MemberDAO.deleteMember", vo);
 	}
 
-	public MemberVO getMember(MemberVO vo) {
-		System.out.println("===> Mybatis getMember() 호출");
-		return mybatis.selectOne("MemberDAO.getMember", vo);
-	}
-
 	public List<MemberVO> getMemberList(HashMap map) {
 		System.out.println("===> Mybatis getMemberList() 호출");
 		return mybatis.selectList("MemberDAO.getMemberList", map);

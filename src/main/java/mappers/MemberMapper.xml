@@ -21,7 +21,7 @@ DELETE FROM customer_info
 WHERE user_email = #{user_email) and user_pass = #{user_pass}
 </delete>
 
-<select id="getMember" resultType="com.webook.domain.MemberVO">
+<select id="getMember" resultType="com.webook.domain.MemberVO" parameterType="com.webook.domain.MemberVO">
 SELECT *
 FROM customer_info
 WHERE user_email = #{user_email}
