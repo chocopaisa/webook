@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberDAO">
+
+<insert id="insertMember" parameterType="member">
+INSERT INTO customer_info(user_email, user_pass, user_name, user_Addr,
+gender, user_birth, user_tel, user_regdate)
+VALUES (#{user_email}, #{user_pass}, #{user_name}, #{user_Addr}
+, #{gender}, #{user_birth}, #{user_tel}, sysdate)
+</insert>
+
+
+<select id="getMemberList" resultType="MemberVO">
+SELECT user_email, user_pass, user_name, user_Addr,
+gender, user_birth, user_tel, user_regdate
+FROM customer_info
+</select>
+
+
+<update id="updateMember" parameterType="member">
+UPDATE customer_info
+SET user_pass = #{user_pass},
+user_name = #{user_name},
+user_tel = #{user_tel}
+WHERE user_email = #{user_email}
+</update>
+
+<delete id="deleteMember" parameterType="member">
+DELETE FROM customer_info
+WHERE user_email = #{user_email)
+</delete>
+
+<select id="getMember"
+
+
+</mapper>
