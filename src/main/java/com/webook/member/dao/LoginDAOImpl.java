@@ -1,5 +1,27 @@
 package com.webook.member.dao;
 
-public class LoginDAOImpl {
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.webook.domain.MemberVO;
+
+@Repository
+public class LoginDAOImpl implements LoginDAO {
+
+	@Autowired
+	private SqlSessionTemplate mybatis;
+	@Override
+	public MemberVO idcheck(MemberVO vo) {
+		MemberVO vi = mybatis.selectOne("login.mapper.login_check", vo);
+		return vi;
+	}
+
+	@Override
+	public MemberVO memberlogin(MemberVO vo) {
+		
+		return null;
+	}
 
 }
