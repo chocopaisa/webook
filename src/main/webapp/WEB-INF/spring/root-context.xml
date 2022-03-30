@@ -23,6 +23,7 @@
   		<value>com.webook.domain.CouponVO</value>
   		<value>com.webook.domain.OrderItemVO</value>
   		<value>com.webook.domain.OrderVO</value>
+  		<value>com.webook.domain.MemberVO</value>
   	</list>
   </property>
  </bean>
