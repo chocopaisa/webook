@@ -13,11 +13,8 @@ public class MainController {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	@RequestMapping("/index")
-	public String test1() {
-		HashMap map = mybatis.selectOne("mapper.searchUser");
+	@RequestMapping("/{step}")
+	public void onlyGo() {
 		
-		System.out.println(map.get("ADMIN_ID"));
-		return "index";
 	}
 }
