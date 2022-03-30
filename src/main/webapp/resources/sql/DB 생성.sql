@@ -220,3 +220,7 @@ create table book_admin(
 
 
 INSERT INTO book_admin(admin_Id,admin_Pass)VALUES('webook','admin');
+
+ALTER TABLE coupon_list add order_no varchar2(30);
+
+ALTER TABLE coupon_list ADD CONSTRAINT fk_coupon_list_order foreign KEY(order_no) references order_list(order_no);
