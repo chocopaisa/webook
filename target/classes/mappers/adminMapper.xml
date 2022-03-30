@@ -12,6 +12,12 @@
 		WHERE DATE(#{payment_date}) = DATE(sysdate());	
 	</select> -->
 	
+	<!-- 회원 목록 검색 => 블랙리스트 추가 -->
+	<select id="getMemberList" resultType="member" parameterType="hashmap">
+		SELECT *
+		FROM customer_info
+	</select>
+	
 	<!-- 차트 -->	
 	<!-- 연령대 별 인원 수 구하기 -->
 	<!-- <select id="agechart" resultType="int" parameterType="hashMap">
