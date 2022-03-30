@@ -11,7 +11,7 @@ import com.webook.domain.ProductVO;
 
 public interface ProductDAO {
 	// 상품 목록
-	public List<ProductVO> productList (ProductVO vo);
+	public List<ProductVO> productList (ProductVO vo, int pnum);
 	//검색어 검색
 	public void productSearch(ProductVO vo);
 	//상세페이지 클릭
