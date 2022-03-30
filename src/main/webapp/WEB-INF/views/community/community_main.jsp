@@ -18,21 +18,21 @@
   <meta name="generator" content="Themefisher Constra HTML Template v1.0">
   
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="../resources/images/favicon.png" />
   
   <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+  <link rel="stylesheet" href="../resources/plugins/themefisher-font/style.css">
   <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resources/plugins/bootstrap/css/bootstrap.min.css">
   
   <!-- Animate css -->
-  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <link rel="stylesheet" href="../resources/plugins/animate/animate.css">
   <!-- Slick Carousel -->
-  <link rel="stylesheet" href="plugins/slick/slick.css">
-  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+  <link rel="stylesheet" href="../resources/plugins/slick/slick.css">
+  <link rel="stylesheet" href="../resources/plugins/slick/slick-theme.css">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../resources/css/style.css">
 
 </head>
 <style>
@@ -110,89 +110,47 @@
 </style>
 <body id="body">
 
-    <!-- Start Top Header Bar -->
-    <section class="top-header">
+<%@ include file="/WEB-INF/views/header.jsp" %> 
+
+	  <!-- Main Menu Section -->
+<section class="menu">
+	<nav class="navbar navigation">
 		<div class="container">
-		  <div class="row">
-			<div class="col-md-4 col-xs-12 col-sm-4">
-			  <ul class="top-menu text-center list-inline">
-				<li>
-				  <div class="pr-2 pl-2">
-					<h3><a href="#">도서</a></h3>
-				  </div>
-				</li>
-				<li>
-				  <div
-					  class="pr-2 pl-2"
-				  >
-					<h3><a href="#">커뮤니티</a></h3>
-				  </div>
-				</li>
-			  </ul>
+			<div class="navbar-header">
+				<h2 class="menu-title">Main Menu</h2>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+			</div><!-- / .navbar-header -->
+
+			<!-- Navbar Links -->
+			<div id="navbar" class="navbar-collapse collapse text-center">
+				<ul class="nav navbar-nav">
+
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="community_main">커뮤니티 메인</a>
+					</li><!-- / Home -->
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="community_list">독후감 목록</a>
+					</li><!-- / Home -->
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="community_write">독후감 작성</a>
+					</li><!-- / Home -->
+
+
 			</div>
-			<div class="col-md-4 col-xs-12 col-sm-4">
-			  <!-- Site Logo -->
-			  <div class="logo text-center">
-				<a href="index.html">
-				  <!-- replace logo here -->
-				  <text id="WEBOOK"><h1>WEBOOK</h1></text>
-				</a>
-			  </div>
-			</div>
-			<div class="col-md-4 col-xs-12 col-sm-4">
-			  <ul class="top-menu text-center list-inline">
-				<li>
-				  <div class="pr-2 pl-2">
-					<h5><a href="#">로그인</a></h4>
-				  </div>
-				</li>
-				<li class="dropdown">
-				  <div class="pr-2 pl-2">
-					<h5><a href="#" class="">고객센터</a></h4>
-				  </div>
-				</li>
-  
-				<!-- Search -->
-				<li class="dropdown search dropdown-slide">
-					<div class="pr-2 pl-2">
-				  <h3>
-					<a
-					  href="#!"
-					  class="dropdown-toggle"
-					  data-toggle="dropdown"
-					  data-hover="dropdown"
-					  ><i class="tf-ion-ios-search-strong"></i
-					></a>
-				  </h3>
-			  </div>
-				  <ul class="dropdown-menu search-dropdown">
-					<li>
-						<div>
-					  <form action="#">
-						<input
-						  id="total_search"
-						  type="search"
-						  class="form-control"
-						  placeholder="Search..."
-						/>
-					  </form>
-					  </div>
-					</li>
-					<li><div>검색목록 ...</div></li>
-					<li><div>검색 목록 2</div></li>
-					<li><div>검색 목록 2</div></li>
-					<li><div>검색 목록 2</div></li>
-					<li><div>검색 목록 2</div></li>
-				  </ul>
-				</li>
-				<!-- / Search -->
-			  </ul>
-			  <!-- / .nav .navbar-nav .navbar-right -->
-			</div>
-		  </div>
-		</div>
-	  </section>
-	  <!-- End Top Header Bar -->
+			<!--/.navbar-collapse -->
+		</div><!-- / .container -->
+	</nav>
+</section>
 
 
 <div class="page-wrapper" >
@@ -314,7 +272,7 @@
 			<div class="col-md-4">
 			<div class="media">
 					<a class="pull-left" href="#!">
-						<img class="media-object" src="images/book1.jpg" alt="Image">
+						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
 					</a>
 				<div class="media-body">
 					<h4 class="media-heading"><a href="#">책 제목</a></h4>
@@ -333,7 +291,7 @@
 		<div class="col-md-4">
 			<div class="media">
 					<a class="pull-left" href="#!">
-						<img class="media-object" src="images/book1.jpg" alt="Image">
+						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
 					</a>
 				<div class="media-body">
 					<h4 class="media-heading"><a href="#">책 제목</a></h4>
@@ -352,7 +310,7 @@
 		<div class="col-md-4">
 			<div class="media">
 					<a class="pull-left" href="#!">
-						<img class="media-object" src="images/book1.jpg" alt="Image">
+						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
 					</a>
 				<div class="media-body">
 					<h4 class="media-heading"><a href="#">책 제목</a></h4>
@@ -388,7 +346,7 @@
 						<div class="col-md-4">
 						<div class="media">
 								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/book1.jpg" alt="Image">
+									<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
 								</a>
 							<div class="media-body">
 								<h4 class="media-heading"><a href="#">책 제목</a></h4>
@@ -407,7 +365,7 @@
 					<div class="col-md-4">
 						<div class="media">
 								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/book1.jpg" alt="Image">
+									<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
 								</a>
 							<div class="media-body">
 								<h4 class="media-heading"><a href="#">책 제목</a></h4>
@@ -426,7 +384,7 @@
 					<div class="col-md-4">
 						<div class="media">
 								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/book1.jpg" alt="Image">
+									<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
 								</a>
 							<div class="media-body">
 								<h4 class="media-heading"><a href="#">책 제목</a></h4>
@@ -500,28 +458,28 @@
     =====================================-->
     
     <!-- Main jQuery -->
-    <script src="plugins/jquery/dist/jquery.min.js"></script>
+    <script src="../resources/plugins/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.1 -->
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../resources/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- Bootstrap Touchpin -->
-    <script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="../resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
     <!-- Instagram Feed Js -->
-    <script src="plugins/instafeed/instafeed.min.js"></script>
+    <script src="../resources/plugins/instafeed/instafeed.min.js"></script>
     <!-- Video Lightbox Plugin -->
-    <script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+    <script src="../resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
     <!-- Count Down Js -->
-    <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+    <script src="../resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
     <!-- slick Carousel -->
-    <script src="plugins/slick/slick.min.js"></script>
-    <script src="plugins/slick/slick-animation.min.js"></script>
+    <script src="../resources/plugins/slick/slick.min.js"></script>
+    <script src="../resources/plugins/slick/slick-animation.min.js"></script>
 
     <!-- Google Mapl -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-    <script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+    <script type="text/javascript" src="../resources/plugins/google-map/gmap.js"></script>
 
     <!-- Main Js File -->
-    <script src="js/script.js"></script>
+    <script src="../resources/s/script.js"></script>
     
 
 
