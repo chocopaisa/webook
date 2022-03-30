@@ -2,10 +2,12 @@ package com.webook.shop.dao;
 
 
 
-import java.util.HashMap;
+
 import java.util.List;
 
-import com.webook.shop.domain.ProductVO;
+import com.webook.domain.ProductVO;
+
+
 
 public interface ProductDAO {
 	// 상품 목록
