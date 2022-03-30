@@ -1,0 +1,15 @@
+
+-- 게시글 좋아요 테이블
+CREATE TABLE jjoa (
+	jjoa_no			INT, -- 좋아요 번호
+	bookreport_no		int, -- 게시글 번호
+	user_email		varchar2(50), -- 좋아요 누른 사람
+
+constraint pk_ilike_like_no PRIMARY KEY (like_no),
+constraint fk_ilike_user_email foreign key (user_email) references customer_info(user_email),
+constraint fk_ilike_bookreport_no foreign key (bookreport_no) references bookreport(bookreport_no)
+);
+
+
+-- 게시글 좋아요 테이블 시퀀스
+CREATE SEQUENCE jjoa_seq;

@@ -1,0 +1,13 @@
+-- 쿠폰정보 테이블
+CREATE TABLE coupon_info(
+	coupon_info_id varchar2(50), -- 쿠폰 아이디
+	coupon_desc varchar2(100), -- 쿠폰 내용
+	coupon_discount_price INT, -- 쿠폰 할인 가격
+	product_no char(13), -- 할인 상품 번호
+	coupon_date date, -- 쿠폰 유효기간
+	CONSTRAINT pk_coupon_info PRIMARY KEY(coupon_info_id),
+	CONSTRAINT fk_coupon_info_product_no FOREIGN KEY(product_no) REFERENCES product_list(product_no)
+);
+
+-- 쿠폰 정보 테이블 시퀀스
+CREATE SEQUENCE coupon_info_seq;

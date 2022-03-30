@@ -1,0 +1,20 @@
+-- 상품 목록 테이블
+
+CREATE TABLE product_list(
+    product_no char(13), -- 상품번호
+    product_name varchar2(60) not null, -- 상품명
+    product_price int default 0, -- 상품 가격
+    product_desc varchar2(4000), -- 상품 설명
+    product_cnt int default 0, -- 상품 재고
+    product_sale int default 0, -- 상품 할인 가격
+    genre_no varchar2(30), -- 장르 번호
+	product_writer varchar2(60), -- 작가명
+	product_publisher varchar2(60), -- 출판사
+	product_image varchar2(100), -- 상품 이미지명
+	product_desc_image varchar2(100), -- 상세 이미지
+	product_date date, -- 출판일
+	product_lang varchar2(10), -- 국내/해외 도서 구분
+    CONSTRAINT pk_product_list PRIMARY KEY(product_no),
+    CONSTRAINT fk_product_list_genre_no FOREIGN KEY(genre_no) REFERENCES genre_list(genre_no)
+);
+

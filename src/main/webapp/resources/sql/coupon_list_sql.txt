@@ -1,0 +1,14 @@
+-- 쿠폰 목록 테이블
+
+CREATE TABLE coupon_list (
+	coupon_no varchar2(50), -- 쿠폰 시리얼 번호
+	coupon_info_id varchar2(50), -- 쿠폰 정보 번호
+	user_email varchar2(50), -- 쿠폰 보유자
+
+	CONSTRAINT pk_coupon_list PRIMARY KEY(coupon_no),
+	CONSTRAINT fk_coupon_list_info FOREIGN KEY(coupon_info_id) REFERENCES coupon_info(coupon_info_id),
+	CONSTRAINT fk_conpon_list_user FOREIGN KEY(user_email) REFERENCES customer_info(user_email)
+);
+
+-- 쿠폰 목록 테이블 시퀀스
+CREATE SEQUENCE coupon_list_seq;

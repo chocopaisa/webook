@@ -1,0 +1,15 @@
+
+-- 관리자 계정 테이블
+create table book_admin(
+    admin_Id varchar2(20) PRIMARY KEY, -- 관리자 아이디
+    admin_Pass varchar2(50) -- 관리자 비밀번호
+);
+
+-- 관리자 계정 입력
+create table book_admin(
+    admin_Id varchar2(20) PRIMARY KEY,
+    admin_Pass varchar2(50)
+);
+
+
+INSERT INTO book_admin(admin_Id,admin_Pass)VALUES('webook','admin');

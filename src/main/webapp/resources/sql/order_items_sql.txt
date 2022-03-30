@@ -1,0 +1,17 @@
+-- 주문 상품 테이블
+
+CREATE TABLE order_ITEMS (
+    order_item_no varchar2(30), -- 주문상품 번호
+    order_no varchar2(30), -- 주문 번호
+    product_no char(13), -- 상품 번호
+    order_cnt int, -- 상품 개수
+    total_price int, -- 총가격
+    discount_price int, -- 할인된 가격
+    
+    CONSTRAINT pk_order_items PRIMARY KEY(order_item_no),
+    CONSTRAINT fk_order_items_order_no FOREIGN KEY(order_no) REFERENCES order_list(order_no),
+    CONSTRAINT fk_order_items_product_no FOREIGN KEY(product_no) REFERENCES product_list(product_no)
+);
+
+-- 주문 상품 시퀀스
+CREATE SEQUENCE order_items_seq;

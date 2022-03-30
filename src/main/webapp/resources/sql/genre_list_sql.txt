@@ -1,0 +1,10 @@
+-- 장르 목록 테이블
+
+CREATE TABLE genre_list(
+    genre_no varchar2(20), -- 장르번호
+    genre_name varchar2(30) NOT NULL, -- 장르명
+
+    CONSTRAINT pk_genre_list PRIMARY KEY(genre_no)
+);
+
+-- genre_list.csv 에서 데이터 임포트 보관
