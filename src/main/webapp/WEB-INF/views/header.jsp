@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section class="top-header">
       <div class="container">
         <div class="row">
@@ -32,7 +33,12 @@
             <ul class="top-menu text-center list-inline">
               <li>
                 <div class="pr-2 pl-2">
-                  <h5><a href="#">LOGIN</a></h5>
+                <c:if test="${sessionScope.user eq null}">
+                  <h5><a href="/webook/login.do">LOGIN</a></h5>
+                </c:if>
+                <c:if test="${ sessionScope.user ne null}">
+                	<h5><a href="/webook/logout.do">LOGOUT</a></h5>
+                </c:if>
                 </div>
               </li>
               <li class="dropdown">

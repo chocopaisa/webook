@@ -1,3 +1,3 @@
 <%@page contentType="text/html; charset=EUC-KR"%>
 
-<% response.sendRedirect("index"); %>
+<% response.sendRedirect("main.do"); %>
