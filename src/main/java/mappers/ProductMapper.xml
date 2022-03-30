@@ -5,11 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="product.mapper">
 
-<select id="productList" resultType="com.webook.domain.ProductVO" parameterType="hashmap" >
+<select id="genreKo" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
 
 SELECT *
 FROM product_list
-
+<where>
+ genre_no = #{genre_no}
+</where>
 
 </select>
 </mapper>

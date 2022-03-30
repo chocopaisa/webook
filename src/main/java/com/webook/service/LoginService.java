@@ -1,5 +1,9 @@
 package com.webook.service;
 
-public class LoginService {
+import com.webook.domain.MemberVO;
+
+public interface LoginService {
+
+	public MemberVO idcheck(MemberVO vo);
 
 }

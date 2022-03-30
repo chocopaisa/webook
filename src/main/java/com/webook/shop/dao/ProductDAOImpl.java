@@ -18,19 +18,27 @@ public class ProductDAOImpl implements ProductDAO {
 	private SqlSessionTemplate session;
 	
 
+	//국내 도서로 이동
+	@Override
+	public List<ProductVO> genreKo(ProductVO vo) {
+		System.out.println("test() 함수 호출" );
+		 List<ProductVO> result = session.selectList("product.mapper.genreKo",vo);
+		 return result;	
+	 }
 	
-
 	
 	@Override
-	public List<ProductVO> productList(ProductVO vo, int pnum) {
+	public List<ProductVO> productList(ProductVO vo) {
 			
 		
-		RowBounds row = new RowBounds(6*(pnum-1),6);
-		List<ProductVO> list = session.selectList("product.mapper.productList",pnum, row);
+		/*
+		 * RowBounds row = new RowBounds(6*(pnum-1),6); List<ProductVO> list =
+		 * session.selectList("product.mapper.productList",pnum, row);
+		 */
 
-
-
-		return list;
+		System.out.println("productList() 호출");
+		
+		return session.selectList("product.mapper.productList", vo);
 	}
 
 
@@ -52,13 +60,10 @@ public class ProductDAOImpl implements ProductDAO {
 		
 	}
 
-	@Override
-	public void productChangeKo(ProductVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
+
+	
 		
 	}
 

@@ -12,7 +12,7 @@ import com.webook.domain.ProductVO;
 public interface ProductService {
 	
 	// 상품 목록
-	List<ProductVO> productList (ProductVO vo, int pnum);
+	List<ProductVO> productList (ProductVO v);
 	
 	// 상품 검색
 	void productSearch(ProductVO vo);
@@ -22,5 +22,8 @@ public interface ProductService {
 	//해외도서로 이동
 	void productChangeEn (ProductVO vo);
 	//국내도서로 이동
-	void productChangeKo (ProductVO vo);
+	List<ProductVO> genreKo(ProductVO vo);
+
+
+	
 }

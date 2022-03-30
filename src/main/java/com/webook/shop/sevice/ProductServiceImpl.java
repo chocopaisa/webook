@@ -15,11 +15,20 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private ProductDAOImpl productDAO;
+	
+	
+	
+	//국내 도서 이동
+	@Override
+	public List<ProductVO> genreKo(ProductVO vo) {
+		return productDAO.genreKo(vo);
+		
+	}
 
 	@Override
-	public List<ProductVO> productList(ProductVO vo, int pnum) {
+	public List<ProductVO> productList(ProductVO vo) {
 	
-		return productDAO.productList(vo, pnum);
+		return productDAO.productList(vo);
 	}
 
 	@Override
@@ -39,11 +48,8 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
-	@Override
-	public void productChangeKo(ProductVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }
+
