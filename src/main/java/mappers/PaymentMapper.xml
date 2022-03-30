@@ -28,7 +28,7 @@
 		UPDATE coupon
 	</update>
 	
-	<select id="searchCoupon" parameterType="com.webook.domain.CouponVO" resultType="com.webook.domain.CouponVO">
+	<select id="searchCoupon" parameterType="com.webook.domain.CouponVO" resultType="hashmap">
 		SELECT
 			clist.coupon_no coupon_no,
 			clist.user_email user_email,
@@ -47,8 +47,5 @@
 			AND clist.user_email = #{user_email}
 			</if>
 		</where>
-		
-		
-		
 	</select>
 </mapper>
