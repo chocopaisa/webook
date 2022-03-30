@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.webook.domain.MemberVO;
 import com.webook.member.dao.MemberDAO;
 
-@Service("memberService")
+@Service("AdminMemberService")
 public class AdminMemberServiceImpl implements AdminMemberService {
 	
 	@Autowired
@@ -17,5 +17,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	public List<MemberVO> getMemberList(HashMap map) {
 		return memberDAO.getMemberList(map);
+		
+		
 	}
 }
