@@ -13,6 +13,6 @@ public interface MemberDAO {
 	public void deleteMember(MemberVO vo);
 	
 	public List<MemberVO> getMemberList(HashMap map);
-	
+
 
 }
