@@ -35,7 +35,7 @@
 									<ul>
 										<li class="dropdown-header">국내도서</li>
 										<li role="separator" class="divider"></li>
-										<li><a href="shop.html">소설</a></li>
+										<li><a href="shop_korean.do?genre_no=210050" >소설</a></li>
 										<li><a href="checkout.html">만화</a></li>
 										<li><a href="cart.html">인문</a></li>
 										<li><a href="pricing.html">시</a></li>
