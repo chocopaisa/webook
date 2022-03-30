@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="payment.mapper">
+	
+	
+	<insert id="insertOrder" parameterType="com.webook.domain.OrderVO">
+		INSERT INTO order_list
+		(
+		order_no, user_email, payment_method, delivery_fee, delivery_place, delivery_requirements, payment_date, delivery_info
+		)
+		
+		VALUES (
+		#{order_no}, #{user_email}, #{payment_method}, #{delivery_fee}, #{delivery_place}, #{delivery_requirements}, #{payment_date}, #{delivery_info}
+		)
+	</insert>
+	
+	<insert id="insertOrderItemList" parameterType="list">
+		INSERT ALL
+		<foreach collection="list" item="item">
+			INTO order_items (order_item_no, order_no, product_no, order_cnt, total_price, discount_price)
+			VALUES (order_items_seq.nextval, #{item.order_item}, #{item.product_no}, #{item.order_cnt}, #{item.total_price}, #{item.discount_price})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<update id="useCoupon" parameterType="com.webook.domain.CouponVO">
+		UPDATE coupon
+	</update>
+	
+	<select id="searchCoupon" parameterType="com.webook.domain.CouponVO" resultType="com.webook.domain.CouponVO">
+		SELECT
+			clist.coupon_no coupon_no,
+			clist.user_email user_email,
+			cinfo.coupon_desc coupon_desc,
+			cinfo.coupon_discount_price coupon_discount_price,
+			cinfo.coupon_date coupon_date
+		FROM 
+			coupon_list clist
+				INNER JOIN coupon_info cinfo
+				ON clist.coupon_info_id = cinfo.coupon_info_id
+		<where>
+			<if test="coupon_id!=null">
+			clist.coupon_id = #{coupon_id}
+			</if>
+			<if test="user_email!=null">
+			AND clist.user_email = #{user_email}
+			</if>
+		</where>
+		
+		
+		
+	</select>
+</mapper>
