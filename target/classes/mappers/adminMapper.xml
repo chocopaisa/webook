@@ -13,10 +13,13 @@
 	</select> -->
 	
 	<!-- 회원 목록 검색 => 블랙리스트 추가 -->
-	<select id="getMemberList" resultType="com.webook.domain.MemberVO" parameterType="hashmap">
+	<select id="getMemberList" resultType="com.webook.domain.MemberVO">
 		SELECT *
 		FROM customer_info
 	</select>
+	
+	<!-- 신고 게시글  -->
+	
 	
 	<!-- 차트 -->	
 	<!-- 연령대 별 인원 수 구하기 -->

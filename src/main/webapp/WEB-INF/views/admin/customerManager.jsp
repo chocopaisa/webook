@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -40,20 +41,19 @@
                                             <th>주소</th>
                                             <th>가입 날짜</th>
                                             <th>블랙리스트 여부</th>
-                                        </tr>								
-										<%-- <%
-							            	while(rs.next()){
-							            %> --%>
+                                        </tr>							
 								
-                                        <%-- <tr>                                                    
-                                            <td><%=rs.getString("user_id")%></td>
-                                            <td><%=rs.getString("user_name")%></td>
-                                            <td><%=rs.getString("user_tel")%></td>
-                                            <td><%=rs.getString("user_addr")%></td>
-                                            <td><%=rs.getString("user_regdate")%></td>
-                                            <td><%=rs.getString("blacklist")%></td>
-                                        </tr>  --%>
-                                        
+										<c:forEach items="${memberList}" var="member">
+										
+                                        <tr>                                                    
+                                            <td>${member.user_email }</td>
+                                            <td>${member.user_name }</td>
+                                            <td>${member.user_tel }</td>
+                                            <td>${member.user_addr }</td>
+                                            <td><fmt:formatDate value="${member.user_regdate }" pattern="yyyy-MM-dd"/></td>
+                                            <td>${member.blacklist }</td>
+                                        </tr>
+                                        </c:forEach>
                                 </table>
                             </div>
                         </div>

@@ -33,7 +33,7 @@
         <jsp:include page="layoutsidenav.jsp"></jsp:include>
             <div id="layoutSidenav_content">
                 <main>
-
+					<form action="saveProduct.do" method="post">
                     <div class="bg-light rounded h-100 p-4 regiinput">
                         <h3 class="mb-4">상품 등록하기</h3>
                         <div id="bookLangselect">
@@ -63,6 +63,8 @@
                             <input type="date" class="form-control" aria-label="productDate" aria-describedby="basic-addon2">
                             <span class="input-group-text">책 가격</span>
                             <input type="text" class="form-control" aria-label="publisher" aria-describedby="basic-addon2" placeholder="0">                                                        
+                        	<span class="input-group-text">입고 수량</span>
+                            <input type="text" class="form-control" aria-label="publisher" aria-describedby="basic-addon2" placeholder="0">
                         </div>
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="Leave a comment here" style="height: 320px;"></textarea>
@@ -73,7 +75,7 @@
                         </div>
                         <div><button type="submit" class="btn btn-outline-dark m-2" id="productsubmit">상품 등록하기</button></div>
                     </div>
-                    
+                    </form>
                 </main>
                 <jsp:include page="footer.jsp"></jsp:include>
             </div>

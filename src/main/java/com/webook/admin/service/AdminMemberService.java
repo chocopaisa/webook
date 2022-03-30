@@ -8,6 +8,6 @@ import com.webook.domain.MemberVO;
 public interface AdminMemberService {
 	
 	// 멤버 목록 조회
-	public List<MemberVO> getMemberList(HashMap map);
+	public List<MemberVO> getMemberList();
 
 }
