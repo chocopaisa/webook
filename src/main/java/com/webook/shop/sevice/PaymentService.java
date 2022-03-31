@@ -5,6 +5,7 @@ import java.util.List;
 import com.webook.domain.CouponVO;
 import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
+import com.webook.domain.ProductVO;
 
 public interface PaymentService {
 	
@@ -16,5 +17,8 @@ public interface PaymentService {
 	
 	// 배송지 넣기 
 	public void insertAddr();
+	
+	// 상품 검색
+	public ProductVO searchProduct(ProductVO vo); 
 	
 }

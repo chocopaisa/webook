@@ -26,4 +26,10 @@ public class MainServiceImpl implements MainService{
 		return mainDAO.showBestSeller();
 	}
 
+	@Override
+	public ProductVO showProductOnGenre(ProductVO vo) {
+		
+		return mainDAO.showProductOnGenre(vo);
+	}
+
 }

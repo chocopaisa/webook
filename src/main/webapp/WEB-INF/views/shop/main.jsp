@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 
 THEME: Aviato | E-commerce template
 VERSION: 1.0.0
@@ -46,6 +48,9 @@ FACEBOOK: https://www.facebook.com/themefisher
   <link rel="stylesheet" href="../resources/plugins/slick/slick.css">
   <link rel="stylesheet" href="../resources/plugins/slick/slick-theme.css">
   
+  <!-- bxslider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="../resources/css/style.css">
 
@@ -66,6 +71,13 @@ FACEBOOK: https://www.facebook.com/themefisher
 	#navbar > div {
 		display: inline-block;
 	}
+	.slider .img {
+      text-align: center;
+      margin: auto;
+    }
+    .product-item {
+    	height : 370px;
+    }
 </style>
 
 </head>
@@ -80,44 +92,15 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 
 
-<!-- Ads Banner -->
+<!-- 광고 배너 -->
 
-<div class="hero-slider">
-  <div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/slider-1.jpg);">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 text-center">
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.html">Shop Now</a>
-        </div>
-      </div>
+    <div class="slider">
+      <div><img src="../resources/images/banner1.jpg" class='img'></div>
+      <div><img src="../resources/images/banner1.jpg" class='img'></div>
+      <div><img src="../resources/images/banner1.jpg" class='img'></div>
     </div>
-  </div>
-  <div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/slider-3.jpg);">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 text-left">
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.html">Shop Now</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/slider-2.jpg);">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 text-right">
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.html">Shop Now</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Ads Banner -->
+    
+    <!-- 광고 배너 끝 -->
 
 <!-- 한줄평 -->
 <section>
@@ -195,14 +178,58 @@ FACEBOOK: https://www.facebook.com/themefisher
 	</div>
 </section>
 <!-- 한줄평 끝-->
-
+<!-- 상품목록 -->
+    <section class="products section">
+      <div class="container">
+        <div class="row">
+          <div class="title text-center">
+            <h2>Best Seller</h2>
+          </div>
+        </div>
+        <div id="bestseller">
+        <c:forEach var="idx" begin="0" end="4">
+        
+          <!-- 베스트 셀러 -->
+          <!-- 한묶음 -->
+          
+	          <c:if test="${idx mod 5 eq 0 }">
+	          
+	          	<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-1">
+	          </c:if>
+	          <c:if test="${idx mod 5 ne 0 }">
+		      	<div class="col-xs-4 col-sm-4 col-md-2">
+		      </c:if>
+	          <div class="product-item">
+	          <div><h3>${idx + 1}</h3></div>
+	          <div class="product-thumb">
+	          <img class="img-responsive" src="${bestSellers[idx].product_image}" alt="product-img"/>
+	          <div class="preview-meta bg-gray">
+	          <h4><a href="#">${bestSellers[idx].product_writer}</a></h4>
+	          </div></div>
+	          <div class="product-content product-best">
+	          <h4><a href="product-single.html">${bestSellers[idx].product_name}</a></h4>
+	          <p class="price money">12600</p>
+	          </div>
+	          </div>
+	          </div>
+	          
+          
+          <!-- 한묶음 끝-->
+          <!-- 베스트셀러끝-->
+        
+        	
+        </c:forEach>
+      </div>
+      </div>
+    </section>
+<!-- / 상품목록 -->
 
 <section class="product-category section">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="title text-center">
-					<h2>Product</h2>
+					<h2>CATEGORY</h2>
 					<hr/>
 				</div>
 			</div>
@@ -210,9 +237,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 				<div class="category-box category-box-2">
 					<a href="#!">
 						<img src="images/bookevent.png" alt="" />
-						<div class="content bg-gray">
-							<h3>최근 제일 인기</h3>
-							<p>의자가 성적을 바꾼다</p>
+						<div class="content">
+							<h3>만화</h3>
 						</div>
 					</a>	
 				</div>
@@ -221,17 +247,17 @@ FACEBOOK: https://www.facebook.com/themefisher
 				<div class="category-box">
 					<a href="#!">
 						<img src="images/ads1.png" alt="" />
-						<div class="content bg-gray">
+						<div class="content">
 							
-							<h3>감성 가득</h3>
+							<h3>소설</h3>
 						</div>
 					</a>	
 				</div>
 				<div class="category-box">
 					<a href="#!">
 						<img src="images/bookevent.png" alt="" />
-						<div class="content bg-gray">
-							<h3>친구가 추천</h3>
+						<div class="content">
+							<h3>시</h3>
 						</div>
 					</a>	
 				</div>
@@ -240,16 +266,16 @@ FACEBOOK: https://www.facebook.com/themefisher
 				<div class="category-box">
 					<a href="#!">
 						<img src="images/bookevent.png" alt="" />
-						<div class="content bg-gray">
-							<h3>내일 읽을 거</h3>
+						<div class="content">
+							<h3>예술</h3>
 						</div>
 					</a>	
 				</div>
 				<div class="category-box">
 					<a href="#!">
 						<img src="images/bookevent.png" alt="" />
-						<div class="content bg-gray">
-							<h3>치킨</h3>
+						<div class="content">
+							<h3>해외</h3>
 						</div>
 					</a>	
 				</div>
@@ -337,8 +363,26 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
     <script type="text/javascript" src="../plugins/google-map/gmap.js"></script>
 
+	<!-- bxslider -->
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	
     <!-- Main Js File -->
     <script src="../resources/js/script.js"></script>
+    <script>
+      // bx슬라이더
+      $(document).ready(function(){
+        $('.slider').bxSlider({
+          mode: 'fade'
+        });
+      });
+    </script>
+    <script>
+      // 가격 콤마, 원 붙이기
+      $('.money').each(function(){
+        $(this).text(Number($(this).text()).toLocaleString() + '원')
+      })
+          
+    </script>
     <script>
 		// 카트 ajax쓰기
 

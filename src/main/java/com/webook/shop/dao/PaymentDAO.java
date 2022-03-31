@@ -3,8 +3,10 @@ package com.webook.shop.dao;
 import java.util.List;
 
 import com.webook.domain.CouponVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
+import com.webook.domain.ProductVO;
 
 public interface PaymentDAO {
 	public CouponVO searchCoupon(CouponVO vo);
@@ -14,4 +16,8 @@ public interface PaymentDAO {
 	public void useCoupon(CouponVO vo);
 	
 	public void insertOrderItemList(List<OrderItemVO> list);
+	
+	public void insertAddr(MemberVO vo);
+	
+	public ProductVO searchProduct(ProductVO vo); 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.webook.domain.CouponVO;
 import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
+import com.webook.domain.ProductVO;
 import com.webook.shop.dao.PaymentDAO;
 
 @Service("PaymentService")
@@ -33,5 +34,12 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		
 	}
+	
+	@Override
+	public ProductVO searchProduct(ProductVO vo) {
+		paymentDAO.searchProduct(vo);
+		return null;
+	}
+	
 
 }

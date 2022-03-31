@@ -9,4 +9,6 @@ public interface MainDAO {
 	public List<HashMap> showReviews();
 	
 	public List<ProductVO> showBestSeller();
+	
+	public ProductVO showProductOnGenre(ProductVO vo);
 }

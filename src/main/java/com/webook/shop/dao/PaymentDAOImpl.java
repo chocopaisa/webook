@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.webook.domain.CouponVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
+import com.webook.domain.ProductVO;
 
 @Repository("PaymentDAO")
 public class PaymentDAOImpl implements PaymentDAO {
@@ -38,6 +40,20 @@ public class PaymentDAOImpl implements PaymentDAO {
 	public CouponVO searchCoupon(CouponVO vo) {
 		
 		return mybatis.selectOne("payment.mapper.searchCoupon", vo);
+	}
+
+	// 상품 정보 검색
+	@Override
+	public ProductVO searchProduct(ProductVO vo) {
+		// 상품 mapper 사용 예정
+		//mybatis.selectOne("", vo);
+		return null;
+	}
+
+	@Override
+	public void insertAddr(MemberVO vo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
