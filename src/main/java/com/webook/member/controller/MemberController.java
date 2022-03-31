@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webook.domain.MemberVO;
-import com.webook.service.MemberService;
+import com.webook.member.service.MemberService;
 
 @Controller
 public class MemberController {
@@ -18,10 +18,15 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@RequestMapping("join.do")
+	public void test() {
+		
+	}
 	
 	@RequestMapping("userInsert.do")
-	public void insertMember() {
-		
+	public String insertMember(MemberVO vo) {
+		System.out.println(vo.getUser_email());
+		return "redirect:index.jsp";
 	}
 	
 	//회원가입 정보 저장

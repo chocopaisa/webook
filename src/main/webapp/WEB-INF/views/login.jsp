@@ -70,7 +70,7 @@ FACEBOOK: https://www.facebook.com/themefisher
               <input type="password" name="user_pass" id="password" class="form-control" placeholder="Password">
             </div>
             <div class="text-center">
-              <button type="button" class="btn btn-main text-right" >회원가입</button>
+              <a href="join.do" class="btn btn-main text-right" >회원가입</a>
               <button type="submit" class="btn btn-main text-center" >로그인</button>
               <button type="button" class="btn btn-main text-left" >비밀번호 찾기</button>
             </div>
@@ -87,25 +87,25 @@ FACEBOOK: https://www.facebook.com/themefisher
     =====================================-->
     
     <!-- Main jQuery -->
-    <script src="plugins/jquery/dist/jquery.min.js"></script>
+    <script src="resources/plugins/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.1 -->
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="resources/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- Bootstrap Touchpin -->
-    <script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
     <!-- Instagram Feed Js -->
-    <script src="plugins/instafeed/instafeed.min.js"></script>
+    <script src="resources/plugins/instafeed/instafeed.min.js"></script>
     <!-- Video Lightbox Plugin -->
-    <script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+    <script src="resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
     <!-- Count Down Js -->
-    <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+    <script src="resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
     <!-- slick Carousel -->
-    <script src="plugins/slick/slick.min.js"></script>
-    <script src="plugins/slick/slick-animation.min.js"></script>
+    <script src="resources/plugins/slick/slick.min.js"></script>
+    <script src="resources/plugins/slick/slick-animation.min.js"></script>
 
     <!-- Google Mapl -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-    <script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+    <script type="text/javascript" src="resources/plugins/google-map/gmap.js"></script>
 
     <!-- Main Js File -->
     <script src="js/script.js"></script>
