@@ -16,10 +16,12 @@ public class CommunityServiceImpl implements CommunityService{
 	private CommunityDAO communityDAO;
 	
 	
-	public List<CommunityVO> getBookreportList(CommunityVO vo) {
-		return communityDAO.getBookreportList(vo);
+	public List<CommunityVO> getBookreportList(CommunityVO vo, int pNum) {
+		return communityDAO.getBookreportList(vo, pNum);
 	}
 	
-	
+/*	public CommunityVO getBookreportCount(CommunityVO vo, int pNum) {
+		return communityDAO.getBookreportCount(vo, pNum);
+	}*/
 	
 }
