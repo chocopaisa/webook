@@ -123,15 +123,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                         <td class="text-center money">0</td>
                       </tr>
                       </c:forEach>
-                      <tr value="124">
-                        <td class="text-left">
-                          <a href="#!">책제목</a>
-                        </td>
-                        <td class="text-center money">14000</td>
-                        <td class="text-center money-minus">2000</td>
-                        <td class="text-center">1</td>
-                        <td class="text-center money">0</td>
-                      </tr>
+                      
                     </tbody>
                   </table>
                 </div>
@@ -393,15 +385,15 @@ FACEBOOK: https://www.facebook.com/themefisher
                   </div>
                   <div class="verified-icon">
                     <!-- 결제 정보 폼 -->
-                    <div id="account_form">
-                      <input id="account_name" type="hidden" />
-                      <input id="account_post_code" type="hidden" />
-                      <input id="account_address" type="hidden" />
-                      <input id="account_tel" type="hidden" />
-                      <input id="account_coupon_id" type="hidden" />
+                    <form id="account_form" method="post">
+                      <input id="account_name" name="user_email" type="hidden" />
+                      <input id="account_post_code" name="post_code" type="hidden" />
+                      <input id="account_address" name="delivery_place" type="hidden" />
+                      <input id="account_tel" name="delivery_tel" type="hidden" />
+                      <input id="account_coupon_id" name="coupon_no" type="hidden" />
                       <input id="account_method" type="hidden" />
-                      <input id="account_post_price" type="hidden" />
-                    </div>
+                      <input id="account_post_price" name="post_price" type="hidden" />
+                    </form>
                     <!-- / 결제 정보 폼-->
                     <button
                       id="btnPayment"
@@ -574,6 +566,7 @@ FACEBOOK: https://www.facebook.com/themefisher
       IMP.init("imp90051783"); // "iamport" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 
       $("#btnPayment").click(function () {
+    	  
         if (isChecked()) {
           // 상품명
           let pname = "";
@@ -720,6 +713,7 @@ FACEBOOK: https://www.facebook.com/themefisher
       let sum_discount = 0; // 상품 전체 할인 가격 (쿠폰x)
 
       // 상품 개별
+      let idx = 0;
       $("#items_table > tbody > tr").each(function () {
         const id = $(this).attr("value");
         const name = $(this).children("td:nth-child(1)").text().trim();
@@ -736,10 +730,11 @@ FACEBOOK: https://www.facebook.com/themefisher
           .text((price - discount) * cnt);
         let item = "";
         item += "<div class='acc_plist'>";
-        item += "<input class='account_pid' value='" + id + "' hidden>"; // 상품아이디
-        item += "<input class='account_pcnt' value='" + cnt + "' hidden>"; // 개수
+        item += "<input class='account_pid' name='list[" + idx + "].product_no' value='" + id + "' hidden>"; // 상품아이디
+        item += "<input class='account_pcnt' name='list[" + idx + "].product_cnt' value='" + cnt + "' hidden>"; // 개수
         item += "</div>";
         $("#account_form").append(item);
+        idx++;
       });
 
       $("#sumPrice").text(sum_price);

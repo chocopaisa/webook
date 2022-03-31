@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.webook.domain.OrderItemList;
+import com.webook.domain.OrderVO;
 import com.webook.domain.ProductList;
 import com.webook.domain.ProductVO;
 import com.webook.main.service.MainService;
@@ -30,10 +32,13 @@ public class PaymentController {
 		//List<ProductVO> bestSellers = mainService.showBestSeller(); // 베스트셀러 15개
 		
 		//m.addAttribute("bestSellers", bestSellers);
+		
+		// 상품 카테고리 예시 이미지 가져오기
 		ProductVO vo = new ProductVO();
 		// 만화
 		vo.setGenre_no("210050");
 		//m.addAttribute("manhwa",mainService.showProductOnGenre(vo));
+		
 		// 소설
 		vo.setGenre_no("100");
 		//m.addAttribute("novel", mainService.showProductOnGenre(vo));
@@ -60,8 +65,8 @@ public class PaymentController {
 	}
 	
 	// 결제페이지로 이동
-	@RequestMapping("payment.do")
-	public String goPayment(ProductList productList, Model m) {
+	@RequestMapping("payment_list.do")
+	public String goPaymentList(ProductList productList, Model m) {
 		ArrayList<ProductVO> resultList = new ArrayList<>();
 		// 결제 상품리스트 정보 가져오기
 		for(ProductVO vo : productList.getList()) {
@@ -81,7 +86,30 @@ public class PaymentController {
 		return "shop/payment";
 	}
 	
+	@RequestMapping("payment.do")
+	public String goPayment(ProductVO vo, Model m) {
+		if(vo.getProduct_no() == null) {
+			return "redirect:main.do";
+		}
+		ProductVO result = paymentService.searchProduct(vo);
+		System.out.println(result.getProduct_name());
+		result.setProduct_cnt(vo.getProduct_cnt());
+		ArrayList<ProductVO> resultList = new ArrayList<>();
+		resultList.add(result);
+		
+		m.addAttribute("productList", resultList);
+		
+		return "shop/payment";
+	}
 	
+	
+	@RequestMapping("account.do")
+	public String buyItems(Model m , OrderVO vo, OrderItemList list) {
+		paymentService.insertOrder(vo, list);
+		
+		
+		return "shop/main";
+	}
 	
 	
 	

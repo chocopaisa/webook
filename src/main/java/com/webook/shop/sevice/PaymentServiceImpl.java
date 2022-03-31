@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webook.domain.CouponVO;
+import com.webook.domain.OrderItemList;
 import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
 import com.webook.domain.ProductVO;
@@ -18,10 +19,11 @@ public class PaymentServiceImpl implements PaymentService{
 	PaymentDAO paymentDAO;
 	
 	@Override
-	public void insertOrder(OrderVO vo, List<OrderItemVO> list) {
-		/*
-		 * paymentDAO.insertOrder(vo); paymentDAO.insertOrderItemList(list);
-		 */
+	public void insertOrder(OrderVO vo, OrderItemList list) {
+		
+		paymentDAO.insertOrder(vo); 
+		paymentDAO.insertOrderItemList(list);
+		
 	}
 
 	@Override
@@ -37,8 +39,7 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	@Override
 	public ProductVO searchProduct(ProductVO vo) {
-		paymentDAO.searchProduct(vo);
-		return null;
+		return paymentDAO.searchProduct(vo);
 	}
 	
 
