@@ -48,6 +48,9 @@
                             <span class="input-group-text">책 번호</span>                        
                             <input type="text" class="form-control" aria-label="bookNo"
                                 aria-describedby="basic-addon1" name="product_no"/>
+                            <span class="input-group-text">장르번호</span>
+                            <input type="text" class="form-control" aria-label="genreNo" 
+                            	aria-describedby="basic-addon2" name="genre_no"/>
                                 <span class="input-group-text">책 제목</span>
                             <input type="text" class="form-control"aria-label="bookName"
                                 aria-describedby="basic-addon1" name="product_name"/>
@@ -56,8 +59,7 @@
                                 aria-describedby="basic-addon1" name="product_writer"/>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">장르번호</span>
-                            <input type="text" class="form-control" aria-label="genreNo" aria-describedby="basic-addon2" name="genre_no"/>
+                            
                             <span class="input-group-text">출판사</span>
                             <input type="text" class="form-control" aria-label="publisher" aria-describedby="basic-addon2" name="product_publisher"/>
                             <span class="input-group-text">출판일</span>
@@ -72,7 +74,7 @@
                             <label for="floatingTextarea">책에 대한 설명을 적어주세요(1500자 이내)</label>
                         </div>
                         <div class="mb-3">                            
-                            <input class="form-control form-control-sm" id="formFileSm" type="file" >
+                            <input class="form-control form-control-sm" id="formFileSm" type="file" name="product_image">
                         </div>
                         <div><button type="submit" class="btn btn-outline-dark m-2" id="productsubmit">상품 등록하기</button></div>
                     </div>

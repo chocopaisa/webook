@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -38,66 +39,41 @@
                                     
                                     <div class="card-body">
                                         <table id="datatablesSimplee"> <!--게시글 구분위해 e가 하나 더 붙어있음-->
-                                            <thead>
-                                                <tr>                                                    
-                                                    <th>책 번호</th>
-                                                    <th>책 제목</th>
-                                                    <th>작가명</th>
-                                                    <th>장르 번호</th>
-                                                    <th>남은 수량</th>
+                                                <thead>
+	                                                <tr>                                                     
+	                                                    <th>책 번호</th>
+	                                                    <th>장르 번호</th>
+	                                                    <th>책 제목</th>
+	                                                    <th>작가명</th>
+	                                                    <th>남은 수량</th>
+	                                                </tr>
+                                                </thead>
+                                                <tfoot>
+	                                                <tr>                                                 
+	                                                    <th>책 번호</th>
+	                                                    <th>장르 번호</th>
+	                                                    <th>책 제목</th>
+	                                                    <th>작가명</th>
+	                                                    <th>남은 수량</th>
+	                                                </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                <c:forEach items="${productList }" var="product">
+                                                
+                                                <tr>     
+                                                    <td>${product.product_no }</td>
+                                                    <td>${product.genre_no }</td>
+                                                    <td>${product.product_name }</td>
+                                                    <td>${product.product_writer }</td>
+                                                    <td>${product.product_cnt }</td>
                                                 </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>                                                    
-                                                    <th>책 번호</th>
-                                                    <th>책 제목</th>
-                                                    <th>작가명</th>
-                                                    <th>장르 번호</th>
-                                                    <th>남은 수량</th>
-                                                </tr>
-                                            </tfoot>
-                                            <tbody>
-                                                <tr>                                                    
-                                                    <td>1001</td>
-                                                    <td>가가가</td>
-                                                    <td>가작가</td>
-                                                    <td>001</td>
-                                                    <td>500</td>
-                                                </tr>
-                                                <tr>                                                    
-                                                    <td>1002</td>
-                                                    <td>나나나</td>
-                                                    <td>나작가</td>
-                                                    <td>001</td>
-                                                    <td>320</td>
-                                                </tr> 
-                                                <tr>                                                    
-                                                    <td>1003</td>
-                                                    <td>다다다</td>
-                                                    <td>다작가</td>
-                                                    <td>002</td>
-                                                    <td>120</td>
-                                                </tr> 
-                                                <tr>                                                    
-                                                    <td>1004</td>
-                                                    <td>라라라</td>
-                                                    <td>라작가</td>
-                                                    <td>001</td>
-                                                    <td>610</td>
-                                                </tr> 
-                                                <tr>                                                    
-                                                    <td>1005</td>
-                                                    <td>마마마</td>
-                                                    <td>마작가</td>
-                                                    <td>001</td>
-                                                    <td>98</td>
-                                                </tr>                                                                                     
-                                            </tbody>
-                                        </table>
-                                       
+                                                </c:forEach>
+                                                </tbody>
+                                        </table>                                        
                                     </div>                           
                                 </div>
                             </div>
+                            
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                 <div class="card mb-4 tab-content" id="report-mem"> <!--start report_mem-->                                    
                                     

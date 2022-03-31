@@ -33,7 +33,8 @@
                                 회원 검색
                             </div>
                             <div class="card-body">
-                                <table id="customertables">                                    
+                                <table id="customertables">    
+                                	<thead>                                
                                         <tr>                                                    
                                             <th>작성자 ID</th>
                                             <th>회원명</th>
@@ -42,7 +43,18 @@
                                             <th>가입 날짜</th>
                                             <th>블랙리스트 여부</th>
                                         </tr>							
-								
+									</thead>
+									<tfoot>
+										<tr>                                                    
+                                            <th>작성자 ID</th>
+                                            <th>회원명</th>
+                                            <th>전화번호</th>
+                                            <th>주소</th>
+                                            <th>가입 날짜</th>
+                                            <th>블랙리스트 여부</th>
+                                        </tr>	
+									</tfoot>
+									<tbody>
 										<c:forEach items="${memberList}" var="member">
 										
                                         <tr>                                                    
@@ -54,6 +66,7 @@
                                             <td>${member.blacklist }</td>
                                         </tr>
                                         </c:forEach>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

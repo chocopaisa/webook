@@ -10,4 +10,5 @@ public interface AdminMemberService {
 	// 멤버 목록 조회
 	public List<MemberVO> getMemberList();
 
+
 }
