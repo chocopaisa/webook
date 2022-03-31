@@ -10,16 +10,14 @@ import com.webook.domain.ProductVO;
 
 
 public interface ProductDAO {
-	// 상품 목록
-	public List<ProductVO> productList (ProductVO vo);
-	//검색어 검색
-	public void productSearch(ProductVO vo);
+
+
 	//상세페이지 클릭
 	public ProductVO getProduct (ProductVO vo);
 	//해외도서로 이동
-	public List<ProductVO> genreFo (ProductVO vo);
+	public List<ProductVO> genreFo (ProductVO vo, int pnum);
 	//국내도서로 이동
-	public List<ProductVO> genreKo(ProductVO vo);
+	public List<ProductVO> genreKo(ProductVO vo, int pnum);
 	
 	  
 }

@@ -188,7 +188,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 								                </h4>
 								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
 								                <a class="comment-button" href="#!">
-													<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
+													<h6><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
 					3.5</h4>
 												</a>
 								            </div>

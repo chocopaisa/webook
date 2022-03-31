@@ -25,18 +25,17 @@ public class ProductController {
 	} 
 	
 	//페이징
-	/*@RequestMapping("shop_korean.do")
-	public void genre(ProductVO vo, int pnum, Model m) {
-		 m.addAttribute("productList",service.productList(vo, pnum)); 
-		 service.productList("", pnum) 
-		service.productList(vo, pnum);
-	}*/
+	/*
+	 * @RequestMapping("shop_korean.do") public void pageList(ProductVO vo, int
+	 * pnum, Model m) { m.addAttribute("productList",service.productList(vo, pnum));
+	 * service.productList("", pnum) service.productList	(vo, pnum); }
+	 */
 	
 	//한국도서 장르별 이동
 	@RequestMapping("shop_korean.do")
-	public String genreKo(ProductVO vo, Model m) {
+	public String genreKo(ProductVO vo, String pnum, Model m) {
 		vo.setProduct_lang("국내"); // 국내 도서만 나오게 하기
-		List<ProductVO> result = service.genreKo(vo);
+		List<ProductVO> result = service.genreKo(vo, pnum);
 		m.addAttribute("products", result);
 		
 		 return "/shop/shop_korean";
@@ -45,9 +44,9 @@ public class ProductController {
 	
 	//해외도서 장르별 이동
 	@RequestMapping("shop_foreign.do")
-	public String genreFo (ProductVO vo, Model m) {
+	public String genreFo (ProductVO vo, String pnum, Model m) {
 		vo.setProduct_lang("해외"); // 해외 도서만 나오게
-		List<ProductVO> result = service.genreFo(vo);
+		List<ProductVO> result = service.genreFo(vo, pnum);
 		m.addAttribute("products", result);
 		return "/shop/shop_foreign";
 	}
@@ -60,6 +59,15 @@ public class ProductController {
 		m.addAttribute("product", service.getProduct(vo));
 	
 		return "/shop/product_single";
+	}
+	
+	//도서 검색
+	@RequestMapping("shop_korean.do")
+	public String productSearch(ProductVO vo, String pnum, Model m) {
+		List<ProductVO> result = service.genreKo(vo,pnum);
+		m.addAttribute("products", result);
+		
+		 return "/shop/shop_korean";
 	}
 	
 	
