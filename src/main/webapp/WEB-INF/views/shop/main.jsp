@@ -202,12 +202,12 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          <div class="product-item">
 	          <div><h3>${idx + 1}</h3></div>
 	          <div class="product-thumb">
-	          <img class="img-responsive" src="${bestSellers[idx].product_image}" alt="product-img"/>
+	          <img class="img-responsive" src="" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
-	          <h4><a href="#">${bestSellers[idx].product_writer}</a></h4>
+	          <h4><a href="#">작가명</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
-	          <h4><a href="product-single.html">${bestSellers[idx].product_name}</a></h4>
+	          <h4><a href="product-single.html">상품명</a></h4>
 	          <p class="price money">12600</p>
 	          </div>
 	          </div>
