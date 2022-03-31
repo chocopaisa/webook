@@ -6,7 +6,7 @@
 	<select id="getBookreportList" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
 		
 		SELECT bookreport_no, user_email, product_no, 
-                            to_char(write_date, 'YYYY-MM-DD') write_date, bookreport_title, 
+                            write_date, bookreport_title, 
                             bookreport_content, view_count, report_kind,
                             star FROM bookreport
 		<if test="report_kind != null">
@@ -15,6 +15,13 @@
 		ORDER BY bookreport_no desc
 				
 	</select>
+<!-- 	
+	<select id="getBookreportCount" resultType="com.webook.domain.CommunityVO">
+		SELECT count(*) FROM bookreport
+		<if test="report_kind != null">
+		WHERE report_kind = #{report_kind}
+		</if> 
+	</select> -->
 
 
 
