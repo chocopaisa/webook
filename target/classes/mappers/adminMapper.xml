@@ -14,7 +14,7 @@
 	
 	<!-- 회원 목록 검색 => 블랙리스트 추가 -->
 	<select id="getMemberList" resultType="com.webook.domain.MemberVO">
-		SELECT *
+		SELECT user_email, user_name, user_tel, user_addr, to_number(to_char(user_regdate,'YYYY')), blacklist
 		FROM customer_info
 	</select>
 	
@@ -50,15 +50,15 @@
 		INSERT INTO product_list(product_no,product_name,product_writer,genre_no
 								,product_publisher,product_date,product_cnt
 								,product_price,product_desc,product_lang
-								<if test="product_image != null">
-								,product_image
+								<if test="product_desc_image != null">
+								,product_desc_image
 								</if>
 								)
 		VALUES (#{product_no},#{product_name},#{product_writer},#{genre_no}
 								,#{product_publisher},#{product_date},#{product_cnt}
 								,#{product_price},#{product_desc},#{product_lang}
-								<if test="product_image != null">
-								,#{product_image}
+								<if test="product_desc_image != null">
+								,#{product_desc_image}
 								</if>
 								)
 	</insert>
