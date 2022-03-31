@@ -24,7 +24,7 @@ public class ProductController {
 		return "/shop/" + step;
 	} 
 	
-	
+	//페이징
 	/*@RequestMapping("shop_korean.do")
 	public void genre(ProductVO vo, int pnum, Model m) {
 		 m.addAttribute("productList",service.productList(vo, pnum)); 
@@ -32,8 +32,9 @@ public class ProductController {
 		service.productList(vo, pnum);
 	}*/
 	
+	//한국도서 장르별 이동
 	@RequestMapping("shop_korean.do")
-	public String headerGenre(ProductVO vo, Model m) {
+	public String genreKo(ProductVO vo, Model m) {
 		vo.setProduct_lang("국내"); // 국내 도서만 나오게 하기
 		List<ProductVO> result = service.genreKo(vo);
 		m.addAttribute("products", result);
@@ -41,6 +42,25 @@ public class ProductController {
 		 return "/shop/shop_korean";
 	}
 	
+	
+	//해외도서 장르별 이동
+	@RequestMapping("shop_foreign.do")
+	public String genreFo (ProductVO vo, Model m) {
+		vo.setProduct_lang("해외"); // 해외 도서만 나오게
+		List<ProductVO> result = service.genreFo(vo);
+		m.addAttribute("products", result);
+		return "/shop/shop_foreign";
+	}
+	
+	//상세페이지 이동
+	@RequestMapping("product_single.do")
+	public String getProduct(ProductVO vo, Model m) {
+		System.out.println(vo.getProduct_no());
+		service.getProduct(vo);
+		m.addAttribute("product", service.getProduct(vo));
+	
+		return "/shop/product_single";
+	}
 	
 	
 	/*-> 콘솔에서 매퍼 잘 나오는지 확인해보는 거 List를 result로 받아서 돌려보기
