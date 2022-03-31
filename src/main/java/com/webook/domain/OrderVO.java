@@ -10,6 +10,31 @@ public class OrderVO {
 	private String payment_date;
 	private String delivery_info;
 	private String tracking_number;
+	private String post_code;
+	private int post_price;
+	private String delivery_tel;
+	
+	
+	
+	
+	public String getDelivery_tel() {
+		return delivery_tel;
+	}
+	public void setDelivery_tel(String delivery_tel) {
+		this.delivery_tel = delivery_tel;
+	}
+	public int getPost_price() {
+		return post_price;
+	}
+	public void setPost_price(int post_price) {
+		this.post_price = post_price;
+	}
+	public String getPost_code() {
+		return post_code;
+	}
+	public void setPost_code(String post_code) {
+		this.post_code = post_code;
+	}
 	public String getOrder_no() {
 		return order_no;
 	}
