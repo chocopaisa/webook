@@ -34,7 +34,7 @@
         <jsp:include page="layoutsidenav.jsp"></jsp:include>
             <div id="layoutSidenav_content">
                 <main>
-					<form action="saveProduct.do" method="post">
+					<form action="saveProduct.do" method="post" enctype="multipart/form-data">
                     <div class="bg-light rounded h-100 p-4 regiinput">
                         <h3 class="mb-4">상품 등록하기</h3>
                         <div id="bookLangselect">
@@ -74,7 +74,7 @@
                             <label for="floatingTextarea">책에 대한 설명을 적어주세요(1500자 이내)</label>
                         </div>
                         <div class="mb-3">                            
-                            <input class="form-control form-control-sm" id="formFileSm" type="file" name="product_image">
+                            <input class="form-control form-control-sm" id="formFileSm" type="file" name="file">
                         </div>
                         <div><button type="submit" class="btn btn-outline-dark m-2" id="productsubmit">상품 등록하기</button></div>
                     </div>
@@ -84,11 +84,8 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="../resources/admin/js/scripts.js"></script>
-        <script>
-            $("#productsubmit").click(function(){
-        alert('상품 등록이 완료되었습니다.')
-        }) 
-        </script>
+        <script src="../resources/admin/js/adminjs.js"></script>
     </body>
 </html>

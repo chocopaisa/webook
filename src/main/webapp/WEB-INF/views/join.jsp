@@ -61,7 +61,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <h1>WEBOOK</h1>
               </a>
               <h2 class="text-center">회원가입</h2>
-              <form class="text-left clearfix" action="index.html">
+              <form class="text-left clearfix" id="frm" action="userInsert.do">
                 <div class="form-group">
                   이메일
                   <input
@@ -105,14 +105,14 @@ FACEBOOK: https://www.facebook.com/themefisher
                 성별
                 <div class="form-group">
                   <div class="col-md-6">
-                    <input type="radio" name="gender" id="gender" value="man" checked/>
+                    <input type="radio" name="gender" id="" value="man" checked/>
                     MALE
                   </div>
                   <div class="col-md-6">
                     <input
                       type="radio"
                       name="gender"
-                      id="gender"
+                      id=""
                       value="woman"
                     />
                     FEMALE
@@ -124,9 +124,9 @@ FACEBOOK: https://www.facebook.com/themefisher
                     type="date"
                     name="birth_date"
                     id="birth_date"
-                    value="YYYY"
-                    max="MM"
-                    min="DD"
+                    value=""
+                    max=""
+                    min=""
                   />
                 </div>
                 휴대전화
@@ -166,32 +166,34 @@ FACEBOOK: https://www.facebook.com/themefisher
     =====================================-->
 
     <!-- Main jQuery -->
-    <script src="plugins/jquery/dist/jquery.min.js"></script>
+    <script src="resources/plugins/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.1 -->
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="resources/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- Bootstrap Touchpin -->
-    <script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
     <!-- Instagram Feed Js -->
-    <script src="plugins/instafeed/instafeed.min.js"></script>
+    <script src="resources/plugins/instafeed/instafeed.min.js"></script>
     <!-- Video Lightbox Plugin -->
-    <script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+    <script src="resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
     <!-- Count Down Js -->
-    <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+    <script src="resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
     <!-- slick Carousel -->
-    <script src="plugins/slick/slick.min.js"></script>
-    <script src="plugins/slick/slick-animation.min.js"></script>
+    <script src="resources/plugins/slick/slick.min.js"></script>
+    <script src="resources/plugins/slick/slick-animation.min.js"></script>
 
     <!-- Google Mapl -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-    <script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+    <script type="text/javascript" src="resources/plugins/google-map/gmap.js"></script>
 
     <!-- Main Js File -->
     <script src="js/script.js"></script>
 
     <script>
       $("#btn").click(function(){
-          checks();
+          if(checks()){
+        	  $("#frm").submit()
+          }
       });
 
       function checks() {
@@ -322,6 +324,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         $("#tel").focus();
         return false;
        }
+         return true;
       }
     </script>
   </body>

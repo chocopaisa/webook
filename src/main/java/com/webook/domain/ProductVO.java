@@ -1,5 +1,10 @@
 package com.webook.domain;
 
+import java.io.File;
+import java.util.UUID;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductVO {
 
 	String product_no;
@@ -16,9 +21,38 @@ public class ProductVO {
 	String product_date;
 	String product_lang;
 	
+	MultipartFile file;
 	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+		
+		// 실제로 저장되는 파일명 만들기
+		UUID uuid = UUID.randomUUID();
+		product_desc_image = uuid.toString();
+		
+		// 파일 업로드 작업
+		if( !file.isEmpty()) {
+			this.product_desc_image = file.getOriginalFilename();
+			
+		// 실제로 저장 : File => 자바에서 파일과 디렉토리를 생성,삭제,관리하는 클래스
+		File f= new File("C:\\spring\\webwork\\webook\\src\\main\\webapp\\resources\\images\\shop\\product-desc-img\\" + product_desc_image);
+			System.out.println("product_desc_image:"+product_desc_image);
+			
+			
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	
-	
+		}
+		
+		
+	}
+
 	
 	public String getProduct_no() {
 		return product_no;
