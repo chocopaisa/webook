@@ -244,7 +244,10 @@ FACEBOOK: https://www.facebook.com/themefisher
 						<td>${bookreport.bookreport_no }</td>
 						<td>${bookreport.bookreport_title }</td>
 						<td>${bookreport.user_email }</td>
-						<td>${bookreport.write_date }</td>
+						<td>
+						<fmt:parseDate value="${bookreport.write_date }" var="write_date1" pattern="yyyy-mm-dd" />
+						<fmt:formatDate value="${write_date1 }" pattern="MM-dd" />
+						</td>
 						<td>${bookreport.view_count }</td>
 						<td>${bookreport.report_kind }</td>
 					</tr>
@@ -267,6 +270,29 @@ FACEBOOK: https://www.facebook.com/themefisher
 						</li>
 					<li><a href="blog-left-sidebar.html">Next</a>
 						</li>
+<%-- 											<c:choose>
+						<c:when test="${bookreportCount.prev_pnum<=0}">
+						<li class="disabled">
+							<a href="list.do?report_kind=${report_kind }&pNum=${bookreportCount.prev_pnum}">Prev</a>
+						</li>
+						</c:when>
+					</c:choose>
+						<c:forEach var="idx" begin="${bookreportCount.min }" end="${bookreportCount.max }">
+						<c:choose>
+							<c:when test="${idx==bookreportCount.current_pnum}">
+						<li class="active"><a href="list.do?report_kind=${report_kind }&pNum=${idx}">${idx}</a>
+						</li>
+							</c:when>
+							<c:otherwise>
+						<li class="active"><a href="list.do?report_kind=${report_kind }&pNum=${idx}">${idx}</a>
+						</li>							
+							</c:otherwise>
+						</c:choose>
+						</c:forEach>
+					<li><a href="list.do?report_kind=${report_kind }&pNum=${bookreportCount.next_pnum}">Next</a>
+						</li> --%>
+						
+						
 				</ul>
 				<a href="blog-single.html" class="btn btn-main">글쓰기</a>
 				</div>
