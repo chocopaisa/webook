@@ -150,7 +150,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 					</div>
 				
 					</div>
-					<a href="cart.html" class="btn btn-main mt-20" style="font-size: large;" >장바구니</a>
+					<a href="addCart.do?product_no=${product.product_no }" class="btn btn-main mt-20" style="font-size: large;" >장바구니</a>
 					<a href="cart.html" class="btn btn-main mt-20" style="font-size: large;">바로 구매</a> 
 			</div>
 		</div>

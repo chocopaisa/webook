@@ -15,12 +15,10 @@ FROM product_list
 <when test="genre_no != null" >
  genre_no = #{genre_no}
 </when>
-
 <otherwise>
-searchKeyword = #{searchKeyword}
+PRODUCT_NAME like '%'||'${searchKeyword}'||'%' or PRODUCT_WRITER like '%'||'${searchKeyword}'||'%'
 </otherwise>
 </choose>
-
 </where>
 
 </select>
