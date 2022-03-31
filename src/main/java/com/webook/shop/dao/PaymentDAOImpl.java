@@ -46,8 +46,8 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Override
 	public ProductVO searchProduct(ProductVO vo) {
 		// 상품 mapper 사용 예정
-		//mybatis.selectOne("", vo);
-		return null;
+		
+		return mybatis.selectOne("product.mapper.getProduct", vo);
 	}
 
 	@Override
