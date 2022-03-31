@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -37,41 +38,41 @@
                     <div class="bg-light rounded h-100 p-4 regiinput">
                         <h3 class="mb-4">상품 등록하기</h3>
                         <div id="bookLangselect">
-                        <select class="form-select" id="productLang">
-                            <option selected>국내/해외 선택</option>
-                            <option value="koreabook">국내</option>
-                            <option value="nokoreabook">해외</option>
+                        <select class="form-select" id="productLang" name="product_lang">                            
+                        	<option selected>국내/해외 선택</option>
+                            <option value="국내">국내</option>
+                            <option value="해외">해외</option>
                         </select>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text">책 번호</span>                        
                             <input type="text" class="form-control" aria-label="bookNo"
-                                aria-describedby="basic-addon1">
+                                aria-describedby="basic-addon1" name="product_no"/>
                                 <span class="input-group-text">책 제목</span>
                             <input type="text" class="form-control"aria-label="bookName"
-                                aria-describedby="basic-addon1">
+                                aria-describedby="basic-addon1" name="product_name"/>
                             <span class="input-group-text">작가명</span>
                             <input type="text" class="form-control"aria-label="bookwriter"
-                                aria-describedby="basic-addon1">
+                                aria-describedby="basic-addon1" name="product_writer"/>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text">장르번호</span>
-                            <input type="text" class="form-control" aria-label="genreNo" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control" aria-label="genreNo" aria-describedby="basic-addon2" name="genre_no"/>
                             <span class="input-group-text">출판사</span>
-                            <input type="text" class="form-control" aria-label="publisher" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control" aria-label="publisher" aria-describedby="basic-addon2" name="product_publisher"/>
                             <span class="input-group-text">출판일</span>
-                            <input type="date" class="form-control" aria-label="productDate" aria-describedby="basic-addon2">
+                            <input type="date" class="form-control" aria-label="productDate" aria-describedby="basic-addon2" name="product_date"/>
                             <span class="input-group-text">책 가격</span>
-                            <input type="text" class="form-control" aria-label="publisher" aria-describedby="basic-addon2" placeholder="0">                                                        
+                            <input type="text" class="form-control" aria-label="price" aria-describedby="basic-addon2" placeholder="0" name="product_price"/>                                                        
                         	<span class="input-group-text">입고 수량</span>
-                            <input type="text" class="form-control" aria-label="publisher" aria-describedby="basic-addon2" placeholder="0">
+                            <input type="text" class="form-control" aria-label="productcnt" aria-describedby="basic-addon2" placeholder="0" name="product_cnt"/>
                         </div>
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" style="height: 320px;"></textarea>
-                            <label for="floatingTextarea">책에 대한 설명을 적어주세요</label>
+                            <textarea class="form-control" placeholder="Leave a comment here" style="height: 320px;" name="product_desc"></textarea>
+                            <label for="floatingTextarea">책에 대한 설명을 적어주세요(1500자 이내)</label>
                         </div>
                         <div class="mb-3">                            
-                            <input class="form-control form-control-sm" id="formFileSm" type="file">
+                            <input class="form-control form-control-sm" id="formFileSm" type="file" >
                         </div>
                         <div><button type="submit" class="btn btn-outline-dark m-2" id="productsubmit">상품 등록하기</button></div>
                     </div>

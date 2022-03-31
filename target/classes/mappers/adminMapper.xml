@@ -43,7 +43,17 @@
 	</select>
 	
 	
-		
+	
+	<!-- 상품 등록 -->
+	<insert id="insertProduct" parameterType="com.webook.domain.ProductVO">
+	
+		INSERT INTO product_list(product_no,product_name,product_writer,genre_no
+								,product_publisher,product_date,product_cnt
+								,product_price,product_desc,product_lang)
+		VALUES (#{product_no},#{product_name},#{product_writer},#{genre_no}
+								,#{product_publisher},#{product_date},0
+								,#{product_price},#{product_desc},#{product_lang})
+	</insert>
 
 
 

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webook.admin.service.AdminMemberService;
+import com.webook.admin.service.InsertProductService;
 import com.webook.domain.MemberVO;
+import com.webook.domain.ProductVO;
 
 
 @Controller
@@ -20,6 +22,8 @@ public class Admincontroller {
 	
 	 @Autowired
 	 private AdminMemberService adminMemberService;
+	 @Autowired
+	 private InsertProductService insertProductService;
 
 	@RequestMapping("/{step}.do")
 	public String dashboard(@PathVariable String step) {
@@ -37,7 +41,12 @@ public class Admincontroller {
 		
 	 }
 	 
-	 // 신고 게시물 출력
+	 // 상품 등록하고 DB에 저장
+	 @RequestMapping("/saveProduct.do")
+	 public String insertProduct(ProductVO productvo) { 
+		 insertProductService.insertProduct(productvo);
+		 return "redirect:productRegistration.do";
+	 }
 	 
 	 
 
