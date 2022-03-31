@@ -62,7 +62,7 @@ public class ProductController {
 	}
 	
 	//도서 검색
-	@RequestMapping("shop_korean.do")
+	@RequestMapping("shop_koreana.do")
 	public String productSearch(ProductVO vo, String pnum, Model m) {
 		List<ProductVO> result = service.genreKo(vo,pnum);
 		m.addAttribute("products", result);

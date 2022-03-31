@@ -1,4 +1,4 @@
-package com.webook.service;
+package com.webook.member.service;
 
 import com.webook.domain.MemberVO;
 
