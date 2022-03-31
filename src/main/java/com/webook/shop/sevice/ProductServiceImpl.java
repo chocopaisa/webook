@@ -24,6 +24,23 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.genreKo(vo);
 		
 	}
+	
+	//해외도서 이동
+	@Override
+	public List<ProductVO> genreFo(ProductVO vo) {
+		return productDAO.genreFo(vo);
+	
+	}
+	
+	//상세페이지 이동
+	@Override
+	public ProductVO getProduct(ProductVO vo) {
+		return productDAO.getProduct(vo);
+		
+	}
+
+	
+	
 
 	@Override
 	public List<ProductVO> productList(ProductVO vo) {
@@ -37,17 +54,10 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
-	@Override
-	public void getProduct(ProductVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 
-	@Override
-	public void productChangeEn(ProductVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 
 	

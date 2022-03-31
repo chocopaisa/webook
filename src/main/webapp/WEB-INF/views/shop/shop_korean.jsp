@@ -130,243 +130,15 @@ table, td, th {
 <body id="body">
 
 <!-- Start Top Header Bar -->
-<section class="top-header">
-	<div class="container">
-	  <div class="row">
-		<div class="col-md-4 col-xs-12 col-sm-4">
-		  <ul class="top-menu text-center list-inline">
-			<li>
-			  <div class="pr-2 pl-2">
-				<h3><a href="#">도서</a></h3>
-			  </div>
-			</li>
-			<li>
-			  <div
-				  class="pr-2 pl-2"
-			  >
-				<h3><a href="#">커뮤니티</a></h3>
-			  </div>
-			</li>
-		  </ul>
-		</div>
-		<div class="col-md-4 col-xs-12 col-sm-4">
-		  <!-- Site Logo -->
-		  <div class="logo text-center">
-			<a href="index.html">
-			  <!-- replace logo here -->
-			  <text id="WEBOOK"><h1>WEBOOK</h1></text>
-			</a>
-		  </div>
-		</div>
-		<div class="col-md-4 col-xs-12 col-sm-4">
-		  <ul class="top-menu text-center list-inline">
-			<li>
-			  <div class="pr-2 pl-2">
-				<h5><a href="#">로그인</a></h4>
-			  </div>
-			</li>
-			<li class="dropdown">
-			  <div class="pr-2 pl-2">
-				<h5><a href="#" class="">고객센터</a></h4>
-			  </div>
-			</li>
+<%@ include file="/WEB-INF/views/header.jsp" %>
 
-			<!-- Search -->
-			<li class="dropdown search dropdown-slide">
-				<div class="pr-2 pl-2">
-			  <h3>
-				<a
-				  href="#!"
-				  class="dropdown-toggle"
-				  data-toggle="dropdown"
-				  data-hover="dropdown"
-				  ><i class="tf-ion-ios-search-strong"></i
-				></a>
-			  </h3>
-		  </div>
-			  <ul class="dropdown-menu search-dropdown">
-				<li>
-					<div>
-				  <form action="#">
-					<input
-					  id="total_search"
-					  type="search"
-					  class="form-control"
-					  placeholder="Search..."
-					/>
-				  </form>
-				  </div>
-				</li>
-				<li><div>검색목록 ...</div></li>
-				<li><div>검색 목록 2</div></li>
-				<li><div>검색 목록 2</div></li>
-				<li><div>검색 목록 2</div></li>
-				<li><div>검색 목록 2</div></li>
-			  </ul>
-			</li>
-			<!-- / Search -->
-		  </ul>
-		  <!-- / .nav .navbar-nav .navbar-right -->
-		</div>
-	  </div>
-	</div>
-  </section>
+<%@ include file="/WEB-INF/views/shop/shopheader.jsp" %>
   <!-- End Top Header Bar -->
 
 
-<!-- Main Menu Section -->
-<section class="menu">
-	<nav class="navbar navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<h2 class="menu-title">Main Menu</h2>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-					aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
+<!-- Main Menu Section 삭제-->
 
-			</div><!-- / .navbar-header -->
-
-			<!-- Navbar Links -->
-			<div id="navbar" class="navbar-collapse collapse text-center">
-				<!-- 네비 좌측 -->
-				<ul class="nav navbar-nav">
-
-					<!-- 국내도서 -->
-					<li class="dropdown dropdown-slide">
-						<a href="shop/shop_korean.do" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">국내도서 <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<div class="dropdown-menu">	
-							<div class="row">
-
-								<!-- Basic -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Pages</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="pricing.html">Pricing</a></li>
-										<li><a href="confirmation.html">Confirmation</a></li>
-
-									</ul>
-								</div>
-
-								<!-- Layout -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Layout</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="product-single.html">Product Details</a></li>
-										<li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
-
-									</ul>
-								</div>
-
-							</div><!-- / .row -->
-						</div><!-- / .dropdown-menu -->
-					</li><!-- / 국내도서 -->
-
-
-					<!-- 해외도서 -->
-					<li class="dropdown dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">해외도서 <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<div class="dropdown-menu">
-							<div class="row">
-
-								<!-- Basic -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Pages</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="pricing.html">Pricing</a></li>
-										<li><a href="confirmation.html">Confirmation</a></li>
-
-									</ul>
-								</div>
-
-								<!-- Layout -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Layout</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="product-single.html">Product Details</a></li>
-										<li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
-
-									</ul>
-								</div>
-
-							</div><!-- / .row -->
-						</div><!-- / .dropdown-menu -->
-					</li><!-- / 해외도서 -->
-					
-				
-				
-
-				<!-- 네비 우측 -->
-				
-					
-
-					<!-- 마이페이지 -->
-					<li class="dropdown">
-						<a href="index.html">마이페이지</a>
-					</li><!-- / 마이페이지 -->
-
-
-					<!-- 카트 -->
-					<li class="dropdown cart-nav dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-android-cart"></i>Cart</a>
-						<div class="dropdown-menu cart-dropdown">
-							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/book1.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">책제목</a></h4>
-									<div class="cart-price">
-										<span>작가명</span>
-									</div>
-									<div class="text-right">
-									<h5><strong>12,000원</strong></h5>
-								</div>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
-
-							<div class="cart-summary">
-								<span>Total</span>
-								<span class="total-price">12,000원</span>
-							</div>
-							<ul class="text-center cart-buttons">
-								<li><a href="cart.html" class="btn btn-small">cart</a></li>
-								<li><a href="checkout.html" class="btn btn-small btn-solid-border">결제하기</a></li>
-							</ul>
-						</div>
-
-					</li><!-- / 카트 -->
-
-					
-				</ul><!-- / .nav .navbar-nav -->
-			
-			<!-- / 네비 우측 -->
-			</div>
-			<!--/.navbar-collapse -->
-		</div><!-- / .container -->
-	</nav>
-</section>
-
+<!-- 검색어 입력 -->
 	<section class="call-to-action bg-gray section" style="background-color: white; padding-top: 10px; padding-bottom: 50px;">
 		<div class="container">
 			<div class="row">
@@ -408,7 +180,7 @@ table, td, th {
 											<td>
 
 												<ul class="dropdown">
-													<li class=""><a href="#!">소설</a>
+													<li class=""><a href="shop_korean.do?genre_no=100">소설</a>
 														</li>
 												</ul>
 											</td>
@@ -417,28 +189,28 @@ table, td, th {
 
 												<ul class="dropdown">
 													<li>
-													<a href="#!">인문</a>
+													<a href="shop_korean.do?genre_no=120">인문</a>
 														</li>
 												</ul>
 											</td>
 											<td>
 												<ul class="dropdown">
-													<li><a href="#!">국내 시 </a>
+													<li><a href="shop_korean.do?genre_no=110">국내 시 </a>
 														</li>
 												</ul>
 											</td>
 											<td>
 												<ul class="dropdown">
-													<li><a href="#!">정치/사회</a>
+													<li><a href="shop_korean.do?genre_no=180">정치/사회</a>
 														</li>
 												</ul>
 											</td>
 											<td><ul class="dropdown">
-													<li ><a href="#!">경제/경영</a>
+													<li ><a href="shop_korean.do?genre_no=">경제/경영</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li ><a href="#!">역사.문화</a>
+													<li ><a href="shop_korean.do?genre_no=190">역사.문화</a>
 														
 
 														</li>
@@ -447,27 +219,27 @@ table, td, th {
 
 										<tr>
 											<td><ul class="dropdown">
-													<li><a href="#!">예술</a>
+													<li><a href="shop_korean.do?genre_no=210">예술</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="#!">종교</a>
+													<li><a href="shop_korean.do?genre_no=12">종교</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="#!">교양과학</a>
+													<li><a href="shop_korean.do?genre_no=">교양과학</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="#!">만화</a>
+													<li><a href="shop_korean.do?genre_no=">만화</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="#!">자기계발</a>
+													<li><a href="shop_korean.do?genre_no=">자기계발</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="#!">여행</a>
+													<li><a href="shop_korean.do?genre_no=270">여행</a>
 														</li>
 												</ul></td>
 										</tr>
@@ -500,7 +272,7 @@ table, td, th {
 										<div class="preview-meta">
 											<ul>
 												<li>												
-														<a href=""><i class="tf-ion-ios-search-strong"></i></a>
+														<a href="product_single.do?product_no=${product.product_no }"><i class="tf-ion-ios-search-strong"></i></a>
 												</li>
 												
 												<li>	
@@ -513,9 +285,9 @@ table, td, th {
 							</div>	
 							<div class="col-xs-6">
 								<div class="product-content">
-									<h4><a class="productTitle" href="product-single.html">${product.product_name }</a></h4>
+									<h4><a class="productTitle" href="product_single.do?product_no=${product.product_no }">${product.product_name }</a></h4>
 									<p class="writer" style="font-size: smaller;">${product.product_writer}</p>
-									<p class="price" style="font-weight: bolder;">${product.product_price }</p><hr/>
+									<p class="price" style="font-weight: bolder;">${product.product_price }원</p><hr/>
 									<p class="productDesc"  >${product.product_desc }</p>
 								</div>
 							</div>

@@ -21,10 +21,28 @@ public class ProductDAOImpl implements ProductDAO {
 	//국내 도서로 이동
 	@Override
 	public List<ProductVO> genreKo(ProductVO vo) {
-		System.out.println("test() 함수 호출" );
+	
+				System.out.println("genreKo() 함수 호출" );
 		 List<ProductVO> result = session.selectList("product.mapper.genreKo",vo);
 		 return result;	
 	 }
+	
+	//해외도서 이동
+	@Override
+	public List<ProductVO> genreFo(ProductVO vo) {
+		System.out.println("genreFo() 함수 호출");
+		List<ProductVO> result = session.selectList("product.mapper.genreFo", vo);
+		return result;
+	}
+	
+	//상세페이지 
+	@Override
+	public ProductVO getProduct(ProductVO vo) {
+		System.out.println("getProduct() 함수 호출");
+		return session.selectOne("product.mapper.getProduct", vo);
+	}
+
+
 	
 	
 	@Override
@@ -48,18 +66,11 @@ public class ProductDAOImpl implements ProductDAO {
 		
 	}
 
-	@Override
-	public void getProduct(ProductVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 
-	@Override
-	public void productChangeEn(ProductVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
 
+	
 
 
 

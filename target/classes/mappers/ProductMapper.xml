@@ -11,7 +11,28 @@ SELECT *
 FROM product_list
 <where>
  genre_no = #{genre_no}
+
 </where>
 
 </select>
+
+<select id="genreFo" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
+
+SELECT *
+FROM product_list
+<where>
+ genre_no = #{genre_no}
+</where>
+
+</select>
+
+<select id="getProduct" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
+
+SELECT *
+FROM product_list
+WHERE product_no=#{product_no}
+
+
+</select>
+
 </mapper>
