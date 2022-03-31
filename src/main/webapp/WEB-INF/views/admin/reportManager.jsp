@@ -56,7 +56,7 @@
                                     <div class="card-body tab-content" id="report-cu">                                                                         
                                         
                                         <table id="datatablesSimple" class="text-center">
-                                            
+                                            <thead>
                                                 <tr>  
                                                     <th><input type="checkbox" name="checkall" id="checkall"/></th>                                                  
                                                     <th>게시글 제목</th>
@@ -65,6 +65,18 @@
                                                     <th>신고 날짜</th>
                                                     <th>신고 횟수</th>
                                                 </tr>
+                                             </thead>
+                                             <tfoot>
+                                             	<tr>  
+                                                    <th><input type="checkbox" name="checkall" id="checkall"/></th>                                                  
+                                                    <th>게시글 제목</th>
+                                                    <th>작성자 ID</th>
+                                                    <th>신고 목록</th>
+                                                    <th>신고 날짜</th>
+                                                    <th>신고 횟수</th>
+                                                </tr>
+                                             </tfoot>
+                                             <tbody>
                                                 <tr>       
                                                     <td></td>                                             
                                                     <td></td>
@@ -73,7 +85,7 @@
                                                     <td></td>
                                                     <td></td>
                                                 </tr>                                                                                       
-                                           
+                                           	</tbody>
                                         </table>  
                                         <button type="button" class="btn btn-danger m-2" id="deletebtn">삭제하기</button>                                      
                                     </div>

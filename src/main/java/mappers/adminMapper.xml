@@ -36,11 +36,11 @@
 	</select> -->
 	
 	<!-- 월별 매출 -->
-	<select id="monthsales">
+	<!-- <select id="monthsales">
 		SELECT month(total_price)
 		FROM order_items
 		WHERE order_no LIKE to_char(sysdate,'YYYY');
-	</select>
+	</select> -->
 	
 	
 	
@@ -49,11 +49,25 @@
 	
 		INSERT INTO product_list(product_no,product_name,product_writer,genre_no
 								,product_publisher,product_date,product_cnt
-								,product_price,product_desc,product_lang)
+								,product_price,product_desc,product_lang
+								<if test="product_image != null">
+								,product_image
+								</if>
+								)
 		VALUES (#{product_no},#{product_name},#{product_writer},#{genre_no}
-								,#{product_publisher},#{product_date},0
-								,#{product_price},#{product_desc},#{product_lang})
+								,#{product_publisher},#{product_date},#{product_cnt}
+								,#{product_price},#{product_desc},#{product_lang}
+								<if test="product_image != null">
+								,#{product_image}
+								</if>
+								)
 	</insert>
+	
+	<!-- 재고 목록 출력 -->
+	<select id="getProductList" resultType="com.webook.domain.ProductVO">
+		SELECT product_no,genre_no, product_name, product_writer,product_cnt 
+		FROM product_list
+	</select>
 
 
 

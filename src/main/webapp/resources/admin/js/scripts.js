@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 
-   // $(function(){
+    $(function(){
 
     // 게시글 옵션기능 삭제 
     
@@ -73,5 +73,5 @@ window.addEventListener('DOMContentLoaded', event => {
     // 등록 알람    
        
 
- //   })
+   })
 
