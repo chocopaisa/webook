@@ -19,4 +19,6 @@ public class CommunityDAOImpl implements CommunityDAO {
 		return mybatis.selectList("community.mapper.getBookreportList", vo);
 	}
 	
+	
+	
 }
