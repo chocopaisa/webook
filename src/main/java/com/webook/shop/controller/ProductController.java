@@ -1,6 +1,9 @@
 package com.webook.shop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,6 +72,22 @@ public class ProductController {
 		
 		 return "/shop/shop_korean";
 	}
+	
+	@RequestMapping("addCart.do")
+	public String addCart(ProductVO vo, HttpSession session) {
+		ArrayList<ProductVO> list = null;
+		if(session.getAttribute("cart") ==null) {
+			list = new ArrayList<ProductVO>();
+		}  else {
+			list =	(ArrayList<ProductVO>)session.getAttribute("cart");
+		}
+		list.add(vo);
+		session.setAttribute("cart", list);
+		ArrayList<ProductVO> r = (ArrayList<ProductVO>)session.getAttribute("cart");
+		System.out.println(r.get(0).getProduct_no());
+		return "redirect:product_single.do?product_no=" + vo.getProduct_no();
+	}
+	
 	
 	
 	/*-> 콘솔에서 매퍼 잘 나오는지 확인해보는 거 List를 result로 받아서 돌려보기
