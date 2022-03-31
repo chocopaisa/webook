@@ -37,8 +37,8 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	@Override
 	public ProductVO searchProduct(ProductVO vo) {
-		return paymentDAO.searchProduct(vo);
-		 
+		paymentDAO.searchProduct(vo);
+		return null;
 	}
 	
 

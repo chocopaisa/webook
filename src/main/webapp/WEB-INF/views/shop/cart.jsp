@@ -132,7 +132,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                       </thead>
                       <tbody>
                         <tr class="">
-                          <td><input type="checkbox" class="ckb" name="list[0].product_no" value='9791157280292'/></td>
+                          <td><input type="checkbox" class="ckb" name="list[0].product_no" value='isbn1'/></td>
                           <td class="text-center">
                             <div class="product-info">
                               <img width="80" src="images/book1.jpg" alt="" />
