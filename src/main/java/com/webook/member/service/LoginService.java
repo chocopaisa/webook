@@ -1,4 +1,6 @@
-package com.webook.service;
+package com.webook.member.service;
+
+import javax.servlet.http.HttpSession;
 
 import com.webook.domain.MemberVO;
 
