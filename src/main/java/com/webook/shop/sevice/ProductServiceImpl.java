@@ -20,16 +20,24 @@ public class ProductServiceImpl implements ProductService {
 	
 	//국내 도서 이동
 	@Override
-	public List<ProductVO> genreKo(ProductVO vo) {
-		return productDAO.genreKo(vo);
+	public List<ProductVO> genreKo(ProductVO vo, String pnum) {
+		if(pnum ==null) pnum="1";
+		int page = Integer.parseInt(pnum);
 		
+	
+		return productDAO.genreKo(vo,page);
+		  
 	}
 	
 	//해외도서 이동
+
+
 	@Override
-	public List<ProductVO> genreFo(ProductVO vo) {
-		return productDAO.genreFo(vo);
-	
+	public List<ProductVO> genreFo(ProductVO vo, String pnum) {
+		if(pnum == null) pnum="1";
+		int page = Integer.parseInt(pnum);
+		return productDAO.genreFo(vo, page);
+	 
 	}
 	
 	//상세페이지 이동
@@ -42,15 +50,12 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 
-	@Override
-	public List<ProductVO> productList(ProductVO vo) {
 	
-		return productDAO.productList(vo);
-	}
+	
 
-	@Override
-	public void productSearch(ProductVO vo) {
-		
+	
+
+	
 		
 	}
 
@@ -61,5 +66,5 @@ public class ProductServiceImpl implements ProductService {
 	
 
 	
-}
+
 

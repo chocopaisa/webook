@@ -1,6 +1,5 @@
 package com.webook.shop.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -19,19 +18,23 @@ public class ProductDAOImpl implements ProductDAO {
 	
 
 	//국내 도서로 이동
+
 	@Override
-	public List<ProductVO> genreKo(ProductVO vo) {
+	public List<ProductVO> genreKo(ProductVO vo,int pnum) {
 	
-				System.out.println("genreKo() 함수 호출" );
-		 List<ProductVO> result = session.selectList("product.mapper.genreKo",vo);
+		System.out.println("genreKo() 함수 호출" );
+		
+		RowBounds row = new RowBounds(6*(pnum-1),6);
+		 List<ProductVO> result = session.selectList("product.mapper.genreKo",vo, row);
 		 return result;	
 	 }
 	
 	//해외도서 이동
 	@Override
-	public List<ProductVO> genreFo(ProductVO vo) {
+	public List<ProductVO> genreFo(ProductVO vo, int pnum) {
 		System.out.println("genreFo() 함수 호출");
-		List<ProductVO> result = session.selectList("product.mapper.genreFo", vo);
+		RowBounds row = new RowBounds(6*(pnum-1),6);
+		List<ProductVO> result = session.selectList("product.mapper.genreFo", vo,row);
 		return result;
 	}
 	
@@ -44,33 +47,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 
 	
-	
-	@Override
-	public List<ProductVO> productList(ProductVO vo) {
-			
-		
-		/*
-		 * RowBounds row = new RowBounds(6*(pnum-1),6); List<ProductVO> list =
-		 * session.selectList("product.mapper.productList",pnum, row);
-		 */
 
-		System.out.println("productList() 호출");
-		
-		return session.selectList("product.mapper.productList", vo);
-	}
-
-
-	@Override
-	public void productSearch(ProductVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	
-
-
-	
 
 
 

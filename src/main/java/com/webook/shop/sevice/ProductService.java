@@ -11,18 +11,18 @@ import com.webook.domain.ProductVO;
 
 public interface ProductService {
 	
-	// 상품 목록
-	List<ProductVO> productList (ProductVO v);
+
 	
 	// 상품 검색
-	void productSearch(ProductVO vo);
+	
 	
 	//상세페이지 클릭
 	ProductVO getProduct (ProductVO vo);
 	//해외도서로 이동
-	List<ProductVO> genreFo (ProductVO vo);
+	List<ProductVO> genreFo (ProductVO vo, String pnum);
 	//국내도서로 이동
-	List<ProductVO> genreKo(ProductVO vo);
+	List<ProductVO> genreKo(ProductVO vo, String pnum);
+
 
 
 	

@@ -146,10 +146,14 @@ table, td, th {
 					
 					<div class="col-lg-6 col-md-offset-3">
 						<div class="input-group subscription-form">
-						  <input type="search" class="form-control" placeholder="도서를 검색하세요"  name="searchKeyword">
+						
+						<form action="shop_korean.do" method="post">
+						  <input type="text" class="form-control" placeholder="도서를 검색하세요"  name="searchKeyword">
 						  <span class="input-group-btn">
 							<button class="btn btn-main" type="submit"><i class="tf-ion-ios-search-strong" style="size: 50px;"></i></button>
 						  </span>
+						  </form>
+						  
 						</div><!-- /input-group -->
 				  </div><!-- /.col-lg-6 -->
 	
@@ -276,7 +280,7 @@ table, td, th {
 												</li>
 												
 												<li>	
-													<a href="#!"><i class="tf-ion-android-cart"></i></a>
+													<a href="payment.do?product_no="><i class="tf-ion-android-cart"></i></a>
 												</li>
 											</ul>
 										  </div>
@@ -311,16 +315,15 @@ table, td, th {
 				<div class="text-center">
 					<ul class="pagination post-pagination">
 						<li><a href="#!">Prev</a>
+					
 						</li>
-						<li class="active"><a href="#!">1</a>
+						<li class="active"><a href="shop_korean.do?pnum=1&genre_no=${param.genre_no }">1</a>
 						</li>
-						<li><a href="shop_korean.do?pnum=2">2</a>
+						<li><a href="shop_korean.do?pnum=2&genre_no=${param.genre_no }">2</a>
 						</li>
-						<li><a href="shop_korean.do?pnum=3">3</a>
+						<li><a href="shop_korean.do?pnum=3&genre_no=${param.genre_no }">3</a>
 						</li>
-						<li><a href="shop_korean.do?pnum=4">4</a>
-						</li>
-						<li><a href="shop_korean.do?pnum=5">5</a>
+						<li><a href="shop_korean.do?pnum=4&genre_no=${param.genre_no }">4</a>
 						</li>
 						<li><a href="#!">Next</a>
 						</li>

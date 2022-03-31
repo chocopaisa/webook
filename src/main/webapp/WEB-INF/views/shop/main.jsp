@@ -202,12 +202,12 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          <div class="product-item">
 	          <div><h3>${idx + 1}</h3></div>
 	          <div class="product-thumb">
-	          <img class="img-responsive" src="${bestSellers[idx].product_image}" alt="product-img"/>
+	          <img class="img-responsive" src="" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
-	          <h4><a href="#">${bestSellers[idx].product_writer}</a></h4>
+	          <h4><a href="#">작가명</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
-	          <h4><a href="product-single.html">${bestSellers[idx].product_name}</a></h4>
+	          <h4><a href="product-single.html">상품명</a></h4>
 	          <p class="price money">12600</p>
 	          </div>
 	          </div>
@@ -285,58 +285,9 @@ FACEBOOK: https://www.facebook.com/themefisher
 </section>
 
 
-		</div>
-	</div>
-</section>
 
 
-
-
-<footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.html">CONTACT</a>
-					</li>
-					<li>
-						<a href="shop.html">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.html">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.html">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
-			</div>
-		</div>
-	</div>
-</footer>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 
     <!-- 
     Essential Scripts
