@@ -27,28 +27,28 @@ public class PaymentController {
 	
 	@RequestMapping("main.do")
 	public String goMain(Model m) {
-		List<ProductVO> bestSellers = mainService.showBestSeller(); // 베스트셀러 15개
+		//List<ProductVO> bestSellers = mainService.showBestSeller(); // 베스트셀러 15개
 		
-		m.addAttribute("bestSellers", bestSellers);
+		//m.addAttribute("bestSellers", bestSellers);
 		ProductVO vo = new ProductVO();
 		// 만화
 		vo.setGenre_no("210050");
-		m.addAttribute("manhwa",mainService.showProductOnGenre(vo));
+		//m.addAttribute("manhwa",mainService.showProductOnGenre(vo));
 		// 소설
 		vo.setGenre_no("100");
-		m.addAttribute("novel", mainService.showProductOnGenre(vo));
+		//m.addAttribute("novel", mainService.showProductOnGenre(vo));
 		
 		// 시
 		vo.setGenre_no("110");
-		m.addAttribute("poem", mainService.showProductOnGenre(vo));
+		//m.addAttribute("poem", mainService.showProductOnGenre(vo));
 		
 		// 여행
 		vo.setGenre_no("270");
-		m.addAttribute("trip", mainService.showProductOnGenre(vo));
+		//m.addAttribute("trip", mainService.showProductOnGenre(vo));
 		
 		// 예술 
 		vo.setGenre_no("210");
-		m.addAttribute("art", mainService.showProductOnGenre(vo));
+		//m.addAttribute("art", mainService.showProductOnGenre(vo));
 		
 		return "shop/main";
 	}
