@@ -62,17 +62,17 @@ FACEBOOK: https://www.facebook.com/themefisher
           <h1>WEBOOK</h1>
           </a>
           <h2 class="text-center">로그인</h2>
-          <form class="text-left clearfix" action="index.html" >
+          <form class="text-left clearfix" action="checkLogin.do" >
             <div class="form-group">
-              <input type="text" name="email" id="email" class="form-control"  placeholder="Email">
+              <input type="text" name="user_email" id="email" class="form-control"  placeholder="Email">
             </div>
             <div class="form-group">
-              <input type="text" name="password" id="password" class="form-control" placeholder="Password">
+              <input type="password" name="user_pass" id="password" class="form-control" placeholder="Password">
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-main text-right" >회원가입</button>
+              <button type="button" class="btn btn-main text-right" >회원가입</button>
               <button type="submit" class="btn btn-main text-center" >로그인</button>
-              <button type="submit" class="btn btn-main text-left" >비밀번호 찾기</button>
+              <button type="button" class="btn btn-main text-left" >비밀번호 찾기</button>
             </div>
           </form>
           <p class="mt-20"><a href="signin.html"> 새로운 계정 만들기</a></p>

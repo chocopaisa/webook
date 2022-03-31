@@ -9,10 +9,10 @@ public class MemberVO {
 	private String user_name;
 	private String user_addr;
 	private String gender;
-	private Date user_birth;
+	private String user_birth;
 	private String user_tel;
 	private String blacklist;
-	private Date user_regdate;
+	private String user_regdate;
 	
 	//setter, getter 함수 
 	public String getUser_email() {
@@ -45,10 +45,10 @@ public class MemberVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public Date getUser_birth() {
+	public String getUser_birth() {
 		return user_birth;
 	}
-	public void setUser_birth(Date user_birth) {
+	public void setUser_birth(String user_birth) {
 		this.user_birth = user_birth;
 	}
 	public String getUser_tel() {
@@ -63,12 +63,14 @@ public class MemberVO {
 	public void setBlacklist(String blacklist) {
 		this.blacklist = blacklist;
 	}
-	public Date getUser_regdate() {
+	public String getUser_regdate() {
 		return user_regdate;
 	}
-	public void setUser_regdate(Date user_regdate) {
+	public void setUser_regdate(String user_regdate) {
 		this.user_regdate = user_regdate;
 	}
+	
+
 
 	
 
