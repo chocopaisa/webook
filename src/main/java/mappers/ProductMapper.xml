@@ -10,7 +10,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 SELECT *
 FROM product_list
 <where>
+
+<choose>
+<when test="genre_no != null" >
  genre_no = #{genre_no}
+</when>
+
+<otherwise>
+searchKeyword = #{searchKeyword}
+</otherwise>
+</choose>
 
 </where>
 
@@ -34,5 +43,7 @@ WHERE product_no=#{product_no}
 
 
 </select>
+
+
 
 </mapper>
