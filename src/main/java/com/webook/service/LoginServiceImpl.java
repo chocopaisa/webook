@@ -12,8 +12,15 @@ public class LoginServiceImpl implements LoginService{
 	@Autowired
 	private LoginDAO loginDAO;
 	
-	public MemberVO idcheck(MemberVO vo) {
-		return loginDAO.idcheck(vo);
+	public MemberVO checkLogin(MemberVO vo) {
+		return loginDAO.checkLogin(vo);
 	}
+
+	@Override
+	public MemberVO idcheck(MemberVO vo) {
+		
+		return null;
+	}
+	
 
 }
