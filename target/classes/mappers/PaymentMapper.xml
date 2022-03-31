@@ -19,7 +19,7 @@
 		INSERT ALL
 		<foreach collection="list" item="item">
 			INTO order_items (order_item_no, order_no, product_no, order_cnt, total_price, discount_price)
-			VALUES (order_items_seq.nextval, #{item.order_item}, #{item.product_no}, #{item.order_cnt}, #{item.total_price}, #{item.discount_price})
+			VALUES (order_items_seq.nextval, #{item.order_no}, #{item.product_no}, #{item.order_cnt}, #{item.total_price}, #{item.discount_price})
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>

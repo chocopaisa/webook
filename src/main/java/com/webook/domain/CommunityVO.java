@@ -11,6 +11,7 @@ public class CommunityVO {
 	private String report_kind;
 	private int star;
 	
+
 	
 	
 	

@@ -142,10 +142,12 @@ table, td, th {
 					
 					<div class="col-lg-6 col-md-offset-3">
 						<div class="input-group subscription-form">
+						<form action="shop_korean.do" method="post">
 						  <input type="search" class="form-control" placeholder="도서를 검색하세요"  name="searchKeyword">
 						  <span class="input-group-btn">
 							<button class="btn btn-main" type="submit"><i class="tf-ion-ios-search-strong" style="size: 50px;"></i></button>
 						  </span>
+						  </form>
 						</div><!-- /input-group -->
 				  </div><!-- /.col-lg-6 -->
 	
@@ -284,15 +286,13 @@ table, td, th {
 					<ul class="pagination post-pagination">
 						<li><a href="#!">Prev</a>
 						</li>
-						<li class="active"><a href="#!">1</a>
+						<li class="active"><a href="shop_foreign.do?pnum=1&genre_no=${param.genre_no }">1</a>
 						</li>
-						<li><a href="#!">2</a>
+						<li><a href="shop_foreign.do?pnum=2&genre_no=${param.genre_no }">2</a>
 						</li>
-						<li><a href="#!">3</a>
+						<li><a href="shop_foreign.do?pnum=3&genre_no=${param.genre_no }">3</a>
 						</li>
-						<li><a href="#!">4</a>
-						</li>
-						<li><a href="#!">5</a>
+						<li><a href="shop_foreign.do?pnum=4&genre_no=${param.genre_no }">4</a>
 						</li>
 						<li><a href="#!">Next</a>
 						</li>

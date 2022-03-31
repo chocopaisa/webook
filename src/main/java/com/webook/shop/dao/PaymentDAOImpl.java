@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.webook.domain.CouponVO;
 import com.webook.domain.MemberVO;
+import com.webook.domain.OrderItemList;
 import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
 import com.webook.domain.ProductVO;
@@ -31,7 +32,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 	}
 
 	@Override
-	public void insertOrderItemList(List<OrderItemVO> list) {
+	public void insertOrderItemList(OrderItemList list) {
 		mybatis.insert("payment.mapper.insertOrderItemList", list);
 		
 	}
@@ -46,8 +47,8 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Override
 	public ProductVO searchProduct(ProductVO vo) {
 		// 상품 mapper 사용 예정
-		//mybatis.selectOne("", vo);
-		return null;
+		return mybatis.selectOne("product.mapper.getProduct", vo);
+		
 	}
 
 	@Override
