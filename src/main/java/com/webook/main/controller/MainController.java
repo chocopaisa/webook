@@ -18,13 +18,12 @@ public class MainController {
 	@Autowired
 	MainService mainService;
 	
+	
+	// main 화면 보여주가
 	@RequestMapping("main.do")
 	public String showMain(Model m) {
-		List<HashMap> reviews = mainService.showReviews();
-		List<ProductVO> bestSellers = mainService.showBestSeller();
-		for(ProductVO vo : bestSellers) {
-			System.out.println(vo.getProduct_image());
-		}
+		List<HashMap> reviews = mainService.showReviews(); // 리뷰 
+		List<ProductVO> bestSellers = mainService.showBestSeller(); // 베스트셀러 15개
 		
 		m.addAttribute("bestSellers", bestSellers);
 		
