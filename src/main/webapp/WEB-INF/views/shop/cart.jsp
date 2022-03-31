@@ -96,7 +96,7 @@ FACEBOOK: https://www.facebook.com/themefisher
             <div class="content">
               <h1 class="page-name">Cart</h1>
               <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="main.do">Home</a></li>
                 <li class="active">cart</li>
               </ol>
             </div>
@@ -114,6 +114,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <div class="product-list">
 					<div class="delete-btn"><h4 class="pr-2"><text class='checkedCnt'>0</text>개 선택</h4><button class="btn btn-main">삭제하기</button></div>
                   <div>
+                  <form id='cart-form' action="payment.do" method="post">
                     <table class="table text-center">
                       <thead>
                         <tr>
@@ -131,7 +132,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                       </thead>
                       <tbody>
                         <tr class="">
-                          <td><input type="checkbox" class="ckb" value='isbn1'/></td>
+                          <td><input type="checkbox" class="ckb" name="list[0].product_no" value='isbn1'/></td>
                           <td class="text-center">
                             <div class="product-info">
                               <img width="80" src="images/book1.jpg" alt="" />
@@ -144,13 +145,14 @@ FACEBOOK: https://www.facebook.com/themefisher
                             <input
                               type="text"
                               class="form-control cnt"
+                              name="list[0].product_cnt"
                               value="1"
                               maxlength="1"
                             />
                           </td>
                           <td class="text-right totalPrice">20,000원</td>
                           <td class="text-center">
-                            <a href="payment?product_no=9791136295026&cnt=1" class="btn btn-main btn-small">구매</a>
+                            <a href="payment.do?product_no=9791136295026&cnt=1" class="btn btn-main btn-small">구매</a>
 
                             <button class="btn btn-main btn-small">삭제</button>
                           </td>
@@ -184,6 +186,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                         </tr>
                       </tbody>
                     </table>
+                    </form>
 					<div class="bg-gray">
 					<div class="col-sm-12 col-md-12">
 						<h4>선택한 상품 <text class="checkedCnt">0</text>개 (<text class="totalCnt">0</text>개)</h4>
@@ -208,7 +211,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                     </div>
 				</div>
 				
-                    <a href="payment" class="btn btn-main pull-right col-xs-12 mt-2"
+                    <a class="btn btn-main pull-right col-xs-12 mt-2" id="paymenyBtn"
                       >결제 하러 가기</a
                     >
       </div>
@@ -308,7 +311,9 @@ FACEBOOK: https://www.facebook.com/themefisher
         $('#sumTotalPrice').text((sumPrice + 3500).toLocaleString() + '원');
       }
       
-      
+      $('#paymenyBtn').click(function(){
+    	  $('#cart-form').submit()
+      })
     </script>
   </body>
 </html>
