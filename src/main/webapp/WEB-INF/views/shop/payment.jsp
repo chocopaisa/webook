@@ -86,7 +86,7 @@ FACEBOOK: https://www.facebook.com/themefisher
             <div class="content">
               <h1 class="page-name">Checkout</h1>
               <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/main.do">Home</a></li>
                 <li class="active">checkout</li>
               </ol>
             </div>
@@ -113,13 +113,16 @@ FACEBOOK: https://www.facebook.com/themefisher
                       </tr>
                     </thead>
                     <tbody>
-                      <tr value="123">
-                        <td class="text-left"><a href="#!">책제목</a></td>
-                        <td class="text-center money">20000</td>
-                        <td class="text-center money-minus">2000</td>
-                        <td class="text-center">2</td>
+                    <c:forEach items="${productList }" var="product">
+                    
+                      <tr value="${product.product_no }">
+                        <td class="text-left">${product.product_name }</td>
+                        <td class="text-center money">${product.product_price }</td>
+                        <td class="text-center money-minus">${product.product_sale }</td>
+                        <td class="text-center">${product.product_cnt }</td>
                         <td class="text-center money">0</td>
                       </tr>
+                      </c:forEach>
                       <tr value="124">
                         <td class="text-left">
                           <a href="#!">책제목</a>

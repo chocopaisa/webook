@@ -38,18 +38,18 @@ FACEBOOK: https://www.facebook.com/themefisher
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
   
   <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="resources/plugins/themefisher-font/style.css">
+  <link rel="stylesheet" href="../resources/plugins/themefisher-font/style.css">
   <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="resources/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resources/plugins/bootstrap/css/bootstrap.min.css">
   
   <!-- Animate css -->
-  <link rel="stylesheet" href="resources/plugins/animate/animate.css">
+  <link rel="stylesheet" href="../resources/plugins/animate/animate.css">
   <!-- Slick Carousel -->
-  <link rel="stylesheet" href="resources/plugins/slick/slick.css">
-  <link rel="stylesheet" href="resources/plugins/slick/slick-theme.css">
+  <link rel="stylesheet" href="../resources/plugins/slick/slick.css">
+  <link rel="stylesheet" href="../resources/plugins/slick/slick-theme.css">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="resources/css/style.css">
+  <link rel="stylesheet" href="../resources/css/style.css">
   
  <style>
  
@@ -97,244 +97,10 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 <body id="body">
 <!-- Start Top Header Bar -->
+<%@ include file="/WEB-INF/views/header.jsp" %>
 
-<section class="top-header">
-	<div class="container">
-	  <div class="row">
-		<div class="col-md-4 col-xs-12 col-sm-4">
-		  <ul class="top-menu text-center list-inline">
-			<li>
-			  <div class="pr-2 pl-2">
-				<h3><a href="#">도서</a></h3>
-			  </div>
-			</li>
-			<li>
-			  <div
-				  class="pr-2 pl-2"
-			  >
-				<h3><a href="#">커뮤니티</a></h3>
-			  </div>
-			</li>
-		  </ul>
-		</div>
-		<div class="col-md-4 col-xs-12 col-sm-4">
-		  <!-- Site Logo -->
-		  <div class="logo text-center">
-			<a href="index.html">
-			  <!-- replace logo here -->
-			  <text id="WEBOOK"><h1>WEBOOK</h1></text>
-			</a>
-		  </div>
-		</div>
-		<div class="col-md-4 col-xs-12 col-sm-4">
-		  <ul class="top-menu text-center list-inline">
-			<li>
-			  <div class="pr-2 pl-2">
-				<h5><a href="#">로그인</a></h4>
-			  </div>
-			</li>
-			<li class="dropdown">
-			  <div class="pr-2 pl-2">
-				<h5><a href="#" class="">고객센터</a></h4>
-			  </div>
-			</li>
-
-			<!-- Search -->
-			<li class="dropdown search dropdown-slide">
-				<div class="pr-2 pl-2">
-			  <h3>
-				<a
-				  href="#!"
-				  class="dropdown-toggle"
-				  data-toggle="dropdown"
-				  data-hover="dropdown"
-				  ><i class="tf-ion-ios-search-strong"></i
-				></a>
-			  </h3>
-		  </div>
-			  <ul class="dropdown-menu search-dropdown">
-				<li>
-					<div>
-				  <form action="#">
-					<input
-					  id="total_search"
-					  type="search"
-					  class="form-control"
-					  placeholder="Search..."
-					/>
-				  </form>
-				  </div>
-				</li>
-				<li><div>검색목록 ...</div></li>
-				<li><div>검색 목록 2</div></li>
-				<li><div>검색 목록 2</div></li>
-				<li><div>검색 목록 2</div></li>
-				<li><div>검색 목록 2</div></li>
-			  </ul>
-			</li>
-			<!-- / Search -->
-		  </ul>
-		  <!-- / .nav .navbar-nav .navbar-right -->
-		</div>
-	  </div>
-	</div>
-  </section>
-  <!-- End Top Header Bar -->
-
-
-<!-- Main Menu Section -->
-<section class="menu">
-	<nav class="navbar navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<h2 class="menu-title">Main Menu</h2>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-					aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-
-			</div><!-- / .navbar-header -->
-
-			<!-- Navbar Links -->
-			<div id="navbar" class="navbar-collapse collapse text-center">
-				<!-- 네비 좌측 -->
-				<ul class="nav navbar-nav">
-
-					<!-- 국내도서 -->
-					<li class="dropdown dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">국내도서 <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<div class="dropdown-menu">
-							<div class="row">
-
-								<!-- Basic -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Pages</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="pricing.html">Pricing</a></li>
-										<li><a href="confirmation.html">Confirmation</a></li>
-
-									</ul>
-								</div>
-
-								<!-- Layout -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Layout</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="product-single.html">Product Details</a></li>
-										<li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
-
-									</ul>
-								</div>
-
-							</div><!-- / .row -->
-						</div><!-- / .dropdown-menu -->
-					</li><!-- / 국내도서 -->
-
-
-					<!-- 해외도서 -->
-					<li class="dropdown dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-							role="button" aria-haspopup="true" aria-expanded="false">해외도서 <span
-								class="tf-ion-ios-arrow-down"></span></a>
-						<div class="dropdown-menu">
-							<div class="row">
-
-								<!-- Basic -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Pages</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="pricing.html">Pricing</a></li>
-										<li><a href="confirmation.html">Confirmation</a></li>
-
-									</ul>
-								</div>
-
-								<!-- Layout -->
-								<div class="col-lg-6 col-md-6 mb-sm-3">
-									<ul>
-										<li class="dropdown-header">Layout</li>
-										<li role="separator" class="divider"></li>
-										<li><a href="product-single.html">Product Details</a></li>
-										<li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
-
-									</ul>
-								</div>
-
-							</div><!-- / .row -->
-						</div><!-- / .dropdown-menu -->
-					</li><!-- / 해외도서 -->
-					
-				
-				
-
-				<!-- 네비 우측 -->
-				
-					
-
-					<!-- 마이페이지 -->
-					<li class="dropdown">
-						<a href="index.html">마이페이지</a>
-					</li><!-- / 마이페이지 -->
-
-
-					<!-- 카트 -->
-					<li class="dropdown cart-nav dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-								class="tf-ion-android-cart"></i>Cart</a>
-						<div class="dropdown-menu cart-dropdown">
-							<!-- Cart Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/book1.jpg" alt="image" />
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">책제목</a></h4>
-									<div class="cart-price">
-										<span>작가명</span>
-									</div>
-									<div class="text-right">
-									<h5><strong>12,000원</strong></h5>
-								</div>
-								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-							</div><!-- / Cart Item -->
-
-							<div class="cart-summary">
-								<span>Total</span>
-								<span class="total-price">12,000원</span>
-							</div>
-							<ul class="text-center cart-buttons">
-								<li><a href="cart.html" class="btn btn-small">cart</a></li>
-								<li><a href="checkout.html" class="btn btn-small btn-solid-border">결제하기</a></li>
-							</ul>
-						</div>
-
-					</li><!-- / 카트 -->
-
-					
-				</ul><!-- / .nav .navbar-nav -->
-			
-			<!-- / 네비 우측 -->
-			</div>
-			<!--/.navbar-collapse -->
-		</div><!-- / .container -->
-	</nav>
-</section>
-
+<%@ include file="/WEB-INF/views/shop/shopheader.jsp" %>
+<!-- end Header Bar -->
 
 
 <section class="single-product">
@@ -357,7 +123,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 		<!--************************************** me art lab slider 슬라이더 없이 사진만 나오게 수정********************************* -->
 							<div class='carousel-inner '>
 								<div class='item active'>
-									<img src='images/shop/single-products/product-1.jpg' alt='' data-zoom-image="images/shop/single-products/product-1.jpg" />
+									<img src='${product.product_image }'  />
 								</div>
 							</div>
 							<!-- sag sol 없앰 -->
@@ -368,11 +134,11 @@ FACEBOOK: https://www.facebook.com/themefisher
 			</div>
 			<div class="col-md-7">
 				<div class="single-product-details">
-					<h2>Eclipse Crossbody</h2>
-					<p class="productWriter">작가</p><hr/>
-					<p class="productPublisher">삼성출판사</p> <br/>
-					<p class="product-price" style="font-weight:bolder;"> 정가 : 20000원</p>
-					<p class="product-price" style="font-weight:bolder; font-size: larger;"> 할인가 : 20000원</p><br/>
+					<h2 >${product.product_name }</h2>
+					<p class="productWriter">${product.product_writer }</p><hr/>
+					<p class="productPublisher">${product.product_publisher }</p> <br/>
+					<p class="product-price" style="font-weight:bolder;"> 정가 : ${product.product_price }</p>
+					<p class="product-price" style="font-weight:bolder; font-size: larger;"> 할인가 : ${product.product_sale }</p><br/>
 					<p class="product-price" style="color: black; font-size: small;"> 배송비 : 3000원</p>
 					
 					<div class="product-quantity">
@@ -403,8 +169,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 					<div class="tab-content patternbg">
 						<div id="details" class="tab-pane fade active in">
 							<h4>Product Description</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut per spici</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis delectus quidem repudiandae veniam distinctio repellendus magni pariatur molestiae asperiores animi, eos quod iusto hic doloremque iste a, nisi iure at unde molestias enim fugit, nulla voluptatibus. Deserunt voluptate tempora aut illum harum, deleniti laborum animi neque, praesentium explicabo, debitis ipsa?</p>
+							<p>${product.product_desc }</p>
 						</div>
 
 						<div id="reviews" class="tab-pane fade">
@@ -459,7 +224,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 								            </div>
 
 								            <p>
-								                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni natus, nostrum iste non delectus atque ab a accusantium optio, dolor!
+								                ipsum dolor sit amet, consectetur adipisicing elit. Magni natus, nostrum iste non delectus atque ab a accusantium optio, dolor!
 								            </p>
 
 								        </div>
@@ -505,10 +270,10 @@ FACEBOOK: https://www.facebook.com/themefisher
 <!-- *************************** 책 상세 이미지******************-->
 
 					<div>
-						<p class="productDescImage"><img class="main" src='images/shop/single-products/bookimg3.jpg' alt='' data-zoom-image="images/shop/single-products/product-1.jpg"  style="width:1000px; height:1000px;"/></p>	
+						<p class="productDescImage"><img class="main" src="${product.product_desc_image }"   style="width:1000px; height:1000px;"/></p>	
 					</div>
 
-				</div>
+				</div>	
 			</div>
 		</div>
 	
@@ -734,30 +499,30 @@ FACEBOOK: https://www.facebook.com/themefisher
     =====================================-->
     
     <!-- Main jQuery -->
-    <script src="resources/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="../resources/plugins/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.1 -->
-    <script src="resources/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../resources/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- Bootstrap Touchpin -->
-    <script src="resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="../resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
     <!-- Instagram Feed Js -->
-    <script src="resources/plugins/instafeed/instafeed.min.js"></script>
+    <script src="../resources/plugins/instafeed/instafeed.min.js"></script>
     <!-- Video Lightbox Plugin -->
-    <script src="resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+    <script src="../resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
     <!-- Count Down Js -->
-    <script src="resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+    <script src="../resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
     <!-- slick Carousel -->
-    <script src="resources/plugins/slick/slick.min.js"></script>
-    <script src="resources/plugins/slick/slick-animation.min.js"></script>
+    <script src="../resources/plugins/slick/slick.min.js"></script>
+    <script src="../resources/plugins/slick/slick-animation.min.js"></script>
 
     <!-- Google Mapl -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-    <script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+    <script type="text/javascript" src="../plugins/google-map/gmap.js"></script>
 
     <!-- Main Js File -->
-    <script src="resources/js/script.js"></script>
+    <script src="../resources/js/script.js"></script>
     
-<script src="resources/js/shop-total.js"></script>
+<script src="../resources/js/shop-total.js"></script>
 
   </body>
   </html>

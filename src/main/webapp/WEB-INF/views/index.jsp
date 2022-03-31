@@ -79,6 +79,9 @@ FACEBOOK: https://www.facebook.com/themefisher
       text-align: center;
       margin: auto;
     }
+    .product-item {
+    	height : 370px;
+    }
     </style>
   </head>
 
@@ -101,7 +104,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	<div class="container">
 		<div class="row">
 		<div class="title text-center">
-			<a href="#"><h2>Review</h2></a>
+			<a href="/webook/community/main.do"><h2>Review</h2></a>
 			<hr/>
 		</div>
 	</div>
@@ -142,11 +145,11 @@ FACEBOOK: https://www.facebook.com/themefisher
           <!-- 한묶음 -->
           
 	          <c:if test="${idx mod 5 eq 0 }">
-	          <div class="row">
-	          	<div class="col-xs-4 col-md-2 col-md-offset-1">
+	          
+	          	<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-1">
 	          </c:if>
 	          <c:if test="${idx mod 5 ne 0 }">
-		      	<div class="col-xs-4 col-md-2">
+		      	<div class="col-xs-4 col-sm-4 col-md-2">
 		      </c:if>
 	          <div class="product-item">
 	          <div><h3>${idx + 1}</h3></div>
@@ -166,9 +169,7 @@ FACEBOOK: https://www.facebook.com/themefisher
           <!-- 한묶음 끝-->
           <!-- 베스트셀러끝-->
         
-        	<c:if test="${(idx+1) mod 5 eq 0 }">
-	          	</div>
-	    	</c:if>
+        	
         </c:forEach>
       </div>
       </div>

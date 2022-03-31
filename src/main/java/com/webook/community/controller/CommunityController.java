@@ -14,7 +14,7 @@ public class CommunityController {
 	@Autowired
 	private CommunityService communityService;
 	
-	@RequestMapping("/community/community_list")
+	@RequestMapping("/community/list.do")
 	public void getBookreportList(CommunityVO vo, Model model) {
 		model.addAttribute("bookreportList", communityService.getBookreportList(vo));
 	}

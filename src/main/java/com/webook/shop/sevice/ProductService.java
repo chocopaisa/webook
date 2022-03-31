@@ -18,9 +18,9 @@ public interface ProductService {
 	void productSearch(ProductVO vo);
 	
 	//상세페이지 클릭
-	void getProduct (ProductVO vo);
+	ProductVO getProduct (ProductVO vo);
 	//해외도서로 이동
-	void productChangeEn (ProductVO vo);
+	List<ProductVO> genreFo (ProductVO vo);
 	//국내도서로 이동
 	List<ProductVO> genreKo(ProductVO vo);
 

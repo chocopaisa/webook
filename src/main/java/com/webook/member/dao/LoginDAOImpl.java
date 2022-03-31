@@ -19,9 +19,9 @@ public class LoginDAOImpl implements LoginDAO {
 	}
 
 	@Override
-	public MemberVO memberlogin(MemberVO vo) {
-		
-		return null;
+	public MemberVO checkLogin(MemberVO vo) {
+		MemberVO va = mybatis.selectOne("login.mapper.login_check", vo);
+		return va;
 	}
 
 }

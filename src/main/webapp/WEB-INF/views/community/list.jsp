@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+
 <!-- 
 THEME: Aviato | E-commerce template
 VERSION: 1.0.0
@@ -146,15 +146,15 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="community_main">커뮤니티 메인</a>
+						<a href="main.do">커뮤니티 메인</a>
 					</li><!-- / Home -->
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="community_list">독후감 목록</a>
+						<a href="list.do">독후감 목록</a>
 					</li><!-- / Home -->
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="community_write">독후감 작성</a>
+						<a href="write.do">독후감 작성</a>
 					</li><!-- / Home -->
 
 
@@ -174,7 +174,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 		        <div class="post text-center" >
 					<table border="1" width="165px" class="bookreport_type_select">
 						<tr>
-							<td class=""><strong>전체 독후감</strong></td>
+							<td class=""><strong><a href="list.do">전체 독후감</a></strong></td>
 						</tr>
 						<tr>
 							<td class=""><strong>베스트 독후감</strong></td>
@@ -186,22 +186,22 @@ FACEBOOK: https://www.facebook.com/themefisher
 							<td class=""><strong>국내</strong></td>
 						</tr>
 						<tr>
-							<td>소설/인문/시</td>
+							<td><a href="list.do?report_kind=소설">소설/인문/시</a></td>
 						</tr>
 						<tr>
-							<td>만화</td>
+							<td><a href="list.do?report_kind=만화">만화</a></td>
 						</tr>
 						<tr>
-							<td>정치사회/경제경영</td>
+							<td><a href="list.do?report_kind=정치사회">정치사회/경제경영</a></td>
 						</tr>
 						<tr>
-							<td>종교/역사/문화</td>
+							<td><a href="list.do?report_kind=종교">종교/역사/문화</a></td>
 						</tr>
 						<tr>
-							<td>교양과학/예술</td>
+							<td><a href="list.do?report_kind=예술">교양과학/예술</a></td>
 						</tr>
 						<tr>
-							<td>자기계발/여행</td>
+							<td><a href="list.do?report_kind=여행">자기계발/여행</a></td>
 						</tr>
 					  </table>
 					  <br/>
@@ -210,19 +210,19 @@ FACEBOOK: https://www.facebook.com/themefisher
 							<td class=""><strong>해외</strong></td>
 						</tr>
 						<tr>
-							<td>문학</td>
+							<td><a href="list.do?report_kind=해외문학">문학</a></td>
 						</tr>
 						<tr>
-							<td>인문/사회</td>
+							<td><a href="list.do?report_kind=해외인문">인문/사회</a></td>
 						</tr>
 						<tr>
-							<td>예술/건축</td>
+							<td><a href="list.do?report_kind=해외예술">예술/건축</a></td>
 						</tr>
 						<tr>
-							<td>아동</td>
+							<td><a href="list.do?report_kind=해외아동">아동</a></td>
 						</tr>
 						<tr>
-							<td>만화/애니/문고</td>
+							<td><a href="list.do?report_kind=해외만화">만화/애니/문고</a></td>
 						</tr>
 					  </table>
 				</div>
@@ -236,7 +236,6 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          <div class="post-content">
 				  
 	           <table border="1" border-bottom width="900" class="bookreport_list">
-				<caption class="text-center"><strong>선택목록</strong></caption>
 	           		<tr>
 	           			<td width="80">글번호</td><td>제목</td><td width="100">작성자</td><td width="100">작성일</td><td width="70">조회</td><td width="70">좋아요</td>
 	           		</tr>

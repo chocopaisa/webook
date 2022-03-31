@@ -35,17 +35,18 @@
 									<ul>
 										<li class="dropdown-header">국내도서</li>
 										<li role="separator" class="divider"></li>
-										<li><a href="#!" >소설</a></li>
+										<li><a href="shop_korean.do?genre_no=100" >소설</a></li>
 										<li><a href="shop_korean.do?genre_no=210050">만화</a></li>
-										<li><a href="cart.html">인문</a></li>
-										<li><a href="pricing.html">시</a></li>
-										<li><a href="confirmation.html">정치사회</a></li>
-										<li><a href="confirmation.html">경제경영</a></li>
-										<li><a href="confirmation.html">예술/종교</a></li>
-										<li><a href="confirmation.html">역사/문화</a></li>
-										<li><a href="confirmation.html">고양과학</a></li>
-										<li><a href="confirmation.html">자기계발</a></li>
-										<li><a href="confirmation.html">여행</a></li>
+										<li><a href="shop_korean.do?genre_no=120">인문</a></li>
+										<li><a href="shop_korean.do?genre_no=110">시</a></li>
+										<li><a href="shop_korean.do?genre_no=180">정치사회</a></li>
+										<li><a href="shop_korean.do?genre_no=">경제경영</a></li>
+										<li><a href="shop_korean.do?genre_no=210">예술</a></li>
+										<li><a href="shop_korean.do?genre_no=210">종교</a></li>
+										<li><a href="shop_korean.do?genre_no=190">역사/문화</a></li>
+										<li><a href="shop_korean.do?genre_no=">고양과학</a></li>
+										<li><a href="shop_korean.do?genre_no=">자기계발</a></li>
+										<li><a href="shop_korean.do?genre_no=">여행</a></li>
 									</ul>
 								</div>
 
@@ -67,12 +68,12 @@
 									<ul>
 										<li class="dropdown-header">해외도서</li>
 										<li role="separator" class="divider"></li>
-										<li><a href="shop.html">문학</a></li>
-										<li><a href="checkout.html">인문/사회</a></li>
-										<li><a href="cart.html">예술/건축</a></li>
-										<li><a href="pricing.html">아동</a></li>
-										<li><a href="confirmation.html">만화/애니</a></li>
-										<li><a href="confirmation.html">문고</a></li>
+										<li><a href="shop_foreign.do?genre_no=100020">문학</a></li>
+										<li><a href="shop_foreign.do?genre_no=">인문/사회</a></li>
+										<li><a href="cshop_foreign.do?genre_no=">예술/건축</a></li>
+										<li><a href="shop_foreign.do?genre_no=">아동</a></li>
+										<li><a href="shop_foreign.do?genre_no=">만화/애니</a></li>
+										<li><a href="shop_foreign.do?genre_no=">문고</a></li>
 
 									</ul>
 								</div>

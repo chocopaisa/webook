@@ -8,14 +8,14 @@
             <ul class="top-menu text-center list-inline">
               <li>
                 <div class="pr-2 pl-2">
-                  <h3><a href="/webook/shop/main">BOOK</a></h3>
+                  <h3><a href="/webook/shop/main.do">BOOK</a></h3>
                 </div>
               </li>
               <li>
                 <div
 					class="pr-2 pl-2"
 				>
-                  <h3><a href="#">COMMUNITY</a></h3>
+                  <h3><a href="/webook/community/main.do">COMMUNITY</a></h3>
                 </div>
               </li>
             </ul>
@@ -23,7 +23,7 @@
           <div class="col-md-4 col-xs-12 col-sm-4">
             <!-- Site Logo -->
             <div class="logo text-center">
-              <a href="/webook/index">
+              <a href="/webook/main.do">
                 <!-- replace logo here -->
                 <text id="WEBOOK"><h1>WEBOOK</h1></text>
               </a>
