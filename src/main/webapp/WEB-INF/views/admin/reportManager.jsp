@@ -58,39 +58,39 @@
                                         <table id="datatablesSimple" class="text-center">
                                             <thead>
                                                 <tr>  
-                                                    <th><input type="checkbox" name="checkall" id="checkall"/></th>                                                  
-                                                    <th>게시글 제목</th>
-                                                    <th>작성자 ID</th>
-                                                    <th>신고 목록</th>
-                                                    <th>신고 날짜</th>
-                                                    <th>신고 횟수</th>
+                                                    <th><input type="checkbox" name="reportchkBx" onclick="checkAll();"/></th>                                                  
+                                                    <th>게시글 번호</th>
+                                                    <th>신고된 회원 ID</th>
+                                                    <th>신고된 사유</th>
+                                                    <th>신고한 날짜</th>
+                                                    <th>신고된 게시글 번호</th>
                                                 </tr>
                                              </thead>
                                              <tfoot>
                                              	<tr>  
-                                                    <th><input type="checkbox" name="checkall" id="checkall"/></th>                                                  
-                                                    <th>게시글 제목</th>
-                                                    <th>작성자 ID</th>
-                                                    <th>신고 목록</th>
-                                                    <th>신고 날짜</th>
-                                                    <th>신고 횟수</th>
+                                                    <th></th>                                                  
+                                                    <th>게시글 번호</th>
+                                                    <th>신고된 회원 ID</th>
+                                                    <th>신고된 사유</th>
+                                                    <th>신고한 날짜</th>
+                                                    <th>신고된 게시글 번호</th>
                                                 </tr>
                                              </tfoot>
-                                             <tbody>
-                                             	<c:forEach items="">
+                                             <tbody id="reportList">
+                                             	<c:forEach items="${getReportCommuList}" var="reportcommunity" >
                                                 <tr>       
-                                                    <td></td>                                             
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td><input type="checkbox" name="reportChkBxRow"/></td>                                             
+                                                    <td>${reportcommunity.article_no }</td>
+                                                    <td>${reportcommunity.rep_article_email }</td>
+                                                    <td>${reportcommunity.rep_article_info }</td>
+                                                    <td>${reportcommunity.rep_article_date }</td>
+                                                    <td>${reportcommunity.rep_article_no }</td>
                                                 </tr>  
                                                 </c:forEach>                                                                                     
                                            	</tbody>
                                         </table>  
                                      
-                                        <button type="button" class="btn btn-danger m-2" id="deletebtn">삭제하기</button>                                      
+                                        <button type="button" class="btn btn-danger m-2" id="deletebtn" onclick="deletecommu();">삭제하기</button>                                      
                                     </div>
                                                              
                                 </div>
