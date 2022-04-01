@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webook.domain.MemberVO;
 import com.webook.member.service.LoginService;
@@ -17,6 +18,16 @@ public class LoginController {
 	@RequestMapping("login.do")
 	public void login() {
 		
+	}
+	
+	@RequestMapping(value="checkId.do", produces = "application/text;charset=utf-8" )
+	@ResponseBody
+	public String checkId(MemberVO vo) {
+		MemberVO result= loginservice.idcheck(vo);
+		if(result.getUser_email() != null) {
+			return "1";
+		} 
+		return "0";
 	}
 	
 	@RequestMapping("checkLogin.do")

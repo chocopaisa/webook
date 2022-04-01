@@ -20,7 +20,7 @@ public class MemberController {
 	
 	@RequestMapping("join.do")
 	public void test() {
-		
+	
 	}
 	
 	@RequestMapping("userInsert.do")

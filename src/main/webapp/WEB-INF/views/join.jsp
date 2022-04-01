@@ -71,7 +71,8 @@ FACEBOOK: https://www.facebook.com/themefisher
                     class="form-control"
                     placeholder="이메일을 입력하세요."
                   />
-                  <input type="button" value="ID 중복확인" onclick="emailCheck()">
+                  <div id="checkMsg"></div>
+                  <button type="button" id="checkbtn" class="btn btn-default">중복확인</button>
                 </div>
                 비밀번호
                 <div class="form-group">
@@ -107,14 +108,13 @@ FACEBOOK: https://www.facebook.com/themefisher
                 성별
                 <div class="form-group">
                   <div class="col-md-6">
-                    <input type="radio" name="gender" id="" value="M" checked/>
+                    <input type="radio" name="gender" value="M" checked/>
                     MALE
                   </div>
                   <div class="col-md-6">
                     <input
                       type="radio"
                       name="gender"
-                      id=""
                       value="F"
                     />
                     FEMALE
@@ -126,9 +126,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                     type="date"
                     name="user_birth"
                     id="birth_date"
-                    value=""
-                    max=""
-                    min=""
+
                   />
                 </div>
                 휴대전화
@@ -189,7 +187,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script type="text/javascript" src="resources/plugins/google-map/gmap.js"></script>
 
     <!-- Main Js File -->
-    <script src="js/script.js"></script>
+    <script src="resources/js/script.js"></script>
 
     <script>
       $("#btn").click(function(){
@@ -225,8 +223,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         $("#email").focus();
         return false;
        }
-
-
+        
        //비밀번호 공백 확인
        if ($("#password").val() == "") {
           const err =
@@ -328,6 +325,31 @@ FACEBOOK: https://www.facebook.com/themefisher
        }
          return true;
       }
+    </script>
+    <script type="text/javascript">
+
+    // 아이디 중복확인 체크
+    $(function(){
+    	$('#checkbtn').on('click',function(){
+    		$.ajax({
+    			type:'GET',
+    			url:'checkId.do',
+    			data: {
+    				"user_email" : $('#email').val()
+    				},
+    			success: function(data){
+    				if(data=='0'){
+    					$('#checkMsg').html('<p style="color:blue">사용가능한 아이디입니다.</p>');
+    				} else{
+    					$('#checkMsg').html('<p style="color:red">중복된 아이디입니다.</p>');
+    					}
+    				},
+    			error : function(err){
+    				console.log(err);
+    			}
+    		}); //end of ajax
+    	}); //end on
+    });
     </script>
   </body>
 </html>

@@ -14,13 +14,13 @@ public class LoginDAOImpl implements LoginDAO {
 	private SqlSessionTemplate mybatis;
 	@Override
 	public MemberVO idcheck(MemberVO vo) {
-		MemberVO vi = mybatis.selectOne("login.mapper.login_check", vo);
+		MemberVO vi = mybatis.selectOne("login.mapper.checkId", vo);
 		return vi;
 	}
 
 	@Override
 	public MemberVO checkLogin(MemberVO vo) {
-		MemberVO va = mybatis.selectOne("login.mapper.login_check", vo);
+		MemberVO va = mybatis.selectOne("login.mapper.login_check", vo); 
 		return va;
 	}
 
