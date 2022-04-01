@@ -87,4 +87,19 @@
   $('.hero-slider').slickAnimation();
 
 
+
+	
+
+	// 카트 총 가격 계산
+	let cartSumPrice = 0;
+	$('.cart_price').each(function(){
+		cartSumPrice += Number($(this).text().replace('원','').replace(',','').trim());
+	})
+	$('#cartSumPrice').text(cartSumPrice);
+	
+	
+		
+		
+	
+
 })(jQuery);

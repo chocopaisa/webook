@@ -141,7 +141,6 @@ public class PaymentController {
 			}
 			ProductVO result = paymentService.searchProduct(vo);
 			result.setProduct_cnt(vo.getProduct_cnt());
-			System.out.println(vo.getProduct_name());
 			resultList.add(result);
 			
 		}
