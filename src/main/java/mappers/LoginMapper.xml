@@ -13,4 +13,9 @@ select * from customer_info
 where user_email = #{user_email} and user_pass = #{user_pass}
 </select>
 
+<select id="checkId" resultType="com.webook.domain.MemberVO" parameterType="com.webook.domain.MemberVO">
+select * from customer_info
+where user_email = #{user_email}
+</select>
+
 </mapper>
