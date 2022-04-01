@@ -42,18 +42,21 @@ WHERE product_no=#{product_no}
 
 </select>
 
-<select id="addCart" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
+<select id="getOtherBook" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
 
-select product_no, product_name, product_price, product_image, product_cnt
-FROM product_list
+<![CDATA[
 
-<if test="#{product_cnt} != null">
-<where>
-product_no=#{product_no} 
-</where> 
-</if>
+select ROWNUM, product_name, product_price, product_image
+from (select * from product_list ORDER BY rownum desc)
+where ROWNUM<5 and genre_no = (select genre_no from product_list where product_no=#{product_no})
+]]>
 </select>
 
+<select id="getReport"  parameterType="com.webook.domain.CommunityVO" resultType="hashmap">
 
-
+SELECT ROWNUM, book.bookreport_title bookreport_title, book.bookreport_content bookreport_content, customer.user_name user_name
+FROM bookreport	book inner join customer_info customer
+on book.user_email = customer.user_email
+where product_no= #{product_no}
+</select>
 </mapper>

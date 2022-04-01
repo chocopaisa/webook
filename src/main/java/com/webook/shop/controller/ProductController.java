@@ -1,17 +1,24 @@
 package com.webook.shop.controller;
 
+import java.rmi.server.ServerCloneException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 
+import com.webook.domain.CommentVO;
+import com.webook.domain.CommunityVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
 import com.webook.shop.sevice.ProductService;
 
@@ -54,16 +61,6 @@ public class ProductController {
 		return "/shop/shop_foreign";
 	}
 	
-	//상세페이지 이동
-	@RequestMapping("product_single.do")
-	public String getProduct(ProductVO vo, Model m) {
-		System.out.println(vo.getProduct_no());
-		service.getProduct(vo);
-		m.addAttribute("product", service.getProduct(vo));
-	
-		return "/shop/product_single";
-	}
-	
 	//도서 검색
 	@RequestMapping("shop_koreana.do")
 	public String productSearch(ProductVO vo, String pnum, Model m) {
@@ -73,6 +70,35 @@ public class ProductController {
 		 return "/shop/shop_korean";
 	}
 	
+	/*상세페이지 관련*/
+	
+	//상세페이지 이동
+	@RequestMapping("product_single.do")
+	public String getProduct(ProductVO vo, CommunityVO communityVo, Model m) {
+		System.out.println(vo.getProduct_no());
+	
+		
+
+		
+		service.getProduct(vo);
+		List<ProductVO> result =  service.getOtherBook(vo);
+		/* List<CommunityVO> list =service.getReport(communityVo) */; 
+		
+		m.addAttribute("product", service.getProduct(vo));
+		m.addAttribute("products2", result);
+		
+		
+		/* m.addAttribute("community", list); */
+	
+		return "/shop/product_single";
+	}
+
+	
+	
+	
+	
+
+	//장바구니 넣기
 	@RequestMapping("addCart.do")
 	public String addCart(ProductVO vo, HttpSession session) {
 		ArrayList<ProductVO> list = null;
@@ -81,17 +107,19 @@ public class ProductController {
 		}  else {
 			list =	(ArrayList<ProductVO>)session.getAttribute("cart");
 		}
-		ProductVO result = service.addCart(vo);
+		//선택한 상품의 정보를 cart에 넣기
+		ProductVO result = service.getProduct(vo);
 		result.setProduct_cnt(vo.getProduct_cnt());
-		list.add(result);
+		list.add(result); 
 		session.setAttribute("cart", list);
 		ArrayList<ProductVO> r = (ArrayList<ProductVO>)session.getAttribute("cart");
-		System.out.println(r.get(0).getProduct_no() + "/" + r.get(0).getProduct_image() + "/" + r.get(0).getProduct_price() + "/"+ r.get(0).getProduct_name()+"/"+ r.get(0).getProduct_cnt());
 		
 	
 		return "redirect:product_single.do?product_no=" + vo.getProduct_no();
 		
 	}
+	
+	
 	
 	
 	

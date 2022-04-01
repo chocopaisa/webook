@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.webook.domain.CommunityVO;
 import com.webook.domain.ProductVO;
 import com.webook.shop.dao.ProductDAOImpl;
 
@@ -40,19 +41,29 @@ public class ProductServiceImpl implements ProductService {
 	 
 	}
 	
-	//상세페이지 이동
+	//상세페이지 책 정보 가져오기
 	@Override
 	public ProductVO getProduct(ProductVO vo) {
 		return productDAO.getProduct(vo);
 		
 	}
-
+	
+	//상세페이지 장르 관련 책 가져오기
 	@Override
-	public ProductVO addCart(ProductVO vo) {
-		
-		return productDAO.addCart(vo);
+	public List<ProductVO> getOtherBook(ProductVO vo) {
+		return productDAO.getOtherBook(vo);
 	}
 
+	@Override
+	public List<CommunityVO> getReport(HashMap map) {
+		
+		return productDAO.getReport(map);
+	}
+
+	// 상세페이지 게시글 가져오기
+	
+	
+	
 	
 	
 
