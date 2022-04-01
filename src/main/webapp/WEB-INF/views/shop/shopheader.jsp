@@ -110,12 +110,12 @@
 									<img class="media-object" src="${product.product_image }" alt="image" />
 								</a>
 								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">${product.product_name }</a></h4>
+									<h4 class="media-heading"><a href="#!">${product.product_name } 상품명</a></h4>
 									<div class="cart-price">
 										<span></span>
 									</div>
-									<div class="text-right">
-									<h5><strong>${product.product_price}</strong></h5>
+									<div class="text-left">
+									<h5><strong class="cart_price money">${product.product_price}30000</strong></h5>
 								</div>
 								</div>
 								<button value="removeCart" class="remove"><i class="tf-ion-close"></i></button>
@@ -125,7 +125,7 @@
 							<div class="cart-summary">
 							
 								<span>Total</span>
-								<span class="total-price">12,000원</span>
+								<span class="total-price money" id="cartSumPrice">12,000원</span>
 							</div>
 							</c:if>
 							<ul class="text-center cart-buttons">
@@ -146,5 +146,12 @@
 </section>
 
 <script>
-	
+	window.onload = function(){
+		document.querySelector('#cartSumPrice').innerHTML = 30000;
+		
+		document.querySelectorAll('.cart_price').forEach(function(idx){
+			console.log(idx);
+		})
+		
+	}
 </script>
