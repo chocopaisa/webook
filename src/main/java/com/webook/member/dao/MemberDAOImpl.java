@@ -20,21 +20,21 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	public void insertMember(MemberVO vo) {
 		System.out.println("===> Mybatis insertMember() 호출");
-		mybatis.insert("MemberDAO.insertMember", vo);
+		mybatis.insert("member.mapper.insertMember", vo);
 	}
 
 	public void updateMember(MemberVO vo) {
 		System.out.println("===> Mybatis updateMember() 호출");
-		mybatis.update("MemberDAO.updateMember", vo);
+		mybatis.update("member.mapper.updateMember", vo);
 	}
 
 	public void deleteMember(MemberVO vo) {
 		System.out.println("===> Mybatis deleteMember() 호출");
-		mybatis.delete("MemberDAO.deleteMember", vo);
+		mybatis.delete("member.mapper.deleteMember", vo);
 	}
 
 	public List<MemberVO> getMemberList(HashMap map) {
 		System.out.println("===> Mybatis getMemberList() 호출");
-		return mybatis.selectList("MemberDAO.getMemberList", map);
+		return mybatis.selectList("member.mapper.getMemberList", map);
 	}
 }

@@ -8,4 +8,5 @@ public interface LoginService {
 	
 	public MemberVO checkLogin(MemberVO vo);
 
+	public MemberVO logout(MemberVO vo);
 }

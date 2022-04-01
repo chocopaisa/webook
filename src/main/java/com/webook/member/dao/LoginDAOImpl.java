@@ -24,4 +24,12 @@ public class LoginDAOImpl implements LoginDAO {
 		return va;
 	}
 
+	@Override
+	public MemberVO logout(MemberVO vo) {
+		MemberVO vb = mybatis.selectOne("login.mapper.logout", vo);
+		return vb;
+	}
+	
+	
+
 }
