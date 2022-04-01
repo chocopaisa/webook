@@ -9,4 +9,7 @@ public interface LoginDAO {
 	
 	// 로그인 확인 기능 구현	
 	MemberVO checkLogin(MemberVO vo);
+	
+	// 로그아웃 확인 기능 구현
+	MemberVO logout(MemberVO vo);
 }
