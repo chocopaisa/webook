@@ -12,4 +12,7 @@ public interface adminProductService {
 	
 	// 재고 목록 출력
 	public List<ProductVO> getProductList();
+	
+	// 상품 갯수 변경
+	int modifyCount(ProductVO vo);
 }

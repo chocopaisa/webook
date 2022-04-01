@@ -38,7 +38,7 @@
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                                 <div class="card mb-4">
-                                    
+                                    <form action="update.do" method="post">
                                     <div class="card-body">
                                         <table id="datatablesSimplee"> <!--게시글 구분위해 e가 하나 더 붙어있음-->
                                                 <thead>
@@ -48,6 +48,7 @@
 	                                                    <th>책 제목</th>
 	                                                    <th>작가명</th>
 	                                                    <th>남은 수량</th>
+	                                                    <th>변경할 갯수</th>
 	                                                    <th>수량 변경</th>
 	                                                </tr>
                                                 </thead>
@@ -58,6 +59,7 @@
 	                                                    <th>책 제목</th>
 	                                                    <th>작가명</th>
 	                                                    <th>남은 수량</th>
+	                                                    <th>변경할 갯수</th>
 	                                                    <th>수량 변경</th>
 	                                                </tr>
                                                 </tfoot>
@@ -65,18 +67,20 @@
                                                 <c:forEach items="${productList }" var="product">
                                                 
                                                 <tr>     
-                                                    <td>${product.product_no }</td>
+                                                    <td class="product_no">${product.product_no }</td>
                                                     <td>${product.genre_no }</td>
                                                     <td>${product.product_name }</td>
                                                     <td>${product.product_writer }</td>
-                                                    <td>${product.product_cnt }</td>
-                                                    <td><button type="button" class="btn btn-success align-middle delbtn">입고</button></td>
+                                                    <td class="updatecnt">${product.product_cnt }</td>
+                                                    <td><input type="text" class="modifycnt" name="product_cnt" style="width: 50px;"></td>
+                                                    <td><button type="button" class="btn btn-success align-middle modifybtn" data-productNo="${product.product_no}">입고</button></td>
                                                 </tr>
                                                 </c:forEach>
                                                 </tbody>
                                         </table>
                                                                                
-                                    </div>                           
+                                    </div>
+                                    </form>                           
                                 </div>
                             </div>
                             

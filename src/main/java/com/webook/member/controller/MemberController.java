@@ -25,8 +25,9 @@ public class MemberController {
 	
 	@RequestMapping("userInsert.do")
 	public String insertMember(MemberVO vo) {
+		memberService.insertMember(vo);
 		System.out.println(vo.getUser_email());
-		return "redirect:index.jsp";
+		return "redirect:login.do";
 	}
 	
 	//회원가입 정보 저장

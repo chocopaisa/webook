@@ -21,6 +21,11 @@ public class LoginServiceImpl implements LoginService{
 		
 		return null;
 	}
+
+	@Override
+	public MemberVO logout(MemberVO vo) {
+		return loginDAO.logout(vo);
+	}
 	
 
 }
