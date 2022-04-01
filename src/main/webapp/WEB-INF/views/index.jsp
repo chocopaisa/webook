@@ -110,20 +110,21 @@ FACEBOOK: https://www.facebook.com/themefisher
 	</div>
 		<div class="row" id="reviews">
 			<!-- 리뷰 들어갈 자리 -->
-			
+		<c:forEach var="idx" begin="0" end="2">
       <!-- 한 묶음 -->
       <div class="col-md-4">
         <div class="media">
         <a class="pull-left" href="#">
-        <img class="media-object" src="http://image.kyobobook.co.kr/images/book/xlarge/188/x9791161571188.jpg" alt="Image">
+        <img class="media-object" src="${reviews[idx].PRODUCT_IMAGE }" alt="Image">
         </a>
         <div class="media-body">
-        <h4 class="media-heading"><a href="#">불편한 편의점(40만부 기념 벚꽃 에디션)</a></h4>
-        <h4 class="review-star"><span class="star"> 3</span></h4><hr/>
-        <div><p>재밌어요</p></div>
+        <h4 class="media-heading"><a href="#">${ reviews[idx].PRODUCT_NAME }</a></h4>
+        <h4 class="review-star"><span class="star"> ${reviews[idx].STAR }</span></h4><hr/>
+        <div><p>${reviews[idx].BOOKREPORT_CONTENT }</p></div>
         <div class="text-right align-text-bottom">
-        <a href="#"><p>김밥집</p></a></div></div></div></div>
+        <a href="#"><p>${reviews[idx].USER_NAME }</p></a></div></div></div></div>
         <!-- 한묶음 끝-->
+        </c:forEach>
         <!-- 리뷰끝 -->
 		</div>
 	</div>
@@ -159,7 +160,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          <h4><a href="#">${bestSellers[idx].product_writer}</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
-	          <h4><a href="product-single.html">${bestSellers[idx].product_name}</a></h4>
+	          <h4><a href="shop/product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_name}</a></h4>
 	          <p class="price money">12600</p>
 	          </div>
 	          </div>

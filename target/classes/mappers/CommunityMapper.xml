@@ -27,6 +27,11 @@
 	
 	</insert>
 	
+	<!-- 게시물 상세 -->
+	<select id="getBookreport" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
+		SELECT * FROM bookreport
+		WHERE bookreport_no = #{bookreport_no}
+	</select>
 	<!-- 게시물 수정 -->
 	<update id="updateBookreport" parameterType="com.webook.domain.CommunityVO">
 		

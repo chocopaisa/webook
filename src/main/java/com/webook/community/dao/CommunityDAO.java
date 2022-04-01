@@ -11,6 +11,9 @@ public interface CommunityDAO {
 	//게시글 등록
 	public void insertBookreport(CommunityVO vo);
 	
+	//게시물 상세
+	public CommunityVO getBookreport(CommunityVO vo);
+	
 	/* public CommunityVO getBookreportCount(CommunityVO vo, int pNum); */
 	
 }

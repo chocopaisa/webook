@@ -161,69 +161,157 @@
 }
 
 </style>
+
+<script type="text/javascript">
+
+<!-- 댓글 쓰기 AJAX -->
+/* function insertReply(){
+	var content = $("#write_content").val();
+	
+	if(content.length > 500){
+		alert("500자 이하로 댓글을 작성해주세요!");
+		return false;
+	}
+	var b_no = ${param.bookreport_no };
+	var r_writer = ${bookreport.user_email };
+	
+	var replyVal = {
+			"b_no" : b_no ,
+			"r_writer":r_writer ,
+			"r_comment" : content
+	};
+	//댓글 쓰기
+	$.ajax({
+		type:"post",
+		url:"insertComment.do",
+		data:JSON.stringify(replyVal),
+		contentType:"application/json",
+		dataType:"json",
+		success: function(res){
+			$("#write_content").val(""); //댓글 입력창 비우기
+			if ( res > 0 ){
+				getReplyList();
+			}else{
+				alert("[ERROR]: 댓글 등록 실패!!");
+				getReplyList();
+			}
+		} 
+		,
+		error:function(){
+			alert("댓글 등록 ajax 실패 ㅠ..");
+		}
+		
+		
+	});
+	
+	
+} */
+
+
+</script>
+
+
 <body id="body">
 
 <%@ include file="/WEB-INF/views/header.jsp" %> 
+	  <!-- Main Menu Section -->
+<section class="menu">
+	<nav class="navbar navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<h2 class="menu-title">Main Menu</h2>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 
+			</div><!-- / .navbar-header -->
+
+			<!-- Navbar Links -->
+			<div id="navbar" class="navbar-collapse collapse text-center">
+				<ul class="nav navbar-nav">
+
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="main.do">커뮤니티 메인</a>
+					</li><!-- / Home -->
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="list.do">독후감 목록</a>
+					</li><!-- / Home -->
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="write.do">독후감 작성</a>
+					</li><!-- / Home -->
+
+
+			</div>
+			<!--/.navbar-collapse -->
+		</div><!-- / .container -->
+	</nav>
+</section>
 
 <div class="page-wrapper" >
 	<div class="container">
 		<div class="row justify-content-around" >
       		<div class="col-md-4">
 		        <div class="post text-center" >
-		          <table border="1" width="165px" class="bookreport_type1">
-					<tr>
-						<td class="bookreport_type_main"><strong>전체 독후감</strong></td>
-					</tr>
-					<tr>
-						<td class="bookreport_type_main"><strong>베스트 독후감</strong></td>
-					</tr>
-					<tr>
-						<td class="bookreport_type_main"><strong>화제의 독후감</strong></td>
-					</tr>
-					<tr>
-						<td class="bookreport_type_main"><strong>국내</strong></td>
-					</tr>
-					<tr>
-						<td>소설/인문/시</td>
-					</tr>
-					<tr>
-						<td>만화</td>
-					</tr>
-					<tr>
-						<td>정치사회/경제경영</td>
-					</tr>
-					<tr>
-						<td>종교/역사/문화</td>
-					</tr>
-					<tr>
-						<td>교양과학/예술</td>
-					</tr>
-					<tr>
-						<td>자기계발/여행</td>
-					</tr>
-		          </table>
+					<table border="1" width="165px" class="bookreport_type1">
+						<tr>
+							<td class=""><strong><a href="list.do">전체 독후감</a></strong></td>
+						</tr>
+						<tr>
+							<td class=""><strong>베스트 독후감</strong></td>
+						</tr>
+						<tr>
+							<td class=""><strong>화제의 독후감</strong></td>
+						</tr>
+						<tr>
+							<td class=""><strong>국내</strong></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=소설">소설/인문/시</a></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=만화">만화</a></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=정치사회">정치사회/경제경영</a></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=종교">종교/역사/문화</a></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=예술">교양과학/예술</a></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=여행">자기계발/여행</a></td>
+						</tr>
+					  </table>
 				  <br/>
-				  <table border="1" width="165px" class="bookreport_type2">
-					<tr>
-						<td class=""><strong>해외</strong></td>
-					</tr>
-					<tr>
-						<td>문학</td>
-					</tr>
-					<tr>
-						<td>인문/사회</td>
-					</tr>
-					<tr>
-						<td>예술/건축</td>
-					</tr>
-					<tr>
-						<td>아동</td>
-					</tr>
-					<tr>
-						<td>만화/애니/문고</td>
-					</tr>
-		          </table>
+					  <table border="1" width="165px" class="bookreport_type2">
+						<tr>
+							<td class=""><strong>해외</strong></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=해외문학">문학</a></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=해외인문">인문/사회</a></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=해외예술">예술/건축</a></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=해외아동">아동</a></td>
+						</tr>
+						<tr>
+							<td><a href="list.do?report_kind=해외만화">만화/애니/문고</a></td>
+						</tr>
+					  </table>
 				</div>
         	</div>
 			<div class="col-md-8" id="getcontent">
@@ -233,31 +321,34 @@
 				<div class="media-body">
 					<div class="comment-info">
 						<h4 class="comment-author">
-							<a href="#!">Jonathon Andrew</a>
+							<a href="">${bookreport.user_email }</a>
 							
 						</h4>
-						<time>July 02, 2015, at 11:34</time>
+						<time>
+							<fmt:parseDate value="${bookreport.write_date }" var="write_date1" pattern="yyyy-mm-dd HH:mm:ss" />
+							<fmt:formatDate value="${write_date1 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
+						</time>
 						
-						<a class="comment-button pull-right" href="#!"><i class="tf-ion-chatbubbles"></i>신고</a>
-						<a class="comment-button pull-right" href="#!"><i class="tf-ion-chatbubbles"></i>삭제</a>
+						<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>
+						<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>삭제</a>
 					</div>
 
 					
 
 				</div>
 	            <hr/>
-			   	<div class="" id="get_reportContent" ></div>
+			   	<div class="" id="get_reportContent" >${bookreport.bookreport_content }</div>
 
 
 		          </div>
 				  <div class="media">
-					<a class="pull-left" href="#!">
+					<a class="pull-left" href="">
 						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
 					</a>
 				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
+					<h4 class="media-heading"><a href="">${bookreport.report_kind }</a></h4>
 					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
+					${bookreport.star }</h4>
 					<hr/>
 					<div class="">
 					<p>책설명</p>
@@ -272,18 +363,21 @@
 					<ul class="media-list comments-list m-bot-50 clearlist">
 						<div class="post-comments-form">
 							
-							<form method="post" action="#" id="form" role="form" >
+							<form method="post" action="" id="form" role="form" >
 	
 								<div class="row">
 	
 									<!-- Comment -->
 									<div class="form-group col-md-12">
-										<textarea id="comment_textarea" class="form-control" placeholder="경고문" maxlength="400" style="resize: none;"></textarea>
+										<h4 class="comment-author" style="padding-left: 20px;" >
+											<a href="" class="writerId">${bookreport.user_email }</a>
+										</h4>
+										<textarea id="write_content" class="form-control" placeholder="경고문" maxlength="400" style="resize: none;" name="comment_content" ></textarea>
 									</div>
 	
 									<!-- Send Button -->
 									<div class="form-group col-md-12 text-right">
-										<button type="submit" class="btn btn-book insert-btn" id="insert-btn">등록</button>
+										<button type="submit" class="btn btn-book insert-btn" id="insert-btn" onclick="insertReply();" >등록</button>
 									</div>
 	
 	
@@ -292,78 +386,25 @@
 							</form>
 						</div>
 						<!-- Comment Item start-->
+						<c:forEach items="${commentList }" var="cl" >
 						<li class="media">
-
-							
-
 							<div class="media-body">
 								<div class="comment-info">
 									<h4 class="comment-author">
-										<a href="#!">Jonathon Andrew</a>
-										
+										<a href="">${cl.user_email }</a>
 									</h4>
-									<time>July 02, 2015, at 11:34</time>
-									<a class="comment-button pull-right" href="#!"><i class="tf-ion-chatbubbles"></i>신고</a>
-									<a class="comment-button pull-right" href="#!"><i class="tf-ion-chatbubbles"></i>삭제</a>
+									<time>
+										<fmt:parseDate value="${cl.comment_write_date }" var="write_date2" pattern="yyyy-mm-dd HH:mm:ss" />
+										<fmt:formatDate value="${write_date2 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
+									</time>
+									<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>
+									<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>삭제</a>
 								</div>
-
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-								</p>
-
+								<p>${cl.comment_content}</p>
 							</div>
 
 						</li>
-						<!-- End Comment Item -->
-
-						<!-- Comment Item start-->
-						<li class="media">
-
-							
-
-							<div class="media-body">
-
-								<div class="comment-info">
-									<div class="comment-author">
-										<a href="#!">Jonathon Andrew</a>
-									</div>
-									<time>July 02, 2015, at 11:34</time>
-									<a class="comment-button pull-right" href="#!"><i class="tf-ion-chatbubbles"></i>신고</a>
-									<a class="comment-button pull-right" href="#!"><i class="tf-ion-chatbubbles"></i>삭제</a>
-								</div>
-
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-								</p>
-
-							</div>
-
-						</li>
-						<!-- End Comment Item -->
-
-						<!-- Comment Item start-->
-						<li class="media">
-
-							
-
-							<div class="media-body">
-
-								<div class="comment-info">
-									<div class="comment-author">
-										<a href="#!">Jonathon Andrew</a>
-									</div>
-									<time>July 02, 2015, at 11:34</time>
-									<a class="comment-button pull-right" href="#!"><i class="tf-ion-chatbubbles"></i>신고</a>
-									<a class="comment-button pull-right" href="#!"><i class="tf-ion-chatbubbles"></i>삭제</a>
-								</div>
-
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-								</p>
-
-							</div>
-
-						</li>
+						</c:forEach>
 						<!-- End Comment Item -->
 
 					</ul>

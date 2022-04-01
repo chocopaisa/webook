@@ -4,6 +4,8 @@ package com.webook.admin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webook.admin.service.AdminCommService;
 import com.webook.admin.service.AdminMemberService;
 import com.webook.admin.service.adminProductService;
 import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
+import com.webook.domain.ReportcommunityVO;
 
 
 @Controller
@@ -25,6 +29,8 @@ public class Admincontroller {
 	 private AdminMemberService adminMemberService;
 	 @Autowired
 	 private adminProductService adminProductService;
+	 @Autowired
+	 private AdminCommService adminCommService;
 	
 
 	@RequestMapping("/{step}.do")
@@ -67,5 +73,36 @@ public class Admincontroller {
 		 if( result == 1) return "성공";
 		 return "실패";
 	 }
-
+	 
+	 // 신고 게시글 목록 출력
+	 @RequestMapping("/reportManager.do")
+	 public void getReportCommuList(Model m) {
+		 List<ReportcommunityVO> list = adminCommService.getReportCommuList();
+		 if(list.isEmpty())
+			 System.out.println("신고된 게시글이 없습니다.");
+		 m.addAttribute("getReportCommuList", list);
+	 }
+	 
+		/*
+		 * // 신고된 게시글 삭제
+		 * 
+		 * @RequestMapping("/deletereport.do")
+		 */
+	 
+	 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

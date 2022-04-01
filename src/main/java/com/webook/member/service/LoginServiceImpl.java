@@ -17,9 +17,8 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public MemberVO idcheck(MemberVO vo) {
-		
-		return null;
+	public MemberVO idcheck(MemberVO vo) { 
+		return loginDAO.idcheck(vo);
 	}
 
 	@Override

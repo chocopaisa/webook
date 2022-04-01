@@ -6,7 +6,7 @@
 		SELECT
 		    br.bookreport_no bookreport_no, 
 		    br.bookreport_content bookreport_content,
-		    pl.product_no product_no, 
+		    pl.product_no product_no,
 		    pl.product_name product_name, 
 		    pl.product_image product_image,
 		    ci.user_name user_name,
@@ -17,8 +17,6 @@
 		        ON br.product_no = pl.product_no
 		    LEFT OUTER JOIN customer_info ci
 		        ON br.user_email = ci.user_email
-		WHERE 
-		        br.report_kind = '한줄평'
 		ORDER BY br.write_date DESC
 		
 	</select>

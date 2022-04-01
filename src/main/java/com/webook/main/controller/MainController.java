@@ -23,6 +23,18 @@ public class MainController {
 	@RequestMapping("main.do")
 	public String showMain(Model m) {
 		List<HashMap> reviews = mainService.showReviews(); // 리뷰 
+		for(int idx = reviews.size()-1; idx >= 0; idx--) {
+			String content = (String) reviews.get(idx).get("BOOKREPORT_CONTENT");
+			System.out.println(content);
+			int start = content.indexOf("<blockquote>");
+			if(start < 0) {
+				continue;
+			}
+			int end = content.indexOf("</blockquote>");
+			reviews.get(idx).put("BOOKREPORT_CONTENT",content.substring(start + 12, end));
+			System.out.println(content.substring(start + 12, end));
+		}
+		m.addAttribute("reviews", reviews);
 		List<ProductVO> bestSellers = mainService.showBestSeller(); // 베스트셀러 15개
 		
 		m.addAttribute("bestSellers", bestSellers);

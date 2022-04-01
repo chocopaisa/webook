@@ -25,6 +25,10 @@ public class CommunityServiceImpl implements CommunityService{
 		communityDAO.insertBookreport(vo);
 	}
 	
+	//게시물 상세
+	public CommunityVO getBookreport(CommunityVO vo) {
+		return communityDAO.getBookreport(vo);
+	}
 	
 /*	public CommunityVO getBookreportCount(CommunityVO vo, int pNum) {
 		return communityDAO.getBookreportCount(vo, pNum);

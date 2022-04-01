@@ -159,11 +159,11 @@ FACEBOOK: https://www.facebook.com/themefisher
                               type="text"
                               class="form-control cnt"
                               name="list[${idx-1}].product_cnt"
-                              value="1"
+                              value="${items[idx-1].product_cnt }"
                               maxlength="1"
                             />
                           </td>
-                          <td class="text-right totalPrice">20,000원</td>
+                          <td class="text-right totalPrice">0원</td>
                           <td class="text-center">
                             <a href="payment.do?product_no=${items[idx-1].product_no }&product_cnt=1" class="btn btn-main btn-small">구매</a>
                             
@@ -191,7 +191,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                       <div class="col-sm-3 col-md-3"><div class="text-right">
 						<h4>배송비</h4>
 					  </div>
-					  <div class="text-right"><h3 id="postPrice">3,500원</h3></div></div>
+					  <div class="text-right"><h3 id="postPrice">3,000원</h3></div></div>
 					  <div class="col-sm-1 col-md-1 text-center align-middle"><p><h2>=</h2></p></div>
                       <div class="col-sm-3 col-md-3"><div class="text-right">
 						<h4>주문 가격</h4>
@@ -315,7 +315,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         });
 
         $('#sumPrice').text(sumPrice.toLocaleString()+'원');
-        $('#sumTotalPrice').text((sumPrice + 3500).toLocaleString() + '원');
+        $('#sumTotalPrice').text((sumPrice + 3000).toLocaleString() + '원');
       }
       
       $('#paymenyBtn').click(function(){

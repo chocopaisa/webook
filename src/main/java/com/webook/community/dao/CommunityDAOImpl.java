@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import com.webook.domain.CommunityVO;
 
@@ -31,6 +32,11 @@ public class CommunityDAOImpl implements CommunityDAO {
 		mybatis.insert("community.mapper.insertBookreport", vo);
 	}
 	
+	// 게시물 상세
+	public CommunityVO getBookreport(CommunityVO vo) {
+		System.out.println("===> Mybatis getBookreport() 호출");
+		return (CommunityVO) mybatis.selectOne("community.mapper.getBookreport", vo);
+	}
 	
 	
 	

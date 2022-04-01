@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment.mapper">
+
+	<!-- 댓글 페이지 리스트 -->
+	<select id="getCommentList" parameterType="com.webook.domain.CommentVO" resultType="com.webook.domain.CommentVO">
+		SELECT * FROM comment_list
+		WHERE bookreport_no = #{bookreport_no}
+		ORDER BY comment_no desc
+	</select>
+
+
+
+
+
+
+
+</mapper>
+
