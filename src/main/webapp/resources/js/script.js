@@ -98,6 +98,32 @@
 	$('#cartSumPrice').text(cartSumPrice);
 	
 	
+	// 카트 상품 제거
+	$('.removeCartItem').each(function(){
+		$(this).click(function(){
+			const pDiv = $(this).parent();
+			const pno = pDiv.find("input").val();
+		
+			$.ajax({
+	        	type : 'get',
+	        	url : 'removeCartInHeader.do',
+	        	data : { product_no : pno },
+	        	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+	        	success : function(result){
+	        		pDiv.remove();
+	        		if(result == 0){
+	        			$('div.cart-summary').remove();
+	        		
+	        		}
+	        	},
+	        	error : function(err){
+	        		alert('실패:');
+	        		console.log(err);
+        		}
+        	});
+		})
+		
+	});
 		
 		
 	

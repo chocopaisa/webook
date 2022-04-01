@@ -163,7 +163,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                               maxlength="1"
                             />
                           </td>
-                          <td class="text-right totalPrice">20,000원</td>
+                          <td class="text-right totalPrice">0원</td>
                           <td class="text-center">
                             <a href="payment.do?product_no=${items[idx-1].product_no }&product_cnt=1" class="btn btn-main btn-small">구매</a>
                             
@@ -327,7 +327,6 @@ FACEBOOK: https://www.facebook.com/themefisher
     	$('#cart-form').attr('action','removeCartList.do').submit();
     })
     
-    alert(${items[idx-1].product_cnt });
     </script>
   </body>
 </html>

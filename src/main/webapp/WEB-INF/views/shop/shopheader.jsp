@@ -106,6 +106,7 @@
 							<c:if test="${sessionScope.cart ne null }">
 							<c:forEach items="${sessionScope.cart }" var="product">
 							<div class="media">
+								<input value="${product.product_no }" hidden>
 								<a class="pull-left" href="product_single.do?product_no=${product.product_no}">
 									<img class="media-object" src="${product.product_image }" alt="image" />
 								</a>
@@ -119,7 +120,7 @@
 									<h5><strong class="cart_price money">${product.product_price * product.product_cnt}</strong></h5>
 								</div>
 								</div>
-								<button value="removeCart" class="remove"><i class="tf-ion-close"></i></button>
+								<button value="removeCart" class="remove removeCartItem"><i class="tf-ion-close"></i></button>
 							</div><!-- / Cart Item -->
 							</c:forEach>
 							
