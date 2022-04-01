@@ -45,6 +45,12 @@ public class ProductDAOImpl implements ProductDAO {
 		return session.selectOne("product.mapper.getProduct", vo);
 	}
 
+	@Override
+	public ProductVO addCart(ProductVO vo) {
+		return session.selectOne("product.mapper.addCart", vo);
+		
+	}
+
 
 	
 

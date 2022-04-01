@@ -133,27 +133,34 @@ FACEBOOK: https://www.facebook.com/themefisher
 				</div>
 			</div>
 			<div class="col-md-7">
+			
+		<form action="payment.do" method="get" id="frm">
 				<div class="single-product-details">
-					<h2 >${product.product_name }</h2>
+					<h2>${product.product_name }</h2>
 					<p class="productWriter">${product.product_writer }</p><hr/>
 					<p class="productPublisher">${product.product_publisher }</p> <br/>
 					<p class="product-price" style="font-weight:bolder;"> 정가 : ${product.product_price }</p>
 					<p class="product-price" style="font-weight:bolder; font-size: larger;"> 할인가 : ${product.product_sale }</p><br/>
 					<p class="product-price" style="color: black; font-size: small;"> 배송비 : 3000원</p>
 					
+					
 					<div class="product-quantity">
-						<span>Quantity   :</span>
+						<span>Quantity :  </span>
 						<div class="product-quantity-slider">
-							<input id="product-quantity" type="text" value="0" name="product-quantity">
+							<input id="product-quantity" type="text" value="0" name="product_cnt">
+							<input name="product_no" hidden value="${product.product_no }">
 						</div>
-						
+						</div>
 					</div>
 				
-					</div>
-					<a href="addCart.do?product_no=${product.product_no }" class="btn btn-main mt-20" style="font-size: large;" >장바구니</a>
-					<a href="cart.html" class="btn btn-main mt-20" style="font-size: large;">바로 구매</a> 
+					
+					<button type="button" class="btn btn-main mt-20" id="addCart" style="font-size: large;" >장바구니</button> <!-- -> 버튼으로 바꾸기 -->
+					<button type="submit" class="btn btn-main mt-20" style="font-size: large;">바로 구매</button> 
+				</form>
 			</div>
 		</div>
+		
+		
 		<br/>
 		
 	
@@ -189,7 +196,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
 								                <a class="comment-button" href="#!">
 													<h6><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
+					3.5</h6>
 												</a>
 								            </div>
 
