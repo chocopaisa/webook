@@ -42,6 +42,18 @@ WHERE product_no=#{product_no}
 
 </select>
 
+<select id="addCart" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
+
+select product_no, product_name, product_price, product_image, product_cnt
+FROM product_list
+
+<if test="#{product_cnt} != null">
+<where>
+product_no=#{product_no} 
+</where> 
+</if>
+</select>
+
 
 
 </mapper>

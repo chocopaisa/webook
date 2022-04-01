@@ -23,4 +23,11 @@ public class adminProductDAOImpl implements adminProductDAO{
 	public List<ProductVO> getProductList() {
 		return mybatis.selectList("admin.mapper.getProductList");
 	}
+	
+	// 상품 수량 추가버튼
+	public int modifyCount(ProductVO vo) {
+		return mybatis.update("admin.mapper.modifyCount", vo);
+	}
+
+	
 }

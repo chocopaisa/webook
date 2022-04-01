@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -53,8 +54,7 @@
                                         게시글 신고
                                         
                                     </div>
-                                    <div class="card-body tab-content" id="report-cu">                                                                         
-                                        
+                                    <div class="card-body tab-content" id="report-cu">  
                                         <table id="datatablesSimple" class="text-center">
                                             <thead>
                                                 <tr>  
@@ -77,6 +77,7 @@
                                                 </tr>
                                              </tfoot>
                                              <tbody>
+                                             	<c:forEach items="">
                                                 <tr>       
                                                     <td></td>                                             
                                                     <td></td>
@@ -84,9 +85,11 @@
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
-                                                </tr>                                                                                       
+                                                </tr>  
+                                                </c:forEach>                                                                                     
                                            	</tbody>
                                         </table>  
+                                     
                                         <button type="button" class="btn btn-danger m-2" id="deletebtn">삭제하기</button>                                      
                                     </div>
                                                              
