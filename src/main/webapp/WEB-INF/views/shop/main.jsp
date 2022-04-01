@@ -187,6 +187,7 @@ FACEBOOK: https://www.facebook.com/themefisher
           </div>
         </div>
         <div id="bestseller">
+        <hr/>
         <c:forEach var="idx" begin="0" end="4">
         
           <!-- 베스트 셀러 -->
@@ -202,13 +203,13 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          <div class="product-item">
 	          <div><h3>${idx + 1}</h3></div>
 	          <div class="product-thumb">
-	          <img class="img-responsive" src="" alt="product-img"/>
+	          <img class="img-responsive" src="${bestSellers[idx].product_image }" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
-	          <h4><a href="#">작가명</a></h4>
+	          <h4><a href="#">${bestSellers[idx].product_writer }</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
-	          <h4><a href="product-single.html">상품명</a></h4>
-	          <p class="price money">12600</p>
+	          <h4><a href="product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_name }</a></h4>
+	          <p class="price money">${bestSellers[idx].product_price }</p>
 	          </div>
 	          </div>
 	          </div>
@@ -236,8 +237,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 			<div class="col-sm-6 col-md-6">
 				<div class="category-box category-box-2">
 					<a href="#!">
-						<img src="images/bookevent.png" alt="" />
-						<div class="content">
+						<img src="${manhwa.product_image }" alt="" />
+						<div class="content bg-gray">
 							<h3>만화</h3>
 						</div>
 					</a>	
@@ -246,8 +247,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 			<div class="col-sm-3 col-md-3">
 				<div class="category-box">
 					<a href="#!">
-						<img src="images/ads1.png" alt="" />
-						<div class="content">
+						<img src="${novel.product_image }" alt="" />
+						<div class="content bg-gray">
 							
 							<h3>소설</h3>
 						</div>
@@ -255,8 +256,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 				</div>
 				<div class="category-box">
 					<a href="#!">
-						<img src="images/bookevent.png" alt="" />
-						<div class="content">
+						<img src="${poem.product_image }" alt="" />
+						<div class="content bg-gray">
 							<h3>시</h3>
 						</div>
 					</a>	
@@ -265,17 +266,17 @@ FACEBOOK: https://www.facebook.com/themefisher
 			<div class="col-sm-3 col-md-3">
 				<div class="category-box">
 					<a href="#!">
-						<img src="images/bookevent.png" alt="" />
-						<div class="content">
+						<img src="${art.product_image }" alt="" />
+						<div class="content bg-gray">
 							<h3>예술</h3>
 						</div>
 					</a>	
 				</div>
 				<div class="category-box">
 					<a href="#!">
-						<img src="images/bookevent.png" alt="" />
-						<div class="content">
-							<h3>해외</h3>
+						<img src="${trip.product_image }" alt="" />
+						<div class="content bg-gray">
+							<h3>여행</h3>
 						</div>
 					</a>	
 				</div>
