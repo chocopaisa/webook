@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 
 THEME: Aviato | E-commerce template
 VERSION: 1.0.0
@@ -112,7 +113,9 @@ FACEBOOK: https://www.facebook.com/themefisher
             <div class="col-md-10 col-md-offset-1">
               <div class="block">
                 <div class="product-list">
-					<div class="delete-btn"><h4 class="pr-2"><text class='checkedCnt'>0</text>개 선택</h4><button class="btn btn-main">삭제하기</button></div>
+                <c:if test="${items ne null }">
+					<div class="delete-btn"><h4 class="pr-2"><text class='checkedCnt'>0</text>개 선택</h4><button class="btn btn-main" id="removeCartList">삭제하기</button></div>
+					</c:if>
                   <div>
                   <form id='cart-form' action="payment_list.do" method="post">
                     <table class="table text-center">
@@ -131,62 +134,48 @@ FACEBOOK: https://www.facebook.com/themefisher
                         </tr>
                       </thead>
                       <tbody>
+                      <c:if test="${items eq null }">
+                      <tr>
+                      	<td colspan="8" class="text-center">
+                      	<h3>카트가 비어있습니다</h3>
+                      	<h3>상품을 추가해주세요</h3>
+                      	</td>
+                      </tr>
+                      </c:if>
+                      <c:if test="${items ne null }">
+                      <c:forEach var="idx" begin="1" end="${fn:length(items)  }">
                         <tr class="">
-                          <td><input type="checkbox" class="ckb" name="list[0].product_no" value='isbn1'/></td>
+                          <td><input type="checkbox" class="ckb" name="list[${idx-1 }].product_no" value='${items[idx-1].product_no }'/></td>
                           <td class="text-center">
                             <div class="product-info">
-                              <img width="80" src="images/book1.jpg" alt="" />
+                              <img width="80" src="${items[idx-1].product_image }" alt="" />
                             </div>
                           </td>
-                          <td class="text-left"><a href="#!">책제목</a></td>
-                          <td class="text-right price">20,000원</td>
-                          <td class="text-right discount">-2,000원</td>
+                          <td class="text-left"><a href="#!">${items[idx-1].product_name }</a></td>
+                          <td class="text-right price money">${items[idx-1].product_price }</td>
+                          <td class="text-right discount money-minus">${items[idx-1].product_sale }</td>
                           <td class="text-center">
                             <input
                               type="text"
                               class="form-control cnt"
-                              name="list[0].product_cnt"
+                              name="list[${idx-1}].product_cnt"
                               value="1"
                               maxlength="1"
                             />
                           </td>
                           <td class="text-right totalPrice">20,000원</td>
                           <td class="text-center">
-                            <a href="payment.do?product_no=9791136295026&product_cnt=1" class="btn btn-main btn-small">구매</a>
-
-                            <button class="btn btn-main btn-small">삭제</button>
+                            <a href="payment.do?product_no=${items[idx-1].product_no }&product_cnt=1" class="btn btn-main btn-small">구매</a>
+                            
+                            <a href="removeCart.do?product_no=${items[idx-1].product_no }" class="btn btn-small">삭제</a>
                           </td>
                         </tr>
-                        <tr class="">
-                          <td><input type="checkbox" class="ckb" id='isbn2'/></td>
-                          <td class="text-center">
-                            <div class="product-info">
-                              <img width="80" src="images/book1.jpg" alt="" />
-                            </div>
-                          </td>
-                          <td class="text-left">
-                            <a href="#!">굉장히 기이이이이이이이인 책제목</a>
-                          </td>
-                          <td class="text-right price">10,000원</td>
-                          <td class="text-right discount">-1,000원</td>
-                          <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control cnt"
-                              value="1"
-                              maxlength="3"
-                            />
-                          </td>
-                          <td class="text-right totalPrice">20,000원</td>
-                          <td class="text-center">
-                            <a href="payment" class="btn btn-main btn-small">구매</a>
-
-                            <button class="btn btn-main btn-small">삭제</button>
-                          </td>
-                        </tr>
+                        </c:forEach>
+                        </c:if>
                       </tbody>
                     </table>
                     </form>
+                    <c:if test="${items ne null }">
 					<div class="bg-gray">
 					<div class="col-sm-12 col-md-12">
 						<h4>선택한 상품 <text class="checkedCnt">0</text>개 (<text class="totalCnt">0</text>개)</h4>
@@ -209,11 +198,13 @@ FACEBOOK: https://www.facebook.com/themefisher
 					  </div>
 					  <div class="text-right"><h3 id="sumTotalPrice">20,000원</h3></div></div>
                     </div>
+                    </c:if>
 				</div>
-				
+					<c:if test="${items ne null }">
                     <a class="btn btn-main pull-right col-xs-12 mt-2" id="paymenyBtn"
                       >결제 하러 가기</a
                     >
+                    </c:if>
       </div>
                 </div>
               </div>
@@ -251,6 +242,22 @@ FACEBOOK: https://www.facebook.com/themefisher
 
     <!-- Main Js File -->
     <script src="../resources/js/script.js"></script>
+    <script>
+	 	// 가격에 마이너스+콤마+원
+	    $(".money").each(function () {
+	      let price = Number($(this).text());
+	      $(this).text(price.toLocaleString() + "원");
+	    });
+	
+	    $(".money-minus").each(function () {
+	      let price = Number($(this).text());
+	      if (price == 0) {
+	        $(this).text("0원");
+	      } else {
+	        $(this).text("-" + price.toLocaleString() + "원");
+	      }
+	    });
+    </script>
     <script>
       checkChecked();
       // 체크박스
@@ -314,6 +321,12 @@ FACEBOOK: https://www.facebook.com/themefisher
       $('#paymenyBtn').click(function(){
     	  $('#cart-form').submit()
       })
+    </script>
+    <script type="text/javascript">
+    $('#removeCartList').click(function(){
+    	$('#cart-form').attr('action','removeCartList.do').submit();
+    })
+    
     </script>
   </body>
 </html>
