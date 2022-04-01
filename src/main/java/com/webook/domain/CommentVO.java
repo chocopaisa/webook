@@ -7,9 +7,15 @@ public class CommentVO {
 	private int bookreport_no;
 	private String comment_write_date;
 	private String comment_content;
+	private String user_name;
 	
 	
-	
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
 	public int getComment_no() {
 		return comment_no;
 	}

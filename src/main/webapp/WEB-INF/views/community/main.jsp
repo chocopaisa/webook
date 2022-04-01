@@ -134,15 +134,15 @@
 
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="community_main">커뮤니티 메인</a>
+						<a href="main.do">커뮤니티 메인</a>
 					</li><!-- / Home -->
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="community_list">독후감 목록</a>
+						<a href="list.do">독후감 목록</a>
 					</li><!-- / Home -->
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="community_write">독후감 작성</a>
+						<a href="write.do">독후감 작성</a>
 					</li><!-- / Home -->
 
 

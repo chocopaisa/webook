@@ -242,7 +242,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	           		<c:forEach items="${bookreportList }" var="bookreport">
 					   <tr>
 						<td>${bookreport.bookreport_no }</td>
-						<td>${bookreport.bookreport_title }</td>
+						<td><a href="getcontent.do?bookreport_no=${bookreport.bookreport_no }" >${bookreport.bookreport_title }</a></td>
 						<td>${bookreport.user_email }</td>
 						<td>
 						<fmt:parseDate value="${bookreport.write_date }" var="write_date1" pattern="yyyy-mm-dd" />
@@ -320,7 +320,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	<div class="container">
 		<div class="row">
 		<div class="title text-center">
-			<a href="#"><h2>화제의 글</h2></a>
+			<a href=""><h2>화제의 글</h2></a>
 			<br/><br/>
 		</div>
 	</div>
@@ -331,7 +331,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
 					</a>
 				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
+					<h4 class="media-heading"><a href="">책 제목</a></h4>
 					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
 					3.5</h4>
 					<hr/>

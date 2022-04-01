@@ -11,6 +11,9 @@ public interface CommunityService {
 	//게시물 등록
 	void insertBookreport(CommunityVO vo);
 	
+	//게시물 상세
+	CommunityVO getBookreport(CommunityVO vo);
+	
 	/* CommunityVO getBookreportCount(CommunityVO vo, int pNum); */
 	
 }
