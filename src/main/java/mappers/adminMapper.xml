@@ -68,6 +68,13 @@
 		SELECT product_no,genre_no, product_name, product_writer,product_cnt 
 		FROM product_list
 	</select>
+	
+	<!-- 상품 수량 변경 -->
+	<update id="modifyCount" parameterType="com.webook.domain.ProductVO">
+		UPDATE product_list
+		SET product_cnt =  product_cnt +  #{product_cnt}
+		WHERE product_no = #{product_no}
+	</update>
 
 
 
