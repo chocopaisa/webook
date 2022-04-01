@@ -9,4 +9,6 @@ public interface adminProductDAO {
 	public void insertProduct(ProductVO vo);
 	
 	public List<ProductVO> getProductList();
+	
+	public int modifyCount(ProductVO vo);
 }
