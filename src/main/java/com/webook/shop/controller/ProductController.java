@@ -76,16 +76,21 @@ public class ProductController {
 	@RequestMapping("addCart.do")
 	public String addCart(ProductVO vo, HttpSession session) {
 		ArrayList<ProductVO> list = null;
-		if(session.getAttribute("cart") ==null) {
+		if(session.getAttribute("cart") == null) {
 			list = new ArrayList<ProductVO>();
 		}  else {
 			list =	(ArrayList<ProductVO>)session.getAttribute("cart");
 		}
-		list.add(vo);
+		ProductVO result = service.addCart(vo);
+		result.setProduct_cnt(vo.getProduct_cnt());
+		list.add(result);
 		session.setAttribute("cart", list);
 		ArrayList<ProductVO> r = (ArrayList<ProductVO>)session.getAttribute("cart");
-		System.out.println(r.get(0).getProduct_no());
+		System.out.println(r.get(0).getProduct_no() + "/" + r.get(0).getProduct_image() + "/" + r.get(0).getProduct_price() + "/"+ r.get(0).getProduct_name()+"/"+ r.get(0).getProduct_cnt());
+		
+	
 		return "redirect:product_single.do?product_no=" + vo.getProduct_no();
+		
 	}
 	
 	
