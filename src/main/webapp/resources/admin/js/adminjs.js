@@ -9,20 +9,6 @@ $(function(){
     });    
 
 
-    // 전체 체크 박스
-    $("#checkall").click(function() {
-        if($("#checkall").is(":checked")) $(".report-table").each(function(){$(this).prop('checked',true)});
-        else $(".report-table").prop("checked", false);
-    });
-    
-    $(".report-table").click(function() {
-        var total = $(".report-table").length;
-        var checked = $(".report-table:checked").length;
-        
-        if(total != checked) $("#checkall").prop("checked", false);
-        else $("#checkall").prop("checked", true); 
-    });
-
 	// 상품 등록 완료 알람
 	$("#productsubmit").click(function(){
     	alert("상품 등록이 완료되었습니다.");
@@ -49,12 +35,12 @@ $(function(){
     				product_cnt : modifycnt },
     		success : function(data) {
     			alert(data)
-    			if(data=="성공"){
+    			if(data=="입고가 완료되었습니다."){
     				updatecnt.text(Number(updatecnt.text())+Number(modifycnt))
     			}
     		},
     		error : function(err) {
-    			alert('실패')
+    			alert('입고할 수량을 입력해주세요')
     			console.log(err);
     		}
     		
@@ -63,10 +49,40 @@ $(function(){
     	tr.find('.modifycnt').val("");
     
     }) // end 수량 수정 버튼
-	
-	
+    
+    
+    // 게시글 삭제 버튼
+    function deletecommu(){
+    
+    	const cnt = $("input[name='reportChkBxRow']:checked").length;
+    	const arr = new Array();
+    	$("input[name='reportChkBxRow']:checked").each(function(){
+    		arr.push($(this).attr('id'));
+    	})
+    	if(cnt==0){
+    		alert("선택된 글이 없습니다.")
+    	}
+    	else {
+    		$.ajax = {
+    			type:"post",
+    			url: "deletereport.do",
+    			data: "",
+    			success:function(data){
+    				if(data != 1){
+    					alert("삭제되지 않았습니다.")
+    				}
+    				else {
+    					alert("삭제가 완료되었습니다")
+    				}
+    			},
+    			error: function(){
+    				alert("서버통신 오류입니다.");
+    			}
+    		
+    		
+    		}; // end of ajax
+    	}
+    } // end of deletecommu
 
-    
-    
 
 })// 완전 끝
