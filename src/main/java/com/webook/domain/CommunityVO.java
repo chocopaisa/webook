@@ -1,6 +1,7 @@
 package com.webook.domain;
 
 public class CommunityVO {
+	//bookreport
 	private int bookreport_no;
 	private String user_email;
 	private String product_no;		
@@ -14,7 +15,7 @@ public class CommunityVO {
 
 	
 	
-	
+	//bookreport
 	public int getBookreport_no() {
 		return bookreport_no;
 	}

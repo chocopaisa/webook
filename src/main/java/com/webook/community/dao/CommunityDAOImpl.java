@@ -14,7 +14,7 @@ public class CommunityDAOImpl implements CommunityDAO {
 	
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
+	//게시글 목록 페이지 리스트
 	public List<CommunityVO> getBookreportList(CommunityVO vo, int pNum) {
 		System.out.println("===> Mybatis getBookreportList() 호출");
 		
@@ -24,6 +24,16 @@ public class CommunityDAOImpl implements CommunityDAO {
 		
 		
 	}
+	
+	//게시물 등록
+	public void insertBookreport(CommunityVO vo) {
+		System.out.println("===> Mybatis insertBookreport() 호출");
+		mybatis.insert("community.mapper.insertBookreport", vo);
+	}
+	
+	
+	
+	
 	
 	/*
 	 * public CommunityVO getBookreportCount(CommunityVO vo, int pNum) { int
