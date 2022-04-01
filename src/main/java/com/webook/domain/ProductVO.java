@@ -20,6 +20,8 @@ public class ProductVO {
 	String product_desc_image;
 	String product_date;
 	String product_lang;
+	String searchKeyword;
+	
 	
 	MultipartFile file;
 	
@@ -132,8 +134,12 @@ public class ProductVO {
 	public void setProduct_lang(String product_lang) {
 		this.product_lang = product_lang;
 	} 
-	
-	
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 	
 	
 }
