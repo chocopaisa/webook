@@ -718,11 +718,11 @@ FACEBOOK: https://www.facebook.com/themefisher
         const id = $(this).attr("value");
         const name = $(this).children("td:nth-child(1)").text().trim();
         const price = $(this).children("td:nth-child(2)").text().trim(); // 상품 개별 가격
-        sum_price += Number(price);
+        
 
         const cnt = $(this).children("td:nth-child(4)").text().trim(); // 개수
         const discount = $(this).children("td:nth-child(3)").text().trim(); // 할인가격
-
+        sum_price += price * cnt;
         sum_discount += discount * cnt; // 상품 할인 금액
 
         $(this)
@@ -894,6 +894,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         return true;
       }
     </script>
+    
   </body>
 </html>
     

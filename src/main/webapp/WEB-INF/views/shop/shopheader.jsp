@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Main Menu Section -->
 <section class="menu">
 	<nav class="navbar navigation">
@@ -91,7 +91,7 @@
 
 					<!-- 마이페이지 -->
 					<li class="dropdown">
-						<a href="index.html">마이페이지</a>
+						<a href="mypage.do">마이페이지</a>
 					</li><!-- / 마이페이지 -->
 
 
@@ -99,34 +99,40 @@
 					<li class="dropdown cart-nav dropdown-slide">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
 								class="tf-ion-android-cart"></i>Cart</a>
+						
 						<div class="dropdown-menu cart-dropdown">
+						
 							<!-- Cart Item -->
+							<c:if test="${sessionScope.cart ne null }">
+							<c:forEach items="${sessionScope.cart }" var="product">
 							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/book1.jpg" alt="image" />
+								<a class="pull-left" href="product_single.do?product_no=${product.product_no}">
+									<img class="media-object" src="${product.product_image }" alt="image" />
 								</a>
 								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">책제목</a></h4>
+									<h4 class="media-heading"><a href="#!">${product.product_name } 상품명</a></h4>
 									<div class="cart-price">
-										<span>작가명</span>
+										<span></span>
 									</div>
-									<div class="text-right">
-									<h5><strong>12,000원</strong></h5>
+									<div class="text-left">
+									<h5><strong class="cart_price money">${product.product_price}30000</strong></h5>
 								</div>
 								</div>
-								<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+								<button value="removeCart" class="remove"><i class="tf-ion-close"></i></button>
 							</div><!-- / Cart Item -->
-
+							</c:forEach>
+							
 							<div class="cart-summary">
+							
 								<span>Total</span>
-								<span class="total-price">12,000원</span>
+								<span class="total-price money" id="cartSumPrice">12,000원</span>
 							</div>
+							</c:if>
 							<ul class="text-center cart-buttons">
-								<li><a href="/webook/shop/cart" class="btn btn-small">cart</a></li>
-								<li><a href="checkout.html" class="btn btn-small btn-solid-border">결제하기</a></li>
+								<li><a href="/webook/shop/cart.do" class="btn">cart</a></li>
 							</ul>
 						</div>
-
+						
 					</li><!-- / 카트 -->
 
 					
@@ -138,3 +144,14 @@
 		</div><!-- / .container -->
 	</nav>
 </section>
+
+<script>
+	window.onload = function(){
+		document.querySelector('#cartSumPrice').innerHTML = 30000;
+		
+		document.querySelectorAll('.cart_price').forEach(function(idx){
+			console.log(idx);
+		})
+		
+	}
+</script>
