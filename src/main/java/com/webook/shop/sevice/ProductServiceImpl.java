@@ -47,6 +47,12 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
+	@Override
+	public ProductVO addCart(ProductVO vo) {
+		
+		return productDAO.addCart(vo);
+	}
+
 	
 	
 

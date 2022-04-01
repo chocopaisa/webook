@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="community.mapper">
-
+	
+	<!-- 게시글 목록 페이지 리스트 -->
 	<select id="getBookreportList" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
 		
 		SELECT bookreport_no, user_email, product_no, 
@@ -15,6 +16,31 @@
 		ORDER BY bookreport_no desc
 				
 	</select>
+	
+	<!-- 게시물등록 -->
+	<insert id="insertBookreport" parameterType="com.webook.domain.CommunityVO" >
+		INSERT INTO bookreport(bookreport_no, user_email, product_no, write_date,
+								bookreport_title, bookreport_content, view_count, report_kind,
+                            	star)
+		VALUES(bookreport_seq.nextval, 'webook@com', #{product_no}, sysdate, #{bookreport_title},
+				#{bookreport_content}, 0, #{report_kind}, #{star})
+	
+	</insert>
+	
+	<!-- 게시물 수정 -->
+	<update id="updateBookreport" parameterType="com.webook.domain.CommunityVO">
+		
+	</update>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="deleteBookreport" parameterType="com.webook.domain.CommunityVO">
+		DELETE FROM bookreport
+		WHERE user_email = #{user_email} and bookreport_no = #{bookreport_no}
+	</delete>
+	
+	
+	
+	
 <!-- 	
 	<select id="getBookreportCount" resultType="com.webook.domain.CommunityVO">
 		SELECT count(*) FROM bookreport

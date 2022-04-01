@@ -23,9 +23,15 @@ $('.move-btn-review').hide();
 $(".productDescImage").show();
 
 })
-	
-/***** 마이페이지 구매내역  *****/
 
 
+
+$('#addCart').click(function(){
+$('#frm').attr('action','addCart.do').submit(); 
 
 });
+
+});
+
+
+  $('input[name="product_cnt"]').TouchSpin();

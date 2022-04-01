@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webook.admin.service.AdminMemberService;
 import com.webook.admin.service.adminProductService;
@@ -58,6 +59,13 @@ public class Admincontroller {
 		 m.addAttribute("productList", list);
 	 }
 	 
-	 
+	 //상품 수량 변경
+	 @RequestMapping(value="/update.do", produces = "application/text;charset=utf-8")
+	 @ResponseBody
+	 public String modifyCount(ProductVO productvo) {		 
+		 int result = adminProductService.modifyCount(productvo);
+		 if( result == 1) return "성공";
+		 return "실패";
+	 }
 
 }

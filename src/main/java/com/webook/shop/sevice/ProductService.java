@@ -22,7 +22,7 @@ public interface ProductService {
 	List<ProductVO> genreFo (ProductVO vo, String pnum);
 	//국내도서로 이동
 	List<ProductVO> genreKo(ProductVO vo, String pnum);
-
+ProductVO addCart (ProductVO vo);
 
 
 	

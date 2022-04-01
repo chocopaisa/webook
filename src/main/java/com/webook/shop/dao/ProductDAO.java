@@ -19,6 +19,6 @@ public interface ProductDAO {
 	//국내도서로 이동
 	public List<ProductVO> genreKo(ProductVO vo, int pnum);
 	
-	  
+	  public ProductVO addCart(ProductVO vo);
 }
  

@@ -61,22 +61,23 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <h1>WEBOOK</h1>
               </a>
               <h2 class="text-center">회원가입</h2>
-              <form class="text-left clearfix" id="frm" action="userInsert.do">
+              <form class="text-left clearfix" id="from" action="userInsert.do">
                 <div class="form-group">
                   이메일
                   <input
                     type="text"
-                    name="email"
+                    name="user_email"
                     id="email"
                     class="form-control"
                     placeholder="이메일을 입력하세요."
                   />
+                  <input type="button" value="ID 중복확인" onclick="emailCheck()">
                 </div>
                 비밀번호
                 <div class="form-group">
                   <input
                     type="password"
-                    name="password"
+                    name="user_pass"
                     id="password"
                     class="form-control"
                     placeholder="비밀번호를 입력하세요."
@@ -91,12 +92,13 @@ FACEBOOK: https://www.facebook.com/themefisher
                     class="form-control"
                     placeholder="비밀번호를 재입력하십시오."
                   />
+            
                 </div>
                 이름
                 <div class="form-group">
                   <input
                     type="text"
-                    name="name"
+                    name="user_name"
                     id="name"
                     class="form-control"
                     placeholder="이름을 입력하세요."
@@ -105,7 +107,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                 성별
                 <div class="form-group">
                   <div class="col-md-6">
-                    <input type="radio" name="gender" id="" value="man" checked/>
+                    <input type="radio" name="gender" id="" value="M" checked/>
                     MALE
                   </div>
                   <div class="col-md-6">
@@ -113,7 +115,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                       type="radio"
                       name="gender"
                       id=""
-                      value="woman"
+                      value="F"
                     />
                     FEMALE
                   </div>
@@ -122,7 +124,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <div class="form-group">
                   <input
                     type="date"
-                    name="birth_date"
+                    name="user_birth"
                     id="birth_date"
                     value=""
                     max=""
@@ -133,7 +135,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <div class="form-group">
                   <input
                     type="tel"
-                    name="Tel"
+                    name="user_tel"
                     id="tel"
                     class="form-control"
                     placeholder="전화번호를 입력하세요."
@@ -192,7 +194,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script>
       $("#btn").click(function(){
           if(checks()){
-        	  $("#frm").submit()
+        	  $("#from").submit()
           }
       });
 

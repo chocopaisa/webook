@@ -23,4 +23,9 @@ public class adminProductServiceImpl implements adminProductService {
 	public List<ProductVO> getProductList() {
 		return adminProductDAO.getProductList();
 	}
+	
+	// 상품 수량 변경
+	public int modifyCount(ProductVO vo) {
+		return adminProductDAO.modifyCount(vo);
+	}
 }

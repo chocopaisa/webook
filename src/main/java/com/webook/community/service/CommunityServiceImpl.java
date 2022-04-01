@@ -15,10 +15,16 @@ public class CommunityServiceImpl implements CommunityService{
 	@Autowired
 	private CommunityDAO communityDAO;
 	
-	
+	//게시글 목록 페이지 리스트
 	public List<CommunityVO> getBookreportList(CommunityVO vo, int pNum) {
 		return communityDAO.getBookreportList(vo, pNum);
 	}
+	
+	//게시물 등록
+	public void insertBookreport(CommunityVO vo) {
+		communityDAO.insertBookreport(vo);
+	}
+	
 	
 /*	public CommunityVO getBookreportCount(CommunityVO vo, int pNum) {
 		return communityDAO.getBookreportCount(vo, pNum);
