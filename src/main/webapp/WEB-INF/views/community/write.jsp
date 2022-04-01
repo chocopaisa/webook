@@ -206,15 +206,15 @@
 
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="community_main">커뮤니티 메인</a>
+						<a href="main.do">커뮤니티 메인</a>
 					</li><!-- / Home -->
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="community_list">독후감 목록</a>
+						<a href="list.do">독후감 목록</a>
 					</li><!-- / Home -->
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="community_write">독후감 작성</a>
+						<a href="write.do">독후감 작성</a>
 					</li><!-- / Home -->
 
 
@@ -229,35 +229,40 @@
 	<div class="container">
 		<div class="row justify-content-around" >
 			<div class="col-md-8 col-md-offset-2" id="getcontent">
+			<form action="insert.do" method="get">
 	          <div class="post-content">				
 				<div class="media-body">
 					<div class="write_">
-						<select class="report_type text-center">
-							<option>추리</option>
-							<option>연애</option>
-							<option>불경</option>
+						<select class="report_type text-center" name="report_kind">
+							<option value="역사" >역사</option>
+							<option value="만화">만화</option>
+							<option value="종교">종교</option>
 						</select>
 						<button type="submit" class="btn btn-book insert-btn pull-right">등록</button>
 					</div>
-					<textarea class="write_title" maxlength="300" placeholder="제목" style="resize: none;"></textarea>
+					<input class="write_title" maxlength="300" placeholder="글 제목" name="bookreport_title"/>
 				</div>
 
 
 				<div class="write_hanjul">
-					<h4><a href="#"><textarea class="write_hanjul_title" style="resize: none;" placeholder="책 제목"></textarea></a>
+					<h4><a href="#"><input class="write_hanjul_title" placeholder="책 제목" name="product_no"/></a>
 					
 					</h4>
 					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-						3.5</h4>
+						<input  name="star">3.5</h4>
 						
 				</div>
 
 
 	            <hr/>
-				<div id="classic">
-					<p>asd</p>
-				</div>
+				<textarea id="classic" name="bookreport_content">
+					
+				</textarea>
 				<script>
+					
+				
+				
+				
 					ClassicEditor
 						.create(document.querySelector('#classic'), {
 							language: 'ko' //언어설정
@@ -266,7 +271,8 @@
 							console.error(error);
 						});
 				</script>
-
+				
+			</form>
 
 		          </div>
 
