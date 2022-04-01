@@ -563,11 +563,12 @@ FACEBOOK: https://www.facebook.com/themefisher
       });
 
       var IMP = window.IMP;
-      IMP.init("imp90051783"); // "iamport" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
+      IMP.init("imp90051783");
 
       $("#btnPayment").click(function () {
     	  
         if (isChecked()) {
+        	
           // 상품명
           let pname = "";
           if (
@@ -583,44 +584,27 @@ FACEBOOK: https://www.facebook.com/themefisher
           } else {
             pname = $(".account_pname").first().val();
           }
+          
           const name = $("#account_name").val(); // 이름
           const tel = $("#account_tel").val(); // 번호
           const addr = $("#account_address").val(); // 주소
           const postcode = $("#account_post_code").val(); // 우편번호
 
+          // 가격 계산
+          
+          
           // IMP.request_pay(param, callback) 호출
           IMP.request_pay(
             {
-              pg: "html5_inicis", // version 1.1.0부터 지원.
-              /*
-      'kakao':카카오페이,
-      html5_inicis':이니시스(웹표준결제)
-      'nice':나이스페이
-      'jtnet':제이티넷
-      'uplus':LG유플러스
-      'danal':다날
-      'payco':페이코
-      'syrup':시럽페이
-      'paypal':페이팔
-      */
+              pg: "html5_inicis",
               pay_method: "card",
-              /*
-      'samsung':삼성페이,
-      'card':신용카드,
-      'trans':실시간계좌이체,
-      'vbank':가상계좌,
-      'phone':휴대폰소액결제
-      */
-              merchant_uid: "merchant_" + new Date().getTime(),
-
+              merchant_uid: "BK_" + new Date().getTime(),
               name: pname,
-
-              amount: 100,
-
-              buyer_name: name,
-              buyer_tel: tel,
-              buyer_addr: addr,
-              buyer_postcode: postcode,
+              amount: 100, // 가격
+              buyer_name: name, // 구매자명
+              buyer_tel: tel, // 번호
+              buyer_addr: addr, // 주소
+              buyer_postcode: postcode, // 우편번호
               m_redirect_url: "http://127.0.0.1:5500/project/confirmation.html",
               /*
       모바일 결제시,
