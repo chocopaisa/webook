@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.webook.domain.ProductVO;
 
 @Repository("adminProductDAO")
-public class adminProductDAOImpl implements adminProductDAO{
+public class AdminProductDAOImpl implements AdminProductDAO{
 
 	@Autowired
 	private SqlSessionTemplate mybatis;

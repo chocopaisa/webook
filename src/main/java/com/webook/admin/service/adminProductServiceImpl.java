@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.webook.admin.dao.adminProductDAO;
+import com.webook.admin.dao.AdminProductDAO;
 import com.webook.domain.ProductVO;
 
 @Service("adminProductService")
-public class adminProductServiceImpl implements adminProductService {
+public class AdminProductServiceImpl implements AdminProductService {
 
 	@Autowired
-	private adminProductDAO adminProductDAO;
+	private AdminProductDAO adminProductDAO;
 	
 	// 상품 등록
 	public void insertProduct(ProductVO vo) {

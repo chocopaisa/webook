@@ -35,7 +35,7 @@ $(function(){
     				product_cnt : modifycnt },
     		success : function(data) {
     			alert(data)
-    			if(data=="입고가 완료되었습니다."){
+    			if(data=="성공"){
     				updatecnt.text(Number(updatecnt.text())+Number(modifycnt))
     			}
     		},
@@ -50,39 +50,4 @@ $(function(){
     
     }) // end 수량 수정 버튼
     
-    
-    // 게시글 삭제 버튼
-    function deletecommu(){
-    
-    	const cnt = $("input[name='reportChkBxRow']:checked").length;
-    	const arr = new Array();
-    	$("input[name='reportChkBxRow']:checked").each(function(){
-    		arr.push($(this).attr('id'));
-    	})
-    	if(cnt==0){
-    		alert("선택된 글이 없습니다.")
-    	}
-    	else {
-    		$.ajax = {
-    			type:"post",
-    			url: "deletereport.do",
-    			data: "",
-    			success:function(data){
-    				if(data != 1){
-    					alert("삭제되지 않았습니다.")
-    				}
-    				else {
-    					alert("삭제가 완료되었습니다")
-    				}
-    			},
-    			error: function(){
-    				alert("서버통신 오류입니다.");
-    			}
-    		
-    		
-    		}; // end of ajax
-    	}
-    } // end of deletecommu
-
-
 })// 완전 끝
