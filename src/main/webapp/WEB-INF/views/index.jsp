@@ -115,7 +115,7 @@ FACEBOOK: https://www.facebook.com/themefisher
       <div class="col-md-4">
         <div class="media">
         <a class="pull-left" href="shop/product_single.do?product_no=${reviews[idx].PRODUCT_NO }">
-        <img class="media-object" src="${reviews[idx].PRODUCT_IMAGE }" alt="Image">
+        <img class="media-object review-img" src="${reviews[idx].PRODUCT_IMAGE }" alt="Image">
         </a>
         <div class="media-body">
         <h4 class="media-heading"><a href="#">${ reviews[idx].PRODUCT_NAME }</a></h4>
@@ -155,13 +155,13 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          <div class="product-item">
 	          <div><h3>${idx + 1}</h3></div>
 	          <div class="product-thumb">
-	          <img class="img-responsive" src="${bestSellers[idx].product_image}" alt="product-img"/>
+	          <img class="img-responsive bestseller-img" src="${bestSellers[idx].product_image}" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
 	          <h4><a href="#">${bestSellers[idx].product_writer}</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
 	          <h4><a href="shop/product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_name}</a></h4>
-	          <p class="price money">12600</p>
+	          <p class="price money">${bestSellers[idx].product_price }</p>
 	          </div>
 	          </div>
 	          </div>
@@ -218,6 +218,24 @@ FACEBOOK: https://www.facebook.com/themefisher
           mode: 'fade'
         });
       });
+    </script>
+    <script>
+    // 베스트 셀러 이미지 크기 조정
+    bestImgResize()
+    reviewImgResize()
+    $(window).resize(function(){
+    	bestImgResize();
+    	reviewImgResize();
+        
+    });
+    function bestImgResize(){
+    	const imgWidth = $('.bestseller-img').width();
+    	$('.bestseller-img').height(imgWidth*1.48);
+    }
+    function reviewImgResize(){
+    	const imgWidth = $('.review-img').width();
+    	$('.review-img').height(imgWidth*1.48);
+    }
     </script>
     <script>
       

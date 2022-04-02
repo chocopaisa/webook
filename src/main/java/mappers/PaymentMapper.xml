@@ -25,23 +25,27 @@
 	</insert>
 	
 	<update id="useCoupon" parameterType="com.webook.domain.CouponVO">
-		UPDATE coupon
+		UPDATE coupon_list set order_no=#{order_no} WHERE coupon_no = #{coupon_no}
 	</update>
 	
-	<select id="searchCoupon" parameterType="com.webook.domain.CouponVO" resultType="hashmap">
+	<select id="searchCoupon" parameterType="com.webook.domain.CouponVO" resultType="com.webook.domain.CouponVO">
 		SELECT
 			clist.coupon_no coupon_no,
 			clist.user_email user_email,
 			cinfo.coupon_desc coupon_desc,
 			cinfo.coupon_discount_price coupon_discount_price,
-			cinfo.coupon_date coupon_date
+			TO_CHAR(cinfo.coupon_date,'YYYY/MM/DD') coupon_date
 		FROM 
 			coupon_list clist
 				INNER JOIN coupon_info cinfo
 				ON clist.coupon_info_id = cinfo.coupon_info_id
+				
 		<where>
-			<if test="coupon_id!=null">
-			clist.coupon_id = #{coupon_id}
+			<![CDATA[
+			coupon_date > sysdate
+			]]>
+			<if test="coupon_no!=null">
+			AND clist.coupon_no = #{coupon_no}
 			</if>
 			<if test="user_email!=null">
 			AND clist.user_email = #{user_email}

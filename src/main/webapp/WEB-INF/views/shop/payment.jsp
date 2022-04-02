@@ -133,21 +133,21 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <h4 class="widget-title">배송 정보</h4>
                 <div class="checkout-form">
                   <div class="form-group">
+                  <c:if test="${sessionScope.user ne null }">
                     <button
                       type="button"
                       id="btnHome-my"
                       class="btn btn-main w-50"
-                    >
-                      내 배송지</button
-                    ><button
+                    >내 배송지</button><button
                       type="button"
                       id="btnHome-add"
                       class="btn btn-main w-50"
-                    >
-                      신규 배송지 등록
+                    >신규 배송지 등록
                     </button>
+                    </c:if>
                   </div>
                   <!-- 내 배송지 -->
+                  <c:if test="${sessionScope.user ne null }">
                   <div id="home-my">
                     <div class="form-group">
                       <label for="user_name">주문자명</label>
@@ -190,6 +190,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                       />
                     </div>
                   </div>
+                  </c:if>
                   <!-- / 내 배송지 -->
                   <!-- 배송지 선택 -->
                   <div id="home-add">
@@ -241,11 +242,13 @@ FACEBOOK: https://www.facebook.com/themefisher
                         />
                       </div>
                     </div>
+                    <c:if test="${sessionScope.user ne null }">
                     <div class="form-group text-right">
                       <button id="" class="btn btn-solid-border">
                         내 배송지로 저장
                       </button>
                     </div>
+                    </c:if>
                     <div class="form-group">
                       <label for="new_tel">전화번호</label>
                       <input type="text" class="form-control" id="new_tel" />
@@ -253,8 +256,8 @@ FACEBOOK: https://www.facebook.com/themefisher
                   </div>
                   <!-- / 배송지 선택 -->
                   <div class="form-group">
-                    <select class="w-100">
-                      <option>== 배송시 요구사항 ==</option>
+                    <select class="w-100" id="requirement">
+                      <option value="">== 배송시 요구사항 ==</option>
                       <option>문 앞에 놔주세요</option>
                       <option>경비실에 맡겨주세요</option>
                       <option>부재시 연락주세요</option>
@@ -429,32 +432,26 @@ FACEBOOK: https://www.facebook.com/themefisher
                     </tr>
                   </thead>
                   <tbody>
+                  <c:forEach items="${coupons}" var="coupon">
                     <tr>
-                      <td>첫 구매혜택 쿠폰</td>
-                      <td class="text-center">4월 29일까지</td>
-                      <td class="text-center money">5000</td>
+                      <td>${coupon.coupon_desc }</td>
+                      <td class="text-center">${coupon.coupon_date }</td>
+                      <td class="text-center money">${coupon.coupon_discount_price }</td>
                       <td class="text-center">
                         <input
                           class="radioCoupon"
                           name="coupon"
                           type="radio"
-                          value="쿠폰번호1"
+                          value="${coupon.coupon_no }"
                         />
                       </td>
                     </tr>
+                    </c:forEach>
+                    <c:if test="${coupons eq null }">
                     <tr>
-                      <td>첫 구매혜택 쿠폰</td>
-                      <td class="text-center">4월 29일까지</td>
-                      <td class="text-center money">6000</td>
-                      <td class="text-center">
-                        <input
-                          class="radioCoupon"
-                          name="coupon"
-                          type="radio"
-                          value="쿠폰번호2"
-                        />
-                      </td>
+                      <td colspan="4" class="text-center">쿠폰이 없습니다</td>
                     </tr>
+                    </c:if>
                   </tbody>
                 </table>
               </div>
@@ -526,15 +523,20 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script>
       $(function () {
         // 주소지 선택창
+        <% if(session.getAttribute("user") != null){%>
         $("#home-add").hide();
         $("#btnHome-add").addClass("btn-solid-border");
+        <% }%>
+        
+        // 내 주소지 클릭시
         $("#btnHome-my").click(function (e) {
           $("#home-my").show();
           $("#home-add").hide();
           $("#btnHome-add").addClass("btn-solid-border");
           $(this).removeClass("btn-solid-border");
         });
-
+		
+        // 주소지 추가 클릭시
         $("#btnHome-add").click(function (e) {
           $("#home-add").show();
           $("#home-my").hide();
@@ -566,7 +568,13 @@ FACEBOOK: https://www.facebook.com/themefisher
       IMP.init("imp90051783");
 	
       $("#btnPayment").click(function () {
-    	  
+    	  if($("#home-add").css("display") == "none"){
+    		  input_user_acc();
+    	  } else {
+    		  input_new_acc();
+    	  }
+    		  
+    	
         if (isChecked()) {
           
           const name = $("#account_name").val(); // 이름
@@ -632,17 +640,18 @@ FACEBOOK: https://www.facebook.com/themefisher
               if (rsp.success) {
             	  let data = [];
             	  // 총 가격, 쿠폰 번호
+            	  
             	  data.push({
             		  'price' : rsp.paid_amount,
-            		  'coupon_no' : null,
+            		  'coupon_no' : $(".radioCoupon:checked").attr('value'),
             		  'order_no' : rsp.merchant_uid,
-            		  'delivery_requirements' : null,
+            		  'delivery_requirements' : $('#requirement').val(),
             		  'payment_method' : 'card',
             		  'delivery_fee' : 3000,
             		  'delivery_place' : "(" + postcode + ") " + addr
             		            		  
             		  })
-            	  
+            	  console.log(data);
             	  // 상품 번호, 개수
                   $('.product-item').each(function(){
                 	  const pno = $(this).attr("value");
@@ -752,7 +761,6 @@ FACEBOOK: https://www.facebook.com/themefisher
       let sum_discount = 0; // 상품 전체 할인 가격 (쿠폰x)
 
       // 상품 개별
-      let idx = 0;
       $("#items_table > tbody > tr").each(function () {
         const id = $(this).attr("value");
         const name = $(this).children("td:nth-child(1)").text().trim();
@@ -767,13 +775,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         $(this)
           .children("td:nth-child(5)")
           .text((price - discount) * cnt);
-        let item = "";
-        item += "<div class='acc_plist'>";
-        item += "<input class='account_pid' name='list[" + idx + "].product_no' value='" + id + "' hidden>"; // 상품아이디
-        item += "<input class='account_pcnt' name='list[" + idx + "].product_cnt' value='" + cnt + "' hidden>"; // 개수
-        item += "</div>";
-        $("#account_form").append(item);
-        idx++;
+        
       });
       
       $("#sumPrice").text(sum_price);
@@ -815,7 +817,6 @@ FACEBOOK: https://www.facebook.com/themefisher
       });
       
       
-      input_user_acc(); // 유저 주소 정보 넣기
       calTotalPrice(); // 초기 결제 금액
 
       // 내 배송지 정보 넣기
@@ -834,20 +835,6 @@ FACEBOOK: https://www.facebook.com/themefisher
         // 전화번호
         $("#account_tel").val($("#user_tel").val());
       }
-
-      $("#home-add input").each(function () {
-        $(this).change(function () {
-          input_new_acc();
-        });
-      });
-
-      $("#btnHome-add").click(function () {
-        input_new_acc();
-      });
-
-      $("#btnHome-my").click(function () {
-        input_user_acc();
-      });
 
       // 신규 배송지 목록 넣기
       function input_new_acc() {

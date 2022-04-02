@@ -3,6 +3,7 @@ package com.webook.shop.sevice;
 import java.util.List;
 
 import com.webook.domain.CouponVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.OrderItemList;
 import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
@@ -24,4 +25,10 @@ public interface PaymentService {
  
 	// 상품명 검색
 	public String searchOrderProductName(OrderVO vo);
+	
+	// 여러 쿠폰 정보 검색
+	public List<CouponVO> searchCouponList(CouponVO vo);
+	
+	// 단일 쿠폰 정보 검색
+	public CouponVO searchCoupon(CouponVO vo);
 }

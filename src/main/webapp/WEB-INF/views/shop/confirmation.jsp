@@ -84,6 +84,21 @@ FACEBOOK: https://www.facebook.com/themefisher
   <body id="body">
 <%@ include file="/WEB-INF/views/header.jsp" %> 
   <%@ include file="/WEB-INF/views/shop/shopheader.jsp" %>
+  <section class="page-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="content">
+              <h1 class="page-name">Confirmation</h1>
+              <ol class="breadcrumb">
+                <li><a href="/main.do">Home</a></li>
+                <li class="active">Confirmation</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Page Wrapper -->
     <section class="page-wrapper success-msg">
       <div class="container">
@@ -100,7 +115,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <h4>주문상품:</h4>
               </div>
               <div class="col-xs-8 text-right"><h4>${productName}</h4></div>
-              <a href="#" class="btn btn-solid-border mt-20 mr-1"
+              <a href="main.do" class="btn btn-solid-border mt-20 mr-1"
                 >다른 상품 보러가기</a
               ><a href="#" class="btn btn-solid-border mt-20 ml-1"
                 >주문 확인 하러가기</a

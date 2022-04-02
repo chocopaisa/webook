@@ -28,7 +28,7 @@ public class PaymentServiceImpl implements PaymentService{
 
 	@Override
 	public void useCoupon(CouponVO vo) {
-		//paymentDAO.useCoupon(vo);
+		paymentDAO.useCoupon(vo);
 	}
 
 	@Override
@@ -46,6 +46,19 @@ public class PaymentServiceImpl implements PaymentService{
 	public String searchOrderProductName(OrderVO vo) {
 		
 		return paymentDAO.searchOrderProductName(vo);
+	}
+
+	// 쿠폰 정보 검색
+	@Override
+	public List<CouponVO> searchCouponList(CouponVO vo) {
+		
+		return paymentDAO.searchCouponList(vo);
+	}
+
+	@Override
+	public CouponVO searchCoupon(CouponVO vo) {
+		
+		return paymentDAO.searchCoupon(vo);
 	}
 	
 	

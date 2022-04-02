@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webook.domain.CouponVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.OrderItemList;
 import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
@@ -33,6 +34,7 @@ public class PaymentController {
 	@Autowired
 	MainService mainService;
 	
+	// 쇼핑몰 메인 페이지
 	@RequestMapping("main.do")
 	public String goMain(Model m) {
 		List<ProductVO> bestSellers = mainService.showBestSeller(); // 베스트셀러 15개
@@ -64,8 +66,10 @@ public class PaymentController {
 		return "shop/main";
 	}
 	
+	// 카트 페이지 이동
 	@RequestMapping("cart.do")
 	public String goCart(Model m, HttpSession session) {
+		// 세션에 저장된 카트 내용 불러오기
 		if(session.getAttribute("cart") == null) {
 			return "shop/cart";
 		}
@@ -98,88 +102,105 @@ public class PaymentController {
 		return "redirect:cart.do";
 	}
 	
-	// 카트에서 전체 삭제
+	// 카트에서 다수 삭제
 	@RequestMapping("removeCartList.do")
 	public String removeCartList(HttpSession session, ProductList productList) {
-		ArrayList<ProductVO> lst = (ArrayList<ProductVO>)session.getAttribute("cart");
+		ArrayList<ProductVO> cart = (ArrayList<ProductVO>)session.getAttribute("cart");
 		ArrayList<ProductVO> removeList = productList.getList();
-		for(int i = lst.size()-1; i >= 0; i--) {
-			String pno = lst.get(i).getProduct_no();
+		for(int i = cart.size()-1; i >= 0; i--) {
+			String pno = cart.get(i).getProduct_no();
 			
 			for(ProductVO remove : removeList) {
 				if(pno.equals(remove.getProduct_no())) { 
 					// 카트에 들어있는 값이 지우는 리스트와 동일한 경우 지우기
-					lst.remove(i);
+					cart.remove(i);
 					
 				}
 			}
 			
 		}// lst for end
-		if(lst.size() == 0) {
+		if(cart.size() == 0) {
 			session.setAttribute("cart", null);
 		} else {
-			session.setAttribute("cart", lst);
-			System.out.println("카트크기"+lst.size());
+			session.setAttribute("cart", cart);
+			System.out.println("카트크기"+cart.size());
 		}
 		return "redirect:cart.do";
 	}
 	
 	
-	// 카트 목록에서 삭제 ajax
+	// 상단 카트 목록에서 삭제 ajax
 	@RequestMapping(value="removeCartInHeader.do", produces = "application/text;charset=utf-8")
 	@ResponseBody
 	public String removeCartInHeader(HttpSession session, ProductVO vo) {
-		ArrayList<ProductVO> lst = (ArrayList<ProductVO>)session.getAttribute("cart");
+		ArrayList<ProductVO> cart = (ArrayList<ProductVO>)session.getAttribute("cart");
 		String removeNo = vo.getProduct_no();
-		for(int i = 0; i < lst.size(); i++) {
-			String pno = lst.get(0).getProduct_no();
+		for(int i = 0; i < cart.size(); i++) {
+			String pno = cart.get(0).getProduct_no();
 			if(pno.equals(removeNo)) {
-				lst.remove(i);
+				cart.remove(i);
 				break;
 			}
 		}
 		
-		if(lst.size() == 0) {
+		if(cart.size() == 0) {
 			session.setAttribute("cart", null);
 		} else {
-			session.setAttribute("cart", lst);
-			System.out.println("카트크기"+lst.size());
+			session.setAttribute("cart", cart);
+			System.out.println("카트크기"+cart.size());
 		}
 		
 		
-		return String.valueOf(lst.size());
+		return String.valueOf(cart.size());
 	}
 	
 	
 	
-	// 결제페이지로 이동
+	// 카트에서 결제페이지로 이동
 	@RequestMapping("payment_list.do")
-	public String goPaymentList(ProductList productList, Model m) {
+	public String goPaymentList(ProductList productList, Model m, HttpSession session) {
 		System.out.println("결제페이지");
 		ArrayList<ProductVO> resultList = new ArrayList<>();
 		// 결제 상품리스트 정보 가져오기
 		for(ProductVO vo : productList.getList()) {
-			if(vo.getProduct_no() == null) {
+			// 상품이 올바르지않는 경우 넘김
+			if(vo.getProduct_no() == null || vo.getProduct_cnt() <= 0) {
 				continue;
 			}
 			ProductVO result = paymentService.searchProduct(vo);
 			result.setProduct_cnt(vo.getProduct_cnt());
 			resultList.add(result);
-			
 		}
+		
+		// 카트 내용물이 없는 경우 다시 카트창으로
 		if(resultList.size() == 0) {
-			return "redirect:main.do";
+			return "redirect:cart.do";
 		}
 		m.addAttribute("productList", resultList);
+		
+		
+		// 사용자의 보유 쿠폰 불러오기
+		if(session.getAttribute("user")!=null) {
+			MemberVO memberVO = (MemberVO)session.getAttribute("user");
+			CouponVO couponVO = new CouponVO();
+			couponVO.setUser_email(memberVO.getUser_email()); 
+			
+			List<CouponVO> couponList = paymentService.searchCouponList(couponVO);
+			m.addAttribute("coupons", couponList);
+		}
+		
 		
 		return "shop/payment";
 	}
 	
+	// 단일 상품 결제 페이지
 	@RequestMapping("payment.do")
-	public String goPayment(ProductVO vo, Model m) {
-		if(vo.getProduct_no() == null) {
+	public String goPayment(ProductVO vo, Model m, HttpSession session) {
+		// 상품이 올바르지않는 경우 main으로
+		if(vo.getProduct_no() == null || vo.getProduct_cnt() <= 0) {
 			return "redirect:main.do";
 		}
+		
 		ProductVO result = paymentService.searchProduct(vo);
 		System.out.println(result.getProduct_name());
 		result.setProduct_cnt(vo.getProduct_cnt());
@@ -188,6 +209,17 @@ public class PaymentController {
 		
 		m.addAttribute("productList", resultList);
 		
+		
+		// 사용자의 보유 쿠폰 불러오기
+		if(session.getAttribute("user")!=null) {
+			MemberVO memberVO = (MemberVO)session.getAttribute("user");
+			CouponVO couponVO = new CouponVO();
+			couponVO.setUser_email(memberVO.getUser_email()); 
+					
+			List<CouponVO> couponList = paymentService.searchCouponList(couponVO);
+			m.addAttribute("coupons", couponList);
+		}
+		
 		return "shop/payment";
 	}
 	
@@ -195,7 +227,7 @@ public class PaymentController {
 	// 상품 가격 확인
 	@RequestMapping(value="checkTotalPrice.do", produces="application/json")
 	@ResponseBody
-	public String checkTotalPrice(@RequestBody ArrayList<Map<String, Object>> list) {
+	public String checkTotalPrice(@RequestBody ArrayList<Map<String, Object>> list, HttpSession session) {
 		System.out.println("받은 리스트 크기 : " + list.size());
 		// 결제 상품리스트 정보 가져오기
 		Map<String, Object> map = list.get(0);
@@ -226,45 +258,68 @@ public class PaymentController {
 			itemVO.setOrder_cnt(cnt);
 			itemVO.setTotal_price((price-sale)*cnt);
 			itemVO.setDiscount_price(sale*cnt);
+			
 			orderItemVOList.add(itemVO);
 			
 		}
+		String user_email = null;
+		if(session.getAttribute("user") != null) {
+			MemberVO memberVO = (MemberVO)session.getAttribute("user");
+			user_email = memberVO.getUser_email();
+		}
+		
+		// 쿠폰 할인가 검색
+		int couponPrice = 0;
+		CouponVO couponVO = null;
+		System.out.println(map.get("coupon_no"));
+		if(map.containsKey("coupon_no") && map.get("coupon_no") != null && !map.get("coupon_no").equals("")) {
+			
+			CouponVO cvo = new CouponVO();
+			String coupon_no = (String)map.get("coupon_no");
+			cvo.setCoupon_no(coupon_no);
+			couponVO = paymentService.searchCoupon(cvo);
+			couponPrice = couponVO.getCoupon_discount_price();
+			couponVO.setOrder_no(order_no);
+		}
+		
 		System.out.println("realPrice : " + realPrice);
 		
-		// 결제 내용 DB에 넣기
-		OrderVO orderVO = new OrderVO();
+		System.out.println("delivery_fee : " + delivery_fee );
+		System.out.println("couponPrice : " + couponPrice);
 		
-		String delivery_requirements = (String)map.get("delivery_requirements");
-		String payment_method = (String)map.get("payment_method");
-		String delivery_place = (String)map.get("delivery_place");
+		if(totalPrice == realPrice + delivery_fee - couponPrice) {
+			// 결제 내용 DB에 넣기
+			OrderVO orderVO = new OrderVO();
+			
+			String delivery_requirements = (String)map.get("delivery_requirements");
+			String payment_method = (String)map.get("payment_method");
+			String delivery_place = (String)map.get("delivery_place");
+			
+			orderVO.setOrder_no(order_no);
+			orderVO.setDelivery_requirements(delivery_requirements);
+			orderVO.setDelivery_fee(delivery_fee);
+			orderVO.setPayment_method(payment_method);
+			orderVO.setDelivery_place(delivery_place);
+			
+			OrderItemList orderItemList = new OrderItemList();
+			orderItemList.setList(orderItemVOList);
+			
+			paymentService.insertOrder(orderVO, orderItemList);
+			
+			// 쿠폰 사용시
+			if(couponVO != null) {
+				paymentService.useCoupon(couponVO);
+			}
+			System.out.println("결제성공");
 		
-		orderVO.setOrder_no(order_no);
-		orderVO.setDelivery_requirements(delivery_requirements);
-		orderVO.setDelivery_fee(delivery_fee);
-		orderVO.setPayment_method(payment_method);
-		orderVO.setDelivery_place(delivery_place);
-		
-		
-		
-		OrderItemList orderItemList = new OrderItemList();
-		orderItemList.setList(orderItemVOList);
-		
-		paymentService.insertOrder(orderVO, orderItemList);
-		
-		
-		if(totalPrice == realPrice + delivery_fee) {
 			return "200";
 		}
+		
+		System.out.println("결제 실패");
 		return "500";
 		
 	}
 	
-	// 쿠폰 할인 가격 알아오기
-	@RequestMapping(value="getCouponPrice.do", produces = "application/text;charset=utf-8")
-	public String getCouponPrice(CouponVO vo) {
-		
-		return "";
-	}
 	
 	// 결제
 	@RequestMapping("confirmation.do")
