@@ -21,4 +21,6 @@ public interface PaymentDAO {
 	public void insertAddr(MemberVO vo);
 	
 	public ProductVO searchProduct(ProductVO vo); 
+	
+	public String searchOrderProductName(OrderVO vo);
 }

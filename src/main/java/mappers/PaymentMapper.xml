@@ -11,7 +11,7 @@
 		)
 		
 		VALUES (
-		#{order_no}, #{user_email}, #{payment_method}, #{delivery_fee}, #{delivery_place}, #{delivery_requirements}, #{payment_date}, #{delivery_info}
+		#{order_no}, 'test@test.com', #{payment_method}, #{delivery_fee}, #{delivery_place}, null, sysdate, null
 		)
 	</insert>
 	
@@ -47,5 +47,21 @@
 			AND clist.user_email = #{user_email}
 			</if>
 		</where>
+	</select>
+	
+	<select id="searchOrderName" parameterType="com.webook.domain.OrderVO" resultType="string">
+	SELECT 
+		DECODE(FIRST_VALUE(item.product_no) OVER()
+			, LAST_VALUE(item.product_no) OVER()
+			, product.product_name
+			, product.product_name || '외') 
+			product_name
+	FROM 
+    	order_items item 
+    		LEFT OUTER JOIN product_list product
+    		ON item.product_no = product.product_no
+	WHERE 
+		item.order_no = #{order_no}
+	
 	</select>
 </mapper>

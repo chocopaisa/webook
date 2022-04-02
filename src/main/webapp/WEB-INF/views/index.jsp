@@ -114,7 +114,7 @@ FACEBOOK: https://www.facebook.com/themefisher
       <!-- 한 묶음 -->
       <div class="col-md-4">
         <div class="media">
-        <a class="pull-left" href="#">
+        <a class="pull-left" href="shop/product_single.do?product_no=${reviews[idx].PRODUCT_NO }">
         <img class="media-object" src="${reviews[idx].PRODUCT_IMAGE }" alt="Image">
         </a>
         <div class="media-body">

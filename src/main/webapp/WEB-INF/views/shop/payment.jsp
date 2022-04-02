@@ -115,11 +115,11 @@ FACEBOOK: https://www.facebook.com/themefisher
                     <tbody>
                     <c:forEach items="${productList }" var="product">
                     
-                      <tr value="${product.product_no }">
-                        <td class="text-left">${product.product_name }</td>
-                        <td class="text-center money">${product.product_price }</td>
-                        <td class="text-center money-minus">${product.product_sale }</td>
-                        <td class="text-center">${product.product_cnt }</td>
+                      <tr class="product-item" value="${product.product_no }">
+                        <td class="product-name text-left">${product.product_name }</td>
+                        <td class="product-price text-center money">${product.product_price }</td>
+                        <td class="product-sale text-center money-minus">${product.product_sale }</td>
+                        <td class="product-cnt text-center">${product.product_cnt }</td>
                         <td class="text-center money">0</td>
                       </tr>
                       </c:forEach>
@@ -372,7 +372,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                     </li>
                     <li>
                       <span>배송비</span>
-                      <span id="postPrice" class="money">3500</span>
+                      <span id="postPrice" class="money">3000</span>
                     </li>
                     <li>
                       <span>할인가격</span>
@@ -564,33 +564,48 @@ FACEBOOK: https://www.facebook.com/themefisher
 
       var IMP = window.IMP;
       IMP.init("imp90051783");
-
+	
       $("#btnPayment").click(function () {
     	  
         if (isChecked()) {
-        	
-          // 상품명
-          let pname = "";
-          if (
-            $(".account_pname").length > 1 ||
-            $(".account_pcnt").first().val() > 1
-          ) {
-            let cnt = 0;
-            $(".account_pname").each(function () {
-              cnt += Number($(this).next().val());
-            });
-            pname =
-              $(".account_pname").first().val() + " 외 " + (cnt - 1) + "개";
-          } else {
-            pname = $(".account_pname").first().val();
-          }
           
           const name = $("#account_name").val(); // 이름
           const tel = $("#account_tel").val(); // 번호
           const addr = $("#account_address").val(); // 주소
           const postcode = $("#account_post_code").val(); // 우편번호
-
+          
+          // 상품명
+          let productName = "";
+          const firstItem = $('.product-item').first()
+          let pname = firstItem.find('.product-name').text();
+    	  let pcnt = firstItem.find('.product-cnt').text();
+    	  if(pname.length > 7){
+    		  pname = pname.substring(0,7) + '...';
+    	  }
+    	  
+    	  pname = pname + " " + pcnt + "개"
+    	  let tcnt = 0;
+    	  $(".product-cnt").each(function(){
+    		  tcnt += Number($(this).text());
+    	  })
+    	  
+    	  if($('.product-item').length > 1){
+    		  productName = pname + " 외 " + (tcnt-pcnt)+"개"; 
+    	  } else {
+    		  productName = pname;
+    	  }
+    	  
           // 가격 계산
+          const accTotalPrice = $('#totalPrice').text().replace("원", "").replace(",", "");
+          console.log(accTotalPrice)
+          
+          
+          
+          
+          const cDisNo = $(".radioCoupon:checked").attr("value"); // 쿠폰번호
+          
+          // 쿠폰 사용
+          
           
           
           // IMP.request_pay(param, callback) 호출
@@ -599,8 +614,8 @@ FACEBOOK: https://www.facebook.com/themefisher
               pg: "html5_inicis",
               pay_method: "card",
               merchant_uid: "BK_" + new Date().getTime(),
-              name: pname,
-              amount: 100, // 가격
+              name: productName,
+              amount: Number(accTotalPrice), // 가격
               buyer_name: name, // 구매자명
               buyer_tel: tel, // 번호
               buyer_addr: addr, // 주소
@@ -615,18 +630,58 @@ FACEBOOK: https://www.facebook.com/themefisher
             function (rsp) {
               console.log(rsp);
               if (rsp.success) {
-                var msg = "결제가 완료되었습니다.";
-                msg += "고유ID : " + rsp.imp_uid;
-                msg += "상점 거래ID : " + rsp.merchant_uid;
-                msg += "결제 금액 : " + rsp.paid_amount;
-                msg += "카드 승인번호 : " + rsp.apply_num;
-                // 페이지 넘기기 나중에 jsp로 처리
-                window.location.href =
-                  "http://127.0.0.1:5500/project/confirmation.html";
+            	  let data = [];
+            	  // 총 가격, 쿠폰 번호
+            	  data.push({
+            		  'price' : rsp.paid_amount,
+            		  'coupon_no' : null,
+            		  'order_no' : rsp.merchant_uid,
+            		  'delivery_requirements' : null,
+            		  'payment_method' : 'card',
+            		  'delivery_fee' : 3000,
+            		  'delivery_place' : "(" + postcode + ") " + addr
+            		            		  
+            		  })
+            	  
+            	  // 상품 번호, 개수
+                  $('.product-item').each(function(){
+                	  const pno = $(this).attr("value");
+                	  const pcnt = $(this).find('.product-cnt').text();
+                	  
+                	  data.push({
+                		  "product_no" : pno,
+                		  "product_cnt" : Number(pcnt)
+                		  })
+                  });
+                  
+            	  $.ajax({
+                	  type: 'post',
+                	  data: JSON.stringify(data),
+                	  dataType: 'json',
+                	  url : "checkTotalPrice.do",
+                	  error : function(err){
+                		  alert("에러");
+                		  console.log(err);
+                	  },
+                	  contentType : 'application/json'
+                  }).done(function(data){
+                	  if(data == 200){
+	                	  var msg = "결제가 완료되었습니다.";
+	                      msg += "고유ID : " + rsp.imp_uid;
+	                      msg += "상점 거래ID : " + rsp.merchant_uid;
+	                      msg += "결제 금액 : " + rsp.paid_amount;
+	                      msg += "카드 승인번호 : " + rsp.apply_num;
+	                      alert(msg);
+	                      window.location.href = "confirmation.do?order_no="+ rsp.merchant_uid;
+                	  }
+                	  
+                      
+                  });
               } else {
                 var msg = "결제에 실패하였습니다.";
+                alert(msg);
               }
-              alert(msg);
+              
             }
           );
         }
@@ -720,7 +775,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         $("#account_form").append(item);
         idx++;
       });
-
+      
       $("#sumPrice").text(sum_price);
       $("#product_discount").text(sum_discount);
       $("#sumDiscount").text(sum_discount);
@@ -741,11 +796,7 @@ FACEBOOK: https://www.facebook.com/themefisher
       });
 
       // 배송비
-      const post_price = Number(
-        $("#postPrice")
-          .text()
-          .replace(/[^0-9]/g, "")
-      );
+      const post_price = 3000;
       $("#account_post_price").val(post_price);
 
       // 쿠폰 사용
@@ -754,16 +805,16 @@ FACEBOOK: https://www.facebook.com/themefisher
           .parent()
           .prev()
           .text()
-          .replace(/[^0-9]/g, "");
-        const cDisNo = $(".radioCoupon:checked").attr("value");
-        $("#account_coupon_id").val(cDisNo);
-        const coupon_discount = Number(cDis);
-        change_coupon(coupon_discount);
+          .replace(/[^0-9]/g, ""); // 할인가
+        change_coupon(Number(cDis));
       });
+      // 쿠폰 미사용
       $("#coupon_unuse").click(function () {
         $(".radioCoupon").prop("checked", false);
         change_coupon(0);
       });
+      
+      
       input_user_acc(); // 유저 주소 정보 넣기
       calTotalPrice(); // 초기 결제 금액
 

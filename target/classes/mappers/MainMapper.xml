@@ -10,7 +10,9 @@
 		    pl.product_name product_name, 
 		    pl.product_image product_image,
 		    ci.user_name user_name,
-		    br.star star
+		    br.star star,
+		    br.write_date write_date,
+		    br.user_email user_email
 		FROM 
 		    bookreport br 
 		    LEFT OUTER JOIN product_list pl

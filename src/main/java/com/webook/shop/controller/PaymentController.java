@@ -1,17 +1,22 @@
 package com.webook.shop.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webook.domain.CouponVO;
 import com.webook.domain.OrderItemList;
+import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
 import com.webook.domain.ProductList;
 import com.webook.domain.ProductVO;
@@ -187,12 +192,88 @@ public class PaymentController {
 	}
 	
 	
-	@RequestMapping("account.do")
-	public String buyItems(Model m , OrderVO vo, OrderItemList list) {
-		paymentService.insertOrder(vo, list);
+	// 상품 가격 확인
+	@RequestMapping(value="checkTotalPrice.do", produces="application/json")
+	@ResponseBody
+	public String checkTotalPrice(@RequestBody ArrayList<Map<String, Object>> list) {
+		System.out.println("받은 리스트 크기 : " + list.size());
+		// 결제 상품리스트 정보 가져오기
+		Map<String, Object> map = list.get(0);
+		
+		String order_no = (String)map.get("order_no");
+		int totalPrice = ((Double)map.get("price")).intValue();
+		
+		int delivery_fee = ((Double)map.get("delivery_fee")).intValue();
+		System.out.println("totalPrice : " + totalPrice);
+		int realPrice = 0;
+		ArrayList<OrderItemVO> orderItemVOList = new ArrayList<OrderItemVO>();
+		for(int i =1; i < list.size(); i++) {
+			String pno = (String)list.get(i).get("product_no");
+			if(pno == null) {
+				continue;
+			}
+			ProductVO vo = new ProductVO();
+			vo.setProduct_no(pno);
+			ProductVO result = paymentService.searchProduct(vo);
+			int price = result.getProduct_price();
+			int sale = result.getProduct_sale();
+			int cnt = ((Double)list.get(i).get("product_cnt")).intValue();
+			realPrice += ( price - sale) * cnt;
+			
+			OrderItemVO itemVO = new OrderItemVO();
+			itemVO.setOrder_no(order_no);
+			itemVO.setProduct_no(pno);
+			itemVO.setOrder_cnt(cnt);
+			itemVO.setTotal_price((price-sale)*cnt);
+			itemVO.setDiscount_price(sale*cnt);
+			orderItemVOList.add(itemVO);
+			
+		}
+		System.out.println("realPrice : " + realPrice);
+		
+		// 결제 내용 DB에 넣기
+		OrderVO orderVO = new OrderVO();
+		
+		String delivery_requirements = (String)map.get("delivery_requirements");
+		String payment_method = (String)map.get("payment_method");
+		String delivery_place = (String)map.get("delivery_place");
+		
+		orderVO.setOrder_no(order_no);
+		orderVO.setDelivery_requirements(delivery_requirements);
+		orderVO.setDelivery_fee(delivery_fee);
+		orderVO.setPayment_method(payment_method);
+		orderVO.setDelivery_place(delivery_place);
 		
 		
-		return "shop/main";
+		
+		OrderItemList orderItemList = new OrderItemList();
+		orderItemList.setList(orderItemVOList);
+		
+		paymentService.insertOrder(orderVO, orderItemList);
+		
+		
+		if(totalPrice == realPrice + delivery_fee) {
+			return "200";
+		}
+		return "500";
+		
+	}
+	
+	// 쿠폰 할인 가격 알아오기
+	@RequestMapping(value="getCouponPrice.do", produces = "application/text;charset=utf-8")
+	public String getCouponPrice(CouponVO vo) {
+		
+		return "";
+	}
+	
+	// 결제
+	@RequestMapping("confirmation.do")
+	public String buyItems(Model m , OrderVO vo) {
+		System.out.println(vo.getOrder_no());
+		String productName = paymentService.searchOrderProductName(vo);
+		m.addAttribute("productName", productName);
+		
+		return "shop/confirmation";
 	}
 	
 	

@@ -20,6 +20,8 @@ public interface PaymentService {
 	public void insertAddr();
 	
 	// 상품 검색
-	public ProductVO searchProduct(ProductVO vo); 
-	
+	public ProductVO searchProduct(ProductVO vo);
+ 
+	// 상품명 검색
+	public String searchOrderProductName(OrderVO vo);
 }

@@ -41,6 +41,13 @@ public class PaymentServiceImpl implements PaymentService{
 	public ProductVO searchProduct(ProductVO vo) {
 		return paymentDAO.searchProduct(vo);
 	}
+
+	@Override
+	public String searchOrderProductName(OrderVO vo) {
+		
+		return paymentDAO.searchOrderProductName(vo);
+	}
+	
 	
 
 }

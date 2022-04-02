@@ -57,4 +57,10 @@ public class PaymentDAOImpl implements PaymentDAO {
 		
 	}
 
+	@Override
+	public String searchOrderProductName(OrderVO vo) {
+		
+		return mybatis.selectOne("payment.mapper.searchOrderName",vo);
+	}
+
 }
