@@ -93,8 +93,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 
     <div class="slider">
       <div><img src="resources/images/banner1.jpg" class='img'></div>
-      <div><img src="resources/images/banner1.jpg" class='img'></div>
-      <div><img src="resources/images/banner1.jpg" class='img'></div>
+      <div><img src="resources/images/banner2.jpg" class='img'></div>
+      <div><img src="resources/images/banner3.jpg" class='img'></div>
     </div>
     
     <!-- 광고 배너 끝 -->

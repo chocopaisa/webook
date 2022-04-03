@@ -143,10 +143,10 @@ ul.top-menu {
 			<img src="../resources/images/banner1.jpg" class='img'>
 		</div>
 		<div>
-			<img src="../resources/images/banner1.jpg" class='img'>
+			<img src="../resources/images/banner2.jpg" class='img'>
 		</div>
 		<div>
-			<img src="../resources/images/banner1.jpg" class='img'>
+			<img src="../resources/images/banner3.jpg" class='img'>
 		</div>
 	</div>
 
