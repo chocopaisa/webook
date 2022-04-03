@@ -11,7 +11,7 @@
 		)
 		
 		VALUES (
-		#{order_no}, 'test@test.com', #{payment_method}, #{delivery_fee}, #{delivery_place}, null, sysdate, null
+		#{order_no}, 'test@test.com', #{payment_method}, #{delivery_fee}, #{delivery_place}, #{delivery_requirements}, sysdate, null
 		)
 	</insert>
 	
