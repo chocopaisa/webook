@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpSession;
 
@@ -62,6 +63,9 @@ public class PaymentController {
 		// 예술 
 		vo.setGenre_no("210");
 		m.addAttribute("art", mainService.showProductOnGenre(vo));
+		
+		List<ProductVO> issueItems = mainService.showIssueItems();
+		m.addAttribute("issueItems", issueItems);
 		
 		return "shop/main";
 	}
@@ -179,15 +183,32 @@ public class PaymentController {
 		m.addAttribute("productList", resultList);
 		
 		
-		// 사용자의 보유 쿠폰 불러오기
+		
 		if(session.getAttribute("user")!=null) {
+			// 사용자의 보유 쿠폰 불러오기
 			MemberVO memberVO = (MemberVO)session.getAttribute("user");
 			CouponVO couponVO = new CouponVO();
 			couponVO.setUser_email(memberVO.getUser_email()); 
 			
 			List<CouponVO> couponList = paymentService.searchCouponList(couponVO);
 			m.addAttribute("coupons", couponList);
+			
+			// 사용자 주소 불러오기
+			MemberVO addrVO = paymentService.searchAddr(memberVO);
+			
+			if(addrVO!=null) {
+				System.out.println("주소 : " + addrVO.getUser_addr());
+				if(addrVO.getUser_addr()!= null) {
+					String address = addrVO.getUser_addr();
+					StringTokenizer st = new StringTokenizer(address,"|"); // | 으로 구분
+					Map<String, String> addrMap = new HashMap<String, String>();
+					addrMap.put("addr", st.nextToken());
+					addrMap.put("detailAddr", st.nextToken());
+					m.addAttribute("address", addrMap);
+				}
+			}			
 		}
+		
 		
 		
 		return "shop/payment";
@@ -218,6 +239,24 @@ public class PaymentController {
 					
 			List<CouponVO> couponList = paymentService.searchCouponList(couponVO);
 			m.addAttribute("coupons", couponList);
+			
+			// 사용자 주소 불러오기
+			MemberVO addrVO = paymentService.searchAddr(memberVO);
+						
+			if(addrVO!=null) {
+				System.out.println("주소 : " + addrVO.getUser_addr());
+				if(addrVO.getUser_addr()!= null) {
+					String address = addrVO.getUser_addr();
+					StringTokenizer st = new StringTokenizer(address,"|"); // | 으로 구분
+					Map<String, String> addrMap = new HashMap<String, String>();
+					addrMap.put("addr", st.nextToken());
+					if(st.hasMoreTokens()) {
+						addrMap.put("detailAddr", st.nextToken());
+					}
+					m.addAttribute("address", addrMap);
+				}
+			}
+			
 		}
 		
 		return "shop/payment";
@@ -331,6 +370,18 @@ public class PaymentController {
 		return "shop/confirmation";
 	}
 	
+	// 배송지 저장
+	@RequestMapping(value="saveAddr.do",produces = "application/text;charset=utf-8")
+	@ResponseBody
+	public String saveAddr(MemberVO vo, HttpSession session) {
+		if(vo.getUser_addr()!= null && session.getAttribute("user") != null) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			System.out.println("배송지 저장");
+			vo.setUser_email(user.getUser_email());
+			paymentService.insertAddr(vo);;
+		}
+		return "성공";
+	}
 	
 	
 	

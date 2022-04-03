@@ -155,8 +155,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                         type="text"
                         class="form-control"
                         id="user_name"
-                        value="이건희"
-                        readonly
+                        value="${sessionScope.user.user_name }"
                       />
                     </div>
                     <div class="form-group">
@@ -165,7 +164,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                         type="text"
                         class="form-control"
                         id="user_addr"
-                        value="(80808) 서울특별시 구로구 구일로 4길 65"
+                        value="${address.addr }"
                         readonly
                       />
                     </div>
@@ -175,7 +174,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                         type="text"
                         class="form-control"
                         id="user_detail_addr"
-                        value="104동 1306호 (구로구 주공아파트)"
+                        value="${address.detailAddr }"
                         readonly
                       />
                     </div>
@@ -185,8 +184,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                         type="text"
                         class="form-control"
                         id="user_tel"
-                        value="010-9219-3678"
-                        readonly
+                        value=""
                       />
                     </div>
                   </div>
@@ -244,7 +242,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                     </div>
                     <c:if test="${sessionScope.user ne null }">
                     <div class="form-group text-right">
-                      <button id="" class="btn btn-solid-border">
+                      <button id="btnSaveAddr" class="btn btn-solid-border">
                         내 배송지로 저장
                       </button>
                     </div>
@@ -915,6 +913,39 @@ FACEBOOK: https://www.facebook.com/themefisher
         }
         return true;
       }
+    </script>
+    <script>
+    // 주소지 저장
+    $('#btnSaveAddr').click(function(){
+    	if($('#new_post_code').val()!=''){
+    		const postCode = $('#new_post_code').val();
+    		const addr = $('#new_addr').val();
+    		const detail = $('#new_detailAddr').val();
+    		const extra = $('#new_extraAddr').val();
+    		
+    		const address = '(' + postCode + ')' + addr + '|' + detail + extra
+    		console.log(address);
+    		
+    		$.ajax({
+    			data : {user_addr : address},
+    			url : 'saveAddr.do',
+    			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+            	success : function(result){
+            		$('#user_addr').val('('+postCode+')'+addr);
+            		$('#user_detail_addr').val(detail+extra);
+            		$('#btnHome-my').trigger('click');
+            	},
+            	error : function(err){
+            		alert('실패:');
+            		console.log(err);
+            	}
+    		})
+    		
+    	} else {
+    		alert('주소를 입력해주세요')
+    	}
+    })
+    
     </script>
     
   </body>

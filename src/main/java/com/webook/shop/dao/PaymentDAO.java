@@ -26,4 +26,6 @@ public interface PaymentDAO {
 	
 	public CouponVO searchCoupon(CouponVO vo);
 	
+	public MemberVO searchAddr(MemberVO vo);
+	
 }

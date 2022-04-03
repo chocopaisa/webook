@@ -17,9 +17,6 @@ public interface PaymentService {
 	// 쿠폰 사용
 	public void useCoupon(CouponVO vo);
 	
-	// 배송지 넣기 
-	public void insertAddr();
-	
 	// 상품 검색
 	public ProductVO searchProduct(ProductVO vo);
  
@@ -31,4 +28,10 @@ public interface PaymentService {
 	
 	// 단일 쿠폰 정보 검색
 	public CouponVO searchCoupon(CouponVO vo);
+	
+	// 사용자 주소 검색
+	public MemberVO searchAddr(MemberVO vo);
+	
+	// 배송지 넣기 
+	public void insertAddr(MemberVO vo);
 }

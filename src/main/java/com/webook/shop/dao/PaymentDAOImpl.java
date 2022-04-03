@@ -51,11 +51,6 @@ public class PaymentDAOImpl implements PaymentDAO {
 		
 	}
 
-	@Override
-	public void insertAddr(MemberVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public String searchOrderProductName(OrderVO vo) {
@@ -67,6 +62,20 @@ public class PaymentDAOImpl implements PaymentDAO {
 	public CouponVO searchCoupon(CouponVO vo) {
 		
 		return mybatis.selectOne("payment.mapper.searchCoupon", vo);
+	}
+
+	// 배송지 입력
+	@Override
+	public void insertAddr(MemberVO vo) {
+		mybatis.insert("payment.mapper.saveAddr", vo);
+		
+	}
+	
+	// 주소 검색
+	@Override
+	public MemberVO searchAddr(MemberVO vo) {
+		
+		return mybatis.selectOne("payment.mapper.searchAddr", vo);
 	}
 
 }

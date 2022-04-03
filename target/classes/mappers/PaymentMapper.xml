@@ -68,4 +68,10 @@
 		item.order_no = #{order_no}
 	
 	</select>
+	<select id="searchAddr" parameterType="com.webook.domain.MemberVO" resultType="com.webook.domain.MemberVO">
+		SELECT user_addr FROM customer_info WHERE user_email = #{user_email} 
+	</select>
+	<update id="saveAddr" parameterType="com.webook.domain.MemberVO">
+		UPDATE customer_info SET user_addr=#{user_addr} WHERE user_email = #{user_email}
+	</update>
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webook.domain.CouponVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.OrderItemList;
 import com.webook.domain.OrderItemVO;
 import com.webook.domain.OrderVO;
@@ -29,12 +30,6 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public void useCoupon(CouponVO vo) {
 		paymentDAO.useCoupon(vo);
-	}
-
-	@Override
-	public void insertAddr() {
-		
-		
 	}
 	
 	@Override
@@ -60,7 +55,17 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		return paymentDAO.searchCoupon(vo);
 	}
+
+	@Override
+	public MemberVO searchAddr(MemberVO vo) {
+		
+		return paymentDAO.searchAddr(vo);
+	}
 	
-	
+	@Override
+	public void insertAddr(MemberVO vo) {
+		paymentDAO.insertAddr(vo);
+		
+	}
 
 }
