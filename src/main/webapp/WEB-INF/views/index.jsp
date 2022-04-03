@@ -118,7 +118,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         <img class="media-object review-img" src="${reviews[idx].PRODUCT_IMAGE }" alt="Image">
         </a>
         <div class="media-body">
-        <h4 class="media-heading"><a href="#">${ reviews[idx].PRODUCT_NAME }</a></h4>
+        <h4 class="media-heading"><a href="shop/product_single.do?product_no=${reviews[idx].PRODUCT_NO }">${ reviews[idx].PRODUCT_NAME }</a></h4>
         <h4 class="review-star"><span class="star"> ${reviews[idx].STAR }</span></h4><hr/>
         <div><p>${reviews[idx].BOOKREPORT_CONTENT }</p></div>
         <div class="text-right align-text-bottom">
@@ -157,7 +157,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          <div class="product-thumb">
 	          <img class="img-responsive bestseller-img" src="${bestSellers[idx].product_image}" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
-	          <h4><a href="#">${bestSellers[idx].product_writer}</a></h4>
+	          <h4><a href="shop/shop_koreana.do?searchKeyword=${bestSellers[idx].product_writer }">${bestSellers[idx].product_writer}</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
 	          <h4><a href="shop/product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_name}</a></h4>
@@ -223,10 +223,11 @@ FACEBOOK: https://www.facebook.com/themefisher
     // 베스트 셀러 이미지 크기 조정
     bestImgResize()
     reviewImgResize()
+    bestDivResize()
     $(window).resize(function(){
     	bestImgResize();
     	reviewImgResize();
-        
+    	bestDivResize();
     });
     function bestImgResize(){
     	const imgWidth = $('.bestseller-img').width();
@@ -235,6 +236,11 @@ FACEBOOK: https://www.facebook.com/themefisher
     function reviewImgResize(){
     	const imgWidth = $('.review-img').width();
     	$('.review-img').height(imgWidth*1.48);
+    }
+    
+    function bestDivResize(){
+    	const divWidth = $('.product-item').width();
+    	$('.product-item').height(divWidth*2);
     }
     </script>
     <script>
@@ -277,24 +283,7 @@ FACEBOOK: https://www.facebook.com/themefisher
       })
           
     </script>
-    <script>
-      // 카카오 책검색
-      $('#total-search-frm').submit(function(){
-        const qry = $(this).children("#total-search").val();
-        
-        $.ajax({
-          method: "GET",
-          url: "https://dapi.kakao.com/v3/search/book?target=title",
-          data: { query: qry },
-          headers: { Authorization: "KakaoAK b11bca68e657972c0a2a198bd8780dec" },
-        }).done(function (msg) {
-          alert("Data Saved: " + msg);
-          console.log(msg);
-        });
-        
-      });
-      
-    </script>
+    
 
   </body>
 </html>

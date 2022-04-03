@@ -32,4 +32,9 @@ public class MainServiceImpl implements MainService{
 		return mainDAO.showProductOnGenre(vo);
 	}
 
+	@Override
+	public List<ProductVO> showIssueItems() {
+		return mainDAO.showIssueItems();
+	}
+
 }
