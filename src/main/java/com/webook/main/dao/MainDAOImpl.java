@@ -39,5 +39,11 @@ public class MainDAOImpl implements MainDAO {
 		
 		return lst.get(0);
 	}
+
+	@Override
+	public List<ProductVO> showIssueItems() {
+		List<ProductVO> lst = mybatis.selectList("main.mapper.showIssueItems");
+		return lst;
+	}
 	
 }

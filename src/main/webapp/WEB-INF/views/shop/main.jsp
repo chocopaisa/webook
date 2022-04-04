@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- 
 THEME: Aviato | E-commerce template
 VERSION: 1.0.0
@@ -21,195 +21,265 @@ FACEBOOK: https://www.facebook.com/themefisher
 <html lang="en">
 <head>
 
-  <!-- Basic Page Needs
+<!-- Basic Page Needs
   ================================================== -->
-  <meta charset="utf-8">
-  <title>WEBOOK | 너와 나의 연결 고리</title>
+<meta charset="utf-8">
+<title>WEBOOK | 너와 나의 연결 고리</title>
 
-  <!-- Mobile Specific Metas
+<!-- Mobile Specific Metas
   ================================================== -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Construction Html5 Template">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="author" content="Themefisher">
-  <meta name="generator" content="Themefisher Constra HTML Template v1.0">
-  
-  <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="../resources/images/favicon.png" />
-  
-  <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="../resources/plugins/themefisher-font/style.css">
-  <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="../resources/plugins/bootstrap/css/bootstrap.min.css">
-  
-  <!-- Animate css -->
-  <link rel="stylesheet" href="../resources/plugins/animate/animate.css">
-  <!-- Slick Carousel -->
-  <link rel="stylesheet" href="../resources/plugins/slick/slick.css">
-  <link rel="stylesheet" href="../resources/plugins/slick/slick-theme.css">
-  
-  <!-- bxslider -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-  
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="../resources/css/style.css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Construction Html5 Template">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="author" content="Themefisher">
+<meta name="generator" content="Themefisher Constra HTML Template v1.0">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon"
+	href="../resources/images/favicon.png" />
+
+<!-- Themefisher Icon font -->
+<link rel="stylesheet"
+	href="../resources/plugins/themefisher-font/style.css">
+<!-- bootstrap.min css -->
+<link rel="stylesheet"
+	href="../resources/plugins/bootstrap/css/bootstrap.min.css">
+
+<!-- Animate css -->
+<link rel="stylesheet" href="../resources/plugins/animate/animate.css">
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="../resources/plugins/slick/slick.css">
+<link rel="stylesheet" href="../resources/plugins/slick/slick-theme.css">
+
+<!-- bxslider -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="../resources/css/style.css">
 
 <style type="text/css">
-	.pl-2 {
-		padding-left: 20px;
-	}
-	.pr-2 {
-		padding-right: 20px;
-	}
-	ul.top-menu {
-		font-size : 20px;
-	}
-	.media-object{
-		max-width: 150px;
-		height: auto;
-	}
-	#navbar > div {
-		display: inline-block;
-	}
-	.slider .img {
-      text-align: center;
-      margin: auto;
-    }
-    .product-item {
-    	height : 370px;
-    }
+.pl-2 {
+	padding-left: 20px;
+}
+
+.pr-2 {
+	padding-right: 20px;
+}
+
+ul.top-menu {
+	font-size: 20px;
+}
+
+.media-object {
+	max-width: 150px;
+	height: auto;
+}
+
+#navbar>div {
+	display: inline-block;
+}
+
+.slider .img {
+	text-align: center;
+	margin: auto;
+}
+.best-desc {
+	vertical-align: bottom;
+}
+.product-item .product-content .mb-1 {
+	margin-bottom: 10px;
+}
+
+.recommend {
+	display: table;
+}
+.recommend div {
+	display: table-cell;
+	vertical-align: middle
+}
 </style>
 
 </head>
 
 <body id="body">
 
-<!-- Start Top Header Bar -->
-<%@ include file="/WEB-INF/views/header.jsp" %>
+	<!-- Start Top Header Bar -->
+	<%@ include file="/WEB-INF/views/header.jsp"%>
 
-<%@ include file="/WEB-INF/views/shop/shopheader.jsp" %>
+	<%@ include file="/WEB-INF/views/shop/shopheader.jsp"%>
+
+	<!-- 광고 배너 끝 -->
+<section class="call-to-action bg-gray section" style="background-color: white; padding-top: 10px; padding-bottom: 50px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<form action="shop_koreana.do" >
+					<div class="col-lg-6 col-md-offset-3">
+						<div class="input-group subscription-form">
+						
+						
+						  <input type="text" class="form-control" placeholder="도서를 검색하세요"  name="searchKeyword">
+						  <span class="input-group-btn">
+							<button class="btn btn-main" type="submit"><i class="tf-ion-ios-search-strong" style="size: 50px;"></i></button>
+						  </span>
+						  
+						  
+						</div><!-- /input-group -->
+				  </div><!-- /.col-lg-6 -->
+				</form>
+				</div>
+			</div> 		<!-- End row -->
+		</div>   	<!-- End container -->
+	</section>   <!-- End section -->
 
 
 
+	<!-- 광고 배너 -->
 
-<!-- 광고 배너 -->
+	<div class="slider">
+		<div>
+			<img src="../resources/images/banner1.jpg" class='img'>
+		</div>
+		<div>
+			<img src="../resources/images/banner2.jpg" class='img'>
+		</div>
+		<div>
+			<img src="../resources/images/banner3.jpg" class='img'>
+		</div>
+	</div>
 
-    <div class="slider">
-      <div><img src="../resources/images/banner1.jpg" class='img'></div>
-      <div><img src="../resources/images/banner1.jpg" class='img'></div>
-      <div><img src="../resources/images/banner1.jpg" class='img'></div>
-    </div>
-    
-    <!-- 광고 배너 끝 -->
 
-<!-- 한줄평 -->
-<section>
-	<div class="container">
-		<div class="row">
-		<div class="title text-center">
-			<a href="#"><h2>Review</h2></a>
+	
+	<!-- 상품목록 -->
+	<section class="products section">
+		<div class="container">
+			<div class="row">
+				<div class="title text-center">
+					<h2>Best</h2>
+					<hr />
+				</div>
+			</div>
+			<!-- 베스트 셀러 -->
+			<div class="col-md-8 best-div">
+				<h3 class="text-center">BestSeller</h3>
+				<div id="bestseller">
+
+					<c:forEach var="idx" begin="0" end="14">
+						<!-- 한묶음 -->
+						<div>
+							<div class="product-item">
+								
+								<div class="col-xs-3 col-xs-offset-1">
+									<a href="product_single.do?product_no=${bestSellers[idx].product_no }"><img class="img-responsive bestseller-img"
+										src="${bestSellers[idx].product_image }" alt="product-img" />
+									</a>
+								</div>
+								<div class="product-content product-best col-xs-7 text-left">
+								<div>
+									<h3 class="text-left"><a
+											href="product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_name }</a></h3>
+								</div>
+								
+									<h4 class="text-left mb-1">
+									<a href="shop_koreana.do?searchKeyword=${bestSellers[idx].product_writer }">${bestSellers[idx].product_writer }</a>
+									/
+									<a href="shop_koreana.do?searchKeyword=${bestSellers[idx].product_publisher }">
+									${bestSellers[idx].product_publisher }</a>
+									</h4>
+								
+									<p class="text-left best-desc">${bestSellers[idx].product_desc }</p>
+								</div>
+							</div>
+						</div>
+						<!-- 한묶음 끝-->
+					</c:forEach>
+				</div>
+			</div>
+			<!-- 베스트 셀러 끝 -->
+			<!-- 추천 -->
+			<div class="col-md-4 col-sm-6 col-xs-6 best-div">
+			<h3 class="text-center">Recommend</h3>
 			<hr/>
-		</div>
-	</div>
-		<div class="row">
-			<div class="col-md-4">
-			<div class="media">
-					<a class="pull-left" href="#!">
-						<img class="media-object" src="images/book1.jpg" alt="Image">
-					</a>
-				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
-					<hr/>
-					<div class="">
-					<p>대충 재밌다는 내용</p>
-					</div>
-					<div class="text-right">
-					<a href="#"><p>글쓴이</p></a>
-				</div>
-				</div>
+			<div class="recommend">
+			
+		      <div class="product-item col-md-12 col-xs-12">
+		      	
+								
+								<div class="col-xs-6">
+								<a href="product_single.do?product_no=${bestSellers[0].product_no }">
+									<img class="img-responsive reco-img"
+										src="${bestSellers[0].product_image }" alt="product-img" />
+									</a>
+								</div>
+								<div class="product-content product-best col-xs-6 text-left">
+								<div>
+									<h3 class="text-left"><a
+											href="product_single.do?product_no=${bestSellers[0].product_no }">MD의 추천!</a></h3>
+											<h4 class="review-star text-left mb-1"> 3.2</h4>
+								</div>
+									
+									<a href="product_single.do?product_no=${bestSellers[0].product_no }"><h4 class="text-left mb-1">${bestSellers[0].product_name }</h4></a>
+								</div>
+								
+							</div>
+	          
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="media">
-					<a class="pull-left" href="#!">
-						<img class="media-object" src="images/book1.jpg" alt="Image">
-					</a>
-				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
-					<hr/>
-					<div class="">
-					<p>대충 재밌다는 내용 대충 재밌다는 내용 대충 재밌다는 내용 대충 재밌다는 내용</p>
-					</div>
-					<div class="text-right">
-					<a href="#"><p>글쓴이</p></a>
-				</div>
-				</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="media">
-					<a class="pull-left" href="#!">
-						<img class="media-object" src="images/book1.jpg" alt="Image">
-					</a>
-				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
-					<hr/>
-					<div class="">
-					<p>대충 재밌다는 내용</p>
-					</div>
-					<div class="text-right">
-					<a href="#"><p>글쓴이</p></a>
-				</div>
-				</div>
+			<!-- 추천 끝 -->
+			<!-- 추천 -->
+			<div class="col-md-4 col-sm-6 col-xs-6 best-div">
+			<h3 class="text-center">Recommend</h3>
+			<hr/>
+			<div class="recommend">
+			
+		      <div class="product-item col-md-12 col-xs-12">
+		      	
+								
+								<div class="col-xs-6">
+									<img class="img-responsive reco-img"
+										src="${bestSellers[1].product_image }" alt="product-img" />
+									
+								</div>
+								<div class="product-content product-best col-xs-6 text-left">
+								<div>
+									<h3 class="text-left"><a
+											href="product_single.do?product_no=${bestSellers[1].product_no }">사장님 픽!</a></h3>
+											<h4 class="review-star text-left mb-1"> 4.2</h4>
+								</div>
+									
+									<h4 class="text-left">${bestSellers[1].product_name }</h4>
+								</div>
+								
+							</div>
+	          
 			</div>
-		</div>
-		
-		</div>
-		<hr/>
-		<div class="text-center">
-			<a href='#' class="btn btn-main btn-small btn-round">더보기</a>
-		</div>
-	</div>
-</section>
-<!-- 한줄평 끝-->
-<!-- 상품목록 -->
-    <section class="products section">
-      <div class="container">
-        <div class="row">
-          <div class="title text-center">
-            <h2>Best Seller</h2>
-          </div>
-        </div>
-        <div id="bestseller">
-        <hr/>
-        <c:forEach var="idx" begin="0" end="4">
+			</div>
+			<!-- 추천 끝 -->
+			<!-- 화제의 책 -->
+			<div class="col-md-8 col-sm-12 col-xs-12 best-div">
+				<h3 class="text-center">Issue</h3>
+				<hr/>
+				<div id="bestseller">
+
+					<c:forEach var="idx" begin="0" end="3">
         
           <!-- 베스트 셀러 -->
           <!-- 한묶음 -->
           
-	          <c:if test="${idx mod 5 eq 0 }">
-	          
-	          	<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-1">
-	          </c:if>
-	          <c:if test="${idx mod 5 ne 0 }">
-		      	<div class="col-xs-4 col-sm-4 col-md-2">
-		      </c:if>
+	        
+	         
+		      	<div class="col-xs-3">
 	          <div class="product-item">
-	          <div><h3>${idx + 1}</h3></div>
 	          <div class="product-thumb">
-	          <img class="img-responsive" src="${bestSellers[idx].product_image }" alt="product-img"/>
+	          <img class="img-responsive issue-img" src="${issueItems[idx].product_image}" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
-	          <h4><a href="#">${bestSellers[idx].product_writer }</a></h4>
+	          <h4><a href="shop_koreana.do?searchKeyword=${issueItems[idx].product_writer }">${issueItems[idx].product_writer}</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
-	          <h4><a href="product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_name }</a></h4>
-	          <p class="price money">${bestSellers[idx].product_price }</p>
+	          <h4><a href="shop/product_single.do?product_no=${issueItems[idx].product_no }">${issueItems[idx].product_name}</a></h4>
+	          <p class="price money">${issueItems[idx].product_price }</p>
 	          </div>
 	          </div>
 	          </div>
@@ -220,127 +290,208 @@ FACEBOOK: https://www.facebook.com/themefisher
         
         	
         </c:forEach>
-      </div>
-      </div>
-    </section>
-<!-- / 상품목록 -->
+				</div>
+			</div>
+			<!-- 화제의 책 끝 -->
+		</div>
+	</section>
+	<!-- / 상품목록 -->
 
-<section class="product-category section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="title text-center">
-					<h2>CATEGORY</h2>
-					<hr/>
+	<section class="product-category section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="title text-center">
+						<h2>CATEGORY</h2>
+						<hr />
+					</div>
 				</div>
-			</div>
-			<div class="col-sm-6 col-md-6">
-				<div class="category-box category-box-2">
-					<a href="#!">
-						<img src="${manhwa.product_image }" alt="" />
-						<div class="content bg-gray">
-							<h3>만화</h3>
-						</div>
-					</a>	
+				<div class="col-sm-6 col-md-6">
+					<div class="category-box category-box-2">
+						<a href="shop_korean.do?genre_no=210050"> <img src="${manhwa.product_image }" alt="" />
+							<div class="content bg-gray">
+								<h3>만화</h3>
+							</div>
+						</a>
+					</div>
 				</div>
-			</div>
-			<div class="col-sm-3 col-md-3">
-				<div class="category-box">
-					<a href="#!">
-						<img src="${novel.product_image }" alt="" />
-						<div class="content bg-gray">
-							
-							<h3>소설</h3>
-						</div>
-					</a>	
+				<div class="col-sm-3 col-md-3">
+					<div class="category-box">
+						<a href="shop_korean.do?genre_no=100"> <img src="${novel.product_image }" alt="" />
+							<div class="content bg-gray">
+
+								<h3>소설</h3>
+							</div>
+						</a>
+					</div>
+					<div class="category-box">
+						<a href="shop_korean.do?genre_no=110"> <img src="${poem.product_image }" alt="" />
+							<div class="content bg-gray">
+								<h3>시</h3>
+							</div>
+						</a>
+					</div>
 				</div>
-				<div class="category-box">
-					<a href="#!">
-						<img src="${poem.product_image }" alt="" />
-						<div class="content bg-gray">
-							<h3>시</h3>
-						</div>
-					</a>	
-				</div>
-			</div>
-			<div class="col-sm-3 col-md-3">
-				<div class="category-box">
-					<a href="#!">
-						<img src="${art.product_image }" alt="" />
-						<div class="content bg-gray">
-							<h3>예술</h3>
-						</div>
-					</a>	
-				</div>
-				<div class="category-box">
-					<a href="#!">
-						<img src="${trip.product_image }" alt="" />
-						<div class="content bg-gray">
-							<h3>여행</h3>
-						</div>
-					</a>	
+				<div class="col-sm-3 col-md-3">
+					<div class="category-box">
+						<a href="shop_korean.do?genre_no=210"> <img src="${art.product_image }" alt="" />
+							<div class="content bg-gray">
+								<h3>예술</h3>
+							</div>
+						</a>
+					</div>
+					<div class="category-box">
+						<a href="shop_korean.do?genre_no=270"> <img src="${trip.product_image }" alt="" />
+							<div class="content bg-gray">
+								<h3>여행</h3>
+							</div>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
 
 
 
-<%@ include file="/WEB-INF/views/footer.jsp" %>
+	<%@ include file="/WEB-INF/views/footer.jsp"%>
 
-    <!-- 
+	<!-- 
     Essential Scripts
     =====================================-->
-    
-    <!-- Main jQuery -->
-    <script src="../resources/plugins/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.1 -->
-    <script src="../resources/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Bootstrap Touchpin -->
-    <script src="../resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-    <!-- Instagram Feed Js -->
-    <script src="../resources/plugins/instafeed/instafeed.min.js"></script>
-    <!-- Video Lightbox Plugin -->
-    <script src="../resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
-    <!-- Count Down Js -->
-    <script src="../resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
-    <!-- slick Carousel -->
-    <script src="../resources/plugins/slick/slick.min.js"></script>
-    <script src="../resources/plugins/slick/slick-animation.min.js"></script>
+	<!-- Main jQuery -->
+	<script src="../resources/plugins/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap 3.1 -->
+	<script src="../resources/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Bootstrap Touchpin -->
+	<script
+		src="../resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+	<!-- Instagram Feed Js -->
+	<script src="../resources/plugins/instafeed/instafeed.min.js"></script>
+	<!-- Video Lightbox Plugin -->
+	<script
+		src="../resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+	<!-- Count Down Js -->
+	<script
+		src="../resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
-    <!-- Google Mapl -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-    <script type="text/javascript" src="../plugins/google-map/gmap.js"></script>
+	<!-- slick Carousel -->
+	<script src="../resources/plugins/slick/slick.min.js"></script>
+	<script src="../resources/plugins/slick/slick-animation.min.js"></script>
+
+	<!-- Google Mapl -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+	<script type="text/javascript" src="../plugins/google-map/gmap.js"></script>
 
 	<!-- bxslider -->
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-	
-    <!-- Main Js File -->
-    <script src="../resources/js/script.js"></script>
-    <script>
-      // bx슬라이더
-      $(document).ready(function(){
-        $('.slider').bxSlider({
-          mode: 'fade'
-        });
-      });
-    </script>
-    <script>
-      // 가격 콤마, 원 붙이기
-      $('.money').each(function(){
-        $(this).text(Number($(this).text()).toLocaleString() + '원')
-      })
-          
-    </script>
-    <script>
-		// 카트 ajax쓰기
+	<script
+		src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
+	<!-- Main Js File -->
+	<script src="../resources/js/script.js"></script>
+	<script>
+		// bx슬라이더
+		$(document).ready(function() {
+			$('.slider').bxSlider({
+				mode : 'fade'
+			});
+		});
+		$(document).ready(function() {
+			$('#bestseller').bxSlider({
+				auto : true,
+				pager : false,
+				controls : true,
+				autoControls : false,
+				moveSlides : 1,
+				autoHover : true,
+				responsive : false,
+				touchEnabled : false
+			});
+		});
+		
+		
+	</script>
+	<script>
+		// 가격 콤마, 원 붙이기
+		$('.money').each(function() {
+			$(this).text(Number($(this).text()).toLocaleString() + '원')
+		})
+	</script>
+	<script>
+		// 베스트 셀러 이미지 크기 조정
+		$(function() {
+			bestImgResize()
+			issueImgResize()
+			bestDivResize();
+			
+		});
+
+		$(window).resize(function() {
+			bestImgResize();
+			issueImgResize();
+			bestDivResize();
+			
+		});
+		
+		
+		$('.best-desc').each(function(){
+			const txt = $(this).text();
+			if(txt.length > 100){
+				$(this).text(txt.substring(0,100) + '...');
+			}
+		})
+		function bestImgResize() {
+			const imgWidth = $('.bestseller-img').width();
+			$('.bestseller-img').height(imgWidth * 1.48);
+		}
+		function issueImgResize() {
+			let imgWidth = $('.issue-img').width();
+			$('.issue-img').height(imgWidth * 1.48);
+		}
+		
+		function bestDivResize(){
+			const divHeight = $('.best-div').height();
+			$('.best-div').height(divHeight);
+		}
+		
+		function recoImgResize(){
+			const imgWidth = $('.reco-img').width();
+			$('.reco-img').height(imgWidth * 1.48);
+		}
+		
+	</script>
+	<script>
+	$('.review-star').each(function(){
+        const stars = $(this).text().trim() * 2;
+        console.log(stars);
+        let result = "";
+        const starCnt = Math.floor(stars/2)
+        if(Math.floor(stars%2) == 0){
+          
+          for(let i=0; i< starCnt; i++){
+            result += "<i class='tf-ion-ios-star'></i>";
+          }
+          for(let i=0; i < 5-starCnt; i++){
+            result += '<i class="tf-ion-ios-star-outline"></i>';
+          }
+        } else {
+          for(let i=0; i< starCnt; i++){
+            result += "<i class='tf-ion-ios-star'></i>";
+          }
+          result += "<i class='tf-ion-ios-star-half'></i>";
+          
+          for(let i=0; i < 5-starCnt; i++){
+            result += '<i class="tf-ion-ios-star-outline"></i>';
+          }
+        }
+        $(this).prepend(result);
+
+        
+      });
 	</script>
 
-
-  </body>
-  </html>
-    
+</body>
+</html>

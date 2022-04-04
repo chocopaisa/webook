@@ -10,7 +10,7 @@ import com.webook.domain.OrderVO;
 import com.webook.domain.ProductVO;
 
 public interface PaymentDAO {
-	public CouponVO searchCoupon(CouponVO vo);
+	public List<CouponVO> searchCouponList(CouponVO vo);
 	
 	public void insertOrder(OrderVO vo);
 	
@@ -21,4 +21,11 @@ public interface PaymentDAO {
 	public void insertAddr(MemberVO vo);
 	
 	public ProductVO searchProduct(ProductVO vo); 
+	
+	public String searchOrderProductName(OrderVO vo);
+	
+	public CouponVO searchCoupon(CouponVO vo);
+	
+	public MemberVO searchAddr(MemberVO vo);
+	
 }
