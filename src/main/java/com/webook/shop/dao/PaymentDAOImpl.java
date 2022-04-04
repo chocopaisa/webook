@@ -27,7 +27,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 
 	@Override
 	public void useCoupon(CouponVO vo) {
-		
+		mybatis.insert("payment.mapper.useCoupon", vo);
 		
 	}
 
@@ -38,9 +38,9 @@ public class PaymentDAOImpl implements PaymentDAO {
 	}
 
 	@Override
-	public CouponVO searchCoupon(CouponVO vo) {
+	public List<CouponVO> searchCouponList(CouponVO vo) {
 		
-		return mybatis.selectOne("payment.mapper.searchCoupon", vo);
+		return mybatis.selectList("payment.mapper.searchCoupon", vo);
 	}
 
 	// 상품 정보 검색
@@ -51,10 +51,31 @@ public class PaymentDAOImpl implements PaymentDAO {
 		
 	}
 
+
+	@Override
+	public String searchOrderProductName(OrderVO vo) {
+		
+		return mybatis.selectOne("payment.mapper.searchOrderName",vo);
+	}
+
+	@Override
+	public CouponVO searchCoupon(CouponVO vo) {
+		
+		return mybatis.selectOne("payment.mapper.searchCoupon", vo);
+	}
+
+	// 배송지 입력
 	@Override
 	public void insertAddr(MemberVO vo) {
-		// TODO Auto-generated method stub
+		mybatis.insert("payment.mapper.saveAddr", vo);
 		
+	}
+	
+	// 주소 검색
+	@Override
+	public MemberVO searchAddr(MemberVO vo) {
+		
+		return mybatis.selectOne("payment.mapper.searchAddr", vo);
 	}
 
 }

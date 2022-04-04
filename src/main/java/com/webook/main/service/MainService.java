@@ -11,4 +11,6 @@ public interface MainService {
 	public List<ProductVO> showBestSeller();
 	
 	public ProductVO showProductOnGenre(ProductVO vo);
+	
+	public List<ProductVO> showIssueItems();
 }

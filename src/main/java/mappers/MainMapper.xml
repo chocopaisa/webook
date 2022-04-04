@@ -10,7 +10,9 @@
 		    pl.product_name product_name, 
 		    pl.product_image product_image,
 		    ci.user_name user_name,
-		    br.star star
+		    br.star star,
+		    br.write_date write_date,
+		    br.user_email user_email
 		FROM 
 		    bookreport br 
 		    LEFT OUTER JOIN product_list pl
@@ -27,7 +29,9 @@
 		    lst.product_name product_name,
 		    lst.product_writer product_writer,
 		    lst.product_price product_price,
-		    lst.product_image product_image
+		    lst.product_image product_image,
+		    lst.product_desc product_desc,
+		    lst.product_publisher product_publisher
 		FROM
 		    product_list lst
 		    LEFT OUTER JOIN (
@@ -43,5 +47,24 @@
 		ORDER BY
 		    NVL(item.cnt,0) DESC
 	</select>
-
+	<select id="showIssueItems" resultType="com.webook.domain.ProductVO">
+		SELECT 
+	    	p.product_no product_no,
+	    	p.product_name product_name,
+	    	p.product_image product_image,
+	    	p.product_price product_price,
+	    	p.product_writer product_writer,
+	    	p.product_publisher product_publisher 
+		FROM product_list p
+    		LEFT OUTER JOIN(
+        		SELECT 
+            		product_no,count(product_no) cnt
+        		FROM 
+            		bookreport
+        		GROUP BY 
+            		product_no) b
+    		ON p.product_no = b.product_no
+		ORDER BY 
+		    NVL(b.cnt,0) DESC
+	</select>
 </mapper>
