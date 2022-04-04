@@ -1,5 +1,7 @@
 package com.webook.shop.dao;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.webook.domain.CommunityVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
 
 
@@ -36,6 +39,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductVO> genreFo(ProductVO vo, int pnum) {
 		System.out.println("genreFo() 함수 호출");
 		RowBounds row = new RowBounds(6*(pnum-1),6);
+		
 		List<ProductVO> result = session.selectList("product.mapper.genreFo", vo,row);
 		return result;
 	}
@@ -50,14 +54,25 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<ProductVO> getOtherBook(ProductVO vo) {
 		System.out.println("getOtherBook() 함수 호출");
-		return session.selectList("product.mapper.getOtherBook", vo);
+		List<ProductVO> list =  session.selectList("product.mapper.getOtherBook", vo);
+		return list;
 	}
 
 	@Override
-	public List<CommunityVO> getReport(HashMap map) {
+	public List<HashMap> getReport(ProductVO vo) {
 		System.out.println("getReport() 함수 호출");
-		/* return session.selectList("product.mapper.getReport", map); */
-		return null; 
+		
+		List<HashMap> hash =  session.selectList("product.mapper.getReport", vo);
+	
+		
+		return hash;
+		 
+	} 
+
+	@Override
+	public List<HashMap> getPurchase(MemberVO vo) {
+		List<HashMap> list = session.selectList("product.mapper.getPurchase", vo);
+			return list;
 	}
 
 

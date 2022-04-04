@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webook.domain.CommunityVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
 import com.webook.shop.dao.ProductDAOImpl;
 
@@ -35,10 +36,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductVO> genreFo(ProductVO vo, String pnum) {
+	
 		if(pnum == null) pnum="1";
 		int page = Integer.parseInt(pnum);
+		
+		System.out.println(page);
 		return productDAO.genreFo(vo, page);
-	 
+	
 	}
 	
 	//상세페이지 책 정보 가져오기
@@ -53,14 +57,22 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> getOtherBook(ProductVO vo) {
 		return productDAO.getOtherBook(vo);
 	}
-
+	// 상세페이지 게시글 가져오기
 	@Override
-	public List<CommunityVO> getReport(HashMap map) {
+	public List<HashMap> getReport(ProductVO vo) {
 		
-		return productDAO.getReport(map);
+		return productDAO.getReport(vo);
 	}
 
-	// 상세페이지 게시글 가져오기
+	@Override
+	public List<HashMap> getPurchase(MemberVO vo) {
+		
+		 return productDAO.getPurchase(vo);
+		 
+	
+		}
+
+	
 	
 	
 	

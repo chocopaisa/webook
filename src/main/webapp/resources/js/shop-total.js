@@ -31,6 +31,14 @@ $('#frm').attr('action','addCart.do').submit();
 
 });
 
+	
+	$('.page').click(function(){
+	alert("확인")
+	});
+
+	
+
+
 });
 
 

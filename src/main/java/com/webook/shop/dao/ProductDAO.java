@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.webook.domain.CommunityVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
 
 
@@ -23,6 +24,8 @@ public interface ProductDAO {
 	
 	public List<ProductVO> getOtherBook (ProductVO vo);
 	
-	public List<CommunityVO> getReport(HashMap map);
+	public List<HashMap> getReport(ProductVO vo);
+	
+	public List<HashMap> getPurchase(MemberVO vo);
 }
  

@@ -88,6 +88,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 		display: inline-block;
 	}
 
+.img-responsive{
+	max-height:360px; margin-top: 30px; }
 </style> 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
@@ -109,8 +111,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 			<div class="col-md-6">
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
-					<li><a href="shop.html">Shop</a></li>
-					<li class="active">community</li>
+					<li><a href="shop_korean.do">Shop</a></li>
+					<li><a href="purchase.do"> community</a> </li>
 				</ol>
 			</div>
 			
@@ -139,15 +141,15 @@ FACEBOOK: https://www.facebook.com/themefisher
 					<h2>${product.product_name }</h2>
 					<p class="productWriter">${product.product_writer }</p><hr/>
 					<p class="productPublisher">${product.product_publisher }</p> <br/>
-					<p class="product-price" style="font-weight:bolder;"> 정가 : ${product.product_price }</p>
-					<p class="product-price" style="font-weight:bolder; font-size: larger;"> 할인가 : ${product.product_sale }</p><br/>
+					<p class="product-price" style="font-weight:bolder;"> 정가 : ${product.product_price }원</p>
+					<p class="product-price" style="font-weight:bolder; font-size: larger;"> 할인가 : ${product.product_sale }원</p><br/>
 					<p class="product-price" style="color: black; font-size: small;"> 배송비 : 3000원</p>
 					
 					
 					<div class="product-quantity">
 						<span>Quantity :  </span>
 						<div class="product-quantity-slider">
-							<input id="product-quantity" type="text" value="0" name="product_cnt">
+							<input id="product-quantity" type="text" value="1" name="product_cnt">
 							<input name="product_no" hidden value="${product.product_no }">
 						</div>
 						</div>
@@ -173,111 +175,21 @@ FACEBOOK: https://www.facebook.com/themefisher
 						<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>
 						<li class="active2"><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews</a></li>
 					</ul>
+					
+<!-- *************************** 리뷰 이동 버튼******************-->
+					
 					<div class="tab-content patternbg">
 						<div id="details" class="tab-pane fade active in">
 							<h4>Product Description</h4>
-							<p>${product.product_desc }</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut per spici</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis delectus quidem repudiandae veniam distinctio repellendus magni pariatur molestiae asperiores animi, eos quod iusto hic doloremque iste a, nisi iure at unde molestias enim fugit, nulla voluptatibus. Deserunt voluptate tempora aut illum harum, deleniti laborum animi neque, praesentium explicabo, debitis ipsa?</p>
 						</div>
-
-						<div id="reviews" class="tab-pane fade">
-							<div class="post-comments">
-						    	<ul class="media-list comments-list m-bot-50 clearlist">
-								    <!-- Comment Item start-->
-								    <li class="media">
-
-								       
-
-								        <div class="media-body">
-								            <div class="comment-info">
-								                <h4 class="comment-author">
-								                    <a href="#!">Jonathon Andrew</a>
-								                	
-								                </h4>
-								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
-								                <a class="comment-button" href="#!">
-													<h6><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h6>
-												</a>
-								            </div>
-
-								            <p>
-								                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod laborum minima, reprehenderit laboriosam officiis praesentium? Impedit minus provident assumenda quae.
-								            </p>
-								        </div>
-
-								    </li>
-								    <!-- End Comment Item -->
-
-								    <!-- Comment Item start-->
-								    <li class="media">
-
-								      
-
-								        <div class="media-body">
-
-								            <div class="comment-info">
-								                <div class="comment-author">
-								                    <a href="#!">Jonathon Andrew</a>
-								                </div>
-								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
-								                <a class="comment-button" href="#!">
-
-												</h4>
-								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
-								                <a class="comment-button" href="#!">
-													<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-														3.5</h4>
-												</a>
-								            </div>
-
-								            <p>
-								                ipsum dolor sit amet, consectetur adipisicing elit. Magni natus, nostrum iste non delectus atque ab a accusantium optio, dolor!
-								            </p>
-
-								        </div>
-
-								    </li>
-								    <!-- End Comment Item -->
-
-								    <!-- Comment Item start-->
-								    <li class="media">
-
-								       
-
-								        <div class="media-body">
-
-								            <div class="comment-info">
-								                <div class="comment-author">
-								                    <a href="#!">Jonathon Andrew</a>
-								                </div>
-								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
-								                <a class="comment-button" href="#!">
-												</h4>
-								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
-								                <a class="comment-button" href="#!">
-													<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-														3.5</h4>
-												</a>
-								            </div>
-
-								            <p>
-								                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-								            </p>
-
-								        </div>
-
-								    </li>
-							</ul>
-							</div>
-						</div>
-					</div>
-<!-- *************************** 리뷰 이동 버튼******************-->
 					
 
 <!-- *************************** 책 상세 이미지******************-->
 
-					<div>
-						<p class="productDescImage"><img class="main" src="${product.product_desc_image }"   style="width:1000px; height:1000px;"/></p>	
+					<div class="main" style=" margin-bottom: 30px;">
+						<p class="productDescImage"><img class="main" style="width:1000px; height:1000px; margin-bottom: 30px; src="${product.product_desc_image }"   /></p>	
 					</div>
 
 				</div>	
@@ -285,28 +197,31 @@ FACEBOOK: https://www.facebook.com/themefisher
 		</div>
 	
 	<!--  ******************  독후감   ****************************-->
-<%-- 	
-	<c:forEach items="community" var="commu">
+	
+<c:forEach items="${reviews}" var="review" >	
+
 <div class="bookreport" style="margin-top: 30px;">
+
 	<div class="tabCommon mt-20">
 		<div class="tab-content patternbg" style="width: 1140px;">
 	
 		<div class="boardtitle">
-			<p>${commu.bookreport_title}</p> <hr/>
-		</div>
+			<p>${review.BOOKREPORT_TITLE}</p> 
+			<h6 class="review-star"><span class="star"> ${review.STAR }</span></h6><hr/>
+		</div>	
 		<div class="boardcontent">
-			<p>${commu.bookreport_content }</p>
+			<p>${review.BOOKREPORT_CONTENT }</p>
 		</div>
 		<div class="boardwriter">
-			<p style="font-size: smaller; font-weight: 700;">${commu.user_name }</p>
+			<p style="font-size: smaller; font-weight: 700;">${review.USER_NAME}</p>
 		</div>
 		</div>	
 	</div>
 	
 	</div>
-	
+
 	</c:forEach>
-	 --%>
+
 	
 	
 	
@@ -328,7 +243,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 		
 		
 		
-		<div class="row"><c:forEach items="${ products2}" var="products">
+		<div class="row"><c:forEach items="${ result}" var="products">
 			<div class="col-xs-3">
 				<div class="product-item">
 				
@@ -338,13 +253,13 @@ FACEBOOK: https://www.facebook.com/themefisher
 						<div class="preview-meta">
 							<ul>
 								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search"></i>
-									</span>
+									
+										<a href="product_single.do?product_no=${products.product_no }"><i class="tf-ion-ios-search"></i></a>
+									
 								</li>
 								
 								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
+									<a href="addCart.do?product_no=${products.product_no }"><i class="tf-ion-android-cart"></i></a>
 								</li>
 							</ul>	
                       	</div>
@@ -352,7 +267,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 					</div>
 					
 					<div class="product-content">
-						<h4><a href="product-single.html">${products.product_name }</a></h4>
+						<h4><a href="product_single.do?product_no=${products.product_no }">${products.product_name }</a></h4>
 						<p class="price">${products.product_price}원</p>
 					</div>
 					
@@ -445,6 +360,36 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script src="../resources/js/script.js"></script>
     
 <script src="../resources/js/shop-total.js"></script>
+    <script>
+      // 리뷰 별점에 따라 만들기
+      $('.review-star').each(function(){
+        const stars = $(this).text().trim() * 2;
+        console.log(stars);
+        let result = "";
+        if(stars%2 == 0){
+          
+          for(let i=0; i< stars/2; i++){
+            result += "<i class='tf-ion-ios-star'></i>";
+          }
+          for(let i=0; i < 5-(stars/2); i++){
+            result += '<i class="tf-ion-ios-star-outline"></i>';
+          }
+        } else {
+          for(let i=0; i< stars/2 -1; i++){
+            result += "<i class='tf-ion-ios-star'></i>";
+          }
+          result += "<i class='tf-ion-ios-star-half'></i>";
+          
+          for(let i=0; i < 5-(stars/2)-1; i++){
+            result += '<i class="tf-ion-ios-star-outline"></i>';
+          }
+        }
+        $(this).prepend(result);
+
+        
+      });
+      
+    </script>
 
   </body>
   </html>
