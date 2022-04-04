@@ -339,7 +339,7 @@ public class PaymentController {
 			orderVO.setDelivery_fee(delivery_fee);
 			orderVO.setPayment_method(payment_method);
 			orderVO.setDelivery_place(delivery_place);
-			
+			orderVO.setUser_email(user_email);
 			OrderItemList orderItemList = new OrderItemList();
 			orderItemList.setList(orderItemVOList);
 			
