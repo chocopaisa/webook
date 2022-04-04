@@ -1,11 +1,14 @@
 package com.webook.admin.dao;
 
-import com.webook.domain.OrderVO;
+	
 
 public interface AdminOrderDAO {
+
 	
-	/*
 	// 오늘 주문 건
-	public int selectTodayOrder()
-	*/
+	public int selectTodayOrder();
+	
+	// 오늘 매출액
+	public int selectTodaySales();
+	
 }

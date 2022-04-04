@@ -23,4 +23,10 @@ public class AdminCommunityDAOImpl implements AdminCommunityDAO{
 	 * mybatis.delete("admin.mapper.deleteCommunity"); }
 	 */
 
+	@Override
+	public int selectTodayBoard() {
+		int count = 0;
+		count = mybatis.selectOne("admin.mapper.selectTodayBoard");
+		return count;
+	}
 }

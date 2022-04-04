@@ -5,6 +5,9 @@ import com.webook.domain.OrderVO;
 public interface AdminOrderService {
 	
 	// 오늘 주문량 조회
-	void selectTodayOrder(OrderVO vo);
+	int selectTodayOrder();
+	
+	// 오늘 매출 조회
+	int selectTodaySales();
 
 }

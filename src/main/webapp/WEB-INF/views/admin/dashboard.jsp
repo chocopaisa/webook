@@ -32,19 +32,19 @@
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">오늘의 주문량</div>
-                                    <h4 class="mb-0">50건</h4>
+                                    <h4 class="mb-0">${selectTodayOrder }건</h4>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">오늘의 매출</div>
-                                    <h4 class="mb-0" >3,200,000원</h4>
+                                    <h4 class="mb-0" >${selectTodaySales }원</h4>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
                                     <div class="card-body">오늘의 게시글 수</div>
-                                    <h4 class="mb-0">352개</h4>
+                                    <h4 class="mb-0">${selectTodayBoard }개</h4>
                                 </div>
                             </div>        
                         </div>
@@ -55,6 +55,13 @@
                                         <i class="fas fa-chart-bar me-1"></i>
                                         일별 매출
                                     </div>
+                                    <input hidden="" value="${ }" class="todaysales">
+                                    <input hidden="" value="${ }" class="todaysales">
+                                    <input hidden="" value="${ }" class="todaysales">
+                                    <input hidden="" value="${ }" class="todaysales">
+                                    <input hidden="" value="${ }" class="todaysales">
+                                    <input hidden="" value="${ }" class="todaysales">
+                                    <input hidden="" value="${ }" class="todaysales">
                                     <div class="card-body"><canvas id="todaysales" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
@@ -64,6 +71,7 @@
                                         <i class="fas fa-chart-bar me-1"></i>
                                         월별 회원 가입 수 
                                     </div>
+                                    <input hidden="">
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>

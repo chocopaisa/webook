@@ -23,7 +23,18 @@ public class AdminCommServiceImpl implements AdminCommService {
 	 * // 신고 게시글 삭제 public void deleteCommunity(ReportcommunityVO vo) {
 	 * adminCommunityDAO.Deletecommu(vo); }
 	 */
-
+	
+	// 오늘 게시글 수
+	public int selectTodayBoard() {
+		return adminCommunityDAO.selectTodayBoard();
+	}
 
 	
 }
+
+
+
+
+
+
+

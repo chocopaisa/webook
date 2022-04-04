@@ -4,14 +4,13 @@
 <mapper namespace="admin.mapper">
 
 	<!-- 관리자 로그인 확인 -->
-	<!--  
-	<select id='loginCheck' resultType="com.javaclass.domain.adminVO">
-		SELECT * FROM BOOK_ADMIN
+	<select id='loginCheck' resultType="com.webook.domain.AdminVO">
+		SELECT * FROM book_admin
 		<where>
 			admin_id=#{admin_id} AND admin_pass=#{admin_pass}
 		</where>
 	</select>
-	-->
+	
 	<!-- 대시보드 -->
 	<!-- 오늘 주문 건수 -->
 	<select id="selectTodayOrder" resultType="int">
@@ -20,6 +19,27 @@
 		<where>
 			to_char(payment_date,'YY-MM-DD') = TO_CHAR(SYSDATE, 'YY-MM-DD')
 		</where>
+	</select>
+	
+	<!-- 오늘 게시글 수 -->
+	<select id="selectTodayBoard" resultType="int">
+		SELECT count(*)
+		FROM bookreport
+		<where>
+			to_char(WRITE_DATE,'YY-MM-DD') = TO_CHAR(SYSDATE, 'YY-MM-DD')
+		</where>
+	</select>
+	
+	<!-- 오늘 매출 조회 -->
+	<select id="selectTodaySales" resultType="int">
+		SELECT sum(total_price)
+		FROM order_list olist left outer join (select sum(total_price) total_price, order_no
+                                    from order_items  
+                                    group by order_no) oitem
+        ON olist.order_no=oitem.order_no
+        <where>
+        	to_char(olist.payment_date,'YY-MM-DD' )= TO_CHAR(SYSDATE, 'YY-MM-DD')
+        </where>
 	</select>
 	
 	<!-- 회원 목록 검색 => 블랙리스트 추가 -->
@@ -32,6 +52,10 @@
 	
 	
 	<!-- 차트 -->	
+	<!-- 일별 매출 -->
+	<select id="TodaySales" parameterType="hashmap" resultType="int"></select>
+	
+	
 	<!-- 연령대 별 인원 수 구하기 -->
 	<!-- <select id="agechart" resultType="int" parameterType="hashMap">
 		SELECT 

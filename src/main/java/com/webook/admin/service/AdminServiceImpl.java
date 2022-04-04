@@ -1,5 +1,7 @@
-/*
 package com.webook.admin.service;
+
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,14 +9,16 @@ import org.springframework.stereotype.Service;
 import com.webook.admin.dao.AdminDAO;
 import com.webook.domain.AdminVO;
 
-@Service
+@Service("adminService")
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
-	private AdminDAO AdminDAOImpl;
+	private AdminDAO adminDAOImpl;
 	
 	public AdminVO loginCheck(AdminVO vo) {
-		return AdminDAOImpl.loginCheck(vo);
+		return adminDAOImpl.loginCheck(vo);
 	}
+	
+	public List<HashMap> TodaySales() {
+		return adminDAOImpl.TodaySales();	}
 }
-*/

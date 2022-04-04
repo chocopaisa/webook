@@ -21,7 +21,7 @@ import com.webook.admin.service.AdminCommService;
 import com.webook.admin.service.AdminMemberService;
 import com.webook.admin.service.AdminOrderService;
 import com.webook.admin.service.AdminProductService;
-//import com.webook.admin.service.AdminService;
+import com.webook.admin.service.AdminService;
 import com.webook.domain.AdminVO;
 import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
@@ -38,8 +38,10 @@ public class Admincontroller {
 	 private AdminProductService adminProductService;
 	 @Autowired
 	 private AdminCommService adminCommService;
-	 /*@Autowired
-	 private AdminService AdminServiceImpl; import도 주석 풀어줘야됨*/
+	 @Autowired
+	 private AdminService adminService;
+	 @Autowired
+	 private AdminOrderService adminOrderService;
 	 
 	
 
@@ -47,20 +49,22 @@ public class Admincontroller {
 	public String dashboard(@PathVariable String step) {
 		return "/admin/" + step;		
 	}
-	/*
+	
 	// 관리자 로그인
-	@RequestMapping("adminindex.do")
+	@RequestMapping("adminlogin.do")
 	public String login(AdminVO vo,HttpSession session ) {
-		AdminVO result = AdminServiceImpl.loginCheck(vo);
-		if(result==null) {
+		AdminVO result = adminService.loginCheck(vo);
+		if(result==null && result.getAdmin_id()==null) {
+			System.out.println("실패"+result.getAdmin_id());
 			return "adminindex";
 		}else {
 			// 관리자 로그인 세션에 저장
+			System.out.println("성공"+result.getAdmin_id());
 			session.setAttribute("logname", result.getAdmin_id());
-			return "dashboard";
+			return "redirect:dashboard.do";
 		}
 	}
-	*/
+	
 	// 회원 목록 출력	
 
 	 @RequestMapping("/customerManager.do")
@@ -113,16 +117,29 @@ public class Admincontroller {
 		 */
 	 
 	 // 대시보드
-	 // 오늘 주문 건수
-	 /*
-	 @RequestMapping(value="dashboard.do", method= {RequestMethod.GET})
-	 public String selectTodayOrder(HttpSerHttpServletRequest req, HttpServletResponse resp, HttpSeHttpSession session) {
-		 
-		 int count = adminOrderDAO.selectTodayOrder();
-		 
-	 }
-	 */
+	 // 오늘 주문 건수, 오늘 매출, 오늘 게시글 수 조회
 	 
+	 @RequestMapping(value="dashboard.do", method= {RequestMethod.GET})
+	 public String selectTodayOrder( HttpSession session , Model model) {
+		 
+		 // 오늘 주문건
+		 int count = adminOrderService.selectTodayOrder();
+		 model.addAttribute("selectTodayOrder",count);
+		 
+		 // 오늘 매출
+		 int sales = adminOrderService.selectTodaySales();
+		 model.addAttribute("selectTodaySales", sales);
+		 
+		 // 오늘 게시글 수
+		 int cnt = adminCommService.selectTodayBoard();
+		 model.addAttribute("selectTodayBoard", cnt);
+		 
+		 
+		 
+		 return "admin/dashboard";
+	 }
+
+
 }
 
 

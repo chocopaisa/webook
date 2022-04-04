@@ -15,9 +15,17 @@ public class AdminOrderDAOImpl implements AdminOrderDAO {
 	private SqlSessionTemplate mybatis;
 	
 	// 오늘 주문량 구하기
+	@Override
 	public int selectTodayOrder() {
 		int count = 0;
 		count = mybatis.selectOne("admin.mapper.selectTodayOrder");
+		return count;
+	}
+	
+	// 오늘 매출액 
+	public int selectTodaySales() {
+		int count = 0;
+		count = mybatis.selectOne("admin.mapper.selectTodaySales");
 		return count;
 	}
 	
