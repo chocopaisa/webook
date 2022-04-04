@@ -41,8 +41,9 @@ public class MainDAOImpl implements MainDAO {
 	}
 
 	@Override
-	public List<ProductVO> showIssueItems() {
-		List<ProductVO> lst = mybatis.selectList("main.mapper.showIssueItems");
+	public List<ProductVO> showIssueItems() { // 4개
+		RowBounds rowBounds = new RowBounds(0,4);
+		List<ProductVO> lst = mybatis.selectList("main.mapper.showIssueItems", null, rowBounds);
 		return lst;
 	}
 	
