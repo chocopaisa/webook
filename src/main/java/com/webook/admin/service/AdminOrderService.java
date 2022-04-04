@@ -8,6 +8,6 @@ public interface AdminOrderService {
 	int selectTodayOrder();
 	
 	// 오늘 매출 조회
-	int selectTodaySales();
+	Integer selectTodaySales();
 
 }

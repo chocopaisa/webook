@@ -9,6 +9,6 @@ public interface AdminOrderDAO {
 	public int selectTodayOrder();
 	
 	// 오늘 매출액
-	public int selectTodaySales();
+	public Integer selectTodaySales();
 	
 }

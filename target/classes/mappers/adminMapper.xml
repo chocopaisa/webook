@@ -32,8 +32,8 @@
 	
 	<!-- 오늘 매출 조회 -->
 	<select id="selectTodaySales" resultType="int">
-		SELECT sum(total_price)
-		FROM order_list olist left outer join (select sum(total_price) total_price, order_no
+		SELECT NVL(sum(total_price),0)
+		FROM order_list olist left outer join (select NVL(sum(total_price),0) total_price, order_no
                                     from order_items  
                                     group by order_no) oitem
         ON olist.order_no=oitem.order_no
@@ -73,12 +73,17 @@
 		FROM customer_info;
 	</select> -->
 	
-	<!-- 월별 매출 -->
-	<!-- <select id="monthsales">
-		SELECT month(total_price)
-		FROM order_items
-		WHERE order_no LIKE to_char(sysdate,'YYYY');
-	</select> -->
+	<!-- 일별 매출 -->
+	<!--  <select id="">
+		select to_char(olist.payment_date,'d') payment_date, sum(total_price) total_price
+		from order_list olist left outer join ( 
+		        select sum(total_price) total_price, order_no
+		        from order_items  
+		        group by order_no) oitem
+		        on olist.order_no=oitem.order_no
+		        where to_char(olist.payment_date,'YY-MM-DD') between TO_CHAR(TRUNC(sysdate, 'iw') - 7, 'YY-MM-DD') and TO_CHAR(TRUNC(sysdate, 'iw') - 1, 'YY-MM-DD')
+		        group by to_char(olist.payment_date,'d')
+	</select>-->
 	
 	
 	

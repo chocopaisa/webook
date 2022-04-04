@@ -127,14 +127,12 @@ public class Admincontroller {
 		 model.addAttribute("selectTodayOrder",count);
 		 
 		 // 오늘 매출
-		 int sales = adminOrderService.selectTodaySales();
+		 Integer sales = adminOrderService.selectTodaySales();
 		 model.addAttribute("selectTodaySales", sales);
 		 
 		 // 오늘 게시글 수
 		 int cnt = adminCommService.selectTodayBoard();
 		 model.addAttribute("selectTodayBoard", cnt);
-		 
-		 
 		 
 		 return "admin/dashboard";
 	 }

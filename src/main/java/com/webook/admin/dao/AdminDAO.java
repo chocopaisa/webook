@@ -13,5 +13,4 @@ public interface AdminDAO {
 
 	// 일별 매출
 	public List<HashMap> TodaySales();
-
 }
