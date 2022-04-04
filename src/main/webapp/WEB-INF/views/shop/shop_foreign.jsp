@@ -78,7 +78,7 @@ table, td, th {
   
   .product-content{
 
-	height: 350px;
+	height: 390px;
   }
 
 /*상품 리스트 책 상세설명 내용 많으면 ... 처리*/
@@ -139,22 +139,24 @@ table, td, th {
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					
+					<form action="shop_search.do" >
 					<div class="col-lg-6 col-md-offset-3">
 						<div class="input-group subscription-form">
-						<form action="shop_korean.do" method="post">
-						  <input type="search" class="form-control" placeholder="도서를 검색하세요"  name="searchKeyword">
+						
+						
+						  <input type="text" class="form-control" placeholder="도서를 검색하세요"  name="searchKeyword">
 						  <span class="input-group-btn">
 							<button class="btn btn-main" type="submit"><i class="tf-ion-ios-search-strong" style="size: 50px;"></i></button>
 						  </span>
-						  </form>
+						  
+						  
 						</div><!-- /input-group -->
 				  </div><!-- /.col-lg-6 -->
-	
+				</form>
 				</div>
 			</div> 		<!-- End row -->
 		</div>   	<!-- End container -->
-	</section>   <!-- End section -->
+	</section>    <!-- End section -->
 
 
 	<section class="products section" style="padding-top: 20px;">
@@ -198,7 +200,7 @@ table, td, th {
 											</td>
 											<td>
 												<ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">만화/애니</a>
+													<li><a href="shop_foreign.do?genre_no=">취미</a>
 														</li>
 												</ul>
 											</td>
@@ -207,7 +209,7 @@ table, td, th {
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">문고</a>
+													<li><a href="shop_foreign.do?genre_no=">과학기술</a>
 														
 
 														</li>
@@ -250,7 +252,7 @@ table, td, th {
 												</li>
 												
 												<li>
-													<a href="#!"><i class="tf-ion-android-cart"></i></a>
+													<a href="addCart.do?product_no=${product.product_no }"><i class="tf-ion-android-cart"></i></a>
 												</li>
 											</ul>
 										  </div>
@@ -284,7 +286,7 @@ table, td, th {
 <!-- ******************************페이징*******************-->
 				<div class="text-center">
 					<ul class="pagination post-pagination">
-						<li><a href="#!">Prev</a>
+						<li><a href="shop_foreign.do?pnum=0&genre_no=${param.genre_no }">Prev</a>
 						</li>
 						<li class="active"><a href="shop_foreign.do?pnum=1&genre_no=${param.genre_no }">1</a>
 						</li>
@@ -294,7 +296,7 @@ table, td, th {
 						</li>
 						<li><a href="shop_foreign.do?pnum=4&genre_no=${param.genre_no }">4</a>
 						</li>
-						<li><a href="#!">Next</a>
+						<li><a href="shop_foreign.do?pnum=4	&genre_no=${param.genre_no }">Next</a>
 						</li>
 					</ul>
 				</div>

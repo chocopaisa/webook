@@ -42,18 +42,38 @@ WHERE product_no=#{product_no}
 
 </select>
 
-<select id="addCart" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
+<select id="getOtherBook" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
 
-select product_no, product_name, product_price, product_image, product_cnt
-FROM product_list
+<![CDATA[
 
-<if test="#{product_cnt} != null">
-<where>
-product_no=#{product_no} 
-</where> 
-</if>
+select ROWNUM, product_name, product_price, product_image, product_no
+from (select * from product_list ORDER BY rownum desc)
+where ROWNUM<5 and genre_no = (select genre_no from product_list where product_no=#{product_no})
+]]>
 </select>
 
+<select id="getReport"  parameterType="com.webook.domain.ProductVO" resultType="hashmap">
+<![CDATA[
+SELECT
+ROWNUM,book.bookreport_title bookreport_title, book.bookreport_content bookreport_content,book.star star,
+customer.user_name user_name
+FROM bookreport	book Inner JOIN customer_info customer
+ON book.user_email = customer.user_email
+where ROWNUM<3 and product_no= #{product_no}
+]]>
+</select>
 
+<select id="getPurchase" parameterType="com.webook.domain.MemberVO" resultType="hashmap" >
+SELECT 
+pl.product_name product_name,
+it.order_cnt order_cnt, 
+it.total_price total_price, 
+li.payment_date payment_date, 
+li.order_no order_no,
+li.delivery_info delivery_info
+FROM order_list li, order_items it, product_list pl
+WHERE li.order_no = it.order_no
+and it.product_no  = pl.product_no and li.USER_EMAIL = #{user_email} and li.delivery_info !='배송완료'
+ </select>
 
 </mapper>

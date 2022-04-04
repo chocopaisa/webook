@@ -3,8 +3,11 @@ package com.webook.shop.dao;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 
+import com.webook.domain.CommunityVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
 
 
@@ -19,6 +22,10 @@ public interface ProductDAO {
 	//국내도서로 이동
 	public List<ProductVO> genreKo(ProductVO vo, int pnum);
 	
-	  public ProductVO addCart(ProductVO vo);
+	public List<ProductVO> getOtherBook (ProductVO vo);
+	
+	public List<HashMap> getReport(ProductVO vo);
+	
+	public List<HashMap> getPurchase(MemberVO vo);
 }
  
