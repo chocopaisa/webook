@@ -36,7 +36,7 @@ public class MainDAOImpl implements MainDAO {
 	@Override
 	public ProductVO showProductOnGenre(ProductVO vo) {
 		List<ProductVO> lst = mybatis.selectList("product.mapper.genreKo", vo);
-		if(lst == null) {
+		if(lst.isEmpty()) {
 			return null;
 		}
 		return lst.get(0);
