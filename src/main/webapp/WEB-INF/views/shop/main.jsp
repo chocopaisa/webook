@@ -166,30 +166,30 @@ ul.top-menu {
 				<h3 class="text-center">BestSeller</h3>
 				<div id="bestseller">
 
-					<c:forEach var="idx" begin="0" end="14">
+					<c:forEach items="${bestSellers}" var="bs">
 						<!-- 한묶음 -->
 						<div>
 							<div class="product-item">
 								
 								<div class="col-xs-3 col-xs-offset-1">
-									<a href="product_single.do?product_no=${bestSellers[idx].product_no }"><img class="img-responsive bestseller-img"
-										src="${bestSellers[idx].product_image }" alt="product-img" />
+									<a href="product_single.do?product_no=${bs.product_no }"><img class="img-responsive bestseller-img"
+										src="${bs.product_image }" alt="product-img" />
 									</a>
 								</div>
 								<div class="product-content product-best col-xs-7 text-left">
 								<div>
 									<h3 class="text-left"><a
-											href="product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_name }</a></h3>
+											href="product_single.do?product_no=${bs.product_no }">${bs.product_name }</a></h3>
 								</div>
 								
 									<h4 class="text-left mb-1">
-									<a href="shop_koreana.do?searchKeyword=${bestSellers[idx].product_writer }">${bestSellers[idx].product_writer }</a>
+									<a href="shop_koreana.do?searchKeyword=${bs.product_writer }">${bs.product_writer }</a>
 									/
-									<a href="shop_koreana.do?searchKeyword=${bestSellers[idx].product_publisher }">
-									${bestSellers[idx].product_publisher }</a>
+									<a href="shop_koreana.do?searchKeyword=${bs.product_publisher }">
+									${bs.product_publisher }</a>
 									</h4>
 								
-									<p class="text-left best-desc">${bestSellers[idx].product_desc }</p>
+									<p class="text-left best-desc">${bs.product_desc }</p>
 								</div>
 							</div>
 						</div>
@@ -208,19 +208,19 @@ ul.top-menu {
 		      	
 								
 								<div class="col-xs-6">
-								<a href="product_single.do?product_no=${bestSellers[0].product_no }">
+								<a href="product_single.do?product_no=9791191056372">
 									<img class="img-responsive reco-img"
-										src="${bestSellers[0].product_image }" alt="product-img" />
+										src="http://image.kyobobook.co.kr/images/book/xlarge/372/x9791191056372.jpg" alt="product-img" />
 									</a>
 								</div>
 								<div class="product-content product-best col-xs-6 text-left">
 								<div>
 									<h3 class="text-left"><a
-											href="product_single.do?product_no=${bestSellers[0].product_no }">MD의 추천!</a></h3>
+											href="product_single.do?product_no=9791191056372">MD의 추천!</a></h3>
 											<h4 class="review-star text-left mb-1"> 3.2</h4>
 								</div>
 									
-									<a href="product_single.do?product_no=${bestSellers[0].product_no }"><h4 class="text-left mb-1">${bestSellers[0].product_name }</h4></a>
+									<a href="product_single.do?product_no=9791191056372"><h4 class="text-left mb-1">돈의 심리학</h4></a>
 								</div>
 								
 							</div>
@@ -239,17 +239,17 @@ ul.top-menu {
 								
 								<div class="col-xs-6">
 									<img class="img-responsive reco-img"
-										src="${bestSellers[1].product_image }" alt="product-img" />
+										src="http://image.kyobobook.co.kr/images/book/xlarge/143/x9791197377143.jpg" alt="product-img" />
 									
 								</div>
 								<div class="product-content product-best col-xs-6 text-left">
 								<div>
 									<h3 class="text-left"><a
-											href="product_single.do?product_no=${bestSellers[1].product_no }">사장님 픽!</a></h3>
+											href="product_single.do?product_no=9791197377143">사장님 픽!</a></h3>
 											<h4 class="review-star text-left mb-1"> 4.2</h4>
 								</div>
 									
-									<h4 class="text-left">${bestSellers[1].product_name }</h4>
+									<h4 class="text-left">어서 오세요, 휴남동 서점입니다</h4>
 								</div>
 								
 							</div>
@@ -263,7 +263,7 @@ ul.top-menu {
 				<hr/>
 				<div id="bestseller">
 
-					<c:forEach var="idx" begin="0" end="3">
+					<c:forEach items="${issueItems}" var="item">
         
           <!-- 베스트 셀러 -->
           <!-- 한묶음 -->
@@ -273,13 +273,13 @@ ul.top-menu {
 		      	<div class="col-xs-3">
 	          <div class="product-item">
 	          <div class="product-thumb">
-	          <img class="img-responsive issue-img" src="${issueItems[idx].product_image}" alt="product-img"/>
+	          <img class="img-responsive issue-img" src="${item.product_image}" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
-	          <h4><a href="shop_koreana.do?searchKeyword=${issueItems[idx].product_writer }">${issueItems[idx].product_writer}</a></h4>
+	          <h4><a href="shop_koreana.do?searchKeyword=${item.product_writer }">${item.product_writer}</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
-	          <h4><a href="shop/product_single.do?product_no=${issueItems[idx].product_no }">${issueItems[idx].product_name}</a></h4>
-	          <p class="price money">${issueItems[idx].product_price }</p>
+	          <h4><a href="shop/product_single.do?product_no=${item.product_no }">${item.product_name}</a></h4>
+	          <p class="price money">${item.product_price }</p>
 	          </div>
 	          </div>
 	          </div>
