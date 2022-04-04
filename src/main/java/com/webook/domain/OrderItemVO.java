@@ -4,9 +4,9 @@ public class OrderItemVO {
 	private String order_item_no;
 	private String order_no;
 	private String product_no;
-	private String order_cnt;
-	private String total_price;
-	private String discount_price;
+	private int order_cnt;
+	private int total_price;
+	private int discount_price;
 	public String getOrder_item_no() {
 		return order_item_no;
 	}
@@ -25,22 +25,22 @@ public class OrderItemVO {
 	public void setProduct_no(String product_no) {
 		this.product_no = product_no;
 	}
-	public String getOrder_cnt() {
+	public int getOrder_cnt() {
 		return order_cnt;
 	}
-	public void setOrder_cnt(String order_cnt) {
+	public void setOrder_cnt(int order_cnt) {
 		this.order_cnt = order_cnt;
 	}
-	public String getTotal_price() {
+	public int getTotal_price() {
 		return total_price;
 	}
-	public void setTotal_price(String total_price) {
+	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
 	}
-	public String getDiscount_price() {
+	public int getDiscount_price() {
 		return discount_price;
 	}
-	public void setDiscount_price(String discount_price) {
+	public void setDiscount_price(int discount_price) {
 		this.discount_price = discount_price;
 	}
 	

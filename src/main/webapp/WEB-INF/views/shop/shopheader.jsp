@@ -40,13 +40,13 @@
 										<li><a href="shop_korean.do?genre_no=120">인문</a></li>
 										<li><a href="shop_korean.do?genre_no=110">시</a></li>
 										<li><a href="shop_korean.do?genre_no=180">정치사회</a></li>
-										<li><a href="shop_korean.do?genre_no=">경제경영</a></li>
+										<li><a href="shop_korean.do?genre_no=160">경제경영</a></li>
 										<li><a href="shop_korean.do?genre_no=210">예술</a></li>
-										<li><a href="shop_korean.do?genre_no=210">종교</a></li>
+										<li><a href="shop_korean.do?genre_no=120070">종교</a></li>
 										<li><a href="shop_korean.do?genre_no=190">역사/문화</a></li>
-										<li><a href="shop_korean.do?genre_no=">고양과학</a></li>
-										<li><a href="shop_korean.do?genre_no=">자기계발</a></li>
-										<li><a href="shop_korean.do?genre_no=">여행</a></li>
+										<li><a href="shop_korean.do?genre_no=250">교양과학</a></li>
+										<li><a href="shop_korean.do?genre_no=170">자기계발</a></li>
+										<li><a href="shop_korean.do?genre_no=270">여행</a></li>
 									</ul>
 								</div>
 
@@ -69,11 +69,11 @@
 										<li class="dropdown-header">해외도서</li>
 										<li role="separator" class="divider"></li>
 										<li><a href="shop_foreign.do?genre_no=100020">문학</a></li>
-										<li><a href="shop_foreign.do?genre_no=">인문/사회</a></li>
-										<li><a href="cshop_foreign.do?genre_no=">예술/건축</a></li>
-										<li><a href="shop_foreign.do?genre_no=">아동</a></li>
-										<li><a href="shop_foreign.do?genre_no=">만화/애니</a></li>
-										<li><a href="shop_foreign.do?genre_no=">문고</a></li>
+										<li><a href="shop_foreign.do?genre_no=120">인문/사회</a></li>
+										<li><a href="cshop_foreign.do?genre_no=210">예술/건축</a></li>
+										<li><a href="shop_foreign.do?genre_no=290080">취미</a></li>
+										<li><a href="shop_foreign.do?genre_no=320">아동</a></li>
+										<li><a href="shop_foreign.do?genre_no=250">과학기술</a></li>
 
 									</ul>
 								</div>
