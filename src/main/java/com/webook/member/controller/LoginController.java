@@ -24,7 +24,7 @@ public class LoginController {
 	@ResponseBody
 	public String checkId(MemberVO vo) {
 		MemberVO result= loginservice.idcheck(vo);
-		if(result.getUser_email() != null) {
+		if(result != null) {
 			return "1";
 		} 
 		return "0";

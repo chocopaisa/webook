@@ -8,14 +8,15 @@ import com.webook.domain.MemberVO;
 public interface MemberService {
 
 
-	//글 등록
+	//회원 가입
 	public void insertMember(MemberVO vo);
 	
-	//글 수정
+	//회원 수정
 	public void updateMember(MemberVO vo);
 	
-	//글 삭제
+	//회원 탈퇴
 	public void deleteMember(MemberVO vo);
+	
 	
 	
 }

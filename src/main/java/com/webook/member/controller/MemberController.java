@@ -4,10 +4,13 @@ package com.webook.member.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.webook.domain.MemberVO;
 import com.webook.member.service.MemberService;
@@ -20,7 +23,24 @@ public class MemberController {
 	
 	@RequestMapping("join.do")
 	public void test() {
+
+	}
+
+	@RequestMapping("pwfind.do")
+	public void test2() {
+
+	}
 	
+	// 비밀번호 변경 경로
+	@RequestMapping("mypage/modify.do")
+	public String modify() {
+		return "/mypage/passwordupdate";
+	}
+	
+	// 회원탈퇴 경로
+	@RequestMapping("mypage/signout.do")
+	public String signout() {
+		return "/mypage/signout";
 	}
 	
 	@RequestMapping("userInsert.do")
@@ -38,10 +58,15 @@ public class MemberController {
 	}
 	
 	// 회원정보 삭제
-	@RequestMapping("userDelete.do")
-	public String deleteMember(MemberVO vo) {
-		memberService.deleteMember(vo);
-		return "redirect:getMemberList.do";
+	@RequestMapping("/mypage/userDelete.do")
+	public String deleteMember(MemberVO vo, HttpSession session) {
+		MemberVO member = (MemberVO) session.getAttribute("user");
+		//세션에있는 비밀번호
+		String vopassword = vo.getUser_pass();
+		member.setUser_pass(vopassword);
+		memberService.deleteMember(member);
+		session.invalidate();
+		return "redirect:../main.do";
 	}
 	
 	// 비밀번호 수정
