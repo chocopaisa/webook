@@ -298,14 +298,14 @@ FACEBOOK: https://www.facebook.com/themefisher
 				</div>
 				<div class="search_tap text-center">
 					<select class="date_select">
-						<option>1일</option>
-						<option>1주</option>
-						<option>1달</option>
+						<option value="">1일</option>
+						<option value="">1주</option>
+						<option value="">1달</option>
 					</select>
 					<select class="board_select">
-						<option>제목</option>
-						<option>내용</option>
-						<option>작성자</option>
+						<option value="bookreport_title">제목</option>
+						<option value="bookreport_content">내용</option>
+						<option value="user_email">작성자</option>
 					</select>
 					<textarea id="search_text" style="resize: none;"></textarea>
 					<a href="blog-single.html" class="btn btn-main">검색</a>

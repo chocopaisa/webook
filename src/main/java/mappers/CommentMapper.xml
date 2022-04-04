@@ -10,11 +10,35 @@
 		ORDER BY comment_no desc
 	</select>
 
+	<!-- 댓글 작성 -->
+	<insert id="insertComment" parameterType="com.webook.domain.CommentVO" >
+		INSERT INTO comment_list(comment_no, user_email, bookreport_no, comment_write_date,
+									comment_content)
+		VALUES(comment_list_seq.nextval, 'webook@com', #{bookreport_no}, sysdate, 
+					#{comment_content})
+	
+	</insert>
 
-
-
-
-
+	<!-- 책 검색 자동완성 -->
+<!-- 	<select id="bookSearch" parameterType="HashMap" resultType="String">
+		<choose>
+			<when test="searchType eq 'product_name'">
+				SELECT product_name FROM(SELECT rownum, product_name
+										 FROM (SELECT distinct product_name
+										 	   FROM product_list
+										 	   WHERE ))
+			</when>
+			<otherwise>
+			
+			
+			</otherwise>
+		</choose>
+		
+		
+	</select> -->
+	
+	
+	
 
 </mapper>
 

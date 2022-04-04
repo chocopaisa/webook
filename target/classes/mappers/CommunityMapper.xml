@@ -43,7 +43,12 @@
 		WHERE user_email = #{user_email} and bookreport_no = #{bookreport_no}
 	</delete>
 	
-	
+	<select id="searchBookreport" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
+		SELECT * FROM bookreport
+			
+		WHERE 
+		
+	</select>
 	
 	
 <!-- 	
