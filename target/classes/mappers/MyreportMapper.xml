@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myreport.mapper">
+	<select id="searchReport" parameterType="com.webook.domain.MemberVO" resultType="com.webook.domain.CommunityVO">
+		SELECT * FROM bookreport WHERE user_email = #{user_email}
+	</select>
+	
+	<select id="searchComment" parameterType="com.webook.domain.MemberVO" resultType="hashmap">
+		SELECT 
+		    cst.bookreport_no bookreport_no,
+		    cst.comment_content comment_content,
+		    cst.comment_no comment_no,
+		    cst.comment_write_date comment_write_date,
+		    br.bookreport_title bookreport_title,
+		    br.report_kind report_kind
+		FROM 
+		    comment_list cst
+		        INNER JOIN bookreport br
+		        ON cst.bookreport_no = br.bookreport_no
+		WHERE cst.user_email = #{user_email}
+	</select>
+
+</mapper>
