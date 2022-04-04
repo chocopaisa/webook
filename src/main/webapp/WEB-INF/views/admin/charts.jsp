@@ -69,8 +69,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="../resources/admin/js/adminjs.js"></script>        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="assets/demo/chart-pie-demo.js"></script>
+        <script src="../resources/admin/js/chart-pie-demo.js"></script>   
+        <script src="../resources/admin/js/chart-area-demo.js"></script>
     </body>
 </html>

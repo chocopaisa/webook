@@ -32,20 +32,20 @@
 									<h3 class="text-center font-weight-light my-4">Login</h3>
 								</div>
 								<div class="card-body">
-									<form>
+									<form action="admin/adminlogin.do" >
 										<div class="form-floating mb-3">
-											<input class="form-control" id="inputEmail" type="email"
-												placeholder="name@example.com" /> <label for="inputEmail">Email
+											<input class="form-control" id="inputEmail" type="text"
+												placeholder="name@example.com" name="admin_id"/> <label for="inputEmail">Email
 												address</label>
 										</div>
 										<div class="form-floating mb-3">
 											<input class="form-control" id="inputPassword"
-												type="password" placeholder="Password" /> <label
+												type="password" placeholder="Password" name="admin_pass" /> <label
 												for="inputPassword">Password</label>
 										</div>
 										<div
 											class="d-flex align-items-center justify-content-between mt-4 mb-0 admin-loginbtn">
-											<a class="btn btn-primary" href="admin/dashboard.do">Login</a>
+											<button class="btn btn-primary" type="submit">Login</button>
 										</div>
 									</form>
 								</div>

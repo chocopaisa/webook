@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.webook.domain.ProductVO;
 
-public interface adminProductDAO {
+public interface AdminProductDAO {
 
 	public void insertProduct(ProductVO vo);
 	

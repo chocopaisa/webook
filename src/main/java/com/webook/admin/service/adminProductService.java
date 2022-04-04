@@ -5,7 +5,7 @@ import java.util.List;
 import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
 
-public interface adminProductService {
+public interface AdminProductService {
 
 	// 상품 등록
 	void insertProduct(ProductVO vo);
