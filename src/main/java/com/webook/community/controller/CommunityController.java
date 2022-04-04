@@ -1,13 +1,17 @@
 package com.webook.community.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webook.community.service.CommentService;
 import com.webook.community.service.CommunityService;
@@ -41,7 +45,7 @@ public class CommunityController {
 	// 게시글 등록
 	@RequestMapping("/insert.do")
 	public String insertBookreport(CommunityVO vo) throws IOException {
-		System.out.print(vo.getBookreport_content());
+		//System.out.print(vo.getBookreport_content());
 		communityService.insertBookreport(vo);
 		return "redirect:list.do";
 		
@@ -56,6 +60,24 @@ public class CommunityController {
 		m.addAttribute("bookreport", result);
 		m.addAttribute("commentList", commentService.getCommentList(re, pNum));
 		
+	}
+	
+	//댓글 목록
+	@RequestMapping("/getCommentList.do")
+	@ResponseBody
+	public List<CommentVO> getCommentList(CommunityVO vo, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
+		CommunityVO result = communityService.getBookreport(vo);
+		CommentVO re = new CommentVO();
+		re.setBookreport_no(vo.getBookreport_no());
+		return commentService.getCommentList(re, pNum);
+	}
+	
+	// 댓글 작성
+	@RequestMapping(value="/insertComment.do" )
+	@ResponseBody
+	public void insertComment(CommentVO vo) throws IOException {
+		System.out.print(vo.getComment_content());
+		commentService.insertComment(vo);
 	}
 	
 	

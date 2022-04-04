@@ -162,55 +162,6 @@
 
 </style>
 
-<script type="text/javascript">
-
-<!-- 댓글 쓰기 AJAX -->
-/* function insertReply(){
-	var content = $("#write_content").val();
-	
-	if(content.length > 500){
-		alert("500자 이하로 댓글을 작성해주세요!");
-		return false;
-	}
-	var b_no = ${param.bookreport_no };
-	var r_writer = ${bookreport.user_email };
-	
-	var replyVal = {
-			"b_no" : b_no ,
-			"r_writer":r_writer ,
-			"r_comment" : content
-	};
-	//댓글 쓰기
-	$.ajax({
-		type:"post",
-		url:"insertComment.do",
-		data:JSON.stringify(replyVal),
-		contentType:"application/json",
-		dataType:"json",
-		success: function(res){
-			$("#write_content").val(""); //댓글 입력창 비우기
-			if ( res > 0 ){
-				getReplyList();
-			}else{
-				alert("[ERROR]: 댓글 등록 실패!!");
-				getReplyList();
-			}
-		} 
-		,
-		error:function(){
-			alert("댓글 등록 ajax 실패 ㅠ..");
-		}
-		
-		
-	});
-	
-	
-} */
-
-
-</script>
-
-
 <body id="body">
 
 <%@ include file="/WEB-INF/views/header.jsp" %> 
@@ -321,7 +272,7 @@
 				<div class="media-body">
 					<div class="comment-info">
 						<h4 class="comment-author">
-							<a href="">${bookreport.user_email }</a>
+							<a href="" nam >${bookreport.user_email }</a>
 							
 						</h4>
 						<time>
@@ -359,34 +310,37 @@
 					  <button type="submit" class="btn btn-book jjoayo-btn" id="jjoayo-btn">좋아요 1</button>
 					  <button type="submit" class="btn btn-book singo-btn pull-right" id="singo-btn">신고</button>
 					  <button type="submit" class="btn btn-book delete-btn pull-right" id="delete-btn">삭제</button>
+					  
+					  
 					<h3 class="post-sub-heading">댓글</h3>
-					<ul class="media-list comments-list m-bot-50 clearlist">
+					<ul class="media-list comments-list m-bot-50 clearlist"  >
 						<div class="post-comments-form">
-							
-							<form method="post" action="" id="form" role="form" >
-	
+							<!-- 폼태그 사용시 redirect됨 -->
+							<!-- <form method="post"  id="form" role="form" autocomplete="off" > -->
 								<div class="row">
 	
 									<!-- Comment -->
 									<div class="form-group col-md-12">
 										<h4 class="comment-author" style="padding-left: 20px;" >
+											<input type="hidden" name="bookreport_no" value="${bookreport.bookreport_no }" />
 											<a href="" class="writerId">${bookreport.user_email }</a>
 										</h4>
-										<textarea id="write_content" class="form-control" placeholder="경고문" maxlength="400" style="resize: none;" name="comment_content" ></textarea>
+										<textarea id="write_content" class="form-control" placeholder="경고문" maxlength="400" style="resize: none; height: 120px;" name="comment_content" ></textarea>
 									</div>
 	
 									<!-- Send Button -->
 									<div class="form-group col-md-12 text-right">
-										<button type="submit" class="btn btn-book insert-btn" id="insert-btn" onclick="insertReply();" >등록</button>
+										<button class="btn btn-book insert-btn" id="insert_btn" >등록</button>
 									</div>
 	
 	
 								</div>
-	
-							</form>
+						<!-- </form>  -->
+
 						</div>
 						<!-- Comment Item start-->
-						<c:forEach items="${commentList }" var="cl" >
+						<div id="commentList">
+ 						<c:forEach items="${commentList }" var="cl" >
 						<li class="media">
 							<div class="media-body">
 								<div class="comment-info">
@@ -405,6 +359,7 @@
 
 						</li>
 						</c:forEach>
+						</div>
 						<!-- End Comment Item -->
 
 					</ul>
@@ -493,7 +448,83 @@
     <!-- Main Js File -->
     <script src="../resources/js/script.js"></script>
     
+	<script type="text/javascript">
+	
+		// 댓글 작성
+	
+		$("#insert_btn").on('click', function() {
+		
+			$.ajax({
+				type:'GET',
+				contentType:"application/json",
+				url:'insertComment.do',
+				data:{
+ 					"comment_content" : $('textarea[name=comment_content]').val(),
+					"bookreport_no" : $('input[name=bookreport_no]').val()
+				},
+				dataType : "text",
+				success : function(data) {
+					
+					 console.log(data);
+					$('textarea[name=comment_content]').val("");
+					getCommentList();
+				},
+				error : function(err) {
+					alert("error");
+					console.log(err);
+				}
+				
+			})
+		})
+		
+	
+	// 댓글리스트 재출력
+	function getCommentList() {
+		var bookreport_no = $('input[name=bookreport_no]').val();
+		var comment_content = $('textarea[name=comment_content]').val();
+		
+		
+		$.ajax({
+			type:"GET",
+			url:"getCommentList.do",
+			data : {
+				bookreport_no,
+				comment_content
+			},
+			dataType : "json",
+			success : function(result) {
+				console.log(result);
+				var htmls = "";
+				if(result.length < 1){
+					htmls.push("등록된 댓글이 없습니다.");
+				} else {
+					for(var i=0; i<result.length; i++) {
+					var date = new Date(result[i].comment_write_date);
+					var str = '<li class="media">'
+						str += '<div class="media-body">'
+						str += '<div class="comment-info">'
+						str += '<h4 class="comment-author">'
+						str += '<a href="">'+result[i].user_email+'</a></h4>'
+						str += '<time>'+date.toLocaleString()+'</time>'
+						str += '<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>'
+						str += '<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>삭제</a>'
+						str += '</div><p>'+result[i].comment_content+'</p></div></li>'
+						htmls +=str;
+						
+					}//each end
+					
+				}
+				$("#commentList").html(htmls);
+			}, //success end
+			error : function(error) {
+				console.log(error);
+			}
+			
+		})//ajax end
+		
+	}
 
+</script>
 
   </body>
   </html>

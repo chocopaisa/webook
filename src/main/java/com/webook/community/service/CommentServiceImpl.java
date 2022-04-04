@@ -21,6 +21,11 @@ public class CommentServiceImpl implements CommentService{
 	public List<CommentVO> getCommentList(CommentVO vo, int pNum) {
 		return commentDAO.getCommentList(vo, pNum);
 	}
+	
+	//댓글 작성
+	public void insertComment(CommentVO vo) {
+		commentDAO.insertComment(vo);
+	}
 
 
 }

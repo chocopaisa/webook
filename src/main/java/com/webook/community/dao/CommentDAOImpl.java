@@ -23,4 +23,11 @@ public class CommentDAOImpl implements CommentDAO{
 		return mybatis.selectList("comment.mapper.getCommentList", vo, rowBounds);
 	}
 	
+	//댓글 작성
+	public void insertComment(CommentVO vo) {
+		System.out.println("===> Mybatis insertComment() 호출");
+		mybatis.insert("comment.mapper.insertComment", vo);
+		
+	}
+	
 }
