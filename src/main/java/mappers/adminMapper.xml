@@ -53,8 +53,12 @@
 	
 	<!-- 차트 -->	
 	<!-- 일별 매출 -->
-	<select id="TodaySales" parameterType="hashmap" resultType="int"></select>
-	
+	<!-- 
+	<select id="TodaySales" parameterType="hashmap" resultType="int">
+		SELECT
+		FROM
+	</select>
+	 -->
 	
 	<!-- 연령대 별 인원 수 구하기 -->
 	<!-- <select id="agechart" resultType="int" parameterType="hashMap">

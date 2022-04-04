@@ -55,6 +55,7 @@
                                         <i class="fas fa-chart-bar me-1"></i>
                                         일별 매출
                                     </div>
+                                    <%-- 
                                     <input hidden="" value="${ }" class="todaysales">
                                     <input hidden="" value="${ }" class="todaysales">
                                     <input hidden="" value="${ }" class="todaysales">
@@ -62,6 +63,7 @@
                                     <input hidden="" value="${ }" class="todaysales">
                                     <input hidden="" value="${ }" class="todaysales">
                                     <input hidden="" value="${ }" class="todaysales">
+                                     --%>
                                     <div class="card-body"><canvas id="todaysales" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
