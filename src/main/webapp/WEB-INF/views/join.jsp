@@ -92,8 +92,9 @@ FACEBOOK: https://www.facebook.com/themefisher
                     id="password_check"
                     class="form-control"
                     placeholder="비밀번호를 재입력하십시오."
-                  />
-            
+                  />   
+                   <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
+   				   <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
                 </div>
                 이름
                 <div class="form-group">
@@ -350,6 +351,25 @@ FACEBOOK: https://www.facebook.com/themefisher
     		}); //end of ajax
     	}); //end on
     });
+    
+    // 비밀번호 비밀번호 확인 일치 불일치 여부
+    $('.form-control').focusout(function () {
+        var pwd1 = $("#password").val();
+        var pwd2 = $("#password_check").val();
+  
+        if ( pwd1 != '' && pwd2 == '' ) {
+            null;
+        } else if (pwd1 != "" || pwd2 != "") {
+            if (pwd1 == pwd2) {
+                $("#alert-success").css('display', 'inline-block');
+                $("#alert-danger").css('display', 'none');
+            } else {
+                $("#alert-success").css('display', 'none');
+                $("#alert-danger").css('display', 'inline-block');
+            }
+        }
+    });
+
     </script>
   </body>
 </html>
