@@ -70,7 +70,7 @@
 										<li role="separator" class="divider"></li>
 										<li><a href="shop_foreign.do?genre_no=100020">문학</a></li>
 										<li><a href="shop_foreign.do?genre_no=120">인문/사회</a></li>
-										<li><a href="cshop_foreign.do?genre_no=210">예술/건축</a></li>
+										<li><a href="shop_foreign.do?genre_no=210">예술/건축</a></li>
 										<li><a href="shop_foreign.do?genre_no=290080">취미</a></li>
 										<li><a href="shop_foreign.do?genre_no=320">아동</a></li>
 										<li><a href="shop_foreign.do?genre_no=250">과학기술</a></li>
@@ -91,7 +91,7 @@
 
 					<!-- 마이페이지 -->
 					<li class="dropdown">
-						<a href="mypage.do">마이페이지</a>
+						<a href="../mypage">마이페이지</a>
 					</li><!-- / 마이페이지 -->
 
 
