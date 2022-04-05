@@ -106,13 +106,13 @@ FACEBOOK: https://www.facebook.com/themefisher
           <div class="block text-left w-50">
            <h2>회원탈퇴<br/></br/></h2>
            <h4>개인정보를 보호하기 위하여 비밀번호를 입력합니다.<hr/></h4>
-              <form class="checkout-form" action="userDelete.do">
+              <form class="checkout-form" action="userDelete.do" id="fam">
                 <div class="form-group" >
                   <label>비밀번호</label>
                   <input type="password" class="form-control" id="password" name="user_pass">
                </div>
               <div class="text-right">
-                <button type="submit" class="btn btn-main text-left" id="delbtn" >탈퇴하기</button>
+                <button type="button" class="btn btn-main text-left" id="delbtn" >탈퇴하기</button>
               </div>
             </form>
           </div>
@@ -152,6 +152,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	$(function(){
 		$("#delbtn").click(function(){
 			if(confirm('정말 탈퇴하시겠습니까?')){
+				$("#fam").submit();
 			} 
 		})
 	})

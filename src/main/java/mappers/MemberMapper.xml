@@ -10,10 +10,10 @@ VALUES (#{user_email}, #{user_pass}, #{user_name}
 , #{gender}, #{user_birth}, #{user_tel}, sysdate)
 </insert>
 
-<update id="updateMember" parameterType="com.webook.domain.MemberVO">
+<update id="updateMember" parameterType="hashmap">
 UPDATE customer_info
-SET user_pass = #{user_pass}
-WHERE user_email = #{user_email}
+SET user_pass = #{new_pass}
+WHERE user_email = #{user_email} and user_pass = #{user_pass}
 </update>
 
 <delete id="deleteMember" parameterType="com.webook.domain.MemberVO">
@@ -30,6 +30,12 @@ WHERE user_email = #{user_email}
 <select id="getMemberList" resultType="com.webook.domain.MemberVO" parameterType="hashmap">
 SELECT *
 FROM customer_info
+</select>
+
+<select id="passwordfind" parameterType="com.webook.domain.MemberVO">
+SELECT *
+FROM customer_info
+WHERE user_email = #{user_email} and user_name = #{user_name} and user_tel = #{user_tel}  
 </select>
 
 
