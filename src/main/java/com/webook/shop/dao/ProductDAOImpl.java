@@ -75,6 +75,21 @@ public class ProductDAOImpl implements ProductDAO {
 			return list;
 	}
 
+	@Override
+	public List<HashMap> prePurchase(MemberVO vo) {
+		List<HashMap> list = session.selectList("product.mapper.prePurchase", vo);
+		return list;
+	}
+
+	@Override
+	public List<HashMap> prePurchase(MemberVO vo, int pnum) {
+		RowBounds row = new RowBounds(pnum*3,3);
+		List<HashMap> list = session.selectList("product.mapper.prePurchase", vo, row);
+		return list;
+	}
+	
+	
+
 
 
 	

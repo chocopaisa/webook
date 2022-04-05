@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 
+import com.google.gson.JsonArray;
 import com.webook.domain.CommentVO;
 import com.webook.domain.CommunityVO;
 import com.webook.domain.MemberVO;
@@ -112,25 +114,11 @@ public class ProductController {
 	
 	
 	
-	  //마이페이지 구매내역
-	  
-		
-		 @RequestMapping("purchase.do")
-		 public String purchase( HttpSession session, Model m) {
-			 MemberVO id = (MemberVO)session.getAttribute("user");
-			 if(id == null) return "redirect:/login.do";//.do로 하지 말기
-		  
-			 MemberVO vo = (MemberVO)session.getAttribute("user");
-			 List<HashMap> listt = service.getPurchase(vo);
-			 m.addAttribute("list",listt);
-			 
-		  return "/shop/purchase_history";
-		  
-		  }
-		 
-	
 	 
-	
+		
+		 
+		 
+	 
 	/*-> 콘솔에서 매퍼 잘 나오는지 확인해보는 거 List를 result로 받아서 돌려보기
 	 * @RequestMapping("shop_korean.do") public String test(ProductVO vo, Model m) {
 	 * System.out.println("shop_korean");  -> 컨트롤러 함수 되는 지 확인
@@ -145,5 +133,6 @@ public class ProductController {
 
 	 *
 	 */
-	
+		
+		 
 }

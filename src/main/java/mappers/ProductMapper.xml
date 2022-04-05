@@ -68,7 +68,7 @@ SELECT
 pl.product_name product_name,
 it.order_cnt order_cnt, 
 it.total_price total_price, 
-li.payment_date payment_date, 
+To_CHAR(li.payment_date, 'yy-mm-dd') payment_date, 
 li.order_no order_no,
 li.delivery_info delivery_info
 FROM order_list li, order_items it, product_list pl
@@ -76,4 +76,17 @@ WHERE li.order_no = it.order_no
 and it.product_no  = pl.product_no and li.USER_EMAIL = #{user_email} and li.delivery_info !='배송완료'
  </select>
 
+
+<select id="prePurchase" parameterType="com.webook.domain.MemberVO" resultType="hashmap" >
+SELECT 
+pl.product_name product_name,
+it.order_cnt order_cnt, 
+it.total_price total_price, 
+To_CHAR(li.payment_date, 'yy-mm-dd') payment_date, 
+li.order_no order_no,
+li.delivery_info delivery_info
+FROM order_list li, order_items it, product_list pl
+WHERE li.order_no = it.order_no
+and it.product_no  = pl.product_no and li.USER_EMAIL = #{user_email} and li.delivery_info ='배송완료'
+ </select>
 </mapper>

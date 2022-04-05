@@ -73,7 +73,6 @@ FACEBOOK: https://www.facebook.com/themefisher
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
 
-<script src="shop-total.js"></script> <!--********************** 자바스크립트 파일 옮기고 경로 다시 설정********************** -->
 
 </head>
 
@@ -128,7 +127,7 @@ FACEBOOK: https://www.facebook.com/themefisher
       <div class="row">
         <div class="col-md-4">
          
-          <div class="dashboard-wrapper user-dashboard" style="width: 1000px; margin-left: 10px;">  
+          <div class="dashboard-wrapper user-dashboard" style="width: 900px; margin-left: 10px;">  
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -150,7 +149,15 @@ FACEBOOK: https://www.facebook.com/themefisher
                   <tr>
                     <td>${lst.ORDER_NO }</td>
                     <td>${lst.PAYMENT_DATE }</td>
-                  <td>${lst.PRODUCT_NAME} 외 ${lst.ORDER_CNT-1 }개</td>
+                      
+            
+             
+             <td>
+          
+             ${lst.PRODUCT_NAME} 외 ${lst.ORDER_CNT-1 }개
+            
+              </td>
+             
                     <td>${lst.TOTAL_PRICE }</td>
                    
                     <td>183215684</td>
@@ -191,30 +198,58 @@ FACEBOOK: https://www.facebook.com/themefisher
       <div class="row">
         <div class="col-md-4">
         
-          <div class="dashboard-wrapper user-dashboard" style="width: 1000px; margin-left: 10px;">  
+          <div class="dashboard-wrapper user-dashboard" style="width: 900px; margin-left: 10px;">  
             <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="addList">
                 <thead>
                   <tr>
                     <th>주문번호</th>
                     <th>주문 날짜</th>
                     <th>상품 이름</th>
                     <th>총 결제 금액</th> 
-              
+              		<th>배송상황</th>
                     
 
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="listBody">
                 
                   
-                
+                 <c:forEach items="${lis }" var="li">
+               
+                  <tr>
+                    <td>${li.ORDER_NO }</td>
+                    <td>${li.PAYMENT_DATE }</td>
+                      
+            
+             
+             <td>
+     		<c:choose>
+     		<c:when test="${li.ORDER_CNT-1 gt 0}">
+     		${li.PRODUCT_NAME} 외 ${li.ORDER_CNT-1 }권
+     		</c:when>
+     		<c:otherwise>
+     		${li.PRODUCT_NAME} 
+     		</c:otherwise>
+ 			</c:choose>
+              	
+              </td>
+             
+                    <td>${li.TOTAL_PRICE }</td>
+                   
+
+                    <td><span class="label label-primary">${li.DELIVERY_INFO }</span></td>
+                  </tr>
+                  </c:forEach>
+                  
+                  
+                  
                   
                 </tbody>
               </table>
             </div>
           </div>
-          <i class="btn btn-main btn-small btn-round" style="margin-left: 450px; margin-top: 10px;">더보기</i>
+          <button class="btn btn-main btn-small btn-round"  id="addBtn" onclick="moreList();"style="margin-left: 450px; margin-top: 10px;">더보기</button>
         </div>
       </div>
 
@@ -250,6 +285,68 @@ FACEBOOK: https://www.facebook.com/themefisher
 
     <!-- Main Js File -->
     <script src="../resources/js/script.js"></script>
+    <script src="../resources/js/shop-total.js"></script> <!--********************** 자바스크립트 파일 옮기고 경로 다시 설정********************** -->
+    
+    <script type="text/javascript">
+    
+    
+    
+    
+    
+  	//구매내역 더보기 구현
+	
+  	//버튼 onclick() 함수
+	let pnum= 0;
+	function moreList() {
+  		
+	
+	 var startNum = $("#listBody tr").length; //마지막 리스트 번호를 알아내기 위해서 tr태그의 length를 구함.
+	
+  
+    console.log("startNum", startNum);  //콘솔로그로 startNum에 값이 들어오는지 확인
+	 
+    	pnum++;
+    
+    
+    //ijax *****
+     $.ajax({
+        url : "purchasList.do",
+        type : "post",
+        data : {"pnum":pnum},
+        contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+        error : function(err) { console.log(err)}, 
+        success : function(data) {
+        	console.log(data);
+            var addListHtml ="";
+            if(data.length > 0){
+                
+                for(var i=0; i<data.length;i++) {
+                  
+                	
+              addListHtml += "<tr>";
+              addListHtml += "<td>" + data[i].ORDER_NO + "</td>";
+              addListHtml += "<td>" + data[i].PAYMENT_DATE + "</td>";
+              if(data[i].ORDER_CNT-1 >0) {
+                  addListHtml += "<td>" + data[i].PRODUCT_NAME + "외" +(data[i].ORDER_CNT-1)+"권" + "</td>";
+                  }else { addListHtml += "<td>" + data[i].PRODUCT_NAME + "</td>";
+                  }
+              addListHtml += "<td>" + data[i].TOTAL_PRICE+ "</td>";
+              addListHtml += "<td>" ;
+           	  addListHtml += "<span class='label label-primary'>" + data[i].DELIVERY_INFO + "</span>";
+           	  addListHtml += "</td>";
+              addListHtml += "</tr>";
+                        
+                    
+                }
+                $("#listBody").append(addListHtml);
+            }
+            
+        }
+    });
+	}
+
+    
+    </script>
     
 
 
