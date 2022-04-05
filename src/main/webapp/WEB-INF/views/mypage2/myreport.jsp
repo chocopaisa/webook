@@ -71,6 +71,13 @@ FACEBOOK: https://www.facebook.com/themefisher
   .pl-2 {
   	padding-left: 20px;
   }
+  
+  #nav-mypage .btn-solid-border {
+  	border: none;
+  }
+  #nav-mypage li > a {
+  	font-size: 14px;
+  }
   </style>
 
 
@@ -102,7 +109,7 @@ FACEBOOK: https://www.facebook.com/themefisher
           <aside class="sidebar">
             <div class="navigation">
               <div class="menuToggle"></div>
-                  <ul>
+                  <ul id="nav-mypage">
                      <li class="list">
                        <h4>마이룸<hr/></h4>
                      </li>
@@ -144,7 +151,7 @@ FACEBOOK: https://www.facebook.com/themefisher
              <c:forEach items="${reports }" var="report">
               <tr>
                 <td><a href="#"><h4>${report.bookreport_title }</h4></a></td>
-                <td class="text-right">${report.report_kind }</td>
+                <td class="text-right">${report.report_kind } 게시판</td>
                 <td class="text-right">${report.write_date }</td>
               </tr>
               <tr>
@@ -159,20 +166,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         </div>
         <div class="text-center">
           <ul class="pagination post-pagination">
-            <li><a href="#!">Prev</a>
-            </li>
-            <li class="active"><a href="#!">1</a>
-            </li>
-            <li><a href="#!">2</a>
-            </li>
-            <li><a href="#!">3</a>
-            </li>
-            <li><a href="#!">4</a>
-            </li>
-            <li><a href="#!">5</a>
-            </li>
-            <li><a href="#!">Next</a>
-            </li>
+            
           </ul>
         </div>
         </div>
@@ -192,7 +186,7 @@ FACEBOOK: https://www.facebook.com/themefisher
               </tr>
               <tr>
                 <td><a href="#">${comment.BOOKREPORT_TITLE }</a></td>
-                <td class="text-right">${comment.REPORT_KIND }</td>
+                <td class="text-right">${comment.REPORT_KIND } 게시판</td>
                 <td class="text-right">${comment.COMMENT_WRITE_DATE }</td>
               </tr>
               </c:forEach>
@@ -200,20 +194,7 @@ FACEBOOK: https://www.facebook.com/themefisher
             </table>
             <div class="text-center">
               <ul class="pagination post-pagination">
-                <li><a href="#!">Prev</a>
-                </li>
-                <li class="active"><a href="#!">1</a>
-                </li>
-                <li><a href="#!">2</a>
-                </li>
-                <li><a href="#!">3</a>
-                </li>
-                <li><a href="#!">4</a>
-                </li>
-                <li><a href="#!">5</a>
-                </li>
-                <li><a href="#!">Next</a>
-                </li>
+                
               </ul>
             </div>
           </div>
@@ -270,7 +251,84 @@ FACEBOOK: https://www.facebook.com/themefisher
         $('#report-list').addClass("btn-solid-border")
       })
     </script>
-
+	<script>
+		// 게시글 확인
+		// 작성 게시글 수
+		const trs = $('#reportList .table-report tr')
+		const cnt = trs.length/2;
+		console.log(cnt);
+		// 한번에 보여줄 수
+		const boardShowCnt = 3;
+		
+		// 페이지 개수
+		const pageCnt = Math.ceil(cnt/boardShowCnt);
+		for(let idx = 1; idx <= pageCnt; idx++){
+			const li = '<li><a href="#report-list" value="'+idx+'">'+idx+'</a></li>';
+			$('#reportList .pagination').append(li);
+		}
+		
+		// 페이지 눌렀을때 보여주기
+		showReportPerPage(1);
+		$('#reportList .pagination > li > a').click(function(){
+			const page = $(this).attr("value")
+			$('#reportList .pagination > li.active').removeClass('active');
+			$(this).parent().addClass('active');
+			
+			console.log(page);
+			showReportPerPage(page);
+		})
+		
+		function showReportPerPage(page){
+			const start = (page-1) * boardShowCnt;
+			const end = page * boardShowCnt
+			trs.hide();
+			for(let idx = start; idx < end; idx++){
+				trs.eq(idx*2).show();	// 글 제목
+				trs.eq(idx*2+1).show();	// 글 내용
+			}
+		}
+		
+		// 작성 댓글 수
+		const trs2 = $('#commentList .table-report tr')
+		const cnt2 = trs2.length/2;
+		console.log(cnt);
+		// 한번에 보여줄 수
+		const commentShowCnt = 3;
+		
+		// 페이지 개수
+		const pageCnt2 = Math.ceil(cnt2/commentShowCnt);
+		for(let idx = 1; idx <= pageCnt2; idx++){
+			
+			const li = '<li><a href="#comment-list" value="'+idx+'">'+idx+'</a></li>';
+			$('#commentList .pagination').append(li);
+		}
+		showCommentPerPage(1);
+		$('#commentList .pagination > li > a').click(function(){
+			const page = $(this).attr("value")
+			$('#commentList .pagination > li.active').removeClass('active');
+			$(this).parent().addClass('active');
+			
+			console.log(page);
+			showCommentPerPage(page);
+		})
+		function showCommentPerPage(page){
+			const start = (page-1) * commentShowCnt;
+			const end = page * commentShowCnt
+			trs2.hide();
+			for(let idx = start; idx < end; idx++){
+				trs2.eq(idx*2).show();	// 글 제목
+				trs2.eq(idx*2+1).show();	// 글 내용
+			}
+			
+			
+		}
+		
+		
+		// 게시글, 댓글 내용 태그 제거
+		$('.report-content').each(function(){
+			$(this).html($(this).text());
+		})
+	</script>
 
   </body>
   </html>

@@ -179,6 +179,38 @@
 	width: 53%;
 }
 
+#bookSearch {
+	position: fixed;
+	z-index: 10;
+}
+
+#bookSearch > div {
+	width : 400px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border: 1px thin solid;
+}
+
+#bookSearch input {
+	width : 270px;
+	height : 35px;
+}
+#bookSearch button {
+	width : 80px;
+	height : 35px;
+	background: black;
+	color: white;
+}
+
+.searchBookList > li > div {
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.searchBookList > li > div:hover {
+	background: gray;
+}
+
 </style>
 <body id="body">
 
@@ -216,7 +248,7 @@
 					<li class="dropdown ">
 						<a href="write.do">독후감 작성</a>
 					</li><!-- / Home -->
-
+				</ul>
 
 			</div>
 			<!--/.navbar-collapse -->
@@ -245,8 +277,8 @@
 
 
 				<div class="write_hanjul">
-					<h4><a><input class="write_hanjul_title" placeholder="책 제목" name="product_no" autocomplete="off"/></a>
-					
+					<h4><input class="write_hanjul_title" placeholder="책 제목" name="product_no" autocomplete="off"/>
+					<input name="product_no" value="책번호" hidden="hidden">
 					</h4>
 					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
 						<input  name="star">3.5</h4>
@@ -271,7 +303,7 @@
 							console.error(error);
 						});
 				</script>
-				
+				</div>
 			</form>
 
 		          </div>
@@ -284,51 +316,21 @@
 
 <br/>
 <br/>
-<footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.html">CONTACT</a>
-					</li>
-					<li>
-						<a href="shop.html">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.html">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.html">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
+<!-- 책검색창 -->
+	<div id="bookSearch">
+		<div class="container bg-gray">
+			<div><input class="bookKeyword" placeholder="책검색">
+				<button id="btnBookSearch" class="text-center btn">검색</button>
+				
 			</div>
+			<hr/>
+			<ul class="searchBookList">
+				
+			</ul>
 		</div>
 	</div>
-</footer>
+
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 
     <!-- 
     Essential Scripts
@@ -358,6 +360,63 @@
     <!-- Main Js File -->
     <script src="../resources/js/script.js"></script>
     
+    <script type="text/javascript">
+    	// 검색창 숨겨지는 기본 위치
+    	const offset = $('#bookSearch').offset();
+    	
+    	// 책 이름 클릭시 검색창 보이기
+    	$('.write_hanjul_title').click(function(){
+    		const offset = $(this).offset();
+    		$('#bookSearch').offset({left : offset.left+1, top:offset.top+30})
+    		$('#bookSearch .bookKeyword').focus();
+    	})
+    	
+    	// 검색 버튼 클릭시 결과 출력
+    	$('#btnBookSearch').click(function(){
+    		$.ajax({
+    			data: {
+    				searchKeyword : $('.bookKeyword').val()
+    				},
+    			url : 'searchBookAtWrite.do',
+    			dataType: 'json',
+    			err : function(err){
+    				console.log(err);
+    				alert("에러")
+    			},
+    			success : function(result){
+    				console.log(result);
+    				$('.searchBookList > li').remove();
+    				for(let book of result){
+    					let txt = "<li value='"+book.product_no+"'>";
+    					txt += "<div class='col-xs-12'>";
+    					txt += "<div class='col-xs-3'><img class='w-100' src="+ book.product_image+"></div>"
+						txt += "<div class='col-xs-9'><h4>"+book.product_name+"</h4>";
+						txt += book.product_writer+"/"+book.product_publisher
+						txt += "</div>";
+						txt += "</div>";
+						txt += "</li>";
+						
+						$('.searchBookList').append(txt);
+    				}
+    			}
+    		})
+    		
+    	});
+    	
+    	// 검색창이 아닌 곳 클릭시 숨김 처리
+    	$(document).mouseup(function (e){
+    		  var LayerPopup = $("#bookSearch");
+    		  if(LayerPopup.has(e.target).length === 0){
+    		    LayerPopup.offset(offset);
+    		  }
+    	});
+    	
+    	$(document).on('click', '.searchBookList > li > div', function(){
+    		console.log($(this));
+    	})
+    	
+    	
+    </script>
 
 
   </body>

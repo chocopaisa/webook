@@ -91,7 +91,7 @@
 
 					<!-- 마이페이지 -->
 					<li class="dropdown">
-						<a href="../mypage">마이페이지</a>
+						<a href="../mypage/p_history.do">마이페이지</a>
 					</li><!-- / 마이페이지 -->
 
 
