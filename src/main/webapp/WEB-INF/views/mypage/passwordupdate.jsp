@@ -99,7 +99,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         <div class="col-md-9">
           <div class="block text-center w-50">
             <h2 class="text-center">비밀번호 변경</h2>
-            <form class="text-left clearfix" action="index.html">
+            <form class="text-left clearfix" action="userUpdate.do">
             <div class="col-md-12">
               <div class="form-group col-md-6">
                 <h4>현재 비밀번호</h4>
@@ -109,7 +109,7 @@ FACEBOOK: https://www.facebook.com/themefisher
             <div class="col-md-12">
               <div class="form-group col-md-6">
                 <h4>새로운 비밀번호</h4>
-                <input type="password" name="user_newpass" id="newpassword" class="form-control">
+                <input type="password" name="new_pass" id="newpassword" class="form-control">
               </div>
             </div>
             <div class="col-md-12">
@@ -119,7 +119,9 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
     			<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
               </div>
+              <div class="col-md-12">
               <button type="submit" class="btn btn-primary">수정</button>
+            </div>
             </div>
             </form>
           </div>

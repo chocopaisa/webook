@@ -8,11 +8,12 @@ import com.webook.domain.MemberVO;
 public interface MemberDAO {
 	public void insertMember(MemberVO vo);
 	
-	public void updateMember(MemberVO vo);
+	public void updateMember(HashMap map);
 	
-	public void deleteMember(MemberVO vo);
+	public int deleteMember(MemberVO vo);
 	
 	public List<MemberVO> getMemberList(HashMap map);
 
+	public String passwordfind(MemberVO vo);
 
 }

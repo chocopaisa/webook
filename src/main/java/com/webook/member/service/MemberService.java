@@ -12,11 +12,12 @@ public interface MemberService {
 	public void insertMember(MemberVO vo);
 	
 	//회원 수정
-	public void updateMember(MemberVO vo);
+	public void updateMember(HashMap map);
 	
 	//회원 탈퇴
-	public void deleteMember(MemberVO vo);
+	public int deleteMember(MemberVO vo);
 	
-	
+	// 비밀번호 찾기
+	public String passwordfind(MemberVO vo);
 	
 }
