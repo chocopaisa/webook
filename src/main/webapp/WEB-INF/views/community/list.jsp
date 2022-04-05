@@ -243,7 +243,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 					   <tr>
 						<td>${bookreport.bookreport_no }</td>
 						<td><a href="getcontent.do?bookreport_no=${bookreport.bookreport_no }" >${bookreport.bookreport_title }</a></td>
-						<td>${bookreport.user_email }</td>
+						<td>${bookreport.user_name }</td>
 						<td>
 						<fmt:parseDate value="${bookreport.write_date }" var="write_date1" pattern="yyyy-mm-dd" />
 						<fmt:formatDate value="${write_date1 }" pattern="MM-dd" />

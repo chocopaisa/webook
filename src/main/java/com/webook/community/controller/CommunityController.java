@@ -32,8 +32,7 @@ public class CommunityController {
 	private CommentService commentService;
 	@Autowired 
 	private ProductService productService;
-	@Autowired
-	private MemberService memberService;
+
 	
 	// 게시글 목록 검색
 	@RequestMapping("list.do")
@@ -60,13 +59,9 @@ public class CommunityController {
 		CommunityVO result = communityService.getBookreport(vo);
 		CommentVO re = new CommentVO();
 		ProductVO pr = new ProductVO();
-		MemberVO mem = new MemberVO();
 		pr.setProduct_no(result.getProduct_no());
 		re.setBookreport_no(vo.getBookreport_no());
-		mem.setUser_email(vo.getUser_email());
-		
-		//유저명
-		m.addAttribute("member", mem);
+
 		//조회수 증가
 		communityService.viewCount(vo);
 		//게시글 상세

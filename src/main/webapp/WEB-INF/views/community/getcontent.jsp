@@ -272,7 +272,7 @@
 				<div class="media-body">
 					<div class="comment-info">
 						<h4 class="comment-author">
-							<a href="" nam >${mem.user_name }</a>
+							<a href="" nam >${bookreport.user_name }</a>
 							
 						</h4>
 						<time>
@@ -308,11 +308,11 @@
 				</div>
 			</div>
 				  <div class="post-comments">
-				  	<c:if test="${sessionScope.user eq bookreport.user_email }">
+				  	<c:if test="${sessionScope.user ne null }">
 					  <button type="submit" class="btn btn-book jjoayo-btn" id="jjoayo-btn">좋아요 1</button>
 					</c:if>
 					  <button type="submit" class="btn btn-book singo-btn pull-right" id="singo-btn" >신고</button>
-					  <c:if test="${sessionScope.user eq bookreport.user_email }">
+					  <c:if test="${sessionScope.user.user_email eq bookreport.user_email }">
 					  <button type="submit" class="btn btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
 					</c:if>
 					  
@@ -350,7 +350,7 @@
 							<div class="media-body">
 								<div class="comment-info">
 									<h4 class="comment-author">
-										<a name="comment_author">${cl.user_email }</a>
+										<a name="comment_author">${cl.user_name }</a>
 									</h4>
 									<input type="hidden" name="comment_no" value="${cl.comment_no }" />
 									<time>
@@ -537,7 +537,7 @@
 						str += '<div class="media-body">'
 						str += '<div class="comment-info">'
 						str += '<h4 class="comment-author">'
-						str += '<a href="">'+result[i].user_email+'</a></h4>'
+						str += '<a href="">'+result[i].user_name+'</a></h4>'
 						str += '<input type="hidden" name="comment_no" value="'+result[i].comment_no+'" />'
 						str += '<time>'+date.toLocaleString()+'</time>'
 						str += '<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>'

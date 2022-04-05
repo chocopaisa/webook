@@ -6,14 +6,13 @@
 	<!-- 게시글 목록 페이지 리스트 -->
 	<select id="getBookreportList" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
 		
-		SELECT bookreport_no, user_email, product_no, 
-                            write_date, bookreport_title, 
-                            bookreport_content, view_count, report_kind,
-                            star FROM bookreport
+		SELECT a.*, b.user_name, c.jjoa_no FROM bookreport a
+		INNER JOIN customer_info b ON a.user_email = b.user_email
+		LEFT OUTER JOIN jjoa c ON a.bookreport_no = c.bookreport_no and a.user_email = c.user_email
 		<if test="report_kind != null">
-		WHERE report_kind = #{report_kind}
+		WHERE a.report_kind = #{report_kind}
 		</if>
-		ORDER BY bookreport_no desc
+		ORDER BY a.bookreport_no desc
 				
 	</select>
 	
@@ -29,8 +28,10 @@
 	
 	<!-- 게시물 상세 -->
 	<select id="getBookreport" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
-		SELECT * FROM bookreport
-		WHERE bookreport_no = #{bookreport_no}
+		SELECT a.*, b.user_name, c.jjoa_no FROM bookreport a
+		INNER JOIN customer_info b ON a.user_email = b.user_email
+		LEFT OUTER JOIN jjoa c ON a.bookreport_no = c.bookreport_no and a.user_email = c.user_email
+		WHERE a.bookreport_no = #{bookreport_no}
 	</select>
 	<!-- 게시물 수정 -->
 	<update id="updateBookreport" parameterType="com.webook.domain.CommunityVO">
