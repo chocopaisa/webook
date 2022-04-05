@@ -2,6 +2,7 @@ package com.webook.admin.controller;
 
 
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.webook.admin.dao.AdminOrderDAO;
 import com.webook.admin.service.AdminCommService;
 import com.webook.admin.service.AdminMemberService;
@@ -23,6 +27,7 @@ import com.webook.admin.service.AdminOrderService;
 import com.webook.admin.service.AdminProductService;
 import com.webook.admin.service.AdminService;
 import com.webook.domain.AdminVO;
+import com.webook.domain.ChartVO;
 import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
 import com.webook.domain.ReportcommunityVO;
@@ -45,10 +50,10 @@ public class Admincontroller {
 	 
 	
 
-	@RequestMapping("/{step}.do")
-	public String dashboard(@PathVariable String step) {
-		return "/admin/" + step;		
-	}
+//	@RequestMapping("/{step}.do")
+//	public String dashboard(@PathVariable String step) {
+//		return "/admin/" + step;		
+//	}
 	
 	// 관리자 로그인
 	@RequestMapping("adminlogin.do")
@@ -64,6 +69,75 @@ public class Admincontroller {
 			return "redirect:dashboard.do";
 		}
 	}
+	
+	// DASHBOARD
+	// 오늘 주문 건수, 오늘 매출, 오늘 게시글 수 조회
+	@RequestMapping(value="dashboard.do", method= {RequestMethod.GET})
+	public void DashChartManager(HttpSession session, Model m) {
+		// 오늘 주문건
+		 int count = adminOrderService.selectTodayOrder();
+		 m.addAttribute("selectTodayOrder",count);
+		 
+		 // 오늘 매출
+		 Integer sales = adminOrderService.selectTodaySales();
+		 m.addAttribute("selectTodaySales", sales);
+		 
+		 // 오늘 게시글 수
+		 int cnt = adminCommService.selectTodayBoard();
+		 m.addAttribute("selectTodayBoard", cnt);
+
+	// 차트
+	// 지난주 일일 매출
+	
+		 List<ChartVO> LastWeekList = adminService.LastWeekSales();
+	
+		 Gson gson = new Gson();
+		 JsonArray jArray = new JsonArray();
+	
+		 Iterator<ChartVO> cvo = LastWeekList.iterator();
+	
+		 while(cvo.hasNext()) {
+			 ChartVO chartvo = cvo.next();
+			 JsonObject object = new JsonObject();
+			 String LastWeek = chartvo.getChartTitle();
+			 int LastWeekSales = chartvo.getChartResult();
+	
+			 object.addProperty("LastWeek", LastWeek);
+			 object.addProperty("LastWeekSales", LastWeekSales);
+			 jArray.add(object);
+		 }
+	
+		 String json = gson.toJson(jArray);
+		 m.addAttribute("json", json);
+		 
+	// 월별 회원가입 수
+		 
+		 System.out.println("ChartManager 호출 ????");
+		 List<ChartVO> MonthMemCnt = adminService.MonthMemCnt();
+	
+		 Gson gson2 = new Gson();
+		 JsonArray jArray2 = new JsonArray();
+	
+		 Iterator<ChartVO> cvo2 = MonthMemCnt.iterator();
+	
+		 while(cvo2.hasNext()) {
+			 ChartVO chartvo2 = cvo2.next();
+			 JsonObject object2 = new JsonObject();
+			 String MonthList = chartvo2.getChartTitle();
+			 System.out.println(MonthList);
+			 int NewMemCnt = chartvo2.getChartResult();
+	
+			 object2.addProperty("MonthList", MonthList);
+			 object2.addProperty("NewMemCnt", NewMemCnt);
+			 jArray2.add(object2);
+		 }
+	
+		 String json2 = gson2.toJson(jArray2);
+		 m.addAttribute("json2", json2);
+	
+	}
+	@RequestMapping("charts.do")
+	public void Chart() {}
 	
 	// 회원 목록 출력	
 
@@ -115,29 +189,6 @@ public class Admincontroller {
 		 * 
 		 * @RequestMapping("/deletereport.do")
 		 */
-	 
-	 // 대시보드
-	 // 오늘 주문 건수, 오늘 매출, 오늘 게시글 수 조회
-	 
-	 @RequestMapping(value="dashboard.do", method= {RequestMethod.GET})
-	 public String selectTodayOrder( HttpSession session , Model model) {
-		 
-		 // 오늘 주문건
-		 int count = adminOrderService.selectTodayOrder();
-		 model.addAttribute("selectTodayOrder",count);
-		 
-		 // 오늘 매출
-		 int sales = adminOrderService.selectTodaySales();
-		 model.addAttribute("selectTodaySales", sales);
-		 
-		 // 오늘 게시글 수
-		 int cnt = adminCommService.selectTodayBoard();
-		 model.addAttribute("selectTodayBoard", cnt);
-		 
-		 
-		 
-		 return "admin/dashboard";
-	 }
 
 
 }

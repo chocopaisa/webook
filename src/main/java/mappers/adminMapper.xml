@@ -32,8 +32,8 @@
 	
 	<!-- 오늘 매출 조회 -->
 	<select id="selectTodaySales" resultType="int">
-		SELECT sum(total_price)
-		FROM order_list olist left outer join (select sum(total_price) total_price, order_no
+		SELECT NVL(sum(total_price),0)
+		FROM order_list olist left outer join (select NVL(sum(total_price),0) total_price, order_no
                                     from order_items  
                                     group by order_no) oitem
         ON olist.order_no=oitem.order_no
@@ -52,13 +52,59 @@
 	
 	
 	<!-- 차트 -->	
-	<!-- 일별 매출 -->
-	<!-- 
-	<select id="TodaySales" parameterType="hashmap" resultType="int">
-		SELECT
-		FROM
+	<!-- 지난 주 일일 매출 -->
+	<select id="LastWeekSales" resultType="com.webook.domain.ChartVO">
+	<![CDATA[
+	SELECT weeklist.payment_date chartTitle, NVL(weeksales.total_price,0) chartResult
+	FROM ( 	
+		select (rownum) payment_date
+		from dual
+		connect by level <= 7) weeklist 
+		left outer join	(
+			select 
+				to_char(olist.payment_date,'d') payment_date, 
+				sum(total_price) total_price
+			from 
+				order_list olist left outer join (
+					select 
+						sum(total_price) total_price, 
+						order_no
+					from 
+						order_items
+					group by 
+						order_no) oitem
+				ON olist.order_no=oitem.order_no
+			WHERE 
+				to_char(olist.payment_date, 'YY-MM-DD') 
+					BETWEEN to_char(trunc(sysdate,'iw') - 7, 'YY-MM-DD') 
+					AND to_char(trunc(sysdate, 'iw') - 1, 'YY-MM-DD')
+			GROUP BY 
+				to_char(olist.payment_date, 'd')
+		) weeksales
+		on weeklist.payment_date = weeksales.payment_date
+	order by 
+		chartTitle
+		]]>
 	</select>
-	 -->
+	
+	<!-- 월별 회원가입 수 -->
+	<select id="MonthMemCnt" resultType="com.webook.domain.ChartVO">
+	<![CDATA[
+		SELECT monthlist.dt chartTitle, NVL(newmemcnt.cnt,0) chartResult
+		FROM (  select to_char(user_regdate,'MM') AS user_regdate, count(*) cnt
+        		from customer_info
+        		where to_char(user_regdate,'yyyy') = '2022' 
+        		group by to_char(user_regdate,'MM')) newmemcnt 
+        	right outer join 
+        	 (  select lpad(level,2,'0') as dt
+                from dual
+                connect by level <= 12) monthlist
+		ON newmemcnt.user_regdate = monthlist.dt
+		ORDER BY chartTitle
+	]]>
+	</select>
+
+	
 	
 	<!-- 연령대 별 인원 수 구하기 -->
 	<!-- <select id="agechart" resultType="int" parameterType="hashMap">
@@ -73,12 +119,7 @@
 		FROM customer_info;
 	</select> -->
 	
-	<!-- 월별 매출 -->
-	<!-- <select id="monthsales">
-		SELECT month(total_price)
-		FROM order_items
-		WHERE order_no LIKE to_char(sysdate,'YYYY');
-	</select> -->
+	
 	
 	
 	

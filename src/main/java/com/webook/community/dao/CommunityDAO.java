@@ -1,5 +1,6 @@
 package com.webook.community.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.webook.domain.CommunityVO;
@@ -13,6 +14,15 @@ public interface CommunityDAO {
 	
 	//게시물 상세
 	public CommunityVO getBookreport(CommunityVO vo);
+	
+	//게시물 검색
+	public List<CommunityVO> searchBookreportList(HashMap map, int pNum);
+	
+	//게시글 삭게
+	public void deleteBookreport(CommunityVO vo);
+	
+	//조회수 증가
+	public void viewCount(CommunityVO vo);
 	
 	/* public CommunityVO getBookreportCount(CommunityVO vo, int pNum); */
 	

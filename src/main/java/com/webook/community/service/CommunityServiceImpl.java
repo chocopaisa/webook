@@ -1,12 +1,12 @@
 package com.webook.community.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webook.community.dao.CommunityDAO;
-import com.webook.community.dao.CommunityDAOImpl;
 import com.webook.domain.CommunityVO;
 
 @Service("communityService")
@@ -30,8 +30,18 @@ public class CommunityServiceImpl implements CommunityService{
 		return communityDAO.getBookreport(vo);
 	}
 	
-/*	public CommunityVO getBookreportCount(CommunityVO vo, int pNum) {
-		return communityDAO.getBookreportCount(vo, pNum);
-	}*/
+	//게시물 검색
+	public List<CommunityVO> searchBookreportList(HashMap map, int pNum) {
+		return communityDAO.searchBookreportList(map, pNum);
+	}
 	
+	//게시글 삭제
+	public void deleteBookreport(CommunityVO vo) {
+		communityDAO.deleteBookreport(vo);
+	}
+	
+	//조회수 증가
+	public void viewCount(CommunityVO vo) {
+		communityDAO.viewCount(vo);
+	}
 }

@@ -63,18 +63,22 @@ FACEBOOK: https://www.facebook.com/themefisher
           </a>
           <h2 class="text-center">비밀번호 찾기</h2>
           <form class="text-left clearfix" action="index.html">
+           이메일
+                  <input
+                    type="text"
+                    name="user_email"
+                    id="email"
+                    class="form-control"
+                    placeholder="이메일을 입력하세요."
+                  />
             이름
             <div class="form-group">
-              <input type="text" name="name" class="form-control" >
+              <input type="text" name="user_name" class="form-control" >
             </div>
             휴대전화
             <div class="form-group text-center">
-              <input type="tel" name="Tel" class="form-control"><br/>
-              <button type="button" class="btn btn-main w-100">인증번호 요청</button>
+              <input type="tel" name="user_tel" class="form-control"><br/>
             </div>
-            인증번호
-            <div class="form-group text-center">
-              <input type="text" name="Certification-number" class="form-control"><br/>
               <button type="submit" class="btn btn-main w-100">확인</button>
             </div>
           </form>

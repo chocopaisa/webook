@@ -20,19 +20,21 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.insertMember(vo);
 	}
 
-	public void updateMember(MemberVO vo) {
+	public void updateMember(HashMap map) {
 		
-		memberDAO.updateMember(vo);
-		
-	}
-
-	public void deleteMember(MemberVO vo) {
-		
-		memberDAO.deleteMember(vo);
+		memberDAO.updateMember(map);
 		
 	}
 
 	
+	public int deleteMember(MemberVO vo) {
 	
+		return memberDAO.deleteMember(vo);
+	}
+
+	public String passwordfind(MemberVO vo) {
+		
+		return memberDAO.passwordfind(vo);
+	}
 
 }

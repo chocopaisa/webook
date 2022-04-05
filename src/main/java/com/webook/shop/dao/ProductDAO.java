@@ -27,5 +27,8 @@ public interface ProductDAO {
 	public List<HashMap> getReport(ProductVO vo);
 	
 	public List<HashMap> getPurchase(MemberVO vo);
+	
+	public List<HashMap> prePurchase(MemberVO vo);
+	public List<HashMap> prePurchase(MemberVO vo, int pnum);
 }
  

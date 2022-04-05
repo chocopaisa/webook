@@ -294,22 +294,24 @@ FACEBOOK: https://www.facebook.com/themefisher
 						
 						
 				</ul>
-				<a href="blog-single.html" class="btn btn-main">글쓰기</a>
+				<a href="write.do" class="btn btn-main">글쓰기</a>
 				</div>
+				<form action="searchBookreportList.do">
 				<div class="search_tap text-center">
-					<select class="date_select">
-						<option value="">1일</option>
-						<option value="">1주</option>
-						<option value="">1달</option>
+					<select class="date_select" name="date_select" >
+						<option value="sysdate-1">1일</option>
+						<option value="sysdate-7">1주</option>
+						<option value="add_months(sysdate,-1)">1달</option>
 					</select>
-					<select class="board_select">
+					<select class="search_select" name="search_select" >
 						<option value="bookreport_title">제목</option>
 						<option value="bookreport_content">내용</option>
 						<option value="user_email">작성자</option>
 					</select>
-					<textarea id="search_text" style="resize: none;"></textarea>
-					<a href="blog-single.html" class="btn btn-main">검색</a>
+					<input id="search_text" name="search_text">
+					<button class="btn btn-main" >검색</button>
 				</div>
+				</form>
 		          </div>
 		        </div>
 	      	</div>

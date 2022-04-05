@@ -26,9 +26,19 @@ public class MemberController {
 
 	}
 
-	@RequestMapping("pwfind.do")
-	public void test2() {
-
+	@RequestMapping("passwordfind.do")
+	public String passwordfind(MemberVO vo, Model m) {
+		String member = (memberService.passwordfind(vo));
+		
+		if(member == null) {
+			m.addAttribute("check", 1);
+		} else {
+			m.addAttribute("check", 0);
+			m.addAttribute("user_email", vo.getUser_email());
+			m.addAttribute("user_pass", member);
+			System.out.println(vo);
+		}
+		return "passwordfind.do";
 	}
 	
 	// 비밀번호 변경 경로
@@ -64,16 +74,31 @@ public class MemberController {
 		//세션에있는 비밀번호
 		String vopassword = vo.getUser_pass();
 		member.setUser_pass(vopassword);
-		memberService.deleteMember(member);
-		session.invalidate();
-		return "redirect:../main.do";
+		int delCnt = memberService.deleteMember(member);
+		if(delCnt==1) {
+			System.out.println("결과값");
+			session.invalidate();
+			return "redirect:../main.do";
+		}
+		
+		System.out.println("결과값이 없음");
+		
+		return "redirect:signout.do";
+	
 	}
 	
 	// 비밀번호 수정
-	@RequestMapping("userUpdate.do")
-	public String updateMember(MemberVO vo) {
-		memberService.updateMember(vo);
-		return "redirect:getMemberList.do";
+	@RequestMapping("/mypage/userUpdate.do")
+	public String updateMember(String user_pass, String new_pass, HttpSession session) {
+		HashMap map = new HashMap();
+		MemberVO member = (MemberVO)session.getAttribute("user");
+		String user_email = member.getUser_email();
+		map.put("user_email", user_email);
+		map.put("user_pass", user_pass);
+		map.put("new_pass", new_pass);
+		
+		memberService.updateMember(map);
+		return "redirect:modify.do";
 	}
 	
 }
