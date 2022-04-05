@@ -43,13 +43,20 @@
 		WHERE user_email = #{user_email} and bookreport_no = #{bookreport_no}
 	</delete>
 	
-	<select id="searchBookreport" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
-		SELECT * FROM bookreport
+	<select id="searchBookreportList" parameterType="hashmap" resultType="com.webook.domain.CommunityVO">
+		SELECT * FROM (SELECT * FROM bookreport 
+						WHERE ${search_select} like '%'||'${search_text}'||'%')
 			
-		WHERE 
+		WHERE write_date BETWEEN ${date_select} and sysdate
 		
 	</select>
 	
+	<!-- 조회수 증가 -->
+	<update id="viewCount">
+		UPDATE bookreport
+		SET view_count = view_count+1
+		WHERE bookreport_no = ${bookreport_no}
+	</update>
 	
 <!-- 	
 	<select id="getBookreportCount" resultType="com.webook.domain.CommunityVO">

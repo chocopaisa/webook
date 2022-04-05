@@ -26,6 +26,11 @@ public class CommentServiceImpl implements CommentService{
 	public void insertComment(CommentVO vo) {
 		commentDAO.insertComment(vo);
 	}
+	
+	//댓글 삭제
+	public void deleteComment(CommentVO vo) {
+		commentDAO.deleteComment(vo);
+	}
 
 
 }

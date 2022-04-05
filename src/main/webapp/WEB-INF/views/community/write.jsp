@@ -245,7 +245,7 @@
 
 
 				<div class="write_hanjul">
-					<h4><a><input class="write_hanjul_title" placeholder="책 제목" name="product_no" autocomplete="off"/></a>
+					<h4><a><input class="write_hanjul_title" placeholder="상품번호" name="product_no" autocomplete="off"/></a>
 					
 					</h4>
 					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
