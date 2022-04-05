@@ -23,9 +23,10 @@ public class AdminOrderDAOImpl implements AdminOrderDAO {
 	}
 	
 	// 오늘 매출액 
-	public int selectTodaySales() {
-		int count = 0;
+	public Integer selectTodaySales() {
+		Integer count;
 		count = mybatis.selectOne("admin.mapper.selectTodaySales");
+		if(count==null) return null;
 		return count;
 	}
 	

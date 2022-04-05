@@ -31,6 +31,7 @@
   		<value>com.webook.domain.JjoaVO</value>
   		<value>com.webook.domain.AdminVO</value>
   		<value>com.webook.domain.ReportcommunityVO</value>
+  		<value>com.webook.domain.ChartVO</value>
   	</list>
   </property>
  </bean>

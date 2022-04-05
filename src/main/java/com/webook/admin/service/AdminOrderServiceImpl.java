@@ -19,7 +19,7 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	}
 	
 	// 오늘 매출 조회
-	public int selectTodaySales() {
+	public Integer selectTodaySales() {
 		return adminOrderDAO.selectTodaySales();
 	}
 
