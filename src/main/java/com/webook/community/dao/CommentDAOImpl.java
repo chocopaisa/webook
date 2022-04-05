@@ -30,4 +30,9 @@ public class CommentDAOImpl implements CommentDAO{
 		
 	}
 	
+	//댓글 삭제
+	public void deleteComment(CommentVO vo) {
+		System.out.println("===> Mybatis deleteComment() 호출");
+		mybatis.delete("comment.mapper.deleteComment", vo);		
+	}
 }

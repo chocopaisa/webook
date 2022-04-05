@@ -293,23 +293,26 @@
 
 		          </div>
 				  <div class="media">
-					<a class="pull-left" href="">
-						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
+					<a class="pull-left">
+						<img class="media-object" src="${product.product_image }" alt="Image">
 					</a>
 				<div class="media-body">
-					<h4 class="media-heading"><a href="">${bookreport.report_kind }</a></h4>
+					<h4 class="media-heading"><a class="productTitle" href="product_single.do?product_no=${bookreport.product_no }">${product.product_name }</a></h4>
 					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
 					${bookreport.star }</h4>
 					<hr/>
 					<div class="">
-					<p>책설명</p>
+					<p class="productDesc">${product.product_desc }</p>
 					</div>
+					<div class="text-right align-text-bottom">
+					<a><p class="writer">${product.product_writer}</p></a>
+				</div>
 				</div>
 			</div>
 				  <div class="post-comments">
 					  <button type="submit" class="btn btn-book jjoayo-btn" id="jjoayo-btn">좋아요 1</button>
-					  <button type="submit" class="btn btn-book singo-btn pull-right" id="singo-btn">신고</button>
-					  <button type="submit" class="btn btn-book delete-btn pull-right" id="delete-btn">삭제</button>
+					  <button type="submit" class="btn btn-book singo-btn pull-right" id="singo-btn" >신고</button>
+					  <button type="submit" class="btn btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
 					  
 					  
 					<h3 class="post-sub-heading">댓글</h3>

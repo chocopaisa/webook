@@ -1,12 +1,12 @@
 package com.webook.community.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import com.webook.domain.CommunityVO;
 
@@ -22,8 +22,6 @@ public class CommunityDAOImpl implements CommunityDAO {
 		RowBounds rowBounds = new RowBounds(((pNum-1)*10) ,10);
 		
 		return mybatis.selectList("community.mapper.getBookreportList", vo, rowBounds);
-		
-		
 	}
 	
 	//게시물 등록
@@ -38,15 +36,25 @@ public class CommunityDAOImpl implements CommunityDAO {
 		return (CommunityVO) mybatis.selectOne("community.mapper.getBookreport", vo);
 	}
 	
+	//게시글 검색
+	public List<CommunityVO> searchBookreportList(HashMap map, int pNum) {
+		System.out.println("===> Mybatis searchBookreportList() 호출");
+		
+		RowBounds rowBounds = new RowBounds(((pNum-1)*10) ,10);
+		
+		return mybatis.selectList("community.mapper.searchBookreportList", map, rowBounds);
+	}	
 	
+	//게시글 삭제
+	public void deleteBookreport(CommunityVO vo) {
+		System.out.println("===> Mybatis deleteBookreport() 호출");
+		mybatis.insert("community.mapper.deleteBookreport", vo);
+	}
 	
-	
-	/*
-	 * public CommunityVO getBookreportCount(CommunityVO vo, int pNum) { int
-	 * bookreport_count = mybatis.selectOne("community.mapper.getBookreportCount",
-	 * vo);
-	 * 
-	 * CommunityVO pnum_bean = new CommunityVO(bookreport_count, pNum, 10, 5);
-	 * return pnum_bean; }
-	 */
+	//조회수 증가
+	public void viewCount(CommunityVO vo) {
+		System.out.println("===> Mybatis viewCount() 호출");
+		mybatis.update("community.mapper.viewCount", vo);
+	}
+
 }

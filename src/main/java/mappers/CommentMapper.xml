@@ -18,7 +18,12 @@
 					#{comment_content})
 	
 	</insert>
-
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment">
+		DELETE FROM comment_list
+		WHERE bookreport_no = #{bookreport_no}
+	</delete>
 	<!-- 책 검색 자동완성 -->
 <!-- 	<select id="bookSearch" parameterType="HashMap" resultType="String">
 		<choose>

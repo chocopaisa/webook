@@ -13,4 +13,6 @@ public interface CommentDAO {
 	//댓글 작성
 	public void insertComment(CommentVO vo);
 	
+	//댓글 삭제
+	public void deleteComment(CommentVO vo);
 }
