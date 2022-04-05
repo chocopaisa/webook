@@ -22,7 +22,7 @@
 		INSERT INTO bookreport(bookreport_no, user_email, product_no, write_date,
 								bookreport_title, bookreport_content, view_count, report_kind,
                             	star)
-		VALUES(bookreport_seq.nextval, 'webook@com', #{product_no}, sysdate, #{bookreport_title},
+		VALUES(bookreport_seq.nextval, #{user_email}, #{product_no}, sysdate, #{bookreport_title},
 				#{bookreport_content}, 0, #{report_kind}, #{star})
 	
 	</insert>

@@ -30,9 +30,15 @@ public class CommentDAOImpl implements CommentDAO{
 		
 	}
 	
-	//댓글 삭제
+	//댓글 모두 삭제
+	public void deleteAllComment(CommentVO vo) {
+		System.out.println("===> Mybatis deleteAllComment() 호출");
+		mybatis.delete("comment.mapper.deleteAllComment", vo);		
+	}
+	
+	//댓글 개별 삭제
 	public void deleteComment(CommentVO vo) {
 		System.out.println("===> Mybatis deleteComment() 호출");
-		mybatis.delete("comment.mapper.deleteComment", vo);		
+		mybatis.delete("comment.mapper.deleteComment", vo);
 	}
 }
