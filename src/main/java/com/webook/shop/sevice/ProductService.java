@@ -33,4 +33,10 @@ public interface ProductService {
 	List<ProductVO> getOtherBook(ProductVO vo);
 	
 	List<HashMap> getPurchase(MemberVO vo);
+	
+	List<HashMap> prePurchase(MemberVO vo);
+	
+	List<HashMap> prePurchase(MemberVO vo, String pnum);
+	
+	
 }
