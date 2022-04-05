@@ -53,17 +53,10 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
-                                        일별 매출
+                                        지난 일주일 매출
                                     </div>
-                                    <%-- 
-                                    <input hidden="" value="${ }" class="todaysales">
-                                    <input hidden="" value="${ }" class="todaysales">
-                                    <input hidden="" value="${ }" class="todaysales">
-                                    <input hidden="" value="${ }" class="todaysales">
-                                    <input hidden="" value="${ }" class="todaysales">
-                                    <input hidden="" value="${ }" class="todaysales">
-                                    <input hidden="" value="${ }" class="todaysales">
-                                     --%>
+
+                                     
                                     <div class="card-body"><canvas id="todaysales" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
@@ -74,7 +67,7 @@
                                         월별 회원 가입 수 
                                     </div>
                                     <input hidden="">
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="monthmember" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                         </div>                    
@@ -87,7 +80,89 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="../resources/admin/js/adminjs.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="../resources/admin/js/chart-bar-demo.js"></script> 
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+			// 지난 주 일일 매출 차트 
+        	let jsonData = ${json}
+        	console.log(jsonData);
+        	let jsonObject = JSON.stringify(jsonData);
+        	let jdata = JSON.parse(jsonObject);
+        	
+        	let weeklist = new Array();
+        	let weeksales = new Array();
+        	
+
+        	
+        	const weekday = ['','일','월','화','수','목','금','토']
+        	
+        	for(let i=0; i<jdata.length; i++) {
+        		let d = jdata[i];
+        		weeklist.push(weekday[Number(d.LastWeek)])
+        		weeksales.push(d.LastWeekSales)
+        	}
+        	
+        	let data = {
+        				labels : weeklist,
+        				datasets : [{
+        					label : '매출(원)',
+        					backgroundColor :'plum',
+        					data : weeksales
+        				}],
+        				options : {
+        					title : {
+        						display : true,
+        						text : '지난 주 일일 매출'
+        					}
+        				}
+        	};
+        	
+        	let weekctx = document.getElementById("todaysales").getContext('2d');
+        	new Chart(weekctx, {
+        			type : 'bar',
+        			data : data
+        	});
+        	
+        	// 월별 회원가입 수
+        	let jsonData2 = ${json2}
+        	console.log(jsonData2);
+        	let jsonObject2 = JSON.stringify(jsonData2);
+        	let jdata2 = JSON.parse(jsonObject2);
+        	
+        	let monthlist = new Array();
+        	let newmember = new Array();
+        	
+
+        	
+        	const monthname = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+        	
+        	for(let i=0; i<jdata2.length; i++) {
+        		let d2 = jdata2[i];
+        		monthlist.push(monthname[Number(d2.MonthList)])
+        		newmember.push(d2.NewMemCnt)
+        	}
+        	
+        	let data2 = {
+        				labels : monthname,
+        				datasets : [{
+        					label : '명',
+        					backgroundColor :'darkred',
+        					data : newmember
+        				}],
+        				options : {
+        					title : {
+        						display : true,
+        						text : '월별 회원가입 수'
+        					}
+        				}
+        	};
+        	
+        	let monthctx = document.getElementById("monthmember").getContext('2d');
+        	new Chart(monthctx, {
+        			type : 'bar',
+        			data : data2
+        	});
+        	
+        	
+        </script>
     </body>
 </html>

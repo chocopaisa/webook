@@ -25,14 +25,6 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-area me-1"></i>
-                                최근 한달 간 일별 매출
-                            </div>
-                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-chart-area me-1"></i>
                                 월별 매출
                             </div>
                             <div class="card-body"><canvas id="myAreaChartt" width="100%" height="30"></canvas></div>
@@ -43,7 +35,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-pie me-1"></i>
-                                        카테고리별 매출 (TOP 5)
+                                         TOP 5 CATEGORY
                                     </div>
                                     <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
                                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
