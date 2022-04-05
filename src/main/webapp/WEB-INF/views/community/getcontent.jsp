@@ -272,7 +272,7 @@
 				<div class="media-body">
 					<div class="comment-info">
 						<h4 class="comment-author">
-							<a href="" nam >${bookreport.user_email }</a>
+							<a href="" nam >${mem.user_name }</a>
 							
 						</h4>
 						<time>
@@ -280,8 +280,6 @@
 							<fmt:formatDate value="${write_date1 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
 						</time>
 						
-						<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>
-						<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>삭제</a>
 					</div>
 
 					
@@ -310,23 +308,27 @@
 				</div>
 			</div>
 				  <div class="post-comments">
+				  	<c:if test="${sessionScope.user eq bookreport.user_email }">
 					  <button type="submit" class="btn btn-book jjoayo-btn" id="jjoayo-btn">좋아요 1</button>
+					</c:if>
 					  <button type="submit" class="btn btn-book singo-btn pull-right" id="singo-btn" >신고</button>
+					  <c:if test="${sessionScope.user eq bookreport.user_email }">
 					  <button type="submit" class="btn btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
-					  
+					</c:if>
 					  
 					<h3 class="post-sub-heading">댓글</h3>
 					<ul class="media-list comments-list m-bot-50 clearlist"  >
 						<div class="post-comments-form">
 							<!-- 폼태그 사용시 redirect됨 -->
 							<!-- <form method="post"  id="form" role="form" autocomplete="off" > -->
+								<c:if test="${sessionScope.user ne null }">
 								<div class="row">
-	
+									
 									<!-- Comment -->
 									<div class="form-group col-md-12">
 										<h4 class="comment-author" style="padding-left: 20px;" >
 											<input type="hidden" name="bookreport_no" value="${bookreport.bookreport_no }" />
-											<a href="" class="writerId">${bookreport.user_email }</a>
+											<a href="" class="writerId">${sessionScope.user.user_name }</a>
 										</h4>
 										<textarea id="write_content" class="form-control" placeholder="경고문" maxlength="400" style="resize: none; height: 120px;" name="comment_content" ></textarea>
 									</div>
@@ -339,7 +341,7 @@
 	
 								</div>
 						<!-- </form>  -->
-
+								</c:if>
 						</div>
 						<!-- Comment Item start-->
 						<div id="commentList">
@@ -348,14 +350,17 @@
 							<div class="media-body">
 								<div class="comment-info">
 									<h4 class="comment-author">
-										<a href="">${cl.user_email }</a>
+										<a name="comment_author">${cl.user_email }</a>
 									</h4>
+									<input type="hidden" name="comment_no" value="${cl.comment_no }" />
 									<time>
 										<fmt:parseDate value="${cl.comment_write_date }" var="write_date2" pattern="yyyy-mm-dd HH:mm:ss" />
 										<fmt:formatDate value="${write_date2 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
 									</time>
-									<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>
-									<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>삭제</a>
+									<a class="comment-button pull-right" ><i class="tf-ion-chatbubbles"></i>신고</a>
+									
+									<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>
+									
 								</div>
 								<p>${cl.comment_content}</p>
 							</div>
@@ -480,6 +485,31 @@
 			})
 		})
 		
+		//댓글 삭제
+		$(document).on('click', ".deleteComment", function() {
+			
+			$.ajax({
+				type:'GET',
+				contentType:"application/json",
+				url:'deleteComment.do',
+				data:{
+					"bookreport_no" : $('input[name=bookreport_no]').val(),
+					"comment_no" : $(this).parent().find('input[name=comment_no]').val()
+				},
+				dataType : "text",
+				success : function(data) {
+					
+					 console.log(data);
+					getCommentList();
+				},
+				error : function(err) {
+					alert("error");
+					console.log(err);
+				}
+				
+			})
+		})		
+		
 	
 	// 댓글리스트 재출력
 	function getCommentList() {
@@ -499,7 +529,7 @@
 				console.log(result);
 				var htmls = "";
 				if(result.length < 1){
-					htmls.push("등록된 댓글이 없습니다.");
+					htmls = "";
 				} else {
 					for(var i=0; i<result.length; i++) {
 					var date = new Date(result[i].comment_write_date);
@@ -508,9 +538,10 @@
 						str += '<div class="comment-info">'
 						str += '<h4 class="comment-author">'
 						str += '<a href="">'+result[i].user_email+'</a></h4>'
+						str += '<input type="hidden" name="comment_no" value="'+result[i].comment_no+'" />'
 						str += '<time>'+date.toLocaleString()+'</time>'
 						str += '<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>'
-						str += '<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>삭제</a>'
+						str += '<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>'
 						str += '</div><p>'+result[i].comment_content+'</p></div></li>'
 						htmls +=str;
 						

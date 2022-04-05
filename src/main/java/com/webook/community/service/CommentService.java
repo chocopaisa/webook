@@ -13,6 +13,9 @@ public interface CommentService {
 	//댓글 작성
 	void insertComment(CommentVO vo);
 	
-	//댓글 삭제
+	//댓글 모두 삭제
+	void deleteAllComment(CommentVO vo);
+	
+	//댓글 개별 삭제
 	void deleteComment(CommentVO vo);
 }

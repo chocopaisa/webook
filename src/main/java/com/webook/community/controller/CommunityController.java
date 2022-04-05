@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,11 +17,13 @@ import com.webook.community.service.CommentService;
 import com.webook.community.service.CommunityService;
 import com.webook.domain.CommentVO;
 import com.webook.domain.CommunityVO;
+import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
+import com.webook.member.service.MemberService;
 import com.webook.shop.sevice.ProductService;
 
 @Controller
-@RequestMapping("/community")
+@RequestMapping("community")
 public class CommunityController {
 
 	@Autowired
@@ -29,37 +32,41 @@ public class CommunityController {
 	private CommentService commentService;
 	@Autowired 
 	private ProductService productService;
+	@Autowired
+	private MemberService memberService;
 	
-	// step에 지정한 것들 외에 것이 들어가면 그대로 적용해서 보냄
-	@RequestMapping("/{step}.do")
-	public String viewPage(@PathVariable String step) {
-		return "/community/"+step;
-	}
 	// 게시글 목록 검색
-	@RequestMapping("/list.do")
+	@RequestMapping("list.do")
 	public void getBookreportList(CommunityVO vo, Model model, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
 		
 		model.addAttribute("bookreportList", communityService.getBookreportList(vo, pNum));
 		
 	}
 	// 게시글 등록
-	@RequestMapping("/insert.do")
-	public String insertBookreport(CommunityVO vo) throws IOException {
-		//System.out.print(vo.getBookreport_content());
-		communityService.insertBookreport(vo);
-		return "redirect:list.do";
+	@RequestMapping("insert.do")
+	public String insertBookreport(CommunityVO vo, HttpSession session) throws IOException {
+		if(session.getAttribute("user") != null) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			vo.setUser_email(user.getUser_email());
+			communityService.insertBookreport(vo);
 		
+		}
+		return "redirect:list.do";
 	}
 	
 	// 게시글 상세 / 댓글
-	@RequestMapping("/getcontent.do")
+	@RequestMapping("getcontent.do")
 	public void getBookreport(CommunityVO vo, Model m, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
 		CommunityVO result = communityService.getBookreport(vo);
 		CommentVO re = new CommentVO();
 		ProductVO pr = new ProductVO();
+		MemberVO mem = new MemberVO();
 		pr.setProduct_no(result.getProduct_no());
 		re.setBookreport_no(vo.getBookreport_no());
+		mem.setUser_email(vo.getUser_email());
 		
+		//유저명
+		m.addAttribute("member", mem);
 		//조회수 증가
 		communityService.viewCount(vo);
 		//게시글 상세
@@ -72,7 +79,7 @@ public class CommunityController {
 	}
 	
 	//게시글 검색
-	@RequestMapping("/searchBookreportList.do")
+	@RequestMapping("searchBookreportList.do")
 	public String searchBookreportList(String date_select, String search_select, String search_text, Model m, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
 		System.out.println("검색기능");
 		HashMap map = new HashMap();
@@ -86,12 +93,16 @@ public class CommunityController {
 	}
 	
 	//게시글 삭제
-	@RequestMapping("/delete.do")
-	public String deleteBookreport(CommunityVO vo) throws IOException {
+	@RequestMapping("delete.do")
+	public String deleteBookreport(CommunityVO vo, HttpSession session) throws IOException {
+		if(session.getAttribute("user") != null) {
 		CommentVO re = new CommentVO();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		vo.setUser_email(user.getUser_email());
 		re.setBookreport_no(vo.getBookreport_no());
-		commentService.deleteComment(re);
+		commentService.deleteAllComment(re);
 		communityService.deleteBookreport(vo);
+		}
 		return "redirect:list.do";
 		
 	} 
@@ -99,7 +110,7 @@ public class CommunityController {
 	
 	
 	//댓글 목록 ajax
-	@RequestMapping("/getCommentList.do")
+	@RequestMapping("getCommentList.do")
 	@ResponseBody
 	public List<CommentVO> getCommentList(CommunityVO vo, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
 		CommunityVO result = communityService.getBookreport(vo);
@@ -109,13 +120,28 @@ public class CommunityController {
 	}
 	
 	// 댓글 작성
-	@RequestMapping(value="/insertComment.do" )
+	@RequestMapping(value="insertComment.do" )
 	@ResponseBody
-	public void insertComment(CommentVO vo) throws IOException {
-		System.out.print(vo.getComment_content());
+	public void insertComment(CommentVO vo, HttpSession session) throws IOException {
+		if(session.getAttribute("user") != null) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		vo.setUser_email(user.getUser_email());
 		commentService.insertComment(vo);
+		}
+		
 	}
 	
+	//댓글 개별 삭제
+	@RequestMapping("deleteComment.do")
+	@ResponseBody
+	public void deleteComment(CommentVO vo, HttpSession session) throws IOException {
+		if(session.getAttribute("user") != null) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		vo.setUser_email(user.getUser_email());
+		commentService.deleteComment(vo);
+		}
+		
+	}
 	
 	
 }

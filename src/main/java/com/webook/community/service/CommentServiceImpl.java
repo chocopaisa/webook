@@ -27,10 +27,14 @@ public class CommentServiceImpl implements CommentService{
 		commentDAO.insertComment(vo);
 	}
 	
-	//댓글 삭제
+	//댓글 모두 삭제
+	public void deleteAllComment(CommentVO vo) {
+		commentDAO.deleteAllComment(vo);
+	}
+	
+	//댓글 개별 삭제
 	public void deleteComment(CommentVO vo) {
 		commentDAO.deleteComment(vo);
 	}
-
 
 }
