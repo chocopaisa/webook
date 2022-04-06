@@ -479,7 +479,7 @@
     <script type="text/javascript" src="../resources/plugins/google-map/gmap.js"></script>
 
     <!-- Main Js File -->
-    <script src="../resources/s/script.js"></script>
+    <script src="../resources/js/script.js"></script>
     
 
 

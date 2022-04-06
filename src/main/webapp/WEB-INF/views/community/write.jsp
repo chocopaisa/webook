@@ -217,6 +217,13 @@ pageEncoding="UTF-8"%>
     .searchBookList > li > div:hover {
       background: gray;
     }
+    .star > div {
+    	display: inline-block;
+    }
+    .star select {
+    	height : 2em;
+    }
+    
   </style>
   <body id="body">
     <%@ include file="/WEB-INF/views/header.jsp" %>
@@ -298,7 +305,6 @@ pageEncoding="UTF-8"%>
                 </div>
 
                 <div class="write_hanjul">
-                  <<<<<<< HEAD
                   <h4>
                     <input
                       class="write_hanjul_title"
@@ -306,14 +312,24 @@ pageEncoding="UTF-8"%>
                       name="product_no"
                       autocomplete="off"
                     />
-                    <input name="product_no" value="책번호" hidden="hidden" />
+                    <input id="bookId" name="product_no" value="책번호" hidden="hidden" />
                   </h4>
-                  <h4>
-                    <i class="tf-ion-ios-star"></i
-                    ><i class="tf-ion-ios-star-half"></i
-                    ><i class="tf-ion-ios-star-outline"></i>
-                    <input name="star" />3.5
+                  <div class="star">
+                  <div >
+                  <h4 class="review-star">
+                    
                   </h4>
+                  </div>
+                  <div class="w-100">
+                  <select class="w-100" id="stars">
+                  	<option value='5'>5</option>
+                  	<option value='4'>4</option>
+                  	<option value='3'>3</option>
+                  	<option value='2'>2</option>
+                  	<option value='1'>1</option>
+                  </select>
+                  </div>
+                  </div>
                 </div>
 
                 <hr />
@@ -385,10 +401,10 @@ pageEncoding="UTF-8"%>
 
       // 책 이름 클릭시 검색창 보이기
       $(".write_hanjul_title").click(function () {
-        const offset = $(this).offset();
+        const offset2 = $(this).offset();
         $("#bookSearch").offset({
-          left: offset.left + 1,
-          top: offset.top + 30,
+          left: offset2.left + 1,
+          top: offset2.top + 30,
         });
         $("#bookSearch .bookKeyword").focus();
       });
@@ -434,10 +450,50 @@ pageEncoding="UTF-8"%>
           LayerPopup.offset(offset);
         }
       });
-
+      $('.star').hide();
       $(document).on("click", ".searchBookList > li > div", function () {
-        console.log($(this));
+    	const bookName = $(this).find('h4').text();
+        const bookNo = $(this).parent().attr("value");
+        $('.write_hanjul_title').val(bookName);
+        $('#bookId').val(bookNo);
+        $('#bookSearch').offset(offset);
+        $('.star').show()
       });
+    </script>
+    
+    <script>
+    	// 별점 별찍기
+    	// 리뷰 별점에 따라 만들기
+    	
+    	changeStar(10);
+    	$('#stars').change(function(){
+	        const stars = $(this).val() * 2;
+	        changeStar(stars);
+        });
+    	
+    	function changeStar(stars){
+    		console.log(stars);
+	        let result = "";
+	        if(stars%2 == 0){
+	          
+	          for(let i=0; i< stars/2; i++){
+	            result += "<i class='tf-ion-ios-star'></i>";
+	          }
+	          for(let i=0; i < 5-(stars/2); i++){
+	            result += '<i class="tf-ion-ios-star-outline"></i>';
+	          }
+	        } else {
+	          for(let i=0; i< stars/2 -1; i++){
+	            result += "<i class='tf-ion-ios-star'></i>";
+	          }
+	          result += "<i class='tf-ion-ios-star-half'></i>";
+	          
+	          for(let i=0; i < 5-(stars/2)-1; i++){
+	            result += '<i class="tf-ion-ios-star-outline"></i>';
+	          }
+	        }
+	        $('.review-star').html(result);
+    	}
     </script>
   </body>
 </html>

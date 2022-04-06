@@ -4,6 +4,7 @@
 <mapper namespace="myreport.mapper">
 	<select id="searchReport" parameterType="com.webook.domain.MemberVO" resultType="com.webook.domain.CommunityVO">
 		SELECT * FROM bookreport WHERE user_email = #{user_email}
+		ORDER BY write_date desc
 	</select>
 	
 	<select id="searchComment" parameterType="com.webook.domain.MemberVO" resultType="hashmap">
@@ -19,6 +20,7 @@
 		        INNER JOIN bookreport br
 		        ON cst.bookreport_no = br.bookreport_no
 		WHERE cst.user_email = #{user_email}
+		ORDER BY cst.comment_write_date desc
 	</select>
 
 </mapper>

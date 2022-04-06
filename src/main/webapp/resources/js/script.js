@@ -124,8 +124,56 @@
 		})
 		
 	});
-		
-		
+	// 측면 이동바
+	$('.btn_gotop').css({
+		'position' : 'fixed',
+		'right' : '0px',
+		'z-index' : '999',
+		'cursor' : 'pointer',
+		'font-size' : '20px',
+		'text-align' : 'center',
+		'width' : '60px',
+		'height' : '60px',
+		'outline' : 'none',
+		'border' : '1px solid #ccc',
+		'padding':'15px 20px',
+		'color' : 'white'
+		 
+	});
+	// 현재 주소
+	let loca = $(location).attr('href');
+	let currentLoca = loca.split('webook/')[1];
+	
+	// 현재 주소에 따라 뜨는 버튼 변경
+	$('.btn_gotop').hide();
+	if(currentLoca.startsWith('shop')){
+		$('.btn-basic').show()
+		$('.btn-shop').show()
+	}
+	if(currentLoca.startsWith('community')){
+		$('.btn-basic').show()
+		$('.btn-community').show()
+		if(currentLoca.startsWith('community/getcontent.do')){
+			$('.btn-chatbox').show()
+			
+		}
+	}
+	if(currentLoca.startsWith('main.do')){
+		$('.btn-basic').show()
+	}
+	
+	// 상하 위치 조정
+	let bottom = 60;
+	$('.btn_gotop').each(function(){
+		if($(this).css('display') != 'none'){
+			bottom += 60;
+			$(this).css('bottom',bottom + 'px');
+		}
+	})
+	// 상단 이동 버튼 클릭시 애니메이션 이동
+	$('.btn-top').click(function(){
+		$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+	})
 	
 
 })(jQuery);
