@@ -145,9 +145,7 @@
 .btn-book.insert-btn {
 	background-color: black;
 }
-.btn-book.jjoayo-btn {
-	background-color: red;
-}
+
 .btn-book.delete-btn {
 	background-color: skyblue;
 }
@@ -309,7 +307,7 @@
 			</div>
 				  <div class="post-comments">
 				  	<c:if test="${sessionScope.user ne null }">
-					  <button type="submit" class="btn btn-book jjoayo-btn" id="jjoayo-btn">좋아요 1</button>
+					  <button type="button" class="btn btn-book jjoayo-btn" id="jjoayo-btn" style="background-color: grey" >좋아요 ${jjoa.jjoa_count}</button>
 					</c:if>
 					  <button type="button" class="btn btn-book singo-btn pull-right" id="singo-btn" data-toggle="modal" data-target="#reportBookModal" >신고</button>
 					  <c:if test="${sessionScope.user.user_email eq bookreport.user_email }">
@@ -407,7 +405,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary" id="reportBook">신고</button>
+        <button type="button" class="btn btn-success" id="reportBook">신고</button>
       </div>
     
     </div>
@@ -612,6 +610,26 @@
     				} else{
 						alert("신고는 한번만 할 수 있습니다");
 						$('#reportBookModal').modal('hide');
+    					}
+    				},
+    			error : function(err){
+    				console.log(err);
+    			}
+    		}); //end of ajax
+    	}); //end on
+    	
+    	$('#jjoayo-btn').on("click", function(){
+		
+    		$.ajax({
+    			type:'GET',
+    			url:'jjoa.do',
+    			data: {bookreport_no : "${bookreport.bookreport_no}"},
+    			success: function(result){
+    				console.log(result);
+    				if(result=='0'){
+    					$('#jjoayo-btn').attr("style", "background-color : red");
+    				} else{
+    					$('#jjoayo-btn').attr("style", "background-color : grey");
     					}
     				},
     			error : function(err){

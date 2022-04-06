@@ -71,13 +71,30 @@
 		SELECT * FROM report_article
 		WHERE article_no = #{article_no} and rep_article_email = #{rep_article_email}
 	</select>
-<!-- 	
-	<select id="getBookreportCount" resultType="com.webook.domain.CommunityVO">
-		SELECT count(*) FROM bookreport
-		<if test="report_kind != null">
-		WHERE report_kind = #{report_kind}
-		</if> 
-	</select> -->
+	
+	<!-- 좋아요 등록 -->
+	<insert id="insertJjoa" parameterType="com.webook.domain.CommunityVO">
+		INSERT INTO jjoa(jjoa_no, bookreport_no, user_email)
+		VALUES(jjoa_seq.nextval, #{bookreport_no}, #{user_email})
+	</insert>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteJjoa" parameterType="com.webook.domain.CommunityVO">
+		DELETE FROM jjoa
+		WHERE bookreport_no = #{bookreport_no} and user_email = #{user_email}
+	</delete>
+	
+	<!-- 좋아요 중복 체크 -->
+	<select id="checkJjoa" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
+		SELECT * FROM jjoa
+		WHERE bookreport_no = #{bookreport_no} and user_email = #{user_email}
+	</select>
+	
+	<!-- 좋아요 갯수 -->
+	<select id="countJjoa" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
+		SELECT count(*) jjoa_count FROM jjoa
+		WHERE bookreport_no = #{bookreport_no}
+	</select>	
 
 
 

@@ -30,6 +30,16 @@ public interface CommunityService {
 	
 	//게시글 신고 체크
 	ReportcommunityVO reportBookCheck(ReportcommunityVO vo);
-	/* CommunityVO getBookreportCount(CommunityVO vo, int pNum); */
 	
+	//좋아요 등록
+	void insertJjoa(CommunityVO vo);
+	
+	//좋아요 취소
+	void deleteJjoa(CommunityVO vo);
+	
+	//좋아요 중복체크
+	CommunityVO checkJjoa(CommunityVO vo);
+	
+	//좋아요 count
+	CommunityVO countJjoa(CommunityVO vo);	
 }

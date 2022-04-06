@@ -13,9 +13,15 @@ public class CommunityVO {
 	private int star;
 	private String user_name;
 	private int jjoa_no;
-
+	private int jjoa_count;
 	
 	
+	public int getJjoa_count() {
+		return jjoa_count;
+	}
+	public void setJjoa_count(int jjoa_count) {
+		this.jjoa_count = jjoa_count;
+	}
 	public String getUser_name() {
 		return user_name;
 	}
