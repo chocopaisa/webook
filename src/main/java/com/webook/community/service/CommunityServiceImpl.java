@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.webook.community.dao.CommunityDAO;
 import com.webook.domain.CommunityVO;
+import com.webook.domain.ReportcommunityVO;
 
 @Service("communityService")
 public class CommunityServiceImpl implements CommunityService{
@@ -43,5 +44,10 @@ public class CommunityServiceImpl implements CommunityService{
 	//조회수 증가
 	public void viewCount(CommunityVO vo) {
 		communityDAO.viewCount(vo);
+	}
+	
+	//게시글 신고
+	public void reportBook(ReportcommunityVO vo) {
+		communityDAO.reportBook(vo);
 	}
 }
