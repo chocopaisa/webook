@@ -309,7 +309,6 @@ pageEncoding="UTF-8"%>
                     <input
                       class="write_hanjul_title"
                       placeholder="책 제목"
-                      name="product_no"
                       autocomplete="off"
                     />
                     <input id="bookId" name="product_no" value="책번호" hidden="hidden" />
