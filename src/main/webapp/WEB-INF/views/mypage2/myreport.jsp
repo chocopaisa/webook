@@ -150,7 +150,7 @@ FACEBOOK: https://www.facebook.com/themefisher
              
              <c:forEach items="${reports }" var="report">
               <tr>
-                <td><a href="#"><h4>${report.bookreport_title }</h4></a></td>
+                <td><a href="../community/getcontent.do?bookreport_no=${report.bookreport_no }"><h4>${report.bookreport_title }</h4></a></td>
                 <td class="text-right">${report.report_kind } 게시판</td>
                 <td class="text-right">${report.write_date }</td>
               </tr>
@@ -185,7 +185,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <td colspan="3"><div class="report-content"><h4>${comment.COMMENT_CONTENT }</h4></div></td>
               </tr>
               <tr>
-                <td><a href="#">${comment.BOOKREPORT_TITLE }</a></td>
+                <td><a href="../community/getcontent.do?bookreport_no=${comment.BOOKREPORT_NO }">${comment.BOOKREPORT_TITLE }</a></td>
                 <td class="text-right">${comment.REPORT_KIND } 게시판</td>
                 <td class="text-right">${comment.COMMENT_WRITE_DATE }</td>
               </tr>
@@ -268,6 +268,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 		}
 		
 		// 페이지 눌렀을때 보여주기
+		$('#reportList .pagination > li > a:eq(0)').parent().addClass('active')
 		showReportPerPage(1);
 		$('#reportList .pagination > li > a').click(function(){
 			const page = $(this).attr("value")
@@ -302,6 +303,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 			const li = '<li><a href="#comment-list" value="'+idx+'">'+idx+'</a></li>';
 			$('#commentList .pagination').append(li);
 		}
+		$('#commentList .pagination > li > a:eq(0)').parent().addClass('active')
 		showCommentPerPage(1);
 		$('#commentList .pagination > li > a').click(function(){
 			const page = $(this).attr("value")

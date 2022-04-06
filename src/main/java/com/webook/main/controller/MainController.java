@@ -31,7 +31,7 @@ public class MainController {
 				continue;
 			}
 			int end = content.indexOf("</blockquote>");
-			reviews.get(idx).put("BOOKREPORT_CONTENT",content.substring(start + 12, end));
+			reviews.get(idx).put("BOOKREPORT_CONTENT", content.substring(start + 12, end));
 			System.out.println(content.substring(start + 12, end));
 		}
 		m.addAttribute("reviews", reviews);
@@ -40,5 +40,12 @@ public class MainController {
 		m.addAttribute("bestSellers", bestSellers);
 		
 		return "index";
+	}
+	
+	
+	@RequestMapping("/community/main.do")
+	public String showCommuMain() {
+		
+		return "community/main";
 	}
 }
