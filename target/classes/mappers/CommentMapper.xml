@@ -5,9 +5,10 @@
 
 	<!-- 댓글 페이지 리스트 -->
 	<select id="getCommentList" parameterType="com.webook.domain.CommentVO" resultType="com.webook.domain.CommentVO">
-		SELECT * FROM comment_list
-		WHERE bookreport_no = #{bookreport_no}
-		ORDER BY comment_no desc
+		SELECT a.*, b.user_name FROM comment_list a
+		INNER JOIN customer_info b ON a.user_email = b.user_email
+		WHERE a.bookreport_no = #{bookreport_no}
+		ORDER BY a.comment_no desc
 	</select>
 
 	<!-- 댓글 작성 -->

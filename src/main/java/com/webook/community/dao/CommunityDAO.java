@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.webook.domain.CommunityVO;
+import com.webook.domain.ReportcommunityVO;
 
 public interface CommunityDAO {
 	//게시글 목록 페이지 리스트
@@ -23,6 +24,9 @@ public interface CommunityDAO {
 	
 	//조회수 증가
 	public void viewCount(CommunityVO vo);
+	
+	//게시글 신고
+	public void reportBook(ReportcommunityVO vo);
 	
 	/* public CommunityVO getBookreportCount(CommunityVO vo, int pNum); */
 	

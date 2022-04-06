@@ -19,6 +19,7 @@ import com.webook.domain.CommentVO;
 import com.webook.domain.CommunityVO;
 import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
+import com.webook.domain.ReportcommunityVO;
 import com.webook.member.service.MemberService;
 import com.webook.shop.sevice.ProductService;
 
@@ -32,8 +33,7 @@ public class CommunityController {
 	private CommentService commentService;
 	@Autowired 
 	private ProductService productService;
-	@Autowired
-	private MemberService memberService;
+
 	
 	// 게시글 목록 검색
 	@RequestMapping("list.do")
@@ -60,13 +60,9 @@ public class CommunityController {
 		CommunityVO result = communityService.getBookreport(vo);
 		CommentVO re = new CommentVO();
 		ProductVO pr = new ProductVO();
-		MemberVO mem = new MemberVO();
 		pr.setProduct_no(result.getProduct_no());
 		re.setBookreport_no(vo.getBookreport_no());
-		mem.setUser_email(vo.getUser_email());
-		
-		//유저명
-		m.addAttribute("member", mem);
+
 		//조회수 증가
 		communityService.viewCount(vo);
 		//게시글 상세
@@ -143,5 +139,18 @@ public class CommunityController {
 		
 	}
 	
+	//게시글 신고
+	@RequestMapping("reportBook.do")
+	public String reportBook(ReportcommunityVO vo, String ref_article_info, HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			vo.setRep_article_info(ref_article_info);
+			vo.setRep_article_email(user.getUser_email());
+			//if(communityService.reportBookCheck(vo) == null){
+				communityService.reportBook(vo);
+			//}
+		}
+		return "redirect:getcontent.do?bookreport_no="+vo.getArticle_no();
+	}
 	
 }
