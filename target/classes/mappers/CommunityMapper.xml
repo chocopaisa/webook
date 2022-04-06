@@ -45,11 +45,11 @@
 	</delete>
 	
 	<select id="searchBookreportList" parameterType="hashmap" resultType="com.webook.domain.CommunityVO">
-		SELECT * FROM (SELECT * FROM bookreport 
+		SELECT * FROM (SELECT * FROM bookreport a INNER JOIN customer_info b ON a.user_email = b.user_email
 						WHERE ${search_select} like '%'||'${search_text}'||'%')
 			
 		WHERE write_date BETWEEN ${date_select} and sysdate
-		
+		ORDER BY bookreport_no desc
 	</select>
 	
 	<!-- 조회수 증가 -->
@@ -59,6 +59,18 @@
 		WHERE bookreport_no = ${bookreport_no}
 	</update>
 	
+	<!-- 게시글 신고 -->
+	<insert id="reportBook" parameterType="com.webook.domain.ReportcommunityVO">
+		INSERT INTO report_article(rep_article_no, rep_article_info, rep_article_date,
+                            article_no, rep_article_email)
+		VALUES(report_article_seq.nextval, #{rep_article_info}, sysdate, #{article_no}, #{rep_article_email})
+	</insert>
+	
+	<!-- 신고 중복 체크 -->
+	<select id="reportBookCheck" parameterType="com.webook.domain.ReportcommunityVO" resultType="com.webook.domain.ReportcommunityVO">
+		SELECT * FROM report_article
+		WHERE article_no = #{article_no} and rep_article_email = #{rep_article_email}
+	</select>
 <!-- 	
 	<select id="getBookreportCount" resultType="com.webook.domain.CommunityVO">
 		SELECT count(*) FROM bookreport

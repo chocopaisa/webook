@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.webook.domain.CommunityVO;
+import com.webook.domain.ReportcommunityVO;
 
 @Repository("communityDAO")
 public class CommunityDAOImpl implements CommunityDAO {
@@ -55,6 +56,12 @@ public class CommunityDAOImpl implements CommunityDAO {
 	public void viewCount(CommunityVO vo) {
 		System.out.println("===> Mybatis viewCount() 호출");
 		mybatis.update("community.mapper.viewCount", vo);
+	}
+	
+	//게시글 신고
+	public void reportBook(ReportcommunityVO vo) {
+		System.out.println("===> Mybatis reportBook() 호출");
+		mybatis.insert("community.mapper.reportBook", vo);
 	}
 
 }

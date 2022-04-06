@@ -19,6 +19,7 @@ import com.webook.domain.CommentVO;
 import com.webook.domain.CommunityVO;
 import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
+import com.webook.domain.ReportcommunityVO;
 import com.webook.member.service.MemberService;
 import com.webook.shop.sevice.ProductService;
 
@@ -138,5 +139,18 @@ public class CommunityController {
 		
 	}
 	
+	//게시글 신고
+	@RequestMapping("reportBook.do")
+	public String reportBook(ReportcommunityVO vo, String ref_article_info, HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			vo.setRep_article_info(ref_article_info);
+			vo.setRep_article_email(user.getUser_email());
+			//if(communityService.reportBookCheck(vo) == null){
+				communityService.reportBook(vo);
+			//}
+		}
+		return "redirect:getcontent.do?bookreport_no="+vo.getArticle_no();
+	}
 	
 }

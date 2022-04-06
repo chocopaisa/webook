@@ -306,7 +306,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 					<select class="search_select" name="search_select" >
 						<option value="bookreport_title">제목</option>
 						<option value="bookreport_content">내용</option>
-						<option value="user_email">작성자</option>
+						<option value="user_name">작성자</option>
 					</select>
 					<input id="search_text" name="search_text">
 					<button class="btn btn-main" >검색</button>
