@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!-- 
 THEME: Aviato | E-commerce template
@@ -96,6 +98,10 @@ ul.top-menu {
 	max-height: 360px;
 	margin-top: 30px;
 }
+
+#details p{
+white-space: pre-wrap;
+}
 </style>
 
 <script
@@ -120,7 +126,7 @@ ul.top-menu {
 					<ol class="breadcrumb">
 						<li><a href="index.html">Home</a></li>
 						<li><a href="shop_korean.do">Shop</a></li>
-						<li><a href="purchase.do"> community</a></li>
+						<li><a href="/webook/community/list.do"> community</a></li>
 					</ol>
 				</div>
 
@@ -134,7 +140,7 @@ ul.top-menu {
 								<!--************************************** me art lab slider 슬라이더 없이 사진만 나오게 수정********************************* -->
 								<div class='carousel-inner '>
 									<div class='item active'>
-										<img src='${product.product_image }' />
+										<img style="max-height: 550px; margin-right: 10px;" src='${product.product_image }' />
 									</div>
 								</div>
 								<!-- sag sol 없앰 -->
@@ -148,21 +154,26 @@ ul.top-menu {
 					<form action="payment.do" method="get" id="frm">
 						<div class="single-product-details">
 							<h2>${product.product_name }</h2>
-							<p class="productWriter">${product.product_writer }</p>
+							<p class="productWriter">${product.product_writer } 지음   |   ${product.product_publisher } | ${product.product_date } 출간</p>
 							<hr />
-							<p class="productPublisher">${product.product_publisher }</p>
+							
 							<br />
+							
 							<p class="product-price" style="font-weight: bolder;">정가 :
-								${product.product_price }원</p>
+								<fmt:formatNumber value="${product.product_price }" pattern="#,###" />원</p>
+								
 							<p class="product-price"
 								style="font-weight: bolder; font-size: larger;">할인가 :
 								${product.product_sale }원</p>
+								<p class="product-price" style=" font-size:large;">
+								 판매가 : ${product.product_lang }원</p>
 							<br />
 							<p class="product-price" style="color: black; font-size: small;">
 								배송비 : 3000원</p>
+							
 
 
-							<div class="product-quantity">
+							<div class="product-quantity" style="margin-top: 80px;">
 								<span>Quantity : </span>
 								<div class="product-quantity-slider">
 									<input id="product-quantity" type="text" value="1"
@@ -172,12 +183,13 @@ ul.top-menu {
 							</div>
 						</div>
 
-
+						<div style="margin-top: 80px;">
 						<button type="button" class="btn btn-main mt-20" id="addCart"
 							style="font-size: large;">장바구니</button>
 						<!-- -> 버튼으로 바꾸기 -->
 						<button type="submit" class="btn btn-main mt-20"
 							style="font-size: large;">바로 구매</button>
+						</div>	
 					</form>
 				</div>
 			</div>
@@ -203,6 +215,7 @@ ul.top-menu {
 						<div class="tab-content patternbg">
 							<div id="details" class="tab-pane fade active in">
 								<h4>Product Description</h4>
+								
 								<p>${product.product_desc }</p>
 							</div>
 
@@ -251,7 +264,7 @@ ul.top-menu {
 					<div class="main" style="margin-bottom: 30px;">
 						<p class="productDescImage">
 							<img class="main"
-								style="width: 1000px; height: 1000px; margin-bottom: 30px;" ${product.product_desc_image }"   />
+								style="width: 1000px; height: 1000px; margin-bottom: 30px;" src="${product.product_desc_image }"/>
 						</p>
 					</div>
 
@@ -260,7 +273,7 @@ ul.top-menu {
 			</div>
 	</section>
 
-
+<!--  관련 장르 도서  -->
 	<section class="products related-products section">
 
 		<div class="container">
@@ -300,7 +313,8 @@ ul.top-menu {
 								<h4>
 									<a href="product_single.do?product_no=${products.product_no }">${products.product_name }</a>
 								</h4>
-								<p class="price">${products.product_price}원</p>
+								<p class="price"><fmt:formatNumber value="${product.product_price }" pattern="#,###" />원</p>
+								
 							</div>
 
 						</div>
@@ -317,40 +331,9 @@ ul.top-menu {
 
 
 
-	<!-- Modal 없앰-->
+	<!-- footer -->
 
-	<footer class="footer section text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<ul class="social-media">
-						<li><a href="https://www.facebook.com/themefisher"> <i
-								class="tf-ion-social-facebook"></i>
-						</a></li>
-						<li><a href="https://www.instagram.com/themefisher"> <i
-								class="tf-ion-social-instagram"></i>
-						</a></li>
-						<li><a href="https://www.twitter.com/themefisher"> <i
-								class="tf-ion-social-twitter"></i>
-						</a></li>
-						<li><a href="https://www.pinterest.com/themefisher/"> <i
-								class="tf-ion-social-pinterest"></i>
-						</a></li>
-					</ul>
-					<ul class="footer-menu text-uppercase">
-						<li><a href="contact.html">CONTACT</a></li>
-						<li><a href="shop.html">SHOP</a></li>
-						<li><a href="pricing.html">Pricing</a></li>
-						<li><a href="contact.html">PRIVACY POLICY</a></li>
-					</ul>
-					<p class="copyright-text">
-						Copyright &copy;2021, Designed &amp; Developed by <a
-							href="https://themefisher.com/">Themefisher</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<!-- 
     Essential Scripts
     =====================================-->

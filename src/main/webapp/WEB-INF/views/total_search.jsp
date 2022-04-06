@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!-- 
@@ -26,7 +25,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 <!-- Basic Page Needs
   ================================================== -->
 <meta charset="utf-8">
-<title>WEBOOK | 해외상품목록</title>
+<title>WEBOOK | 국내상품목록</title>
 
 <!-- Mobile Specific Metas
   ================================================== -->
@@ -38,25 +37,25 @@ FACEBOOK: https://www.facebook.com/themefisher
 <meta name="generator" content="Themefisher Constra HTML Template v1.0">
 
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="../resources/images/favicon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="resources/images/favicon.png" />
 
 <!-- Themefisher Icon font -->
-<link rel="stylesheet" href="../resources/plugins/themefisher-font/style.css">
+<link rel="stylesheet" href="resources/plugins/themefisher-font/style.css">
 <!-- bootstrap.min css -->
-<link rel="stylesheet" href="../resources/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/plugins/bootstrap/css/bootstrap.min.css">
 
 <!-- Animate css -->
-<link rel="stylesheet" href="../resources/plugins/animate/animate.css">
+<link rel="stylesheet" href="resources/plugins/animate/animate.css">
 <!-- Slick Carousel -->
-<link rel="stylesheet" href="../resources/plugins/slick/slick.css">
-<link rel="stylesheet" href="../resources/plugins/slick/slick-theme.css">
+<link rel="stylesheet" href="resources/plugins/slick/slick.css">
+<link rel="stylesheet" href="resources/plugins/slick/slick-theme.css">
 
 
 
 <!-- Main Stylesheet -->
 
 
-<link rel="stylesheet" href="../resources/css/style.css">
+<link rel="stylesheet" href="resources/css/style.css">
 <!-- *************************쇼핑몰 상품 목록 내부  *********************************** -->
 <style type="text/css">
 table {
@@ -76,7 +75,7 @@ table, td, th {
  position: absolute;
   top:12.5px;
   left:12.5px;
-  }	
+  }
   
   .product-content{
 
@@ -134,7 +133,10 @@ table, td, th {
 <%@ include file="/WEB-INF/views/header.jsp" %>
 
 <%@ include file="/WEB-INF/views/shop/shopheader.jsp" %>
-<!-- end header -->
+  <!-- End Top Header Bar -->
+
+
+<!-- Main Menu Section 삭제-->
 
 <!-- 검색어 입력 -->
 	<section class="call-to-action bg-gray section" style="background-color: white; padding-top: 10px; padding-bottom: 50px;">
@@ -146,7 +148,7 @@ table, td, th {
 						<div class="input-group subscription-form">
 						
 						
-						  <input type="text" class="form-control" placeholder="도서를 검색하세요"  name="searchKeyword">
+						  <input type="text" class="form-control" placeholder="검색어를 검색하세요"  name="searchKeyword">
 						  <span class="input-group-btn">
 							<button class="btn btn-main" type="submit"><i class="tf-ion-ios-search-strong" style="size: 50px;"></i></button>
 						  </span>
@@ -158,103 +160,38 @@ table, td, th {
 				</div>
 			</div> 		<!-- End row -->
 		</div>   	<!-- End container -->
-	</section>    <!-- End section -->
+	</section>   <!-- End section -->
 
 
-	<section class="products section" style="padding-top: 20px;">
-		<div class="container">
-			<div class="row">
+				<!-- ************************************ 도서 리뷰 버튼  *************************************************************** -->
 
-				<!-- ************************************장르 선택  *************************************************************** -->
-
-				<div class="widget product-category" style="padding-bottom: 10px; margin-bottom: 20px;">
-
-					<div class="panel-group commonAccordion" id="accordion"
-						role="tablist" aria-multiselectable="true">
-						<div class="panel panel-default">
-
-							<div id="collapseOne" class="panel-collapse collapse in"
-								role="tabpanel" aria-labelledby="headingOne">
-								<div class="panel-body" >
-
-									<table class="janre" 	style="text-align: center;"> 
-										<tr>
-											<td>
-
-												<ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=100020">문학</a>
-														</li>
-												</ul>
-											</td>
-
-											<td>
-
-												<ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">인문/사회</a>
-														</li>
-												</ul>
-											</td>
-											<td>
-												<ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">예술/건축 </a>
-														</li>
-												</ul>
-											</td>
-											<td>
-												<ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">취미</a>
-														</li>
-												</ul>
-											</td>
-											<td><ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">아동</a>
-														</li>
-												</ul></td>
-											<td><ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">과학기술</a>
-														
-
-														</li>
-												</ul></td>
-										</tr>
-
-										
-									</table>
-
-
-								</div>
-							</div>
-						</div>
-
-
-					</div>
-
-				</div>
-
-			</div>
-		</div>			
-	</section>
+				<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="book"
+								aria-expanded="true">BOOK</a></li>
+							<li class="active2"><a data-toggle="tab" href="#reviews"
+								aria-expanded="false">COMMUNITY</a></li>
+						</ul>
 
 
 				<!-- *************************************     상품 목록   (class, name)  *************************************** -->
-				<section class="products section">
+				<section class="products section" id="book">
 					<div class="container">
 						<div class="row">
-						   <c:forEach items="${products }" var="product">
+							<c:forEach items="${products}" var="product">
 							<div class="col-xs-6">
 							<div class="col-xs-6">
 								<div class="product-item">
 									<div class="product-thumb" >
 										
-										<img class="img-responsive"  src="${product.product_image}" alt="product-img" />
+										<img class="img-responsive"  src="${product.product_image }"  alt="product-img" />
 										<div class="preview-meta">
 											<ul>
 												<li>												
 														<a href="product_single.do?product_no=${product.product_no }"><i class="tf-ion-ios-search-strong"></i></a>
 												</li>
 												
-												<li>
-													<a href="addCart.do?product_no=${product.product_no }"><i class="tf-ion-android-cart"></i></a>
+												<li>	
+													<a href="addCart.do?product_no=${product.product_no } "><i class="tf-ion-android-cart"></i></a>
 												</li>
 											</ul>
 										  </div>
@@ -264,47 +201,80 @@ table, td, th {
 							<div class="col-xs-6">
 								<div class="product-content">
 									<h4><a class="productTitle" href="product_single.do?product_no=${product.product_no }">${product.product_name }</a></h4>
-									<p class="writer" style="font-size: smaller;">${product.product_writer} | ${product.product_publisher }</p>
-									<p class="price" style="font-weight: bolder;"><fmt:formatNumber value="${product.product_price }" pattern="#,###" />원</p><hr/>
-									<fmt:formatNumber value="${product.product_price }" pattern="#,###" />
+									<p class="writer" style="font-size: smaller;">${product.product_writer}</p>
+									<p class="price" style="font-weight: bolder;">${product.product_price }원</p><hr/>
 									<p class="productDesc"  >${product.product_desc }</p>
 								</div>
 							</div>
-						</div>
-				</c:forEach>
+							</div>
+							</c:forEach>
 				
 				
-							
-				
-				
-							
-						
 						<!-- Modal -->
 					<!-- /.modal -->
 				
 						</div>
 					</div>
 				</section>
+				<section>
+				<div class="col-md-8 best-div">
+				<h3 class="text-center">BestSeller</h3>
+				<div id="bestseller">
+
+					<c:forEach items="${bestSellers}" var="bs">
+						<!-- 한묶음 -->
+						<div>
+							<div class="product-item">
+								
+								<div class="col-xs-3 col-xs-offset-1">
+									<a href="product_single.do?product_no=${bs.product_no }"><img class="img-responsive bestseller-img"
+										src="${bs.product_image }" alt="product-img" />
+									</a>
+								</div>
+								<div class="product-content product-best col-xs-7 text-left">
+								<div>
+									<h3 class="text-left"><a
+											href="product_single.do?product_no=${bs.product_no }">${bs.product_name }</a></h3>
+								</div>
+								
+									<h4 class="text-left mb-1">
+									<a href="shop_koreana.do?searchKeyword=${bs.product_writer }">${bs.product_writer }</a>
+									/
+									<a href="shop_koreana.do?searchKeyword=${bs.product_publisher }">
+									${bs.product_publisher }</a>
+									</h4>
+								
+									<p class="text-left best-desc">${bs.product_desc }</p>
+								</div>
+							</div>
+						</div>
+						<!-- 한묶음 끝-->
+					</c:forEach>
+				</div>
+			</div>
+				
+				</section>
 				
 <!-- ******************************페이징*******************-->
 				<div class="text-center">
 					<ul class="pagination post-pagination">
-						<li><a href="shop_foreign.do?pnum=0&genre_no=${param.genre_no }">Prev</a>
+						<li ><a href="total_search.do?pnum=0">Prev</a>
+				
+						<li class="page"><a href="total_search.do?pnum=1">1</a>
 						</li>
-						<li class="active"><a href="shop_foreign.do?pnum=1&genre_no=${param.genre_no }">1</a>
+						<li class="page"><a href="total_search.do?pnum=2">2</a>
 						</li>
-						<li><a href="shop_foreign.do?pnum=2&genre_no=${param.genre_no }">2</a>
+						<li class="page"><a href="total_search.do?pnum=3">3</a>
 						</li>
-						<li><a href="shop_foreign.do?pnum=3&genre_no=${param.genre_no }">3</a>
-						</li>
-						<li><a href="shop_foreign.do?pnum=4&genre_no=${param.genre_no }">4</a>
-						</li>
-						<li><a href="shop_foreign.do?pnum=4	&genre_no=${param.genre_no }">Next</a>
+						<li class="page"><a href="total_search.do?pnum=4">4</a>
+						
+						<li><a href="total_search.do?pnum=4">Next</a>
 						</li>
 					</ul>
 				</div>
 
-	<!-- footer -->
+
+		<!-- footer -->
 
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 
@@ -313,27 +283,27 @@ table, td, th {
     =====================================-->
 
 	<!-- Main jQuery -->
-	<script src="../plugins/jquery/dist/jquery.min.js"></script>
+	<script src="resources/plugins/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap 3.1 -->
-	<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!-- Bootstrap Touchpin -->
+	<script src="resources/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Bootstra Touchpin -->
 	<script
-		src="../plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+		src="resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
 	<!-- Instagram Feed Js -->
-	<script src="../plugins/instafeed/instafeed.min.js"></script>
+	<script src="resources/plugins/instafeed/instafeed.min.js"></script>
 	<!-- Video Lightbox Plugin -->
-	<script src="../plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+	<script src="resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
 	<!-- Count Down Js -->
-	<script src="../plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+	<script src="resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
 	<!-- slick Carousel -->
-	<script src="../plugins/slick/slick.min.js"></script>
-	<script src="../plugins/slick/slick-animation.min.js"></script>
+	<script src="resources/plugins/slick/slick.min.js"></script>
+	<script src="resources/plugins/slick/slick-animation.min.js"></script>
 
 	<!-- Google Mapl -->
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-	<script type="text/javascript" src="../plugins/google-map/gmap.js"></script>
+	<script type="text/javascript" src="../resources/plugins/google-map/gmap.js"></script>
 
 	<!-- Main Js File -->
 	<script src="../resources/js/script.js"></script>
