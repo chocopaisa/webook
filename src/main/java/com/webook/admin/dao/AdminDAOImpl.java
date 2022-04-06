@@ -27,6 +27,21 @@ public class AdminDAOImpl implements AdminDAO{
 	public List<ChartVO> MonthMemCnt() {
 		return mybatis.selectList("admin.mapper.MonthMemCnt");
 	}
+	
+	// 월별 매출
+	public List<ChartVO> MonthSales() {
+		return mybatis.selectList("admin.mapper.MonthSales");
+	}
+	
+	// 카테고리별 매출
+	public List<ChartVO> TopCategory() {
+		return mybatis.selectList("admin.mapper.TopCategory");
+	}
+	
+	// 연령대 별 가입자 수
+	public List<ChartVO> AgeNewMember() {
+		return mybatis.selectList("admin.mapper.AgeNewMember");
+	}
 
 }
 
