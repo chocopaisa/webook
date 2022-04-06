@@ -21,25 +21,8 @@ public class PurchaseController {
 	@Autowired
 	private ProductService service;
 	
-	 //현재 구매내역
-	 @RequestMapping("purchase.do")
-	 public String purchase( HttpSession session, Model m) {
-		 MemberVO id = (MemberVO)session.getAttribute("user");
-		 if(id == null) return "redirect:/login.do";//.do로 하지 말기
-	  
-		 MemberVO vo = (MemberVO)session.getAttribute("user");
-		
-		 List<HashMap> listt = service.getPurchase(vo);
-		
-		 m.addAttribute("list",listt);
-	
-		 
-	  return "/mypage/p_history";
-	  
-	  }
-	
 	 
-	//이전 구매 내역
+	//현재, 이전 구매 내역
 	 @RequestMapping("p_history.do")
 	 public String purchas( HttpSession session, Model m) {
 		 MemberVO id = (MemberVO)session.getAttribute("user");
@@ -47,14 +30,16 @@ public class PurchaseController {
 	  
 		 MemberVO vo = (MemberVO)session.getAttribute("user");
 	
-		 List<HashMap> lis = service.prePurchase(vo);
-		 
+		 List<HashMap> lis = service.prePurchase(vo, "0");
+		 List<HashMap> listt = service.getPurchase(vo);
+			
+		 m.addAttribute("list",listt);
 		 m.addAttribute("lis", lis);
 		 
 	  return "/mypage/p_history" ;
 	 }
 	 
-	 //ajax
+	 //구매내역 더보기 ajax
 	 @RequestMapping("purchasList.do")
 	 @ResponseBody
 	 public List<HashMap> addBtn(String pnum, HttpSession session) {

@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="product.mapper">
 
+<!-- 국내 도서 목록 나오기 / 검색 목록 나오기 (이름, 작가 검색)-->
 <select id="genreKo" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
 
 SELECT *
@@ -23,6 +24,7 @@ PRODUCT_NAME like '%'||'${searchKeyword}'||'%' or PRODUCT_WRITER like '%'||'${se
 
 </select>
 
+<!-- 해외도서 목록 나오기 -->
 <select id="genreFo" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
 
 SELECT *
@@ -33,15 +35,18 @@ FROM product_list
 
 </select>
 
+<!-- 상세페이지 책 정보 나오기 -->
 <select id="getProduct" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
 
-SELECT *
+SELECT 
+product_name, product_writer, product_publisher, product_price,
+ product_sale, product_no,to_char(product_date, 'yyyy"년"mm"월"dd"일"') product_date, 
+ product_publisher, product_image, product_desc_image, product_desc, product_price - product_sale product_lang
 FROM product_list
 WHERE product_no=#{product_no}
-
-
 </select>
 
+<!-- 상세페이지 관련 장르 나오기 -->
 <select id="getOtherBook" parameterType="com.webook.domain.ProductVO" resultType="com.webook.domain.ProductVO">
 
 <![CDATA[
@@ -52,6 +57,7 @@ where ROWNUM<5 and genre_no = (select genre_no from product_list where product_n
 ]]>
 </select>
 
+<!-- 상세페이지 독후감 나오기 -->
 <select id="getReport"  parameterType="com.webook.domain.ProductVO" resultType="hashmap">
 <![CDATA[
 SELECT
@@ -63,6 +69,7 @@ where ROWNUM<3 and product_no= #{product_no}
 ]]>
 </select>
 
+<!-- 현재 구매내역 나오기 -->
 <select id="getPurchase" parameterType="com.webook.domain.MemberVO" resultType="hashmap" >
 SELECT 
 pl.product_name product_name,
@@ -73,10 +80,10 @@ li.order_no order_no,
 li.delivery_info delivery_info
 FROM order_list li, order_items it, product_list pl
 WHERE li.order_no = it.order_no
-and it.product_no  = pl.product_no and li.USER_EMAIL = #{user_email} and li.delivery_info !='배송완료'
+and it.product_no  = pl.product_no and li.USER_EMAIL = #{user_email} and li.delivery_info !='배송완료' and li.delivery_info !='결제취소'
  </select>
 
-
+<!-- 이전 구매내역 나오기 -->
 <select id="prePurchase" parameterType="com.webook.domain.MemberVO" resultType="hashmap" >
 SELECT 
 pl.product_name product_name,
@@ -87,6 +94,10 @@ li.order_no order_no,
 li.delivery_info delivery_info
 FROM order_list li, order_items it, product_list pl
 WHERE li.order_no = it.order_no
-and it.product_no  = pl.product_no and li.USER_EMAIL = #{user_email} and li.delivery_info ='배송완료'
+and it.product_no  = pl.product_no and li.USER_EMAIL = #{user_email} and (li.delivery_info ='배송완료' or li.delivery_info='결제취소')
  </select>
+ 
+ 
+ 
+ 
 </mapper>

@@ -12,7 +12,7 @@ import com.webook.domain.ProductVO;
 import com.webook.shop.dao.ProductDAOImpl;
 
 
-@Service("ProducyService")
+@Service("ProductService")
 public class ProductServiceImpl implements ProductService {
 	
 	@Autowired

@@ -36,6 +36,7 @@ public class ProductController {
 		return "/shop/" + step;
 	} 
 	
+	/*상품 목록 관련*/
 	
 	//한국도서 장르별 이동
 	@RequestMapping("shop_korean.do")
@@ -106,33 +107,13 @@ public class ProductController {
 		list.add(result); 
 		session.setAttribute("cart", list);
 		ArrayList<ProductVO> r = (ArrayList<ProductVO>)session.getAttribute("cart");
-		
+			
 	
 		return "redirect:cart.do?product_no=" + vo.getProduct_no();
 		
 	}
 	
-	
-	
-	 
-		
-		 
-		 
-	 
-	/*-> 콘솔에서 매퍼 잘 나오는지 확인해보는 거 List를 result로 받아서 돌려보기
-	 * @RequestMapping("shop_korean.do") public String test(ProductVO vo, Model m) {
-	 * System.out.println("shop_korean");  -> 컨트롤러 함수 되는 지 확인
-	 *  System.out.println(vo.getGenre_no()); 파라미터 넘어오는지 확인
-	 * vo.setProduct_lang("국내"); -> 국내 도서만 나오게 하기
-	 *  List<ProductVO> result = service.test(vo); -> 서비스와 다오에서 리턴한 값 받기
-	 * System.out.println("상품이름 " + vo.getGenre_no());
-	 * 
-	 * for(ProductVO a : result) { System.out.println("상품이름 : " +  a.getProduct_name()); }       -> 받은 리턴값으로 for문 돌려서 다 나오는 지 확인                    
-	 * 
-	 * m.addAttribute("product", result); return "/shop/shop_korean"; }
 
-	 *
-	 */
-		
-		 
+	
+	
 }

@@ -13,7 +13,7 @@ $('.active2').click(function() {
 	$(".bookreport").show();
 $('.move-btn-review').show();
 $(".productDescImage").hide();
-$('.tab-content patternbg').hide();
+$('.tab-content patternbg').hide();	
 })
 	
 //책의 상세정보만 다시 볼 수 있게 함
@@ -31,10 +31,7 @@ $('#frm').attr('action','addCart.do').submit();
 
 });
 
-	
-	$('.page').click(function(){
-	alert("확인")
-	});
+
 
 	
 	
