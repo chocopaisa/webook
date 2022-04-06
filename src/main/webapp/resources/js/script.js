@@ -113,7 +113,7 @@
 	        		pDiv.remove();
 	        		if(result == 0){
 	        			$('div.cart-summary').remove();
-	        		
+	        			alertMessage('선택한 상품이 삭제되었습니다');
 	        		}
 	        	},
 	        	error : function(err){
@@ -174,6 +174,24 @@
 	$('.btn-top').click(function(){
 		$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
 	})
+	
+	// 상단에 메시지 띄우기
+	$('#page-alert').hide();
+	$('#page-alert').css({
+		'position' : 'fixed',
+		'z-index' : '999',
+		'text-align' : 'center',
+		'top' : '0px',
+		'width' : '100%'
+	});
+	function alertMessage(msg){
+		$('#page-alert').show();
+		$('#page-alert .alert-message').text(msg);
+		setTimeout(function(){
+			$('#page-alert').fadeOut();
+		},3000);
+	
+	}
 	
 
 })(jQuery);
