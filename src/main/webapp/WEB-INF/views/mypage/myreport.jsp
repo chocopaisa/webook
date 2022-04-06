@@ -114,16 +114,16 @@ FACEBOOK: https://www.facebook.com/themefisher
                        <h4>마이룸<hr/></h4>
                      </li>
                      <li class="list">
-                       <a href="#" class="btn btn-solid-border w-100" >상품 주문 관리</a>
+                       <a href="p_history.do" class="btn btn-solid-border w-100" >상품 주문 관리</a>
                      </li>
                     <li class="list">
-                       <a href="#" class="btn btn-solid-border w-100">회원 정보 관리</a>
+                       <a href="modify.do" class="btn btn-solid-border w-100">회원 정보 관리</a>
                     </li>
                      <li class="list">
                       <a href="#" class="btn btn-main w-100">글 관리</a>
                     </li>
                     <li class="list">
-                      <a href="#" class="btn btn-solid-border w-100">회원탈퇴</a>
+                      <a href="signout.do" class="btn btn-solid-border w-100">회원탈퇴</a>
                     </li>
                  </ul>
               </div>

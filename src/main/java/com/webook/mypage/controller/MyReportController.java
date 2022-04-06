@@ -25,6 +25,6 @@ public class MyReportController {
 		m.addAttribute("reports",myReportService.searchReport(vo));
 		m.addAttribute("comments",myReportService.searchComment(vo));
 		
-		return "mypage2/myreport";
+		return "mypage/myreport";
 	}
 }
