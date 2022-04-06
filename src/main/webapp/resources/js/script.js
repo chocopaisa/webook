@@ -176,22 +176,29 @@
 	})
 	
 	// 상단에 메시지 띄우기
-	$('#page-alert').hide();
-	$('#page-alert').css({
+	$('.page-alert').hide();
+	$('.page-alert').css({
 		'position' : 'fixed',
 		'z-index' : '999',
 		'text-align' : 'center',
 		'top' : '0px',
 		'width' : '100%'
 	});
+	// 알림창
 	function alertMessage(msg){
 		$('#page-alert').show();
 		$('#page-alert .alert-message').text(msg);
 		setTimeout(function(){
 			$('#page-alert').fadeOut();
 		},3000);
-	
 	}
-	
+	// 경고창
+	function alertMessage(msg){
+		$('#page-warn').show();
+		$('#page-warn .alert-message').text(msg);
+		setTimeout(function(){
+			$('#page-alert').fadeOut();
+		},3000);
+	}
 
 })(jQuery);
