@@ -50,4 +50,28 @@ public class CommunityServiceImpl implements CommunityService{
 	public void reportBook(ReportcommunityVO vo) {
 		communityDAO.reportBook(vo);
 	}
+	
+	//게시글 신고 체크
+	public ReportcommunityVO reportBookCheck(ReportcommunityVO vo) {
+		return communityDAO.reportBookCheck(vo);
+	}
+	
+	//좋아요 등록
+	public void insertJjoa(CommunityVO vo) {
+		communityDAO.insertJjoa(vo);
+	}
+	//좋아요 취소
+	public void deleteJjoa(CommunityVO vo) {
+		communityDAO.deleteJjoa(vo);
+	}
+	//좋아요 중복 체크
+	public CommunityVO checkJjoa(CommunityVO vo) {
+		return communityDAO.checkJjoa(vo);
+	}
+	
+	//좋아요 갯수
+	public CommunityVO countJjoa(CommunityVO vo) {
+		return communityDAO.countJjoa(vo);
+	}
+	
 }

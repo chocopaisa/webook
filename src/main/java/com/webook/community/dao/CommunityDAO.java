@@ -28,6 +28,20 @@ public interface CommunityDAO {
 	//게시글 신고
 	public void reportBook(ReportcommunityVO vo);
 	
-	/* public CommunityVO getBookreportCount(CommunityVO vo, int pNum); */
+	//게시글 신고 체크
+	public ReportcommunityVO reportBookCheck(ReportcommunityVO vo);
+	
+	//좋아요 등록
+	public void insertJjoa(CommunityVO vo);
+	
+	//좋아요 취소
+	public void deleteJjoa(CommunityVO vo);
+	
+	//좋아요 중복 체크
+	public CommunityVO checkJjoa(CommunityVO vo);
+	
+	//좋아요 count
+	public CommunityVO countJjoa(CommunityVO vo);	
+
 	
 }

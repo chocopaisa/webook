@@ -71,6 +71,8 @@ public class CommunityController {
 		m.addAttribute("product", productService.getProduct(pr));
 		// 댓글 목록
 		m.addAttribute("commentList", commentService.getCommentList(re, pNum));
+		// 좋아요 갯수
+		m.addAttribute("jjoa", communityService.countJjoa(vo));
 		
 	}
 	
@@ -141,16 +143,37 @@ public class CommunityController {
 	
 	//게시글 신고
 	@RequestMapping("reportBook.do")
+	@ResponseBody
 	public String reportBook(ReportcommunityVO vo, String ref_article_info, HttpSession session) {
 		if(session.getAttribute("user") != null) {
 			MemberVO user = (MemberVO)session.getAttribute("user");
 			vo.setRep_article_info(ref_article_info);
 			vo.setRep_article_email(user.getUser_email());
-			//if(communityService.reportBookCheck(vo) == null){
+			//System.out.println("communityService.reportBookCheck(vo)");
+			if(communityService.reportBookCheck(vo) == null){
 				communityService.reportBook(vo);
-			//}
+				return "0";
+			} 
 		}
-		return "redirect:getcontent.do?bookreport_no="+vo.getArticle_no();
+		return "1";
 	}
 	
+	//좋아요
+	@RequestMapping("jjoa.do")
+	@ResponseBody
+	public String jjoa(CommunityVO vo, HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			vo.setUser_email(user.getUser_email());
+			
+			if(communityService.checkJjoa(vo) == null) {
+				communityService.insertJjoa(vo);
+				return "0";
+			} else {
+				communityService.deleteJjoa(vo);
+				
+			}
+		}
+		return "1";
+	}
 }
