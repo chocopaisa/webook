@@ -11,7 +11,7 @@ public interface AdminCommunityDAO {
 	
 	
 	// 신고 게시글 삭제 
-	public void Deletecommu(ReportcommunityVO vo);
+	public void deleteCommunity(Integer[] list);
 	
 	
 	// 오늘 게시글 수

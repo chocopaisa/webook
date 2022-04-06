@@ -21,8 +21,8 @@ public class AdminCommServiceImpl implements AdminCommService {
 	
 	
 	// 신고 게시글 삭제 
-	public void deleteCommunity() {
-	 adminCommunityDAO.Deletecommu(); 
+	public void deleteCommunity(Integer[] list) {
+	 adminCommunityDAO.deleteCommunity(list); 
 	 
 	}
 	 

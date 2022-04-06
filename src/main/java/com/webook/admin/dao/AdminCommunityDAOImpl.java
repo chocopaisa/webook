@@ -19,8 +19,11 @@ public class AdminCommunityDAOImpl implements AdminCommunityDAO {
 	}
 
 	// 신고 게시글 삭제
-	public void Deletecommu(ReportcommunityVO vo) {
-	mybatis.delete("admin.mapper.deleteCommunity"); }
+	public void deleteCommunity(Integer[] list) {
+		for( Integer i : list) {
+		mybatis.delete("admin.mapper.deleteCommunity", i); 
+		}
+	}
 	  
 	 
 	@Override

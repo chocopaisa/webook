@@ -10,7 +10,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>WEBOOK ADMIN LOGIN</title>
-<link href="resources/admin/css/styles.css" rel="stylesheet" />
+<link href="../resources/admin/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
 	crossorigin="anonymous"></script>
 <style type="text/css">
@@ -32,7 +32,7 @@
 									<h3 class="text-center font-weight-light my-4">Login</h3>
 								</div>
 								<div class="card-body">
-									<form action="admin/adminlogin.do" >
+									<form action="adminlogin.do" >
 										<div class="form-floating mb-3">
 											<input class="form-control" id="inputEmail" type="text"
 												placeholder="name@example.com" name="admin_id"/> <label for="inputEmail">Email

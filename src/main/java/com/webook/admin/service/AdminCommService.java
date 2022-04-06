@@ -13,7 +13,7 @@ public interface AdminCommService {
 	
 	
 	// 신고 게시글 삭제 
-	public void deleteCommunity();
+	public void deleteCommunity(Integer[] list);
 	 
 
 	int selectTodayBoard();

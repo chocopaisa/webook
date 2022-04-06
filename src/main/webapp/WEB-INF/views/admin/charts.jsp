@@ -62,6 +62,26 @@
         <script src="../resources/admin/js/adminjs.js"></script>        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript">
+	        let genreMap = new Map();
+	    	genreMap.set("100", "소설");
+	    	genreMap.set("110", "시");
+	    	genreMap.set("120", "인문");
+	    	genreMap.set("180", "정치사회");
+	    	genreMap.set("160", "경제경영");
+	    	genreMap.set("190", "역사문화");
+	    	genreMap.set("210", "예술");
+	    	genreMap.set("120070", "종교");
+	    	genreMap.set("250", "교양과학");
+	    	genreMap.set("210050", "만화");
+	    	genreMap.set("170", "자기계발");
+	    	genreMap.set("270", "여행");
+	    	genreMap.set("100020", "문학");
+	    	genreMap.set("210", "예술건축");
+	    	genreMap.set("290080", "취미");
+	    	genreMap.set("320", "아동");
+	    	genreMap.set("250", "과학기술");
+        </script>
+        <script type="text/javascript">
         	// 월별 매출
         	let jsonData3 = ${json3}
         	let jsonObject3 = JSON.stringify(jsonData3);
@@ -103,6 +123,8 @@
        	});
        	
        	// 카테고리별 매출
+       	
+       	
        	let jsonData4 = ${json4}
         	let jsonObject4 = JSON.stringify(jsonData4);
         	let jdata4 = JSON.parse(jsonObject4);
@@ -113,7 +135,7 @@
         	
         	for(let i=0; i<jdata4.length; i++) {
         		let d4 = jdata4[i];
-        		categoryName.push(d4.CategoryName)
+        		categoryName.push(genreMap.get(d4.CategoryName))
         		categorySales.push(d4.CategorySales)
         	}
         	
