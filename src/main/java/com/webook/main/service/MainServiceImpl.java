@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.webook.domain.CommunityVO;
 import com.webook.domain.ProductVO;
 import com.webook.main.dao.MainDAO;
 
@@ -35,6 +36,16 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public List<ProductVO> showIssueItems() {
 		return mainDAO.showIssueItems();
+	}
+
+	@Override
+	public List<HashMap> showReportAtBoard(CommunityVO vo) {
+		return mainDAO.showReportAtBoard(vo);
+	}
+
+	@Override
+	public List<HashMap> showReportBest() {
+		return mainDAO.showReportBest();
 	}
 
 }

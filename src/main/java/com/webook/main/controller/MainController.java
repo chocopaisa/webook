@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.webook.domain.CommunityVO;
 import com.webook.domain.ProductVO;
 import com.webook.main.service.MainService;
 
@@ -44,7 +45,26 @@ public class MainController {
 	
 	
 	@RequestMapping("/community/main.do")
-	public String showCommuMain() {
+	public String showCommuMain(Model model) {
+		
+		List<ProductVO> issueList = mainService.showIssueItems();
+		model.addAttribute("issueList", issueList);
+		
+		List<HashMap> bestList = mainService.showReportBest();
+		model.addAttribute("bestList", bestList);
+		CommunityVO vo = new CommunityVO();
+		vo.setReport_kind("만화");
+		List<HashMap> manhwaList = mainService.showReportAtBoard(vo);
+		model.addAttribute("manhwaList", manhwaList);
+		vo.setReport_kind("소설");
+		List<HashMap> novelList = mainService.showReportAtBoard(vo);
+		model.addAttribute("novelList", novelList);
+		vo.setReport_kind("종교");
+		List<HashMap> religionList = mainService.showReportAtBoard(vo);
+		model.addAttribute("religionList", religionList);
+		vo.setReport_kind("여행");
+		List<HashMap> travelList = mainService.showReportAtBoard(vo);
+		model.addAttribute("travelList", travelList);
 		
 		return "community/main";
 	}
