@@ -320,7 +320,7 @@ pageEncoding="UTF-8"%>
                   </h4>
                   </div>
                   <div class="w-100">
-                  <select class="w-100" id="stars">
+                  <select class="w-100" id="stars" name="star">
                   	<option value='5'>5</option>
                   	<option value='4'>4</option>
                   	<option value='3'>3</option>
