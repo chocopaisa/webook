@@ -141,16 +141,19 @@ public class CommunityController {
 	
 	//게시글 신고
 	@RequestMapping("reportBook.do")
-	public String reportBook(ReportcommunityVO vo, String ref_article_info, HttpSession session) {
+	@ResponseBody
+	public String reportBook(ReportcommunityVO vo, String ref_article_info, Model m, HttpSession session) {
 		if(session.getAttribute("user") != null) {
 			MemberVO user = (MemberVO)session.getAttribute("user");
 			vo.setRep_article_info(ref_article_info);
 			vo.setRep_article_email(user.getUser_email());
-			//if(communityService.reportBookCheck(vo) == null){
+			//System.out.println("communityService.reportBookCheck(vo)");
+			if(communityService.reportBookCheck(vo) == null){
 				communityService.reportBook(vo);
-			//}
+				return "0";
+			} 
 		}
-		return "redirect:getcontent.do?bookreport_no="+vo.getArticle_no();
+		return "1";
 	}
 	
 }

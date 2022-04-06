@@ -63,5 +63,11 @@ public class CommunityDAOImpl implements CommunityDAO {
 		System.out.println("===> Mybatis reportBook() 호출");
 		mybatis.insert("community.mapper.reportBook", vo);
 	}
+	
+	//게시글 신고 중복체크
+	public ReportcommunityVO reportBookCheck(ReportcommunityVO vo) {
+		System.out.println("===> Mybatis reportBook() 호출");
+		return mybatis.selectOne("community.mapper.reportBookCheck", vo);
+	}
 
 }

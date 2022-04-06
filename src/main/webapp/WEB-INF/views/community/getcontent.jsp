@@ -389,7 +389,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="reportBook.do">
+
       <div class="modal-body text-center">
         신고 사유를 선택 하세요.
         	<div>
@@ -398,7 +398,7 @@
         			<option value="음란물입니다.">음란물입니다.</option>
         			<option value="불법정보를 포함하고 있습니다.">불법정보를 포함하고 있습니다.</option>
         			<option value="청소년에게 유해한 내용입니다.">청소년에게 유해한 내용입니다.</option>
-        			<option value="욕설/생명경시/혐오/차별적 표현입니다.">욕설/생명경시/혐오/차별적 표현입니다.</option>
+        			<option value="욕설/혐오/차별적 표현입니다.">욕설/생혐오/차별적 표현입니다.</option>
         			<option value="개인정보 노출 게시물입니다.">개인정보 노출 게시물입니다.</option>
         			<option value="불쾌한 표현이 있습니다.">불쾌한 표현이 있습니다.</option>
         		</select>
@@ -407,9 +407,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-        <button type="submit" class="btn btn-primary" >신고</button>
+        <button type="button" class="btn btn-primary" id="reportBook">신고</button>
       </div>
-      </form>
+    
     </div>
   </div>
 </div>
@@ -591,6 +591,34 @@
 		})//ajax end
 		
 	}
+		
+    	$('#reportBook').on("click", function(){
+    		var ref_article_info = $('select[name=ref_article_info]').val();
+    		var article_no = $('input[name=article_no]').val();
+    		
+    		$.ajax({
+    			type:'GET',
+    			url:'reportBook.do',
+    			data: {
+    				article_no,
+    				ref_article_info
+    			
+    				},
+    			success: function(result){
+    				console.log(result);
+    				if(result=='0'){
+    					alert("신고완료");
+    					$('#reportBookModal').modal('hide');
+    				} else{
+						alert("신고는 한번만 할 수 있습니다");
+						$('#reportBookModal').modal('hide');
+    					}
+    				},
+    			error : function(err){
+    				console.log(err);
+    			}
+    		}); //end of ajax
+    	}); //end on
 
 </script>
 

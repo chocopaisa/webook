@@ -28,6 +28,8 @@ public interface CommunityService {
 	//게시글 신고
 	void reportBook(ReportcommunityVO vo);
 	
+	//게시글 신고 체크
+	ReportcommunityVO reportBookCheck(ReportcommunityVO vo);
 	/* CommunityVO getBookreportCount(CommunityVO vo, int pNum); */
 	
 }

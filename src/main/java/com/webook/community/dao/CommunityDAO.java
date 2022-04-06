@@ -28,6 +28,9 @@ public interface CommunityDAO {
 	//게시글 신고
 	public void reportBook(ReportcommunityVO vo);
 	
+	//게시글 신고 체크
+	public ReportcommunityVO reportBookCheck(ReportcommunityVO vo);
+	
 	/* public CommunityVO getBookreportCount(CommunityVO vo, int pNum); */
 	
 }
