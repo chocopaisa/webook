@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.webook.domain.CommunityVO;
+import com.webook.domain.ReportcommunityVO;
 
 public interface CommunityService {
 	//게시글 목록 페이지 리스트
@@ -24,6 +25,8 @@ public interface CommunityService {
 	//조회수증가
 	void viewCount(CommunityVO vo);
 	
+	//게시글 신고
+	void reportBook(ReportcommunityVO vo);
 	
 	/* CommunityVO getBookreportCount(CommunityVO vo, int pNum); */
 	

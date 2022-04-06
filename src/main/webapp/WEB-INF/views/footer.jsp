@@ -48,3 +48,11 @@
         </div>
       </div>
     </footer>
+    
+    <!-- 측면 이동바 -->
+    <button class='btn_gotop btn-main btn-basic btn-top'><i class="tf-ion-ios-arrow-up"></i></button>
+	<a class='btn_gotop btn-main btn-basic bg-d color-a' href="/webook/mypage/p_history.do"><i class="tf-ion-ios-person"></i></a>
+	<a class='btn_gotop btn-main btn-shop' href="/webook/shop/main.do"><i class="tf-ion-ios-home"></i></a>
+	<a class='btn_gotop btn-main btn-community' href="/webook/community/main.do"><i class="tf-ion-ios-home"></i></a>
+	<a class='btn_gotop btn-main btn-shop' href="/webook/shop/cart.do"><i class="tf-ion-ios-cart"></i></a>
+	<a class='btn_gotop btn-main btn-chatbox' href="#commentList"><i class="tf-ion-ios-chatboxes"></i></a>

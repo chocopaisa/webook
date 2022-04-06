@@ -6,14 +6,13 @@
 	<!-- 게시글 목록 페이지 리스트 -->
 	<select id="getBookreportList" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
 		
-		SELECT bookreport_no, user_email, product_no, 
-                            write_date, bookreport_title, 
-                            bookreport_content, view_count, report_kind,
-                            star FROM bookreport
+		SELECT a.*, b.user_name, c.jjoa_no FROM bookreport a
+		INNER JOIN customer_info b ON a.user_email = b.user_email
+		LEFT OUTER JOIN jjoa c ON a.bookreport_no = c.bookreport_no and a.user_email = c.user_email
 		<if test="report_kind != null">
-		WHERE report_kind = #{report_kind}
+		WHERE a.report_kind = #{report_kind}
 		</if>
-		ORDER BY bookreport_no desc
+		ORDER BY a.bookreport_no desc
 				
 	</select>
 	
@@ -29,8 +28,10 @@
 	
 	<!-- 게시물 상세 -->
 	<select id="getBookreport" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
-		SELECT * FROM bookreport
-		WHERE bookreport_no = #{bookreport_no}
+		SELECT a.*, b.user_name, c.jjoa_no FROM bookreport a
+		INNER JOIN customer_info b ON a.user_email = b.user_email
+		LEFT OUTER JOIN jjoa c ON a.bookreport_no = c.bookreport_no and a.user_email = c.user_email
+		WHERE a.bookreport_no = #{bookreport_no}
 	</select>
 	<!-- 게시물 수정 -->
 	<update id="updateBookreport" parameterType="com.webook.domain.CommunityVO">
@@ -44,11 +45,11 @@
 	</delete>
 	
 	<select id="searchBookreportList" parameterType="hashmap" resultType="com.webook.domain.CommunityVO">
-		SELECT * FROM (SELECT * FROM bookreport 
+		SELECT * FROM (SELECT * FROM bookreport a INNER JOIN customer_info b ON a.user_email = b.user_email
 						WHERE ${search_select} like '%'||'${search_text}'||'%')
 			
 		WHERE write_date BETWEEN ${date_select} and sysdate
-		
+		ORDER BY bookreport_no desc
 	</select>
 	
 	<!-- 조회수 증가 -->
@@ -58,6 +59,18 @@
 		WHERE bookreport_no = ${bookreport_no}
 	</update>
 	
+	<!-- 게시글 신고 -->
+	<insert id="reportBook" parameterType="com.webook.domain.ReportcommunityVO">
+		INSERT INTO report_article(rep_article_no, rep_article_info, rep_article_date,
+                            article_no, rep_article_email)
+		VALUES(report_article_seq.nextval, #{rep_article_info}, sysdate, #{article_no}, #{rep_article_email})
+	</insert>
+	
+	<!-- 신고 중복 체크 -->
+	<select id="reportBookCheck" parameterType="com.webook.domain.ReportcommunityVO" resultType="com.webook.domain.ReportcommunityVO">
+		SELECT * FROM report_article
+		WHERE article_no = #{article_no} and rep_article_email = #{rep_article_email}
+	</select>
 <!-- 	
 	<select id="getBookreportCount" resultType="com.webook.domain.CommunityVO">
 		SELECT count(*) FROM bookreport
