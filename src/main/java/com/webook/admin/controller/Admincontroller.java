@@ -109,10 +109,10 @@ public class Admincontroller {
 	
 		 String json = gson.toJson(jArray);
 		 m.addAttribute("json", json);
+		 // 지난주 일일 매출 끝
 		 
 	// 월별 회원가입 수
-		 
-		 System.out.println("ChartManager 호출 ????");
+
 		 List<ChartVO> MonthMemCnt = adminService.MonthMemCnt();
 	
 		 Gson gson2 = new Gson();
@@ -124,7 +124,6 @@ public class Admincontroller {
 			 ChartVO chartvo2 = cvo2.next();
 			 JsonObject object2 = new JsonObject();
 			 String MonthList = chartvo2.getChartTitle();
-			 System.out.println(MonthList);
 			 int NewMemCnt = chartvo2.getChartResult();
 	
 			 object2.addProperty("MonthList", MonthList);
@@ -134,10 +133,86 @@ public class Admincontroller {
 	
 		 String json2 = gson2.toJson(jArray2);
 		 m.addAttribute("json2", json2);
+		 // 월별 회원가입 수 끝
+		 
 	
 	}
 	@RequestMapping("charts.do")
-	public void Chart() {}
+	public void ChartManager(Model m) {
+		// 월별 매출
+		 List<ChartVO> MonthSales = adminService.MonthSales();
+	
+		 Gson gson3 = new Gson();
+		 JsonArray jArray3 = new JsonArray();
+	
+		 Iterator<ChartVO> cvo3 = MonthSales.iterator();
+	
+		 while(cvo3.hasNext()) {
+			 ChartVO chartvo3 = cvo3.next();
+			 JsonObject object3 = new JsonObject();
+			 String MonthListname = chartvo3.getChartTitle();
+			 int MonthMoney = chartvo3.getChartResult();
+	
+			 object3.addProperty("MonthListname", MonthListname);
+			 object3.addProperty("MonthMoney", MonthMoney);
+			 jArray3.add(object3);
+		 }
+	
+		 String json3 = gson3.toJson(jArray3);
+		 System.out.println(json3 + "월월월");
+		 m.addAttribute("json3", json3);
+
+		 // 월별 매출 끝
+	
+	// 카테고리별 매출
+
+		 List<ChartVO> TopCategory = adminService.TopCategory();
+	
+		 Gson gson4 = new Gson();
+		 JsonArray jArray4 = new JsonArray();
+	
+		 Iterator<ChartVO> cvo4 = TopCategory.iterator();
+	
+		 while(cvo4.hasNext()) {
+			 ChartVO chartvo4 = cvo4.next();
+			 JsonObject object4 = new JsonObject();
+			 String CategoryName = chartvo4.getChartTitle();
+			 int CategorySales = chartvo4.getChartResult();
+			 object4.addProperty("CategoryName", CategoryName);
+			 object4.addProperty("CategorySales", CategorySales);
+			 jArray4.add(object4);
+		 }
+	
+		 String json4 = gson4.toJson(jArray4);
+		 m.addAttribute("json4", json4); 
+		 
+	// 연령대 별 가입자 수
+		 
+		 List<ChartVO> AgeNewMember = adminService.AgeNewMember();
+			
+		 Gson gson5 = new Gson();
+		 JsonArray jArray5 = new JsonArray();
+	
+		 Iterator<ChartVO> cvo5 = AgeNewMember.iterator();
+	
+		 while(cvo5.hasNext()) {
+			 ChartVO chartvo5 = cvo5.next();
+			 JsonObject object5 = new JsonObject();
+			 String AgeName = chartvo5.getChartTitle();
+			 int AgeSales = chartvo5.getChartResult();
+			 object5.addProperty("AgeName", AgeName);
+			 object5.addProperty("AgeSales", AgeSales);
+			 jArray5.add(object5);
+		 }
+	
+		 String json5 = gson5.toJson(jArray5);
+		 m.addAttribute("json5", json5);
+		 
+		 
+	}
+	
+	
+	
 	
 	// 회원 목록 출력	
 

@@ -11,9 +11,10 @@ public interface AdminCommService {
 	// 신고 게시글 조회
 	public List<ReportcommunityVO> getReportCommuList();
 	
-	/*
-	 * // 신고 게시글 삭제 public void deleteCommunity(String ajaxMsg);
-	 */
+	
+	// 신고 게시글 삭제 
+	public void deleteCommunity();
+	 
 
 	int selectTodayBoard();
 		

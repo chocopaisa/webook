@@ -28,5 +28,20 @@ public class AdminServiceImpl implements AdminService {
 	public List<ChartVO> MonthMemCnt() {
 		return adminDAOImpl.MonthMemCnt();
 	}
+	
+	// 월별 매출
+	public List<ChartVO> MonthSales() {
+		return adminDAOImpl.MonthSales();
+	}
+	
+	// 카테고리별 매출
+	public List<ChartVO> TopCategory() {
+		return adminDAOImpl.TopCategory();
+	}
+	
+	// 연령대 별 가입자 수
+	public List<ChartVO> AgeNewMember() {
+		return adminDAOImpl.AgeNewMember();
+	}
 
 }
