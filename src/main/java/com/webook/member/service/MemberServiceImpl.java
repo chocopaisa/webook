@@ -32,9 +32,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.deleteMember(vo);
 	}
 
-	public String passwordfind(MemberVO vo) {
+	public MemberVO emailfind(MemberVO vo) {
 		
-		return memberDAO.passwordfind(vo);
+		return memberDAO.emailfind(vo);
 	}
 
 }

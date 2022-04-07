@@ -17,7 +17,7 @@ public interface MemberService {
 	//회원 탈퇴
 	public int deleteMember(MemberVO vo);
 	
-	// 비밀번호 찾기
-	public String passwordfind(MemberVO vo);
+	// 아이디 찾기
+	public MemberVO emailfind(MemberVO vo);
 	
 }
