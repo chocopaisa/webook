@@ -19,7 +19,7 @@
 		        ON br.product_no = pl.product_no
 		    LEFT OUTER JOIN customer_info ci
 		        ON br.user_email = ci.user_email
-		ORDER BY br.write_date DESC
+		ORDER BY br.write_date
 		
 	</select>
 
