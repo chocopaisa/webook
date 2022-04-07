@@ -15,13 +15,10 @@
 		)
 	</insert>
 	
-	<insert id="insertOrderItemList" parameterType="list">
-		INSERT ALL
-		<foreach collection="list" item="item">
+	<insert id="insertOrderItem" parameterType="com.webook.domain.OrderItemVO">
+		INSERT 
 			INTO order_items (order_item_no, order_no, product_no, order_cnt, total_price, discount_price)
-			VALUES (order_items_seq.nextval, #{item.order_no}, #{item.product_no}, #{item.order_cnt}, #{item.total_price}, #{item.discount_price})
-		</foreach>
-		SELECT * FROM DUAL
+			VALUES (order_items_seq.nextval, #{order_no}, #{product_no}, #{order_cnt}, #{total_price}, #{discount_price})
 	</insert>
 	
 	<update id="useCoupon" parameterType="com.webook.domain.CouponVO">
@@ -44,6 +41,7 @@
 			<![CDATA[
 			coupon_date > sysdate
 			]]>
+			AND clist.order_no is null
 			<if test="coupon_no!=null">
 			AND clist.coupon_no = #{coupon_no}
 			</if>
@@ -54,18 +52,22 @@
 	</select>
 	
 	<select id="searchOrderName" parameterType="com.webook.domain.OrderVO" resultType="string">
-	SELECT 
-		DECODE(FIRST_VALUE(item.product_no) OVER()
-			, LAST_VALUE(item.product_no) OVER()
-			, product.product_name
-			, product.product_name || '외') 
-			product_name
-	FROM 
-    	order_items item 
-    		LEFT OUTER JOIN product_list product
-    		ON item.product_no = product.product_no
-	WHERE 
-		item.order_no = #{order_no}
+	SELECT *
+	FROM
+		(SELECT 
+		    DECODE(count(*) over()
+		    , '1'
+		    , FIRST_VALUE(product.product_name) OVER()
+		    , FIRST_VALUE(product.product_name) OVER()||' 외') 
+		        product_name
+		FROM
+		    order_items item 
+		        LEFT OUTER JOIN product_list product
+		        ON item.product_no = product.product_no
+		WHERE
+		    item.order_no = 'BK_1649124446592'
+		) 
+	WHERE rownum = 1
 	
 	</select>
 	<select id="searchAddr" parameterType="com.webook.domain.MemberVO" resultType="com.webook.domain.MemberVO">

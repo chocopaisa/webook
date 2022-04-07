@@ -145,9 +145,7 @@
 .btn-book.insert-btn {
 	background-color: black;
 }
-.btn-book.jjoayo-btn {
-	background-color: red;
-}
+
 .btn-book.delete-btn {
 	background-color: skyblue;
 }
@@ -272,7 +270,7 @@
 				<div class="media-body">
 					<div class="comment-info">
 						<h4 class="comment-author">
-							<a href="" nam >${bookreport.user_email }</a>
+							<a href="" nam >${bookreport.user_name }</a>
 							
 						</h4>
 						<time>
@@ -280,8 +278,6 @@
 							<fmt:formatDate value="${write_date1 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
 						</time>
 						
-						<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>
-						<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>삭제</a>
 					</div>
 
 					
@@ -293,37 +289,44 @@
 
 		          </div>
 				  <div class="media">
-					<a class="pull-left" href="">
-						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
+					<a class="pull-left">
+						<img class="media-object" src="${product.product_image }" alt="Image">
 					</a>
 				<div class="media-body">
-					<h4 class="media-heading"><a href="">${bookreport.report_kind }</a></h4>
+					<h4 class="media-heading"><a class="productTitle" href="product_single.do?product_no=${bookreport.product_no }">${product.product_name }</a></h4>
 					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
 					${bookreport.star }</h4>
 					<hr/>
 					<div class="">
-					<p>책설명</p>
+					<p class="productDesc">${product.product_desc }</p>
 					</div>
+					<div class="text-right align-text-bottom">
+					<a><p class="writer">${product.product_writer}</p></a>
+				</div>
 				</div>
 			</div>
 				  <div class="post-comments">
-					  <button type="submit" class="btn btn-book jjoayo-btn" id="jjoayo-btn">좋아요 1</button>
-					  <button type="submit" class="btn btn-book singo-btn pull-right" id="singo-btn">신고</button>
-					  <button type="submit" class="btn btn-book delete-btn pull-right" id="delete-btn">삭제</button>
-					  
+				  	<c:if test="${sessionScope.user ne null }">
+					  <button type="button" class="btn btn-book jjoayo-btn" id="jjoayo-btn" style="background-color: grey" >좋아요 ${jjoa.jjoa_count}</button>
+					</c:if>
+					  <button type="button" class="btn btn-book singo-btn pull-right" id="singo-btn" data-toggle="modal" data-target="#reportBookModal" >신고</button>
+					  <c:if test="${sessionScope.user.user_email eq bookreport.user_email }">
+					  <button type="submit" class="btn btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
+					</c:if>
 					  
 					<h3 class="post-sub-heading">댓글</h3>
 					<ul class="media-list comments-list m-bot-50 clearlist"  >
 						<div class="post-comments-form">
 							<!-- 폼태그 사용시 redirect됨 -->
 							<!-- <form method="post"  id="form" role="form" autocomplete="off" > -->
+								<c:if test="${sessionScope.user ne null }">
 								<div class="row">
-	
+									
 									<!-- Comment -->
 									<div class="form-group col-md-12">
 										<h4 class="comment-author" style="padding-left: 20px;" >
 											<input type="hidden" name="bookreport_no" value="${bookreport.bookreport_no }" />
-											<a href="" class="writerId">${bookreport.user_email }</a>
+											<a href="" class="writerId">${sessionScope.user.user_name }</a>
 										</h4>
 										<textarea id="write_content" class="form-control" placeholder="경고문" maxlength="400" style="resize: none; height: 120px;" name="comment_content" ></textarea>
 									</div>
@@ -336,7 +339,7 @@
 	
 								</div>
 						<!-- </form>  -->
-
+								</c:if>
 						</div>
 						<!-- Comment Item start-->
 						<div id="commentList">
@@ -345,14 +348,17 @@
 							<div class="media-body">
 								<div class="comment-info">
 									<h4 class="comment-author">
-										<a href="">${cl.user_email }</a>
+										<a name="comment_author">${cl.user_name }</a>
 									</h4>
+									<input type="hidden" name="comment_no" value="${cl.comment_no }" />
 									<time>
 										<fmt:parseDate value="${cl.comment_write_date }" var="write_date2" pattern="yyyy-mm-dd HH:mm:ss" />
 										<fmt:formatDate value="${write_date2 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
 									</time>
-									<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>
-									<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>삭제</a>
+									<a class="comment-button pull-right" ><i class="tf-ion-chatbubbles"></i>신고</a>
+									
+									<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>
+									
 								</div>
 								<p>${cl.comment_content}</p>
 							</div>
@@ -362,7 +368,7 @@
 						</div>
 						<!-- End Comment Item -->
 
-					</ul>
+					</ul> <!-- End commentList -->
 				</div>
 		        </div>
 				<div>
@@ -371,6 +377,40 @@
 	      	</div>
       				
 	</div>
+	<!-- 게시글 신고 -->
+<div class="modal fade" id="reportBookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">게시글 신고</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body text-center">
+        신고 사유를 선택 하세요.
+        	<div>
+        		<select class="ref_article_info" id="ref_article_info" name="ref_article_info">
+        			<option value="스팸홍보/도배글입니다.">스팸홍보/도배글입니다.</option>
+        			<option value="음란물입니다.">음란물입니다.</option>
+        			<option value="불법정보를 포함하고 있습니다.">불법정보를 포함하고 있습니다.</option>
+        			<option value="청소년에게 유해한 내용입니다.">청소년에게 유해한 내용입니다.</option>
+        			<option value="욕설/혐오/차별적 표현입니다.">욕설/생혐오/차별적 표현입니다.</option>
+        			<option value="개인정보 노출 게시물입니다.">개인정보 노출 게시물입니다.</option>
+        			<option value="불쾌한 표현이 있습니다.">불쾌한 표현이 있습니다.</option>
+        		</select>
+        		<input type="hidden" name="article_no" value="${bookreport.bookreport_no }" />
+        	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-success" id="reportBook">신고</button>
+      </div>
+    
+    </div>
+  </div>
+</div>
 
 <br/>
 <br/>
@@ -477,6 +517,31 @@
 			})
 		})
 		
+		//댓글 삭제
+		$(document).on('click', ".deleteComment", function() {
+			
+			$.ajax({
+				type:'GET',
+				contentType:"application/json",
+				url:'deleteComment.do',
+				data:{
+					"bookreport_no" : $('input[name=bookreport_no]').val(),
+					"comment_no" : $(this).parent().find('input[name=comment_no]').val()
+				},
+				dataType : "text",
+				success : function(data) {
+					
+					 console.log(data);
+					getCommentList();
+				},
+				error : function(err) {
+					alert("error");
+					console.log(err);
+				}
+				
+			})
+		})		
+		
 	
 	// 댓글리스트 재출력
 	function getCommentList() {
@@ -496,7 +561,7 @@
 				console.log(result);
 				var htmls = "";
 				if(result.length < 1){
-					htmls.push("등록된 댓글이 없습니다.");
+					htmls = "";
 				} else {
 					for(var i=0; i<result.length; i++) {
 					var date = new Date(result[i].comment_write_date);
@@ -504,10 +569,11 @@
 						str += '<div class="media-body">'
 						str += '<div class="comment-info">'
 						str += '<h4 class="comment-author">'
-						str += '<a href="">'+result[i].user_email+'</a></h4>'
+						str += '<a href="">'+result[i].user_name+'</a></h4>'
+						str += '<input type="hidden" name="comment_no" value="'+result[i].comment_no+'" />'
 						str += '<time>'+date.toLocaleString()+'</time>'
 						str += '<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>'
-						str += '<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>삭제</a>'
+						str += '<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>'
 						str += '</div><p>'+result[i].comment_content+'</p></div></li>'
 						htmls +=str;
 						
@@ -523,6 +589,54 @@
 		})//ajax end
 		
 	}
+		
+    	$('#reportBook').on("click", function(){
+    		var ref_article_info = $('select[name=ref_article_info]').val();
+    		var article_no = $('input[name=article_no]').val();
+    		
+    		$.ajax({
+    			type:'GET',
+    			url:'reportBook.do',
+    			data: {
+    				article_no,
+    				ref_article_info
+    			
+    				},
+    			success: function(result){
+    				console.log(result);
+    				if(result=='0'){
+    					alert("신고완료");
+    					$('#reportBookModal').modal('hide');
+    				} else{
+						alert("신고는 한번만 할 수 있습니다");
+						$('#reportBookModal').modal('hide');
+    					}
+    				},
+    			error : function(err){
+    				console.log(err);
+    			}
+    		}); //end of ajax
+    	}); //end on
+    	
+    	$('#jjoayo-btn').on("click", function(){
+		
+    		$.ajax({
+    			type:'GET',
+    			url:'jjoa.do',
+    			data: {bookreport_no : "${bookreport.bookreport_no}"},
+    			success: function(result){
+    				console.log(result);
+    				if(result=='0'){
+    					$('#jjoayo-btn').attr("style", "background-color : red");
+    				} else{
+    					$('#jjoayo-btn').attr("style", "background-color : grey");
+    					}
+    				},
+    			error : function(err){
+    				console.log(err);
+    			}
+    		}); //end of ajax
+    	}); //end on
 
 </script>
 

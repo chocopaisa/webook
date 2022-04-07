@@ -32,8 +32,8 @@
 	
 	<!-- 오늘 매출 조회 -->
 	<select id="selectTodaySales" resultType="int">
-		SELECT sum(total_price)
-		FROM order_list olist left outer join (select sum(total_price) total_price, order_no
+		SELECT NVL(sum(total_price),0)
+		FROM order_list olist left outer join (select NVL(sum(total_price),0) total_price, order_no
                                     from order_items  
                                     group by order_no) oitem
         ON olist.order_no=oitem.order_no
@@ -52,36 +52,107 @@
 	
 	
 	<!-- 차트 -->	
-	<!-- 일별 매출 -->
-	<!-- 
-	<select id="TodaySales" parameterType="hashmap" resultType="int">
-		SELECT
-		FROM
+	<!-- 지난 주 일일 매출 -->
+	<select id="LastWeekSales" resultType="com.webook.domain.ChartVO">
+	<![CDATA[
+	SELECT weeklist.payment_date chartTitle, NVL(weeksales.total_price,0) chartResult
+	FROM ( 	
+		select (rownum) payment_date
+		from dual
+		connect by level <= 7) weeklist 
+		left outer join	(
+			select 
+				to_char(olist.payment_date,'d') payment_date, 
+				sum(total_price) total_price
+			from 
+				order_list olist left outer join (
+					select 
+						sum(total_price) total_price, 
+						order_no
+					from 
+						order_items
+					group by 
+						order_no) oitem
+				ON olist.order_no=oitem.order_no
+			WHERE 
+				to_char(olist.payment_date, 'YY-MM-DD') 
+					BETWEEN to_char(trunc(sysdate,'iw') - 7, 'YY-MM-DD') 
+					AND to_char(trunc(sysdate, 'iw') - 1, 'YY-MM-DD')
+			GROUP BY 
+				to_char(olist.payment_date, 'd')
+		) weeksales
+		on weeklist.payment_date = weeksales.payment_date
+	order by 
+		chartTitle
+		]]>
 	</select>
-	 -->
 	
-	<!-- 연령대 별 인원 수 구하기 -->
-	<!-- <select id="agechart" resultType="int" parameterType="hashMap">
-		SELECT 
+	<!-- 월별 회원가입 수 -->
+	<select id="MonthMemCnt" resultType="com.webook.domain.ChartVO">
+	<![CDATA[
+		SELECT monthlist.dt chartTitle, NVL(newmemcnt.cnt,0) chartResult
+		FROM (  select to_char(user_regdate,'MM') AS user_regdate, count(*) cnt
+        		from customer_info
+        		where to_char(user_regdate,'yyyy') = '2022' 
+        		group by to_char(user_regdate,'MM')) newmemcnt 
+        	right outer join 
+        	 (  select lpad(level,2,'0') as dt
+                from dual
+                connect by level <= 12) monthlist
+		ON newmemcnt.user_regdate = monthlist.dt
+		ORDER BY chartTitle
+	]]>
+	</select>
+	
+	<!-- 월별 매출 -->
+	<select id="MonthSales" resultType="com.webook.domain.ChartVO">
+	<![CDATA[
+		SELECT chartTitle.dt chartTitle, NVL(chartResult.total_price,0) chartResult
+		FROM ( 	select lpad(level,2,'0') as dt
+        		from dual 
+        		connect by level <= 12) chartTitle left outer join (
+        			SELECT to_char(olist.payment_date,'MM') payment_date, NVL(sum(total_price),0) total_price
+ 					FROM order_list olist left outer join ( 
+									                   select sum(total_price) total_price, order_no
+									                   from order_items  
+									                   group by order_no) oitem 
+ 					ON olist.order_no=oitem.order_no
+ 					GROUP BY payment_date) chartResult
+		ON chartTitle.dt = chartResult.payment_date
+		ORDER BY chartTitle
+	]]>
+	</select>
+	
+	<!-- 카테고리별 매출(TOP 5) -->
+	<select id="TopCategory" resultType="com.webook.domain.ChartVO">
+	<![CDATA[
+		SELECT *
+		FROM (	SELECT plist.genre_no chartTitle , sum(oitem.total_price) chartResult
+				FROM order_items oitem inner join product_list plist
+				ON oitem.product_no = plist.product_no
+		GROUP BY plist.genre_no
+		ORDER BY chartResult desc)
+		WHERE ROWNUM <= 5
+	]]>
+	</select>
+	
+	<!-- 연령대 별 가입자 수 -->
+	<select id="AgeNewMember" resultType="com.webook.domain.ChartVO">
+	<![CDATA[
+		SELECT age_list chartTitle , count(*) chartResult
+		FROM (SELECT 
 		    CASE WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 10 and 19 THEN '10대'
 		         WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 20 and 29 THEN '20대'
 		         WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 30 and 39 THEN '30대'
 		         WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 40 and 49 THEN '40대'
 		         WHEN to_number(to_char(sysdate,'YYYY'))-to_number(to_char(user_birth,'YYYY')) BETWEEN 50 and 59 THEN '50대'
-		         ELSE '60대이상'
-		         END 
-		FROM customer_info;
-	</select> -->
-	
-	<!-- 월별 매출 -->
-	<!-- <select id="monthsales">
-		SELECT month(total_price)
-		FROM order_items
-		WHERE order_no LIKE to_char(sysdate,'YYYY');
-	</select> -->
-	
-	
-	
+		         ELSE '60대이상' 
+		         END  age_list
+		FROM customer_info) 
+		GROUP BY age_list
+	]]>
+	</select>
+
 	<!-- 상품 등록 -->
 	<insert id="insertProduct" parameterType="com.webook.domain.ProductVO">
 	
@@ -118,13 +189,16 @@
 	<select id="getReportCommuList" resultType="com.webook.domain.ReportcommunityVO">
 		SELECT *
 		FROM REPORT_ARTICLE
+		ORDER BY rep_article_date desc
 	</select>
 	
-	 <!-- 신고 게시글 삭제 -->
-	<!--<delete id="deleteCommunity" parameterType="com.webook.domain.ReportcommunityVO">
+	<!-- 신고 게시글 삭제 -->
+	<delete id="deleteCommunity" parameterType="int">
 		DELETE FROM REPORT_ARTICLE
-		WHERE reg_article_no = #{reg_article_no}
-	</delete>-->
+		WHERE rep_article_no = #{rep_article_no}
+	</delete>
+	
+
  
 
 </mapper>

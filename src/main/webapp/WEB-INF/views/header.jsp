@@ -65,12 +65,12 @@
                 <ul class="dropdown-menu search-dropdown">
                   <li>
 					  <div>
-                    <form id="total-search-frm" action="#">
+                    <form id="total-search-frm" action="total_search.do">
                       <input
 						            id="total-search"
-                        type="search"
+                        type="text"
                         class="form-control"
-                        placeholder="Search..."
+                        placeholder="통합검색..." name="searchKeyword"
                       />
                     </form>
 					</div>
@@ -86,3 +86,7 @@
       </div>
     </section>
     <!-- End Top Header Bar -->
+    
+    
+    
+	

@@ -11,10 +11,29 @@ public class CommunityVO {
 	private int view_count;
 	private String report_kind;
 	private int star;
+	private String user_name;
+	private int jjoa_no;
+	private int jjoa_count;
 	
-
 	
-	
+	public int getJjoa_count() {
+		return jjoa_count;
+	}
+	public void setJjoa_count(int jjoa_count) {
+		this.jjoa_count = jjoa_count;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public int getJjoa_no() {
+		return jjoa_no;
+	}
+	public void setJjoa_no(int jjoa_no) {
+		this.jjoa_no = jjoa_no;
+	}
 	//bookreport
 	public int getBookreport_no() {
 		return bookreport_no;

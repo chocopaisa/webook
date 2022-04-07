@@ -6,7 +6,7 @@
 	<nav class="navbar navigation">
 		<div class="container">
 			<div class="navbar-header">
-				<h2 class="menu-title">Main Menu</h2>
+				<h2 class="menu-title">Menu</h2>
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
 					aria-expanded="false" aria-controls="navbar">
 					<span class="sr-only">Toggle navigation</span>
@@ -91,7 +91,7 @@
 
 					<!-- 마이페이지 -->
 					<li class="dropdown">
-						<a href="../mypage">마이페이지</a>
+						<a href="../mypage/p_history.do">마이페이지</a>
 					</li><!-- / 마이페이지 -->
 
 

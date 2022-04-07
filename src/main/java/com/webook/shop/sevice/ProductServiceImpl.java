@@ -12,7 +12,7 @@ import com.webook.domain.ProductVO;
 import com.webook.shop.dao.ProductDAOImpl;
 
 
-@Service("ProducyService")
+@Service("ProductService")
 public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
@@ -64,6 +64,7 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.getReport(vo);
 	}
 
+	//마이페이지 현재 구매내역 가져오기
 	@Override
 	public List<HashMap> getPurchase(MemberVO vo) {
 		
@@ -71,6 +72,21 @@ public class ProductServiceImpl implements ProductService {
 		 
 	
 		}
+
+	//마이페이지 옛날 구매내역 가져오기
+	@Override
+	public List<HashMap> prePurchase(MemberVO vo) {
+		
+		return productDAO.prePurchase(vo);
+	}
+
+	@Override
+	public List<HashMap> prePurchase(MemberVO vo, String pnum) {
+		if(pnum ==null) pnum="0";
+		int page = Integer.parseInt(pnum);
+		return productDAO.prePurchase(vo, page);
+		
+	}
 
 	
 	

@@ -33,7 +33,9 @@ public class PaymentDAOImpl implements PaymentDAO {
 
 	@Override
 	public void insertOrderItemList(OrderItemList list) {
-		mybatis.insert("payment.mapper.insertOrderItemList", list);
+		for(OrderItemVO vo: list.getList()) {
+			mybatis.insert("payment.mapper.insertOrderItem", vo);
+		}
 		
 	}
 

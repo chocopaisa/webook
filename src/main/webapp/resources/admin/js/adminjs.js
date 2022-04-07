@@ -50,4 +50,36 @@ $(function(){
     
     }) // end 수량 수정 버튼
     
+    // 신고 게시글 전체 체크 박스 선택
+    $("#checkAll").click(function(){
+    	if($("#checkAll").prop("checked")) {
+    		$(".checkok").prop("checked", true);
+    	}else {
+    		$(".checkok").prop("checked", false);
+    	}
+    
+    });// end of checkAll
+    
+    // 개별로 체크 풀 때 전체 풀림
+    $(".checkok").click(function(){
+    	if(!$(".checkok").prop("checked")) {
+    		$("#checkAll").prop("checked", false);
+    	}
+    
+    });
+    
+    // 신고 게시글 삭제 버튼 누를 때
+    $("#deletebtn").click(function(){
+    	let delok = confirm("정말 삭제하시겠습니까?")
+    	if(delok) {
+    		$("#deletereport").submit()
+    	} 
+    })
+    
+    
+    
+    
+    
+    
+  
 })// 완전 끝

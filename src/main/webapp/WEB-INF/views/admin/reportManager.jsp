@@ -38,11 +38,7 @@
                                     data-bs-target="#pills-cumm" type="button" role="tab" aria-controls="pills-cumm"
                                     aria-selected="true">신고된 게시글</button>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-member-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-member" type="button" role="tab"
-                                    aria-controls="pills-member" aria-selected="false">신고된 회원</button>
-                            </li>                            
+                                                       
                         </ul>
 
                         
@@ -54,11 +50,12 @@
                                         게시글 신고
                                         
                                     </div>
-                                    <div class="card-body tab-content" id="report-cu">  
+                                    <div class="card-body tab-content" id="report-cu"> 
+                                    <form action="deletereport.do" id="deletereport">
                                         <table id="datatablesSimple" class="text-center">
                                             <thead>
                                                 <tr>  
-                                                    <th><input type="checkbox" name="reportchkBx" onclick="checkAll();"/></th>                                                  
+                                                    <th><input type="checkbox" name="checkAll" id="checkAll" class="checkok"/></th>                                                  
                                                     <th>게시글 번호</th>
                                                     <th>신고된 회원 ID</th>
                                                     <th>신고된 사유</th>
@@ -79,7 +76,7 @@
                                              <tbody id="reportList">
                                              	<c:forEach items="${getReportCommuList}" var="reportcommunity" >
                                                 <tr>       
-                                                    <td><input type="checkbox" name="reportChkBxRow"/></td>                                             
+                                                    <td><input type="checkbox" name="rep_article_no" value="${reportcommunity.rep_article_no }" class="checkok"/></td>                                             
                                                     <td>${reportcommunity.article_no }</td>
                                                     <td>${reportcommunity.rep_article_email }</td>
                                                     <td>${reportcommunity.rep_article_info }</td>
@@ -89,105 +86,10 @@
                                                 </c:forEach>                                                                                     
                                            	</tbody>
                                         </table>  
-                                     
-                                        <button type="button" class="btn btn-danger m-2" id="deletebtn" onclick="deletecommu();">삭제하기</button>                                      
+                                        <button type="button" class="btn btn-danger m-2" id="deletebtn">삭제하기</button>                                      
+                                     </form> 
                                     </div>
                                                              
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pills-member" role="tabpanel" aria-labelledby="pills-member-tab">
-                                <div class="card mb-4 tab-content" id="report-mem"> <!--start report_mem-->
-                                    <div class="card-header">
-                                        <i class="fas fa-table me-1"></i>
-                                        회원 신고
-                                    </div>
-                                    <div class="card-body" id="report_mem">
-                                        <table id="datatablesSimplee" class="report-table"> <!--게시글 구분위해 e가 하나 더 붙어있음-->
-                                            <thead>
-                                                <tr>                                                    
-                                                    <th>작성자 ID</th>
-                                                    <th>회원명</th>
-                                                    <th>신고 목록</th>
-                                                    <th>신고 날짜</th>
-                                                    <th>신고 횟수</th>
-                                                </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>                                                    
-                                                    <th>작성자 ID</th>
-                                                    <th>회원명</th>
-                                                    <th>신고 목록</th>
-                                                    <th>신고 날짜</th>
-                                                    <th>신고 횟수</th>
-                                                </tr>
-                                            </tfoot>
-                                            <tbody>
-                                                <tr>                                                    
-                                                    <td>hong1</td>
-                                                    <td>홍이</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr>
-                                                <tr>                                                    
-                                                    <td>hong1</td>
-                                                    <td>홍이</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr> 
-                                                <tr>                                                    
-                                                    <td>hong1</td>
-                                                    <td>홍이</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr> 
-                                                <tr>                                                    
-                                                    <td>hong1</td>
-                                                    <td>홍이</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr> 
-                                                <tr>                                                    
-                                                    <td>hong1</td>
-                                                    <td>홍이</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr> 
-                                                <tr>                                                   
-                                                    <td>hong1</td>
-                                                    <td>홍이</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr> 
-                                                <tr>                                                    
-                                                    <td>hong1</td>
-                                                    <td>홍이</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr> 
-                                                <tr>                                                
-                                                    <td>hong1</td>
-                                                    <td>홍이</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr> 
-                                                <tr>                                                 
-                                                    <td>hong1</td>
-                                                    <td>홍이</td>
-                                                    <td>욕설</td>
-                                                    <td>2011/04/25</td>
-                                                    <td>5</td>
-                                                </tr>                                        
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                         

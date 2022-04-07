@@ -1,13 +1,14 @@
 package com.webook.community.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webook.community.dao.CommunityDAO;
-import com.webook.community.dao.CommunityDAOImpl;
 import com.webook.domain.CommunityVO;
+import com.webook.domain.ReportcommunityVO;
 
 @Service("communityService")
 public class CommunityServiceImpl implements CommunityService{
@@ -30,8 +31,47 @@ public class CommunityServiceImpl implements CommunityService{
 		return communityDAO.getBookreport(vo);
 	}
 	
-/*	public CommunityVO getBookreportCount(CommunityVO vo, int pNum) {
-		return communityDAO.getBookreportCount(vo, pNum);
-	}*/
+	//게시물 검색
+	public List<CommunityVO> searchBookreportList(HashMap map, int pNum) {
+		return communityDAO.searchBookreportList(map, pNum);
+	}
+	
+	//게시글 삭제
+	public void deleteBookreport(CommunityVO vo) {
+		communityDAO.deleteBookreport(vo);
+	}
+	
+	//조회수 증가
+	public void viewCount(CommunityVO vo) {
+		communityDAO.viewCount(vo);
+	}
+	
+	//게시글 신고
+	public void reportBook(ReportcommunityVO vo) {
+		communityDAO.reportBook(vo);
+	}
+	
+	//게시글 신고 체크
+	public ReportcommunityVO reportBookCheck(ReportcommunityVO vo) {
+		return communityDAO.reportBookCheck(vo);
+	}
+	
+	//좋아요 등록
+	public void insertJjoa(CommunityVO vo) {
+		communityDAO.insertJjoa(vo);
+	}
+	//좋아요 취소
+	public void deleteJjoa(CommunityVO vo) {
+		communityDAO.deleteJjoa(vo);
+	}
+	//좋아요 중복 체크
+	public CommunityVO checkJjoa(CommunityVO vo) {
+		return communityDAO.checkJjoa(vo);
+	}
+	
+	//좋아요 갯수
+	public CommunityVO countJjoa(CommunityVO vo) {
+		return communityDAO.countJjoa(vo);
+	}
 	
 }

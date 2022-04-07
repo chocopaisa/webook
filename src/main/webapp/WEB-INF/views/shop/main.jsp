@@ -183,9 +183,9 @@ ul.top-menu {
 								</div>
 								
 									<h4 class="text-left mb-1">
-									<a href="shop_koreana.do?searchKeyword=${bs.product_writer }">${bs.product_writer }</a>
+									<a href="shop_search.do?searchKeyword=${bs.product_writer }">${bs.product_writer }</a>
 									/
-									<a href="shop_koreana.do?searchKeyword=${bs.product_publisher }">
+									<a href="shop_search.do?searchKeyword=${bs.product_publisher }">
 									${bs.product_publisher }</a>
 									</h4>
 								
@@ -275,10 +275,10 @@ ul.top-menu {
 	          <div class="product-thumb">
 	          <img class="img-responsive issue-img" src="${item.product_image}" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
-	          <h4><a href="shop_koreana.do?searchKeyword=${item.product_writer }">${item.product_writer}</a></h4>
+	          <h4><a href="product_single.do?product_no=${item.product_no }">${item.product_writer}</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
-	          <h4><a href="shop/product_single.do?product_no=${item.product_no }">${item.product_name}</a></h4>
+	          <h4><a href="product_single.do?product_no=${item.product_no }">${item.product_name}</a></h4>
 	          <p class="price money">${item.product_price }</p>
 	          </div>
 	          </div>

@@ -5,20 +5,34 @@
 
 	<!-- 댓글 페이지 리스트 -->
 	<select id="getCommentList" parameterType="com.webook.domain.CommentVO" resultType="com.webook.domain.CommentVO">
-		SELECT * FROM comment_list
-		WHERE bookreport_no = #{bookreport_no}
-		ORDER BY comment_no desc
+		SELECT a.*, b.user_name FROM comment_list a
+		INNER JOIN customer_info b ON a.user_email = b.user_email
+		WHERE a.bookreport_no = #{bookreport_no}
+		ORDER BY a.comment_no desc
 	</select>
 
 	<!-- 댓글 작성 -->
 	<insert id="insertComment" parameterType="com.webook.domain.CommentVO" >
 		INSERT INTO comment_list(comment_no, user_email, bookreport_no, comment_write_date,
 									comment_content)
-		VALUES(comment_list_seq.nextval, 'webook@com', #{bookreport_no}, sysdate, 
+		VALUES(comment_list_seq.nextval, #{user_email}, #{bookreport_no}, sysdate, 
 					#{comment_content})
 	
 	</insert>
-
+	
+	<!-- 댓글 모두 삭제 -->
+	<delete id="deleteAllComment">
+		DELETE FROM comment_list
+		
+		WHERE bookreport_no = #{bookreport_no}
+	</delete>
+	
+	<delete id="deleteComment">
+		DELETE FROM comment_list
+		WHERE bookreport_no = #{bookreport_no} and user_email = #{user_email} and comment_no = #{comment_no}
+	</delete>
+	
+	
 	<!-- 책 검색 자동완성 -->
 <!-- 	<select id="bookSearch" parameterType="HashMap" resultType="String">
 		<choose>

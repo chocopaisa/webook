@@ -23,6 +23,10 @@ FACEBOOK: https://www.facebook.com/themefisher
     <!-- Basic Page Needs
   ================================================== -->
     <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+
     <title>WEBOOK | 너와 나의 연결 고리</title>
 
     <!-- Mobile Specific Metas
@@ -56,7 +60,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="resources/css/style.css" />
-
+	
+	<link rel="stylesheet" href="resources/css/mycolor.css">
     <style type="text/css">
 	  .pr-2 {
 		  padding-right: 20px;
@@ -82,6 +87,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     .product-item {
     	height : 370px;
     }
+    
     </style>
   </head>
 
@@ -120,7 +126,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         <div class="media-body">
         <h4 class="media-heading"><a href="shop/product_single.do?product_no=${reviews[idx].PRODUCT_NO }">${ reviews[idx].PRODUCT_NAME }</a></h4>
         <h4 class="review-star"><span class="star"> ${reviews[idx].STAR }</span></h4><hr/>
-        <div><p>${reviews[idx].BOOKREPORT_CONTENT }</p></div>
+        <div><a href='community/getcontent.do?bookreport_no=${reviews[idx].BOOKREPORT_NO }'><p>${reviews[idx].BOOKREPORT_CONTENT }</p></a></div>
         <div class="text-right align-text-bottom">
         <a href="#"><p>${reviews[idx].USER_NAME }</p></a></div></div></div></div>
         <!-- 한묶음 끝-->
@@ -157,7 +163,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          <div class="product-thumb">
 	          <img class="img-responsive bestseller-img" src="${bestSellers[idx].product_image}" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
-	          <h4><a href="shop/shop_koreana.do?searchKeyword=${bestSellers[idx].product_writer }">${bestSellers[idx].product_writer}</a></h4>
+	          <h4><a href="shop/product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_writer}</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
 	          <h4><a href="shop/product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_name}</a></h4>
