@@ -175,6 +175,8 @@
 		$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
 	})
 	
+	
+	
 	// 상단에 메시지 띄우기
 	$('.page-alert').hide();
 	$('.page-alert').css({
@@ -193,7 +195,7 @@
 		},3000);
 	}
 	// 경고창
-	function alertMessage(msg){
+	function alertWarnMessage(msg){
 		$('#page-warn').show();
 		$('#page-warn .alert-message').text(msg);
 		setTimeout(function(){
