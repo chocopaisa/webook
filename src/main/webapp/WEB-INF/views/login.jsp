@@ -76,9 +76,9 @@ FACEBOOK: https://www.facebook.com/themefisher
         	   </c:if>
             </div>
             <div class="text-center">
-              <a href="join.do" class="btn btn-main text-right" >회원가입</a>
+              <a href="join.do" class="btn btn-main text-right" style="color:white;">회원가입</a>
               <button type="submit" class="btn btn-main text-center" id="Submit" >로그인</button>
-              <a href="passwordfind.do" class="btn btn-main text-left" >비밀번호 찾기</a>
+              <a href="emailfind.do" class="btn btn-main text-left" style="color:white;">아이디 찾기</a>
             </div>
           </form>
           <p class="mt-20"><a href="signin.html"> 새로운 계정 만들기</a></p>
