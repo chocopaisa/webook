@@ -42,13 +42,13 @@
         </where>
 	</select>
 	
-	<!-- 회원 목록 검색 => 블랙리스트 추가 -->
+	<!-- 회원 목록 검색 -->
 	<select id="getMemberList" resultType="com.webook.domain.MemberVO">
-		SELECT user_email, user_name, user_tel, user_addr, to_number(to_char(user_regdate,'YYYY')), blacklist
+		SELECT user_email, user_name, user_tel, to_char(user_birth,'YYYY-MM-DD') user_birth, to_char(user_regdate,'YY-MM-DD') user_regdate, blacklist
 		FROM customer_info
+		WHERE blacklist = 'N'
 	</select>
 	
-	<!-- 신고 게시글  -->
 	
 	
 	<!-- 차트 -->	
@@ -198,7 +198,19 @@
 		WHERE rep_article_no = #{rep_article_no}
 	</delete>
 	
-
+	<!-- 블랙리스트 회원 목록 출력 -->
+	<select id="blacklistmem" resultType="com.webook.domain.MemberVO">
+		SELECT user_email, user_name, user_tel, to_char(user_birth,'YYYY-MM-DD') user_birth, to_char(user_regdate,'YY-MM-DD') user_regdate, blacklist
+		FROM customer_info
+		WHERE blacklist = 'Y'
+	</select>
+	
+	<!-- 블랙리스트 변경 -->
+	<update id="goblacklist" parameterType="string">
+		UPDATE customer_info
+		SET blacklist = 'Y'
+		WHERE user_email = #{user_email}
+	</update>
  
 
 </mapper>

@@ -40,6 +40,11 @@ window.addEventListener('DOMContentLoaded', event => {
         if (customertables) {
         new simpleDatatables.DataTable(customertables);
         }
+        
+    const blacklisttables = document.getElementById('blacklisttables');
+        if (blacklisttables) {
+        new simpleDatatables.DataTable(blacklisttables);
+        }
    
     
     });

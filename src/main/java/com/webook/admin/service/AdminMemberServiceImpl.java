@@ -18,7 +18,15 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	public List<MemberVO> getMemberList() {
 		return adminMemberDAO.getMemberList();
-		
-		
+	}
+	
+	// 블랙 리스트 출력
+	public List<MemberVO> blacklistmem() {
+		return adminMemberDAO.blacklistmem();
+	}
+	
+	// 블랙리스트 변경
+	public void goblacklist(String[] black) {
+		adminMemberDAO.goblacklist(black);
 	}
 }

@@ -32,20 +32,17 @@
 									<h3 class="text-center font-weight-light my-4">Login</h3>
 								</div>
 								<div class="card-body">
-									<form action="adminlogin.do" >
+									<form action="adminlogin.do" method="post" >
 										<div class="form-floating mb-3">
 											<input class="form-control" id="inputEmail" type="text"
-												placeholder="name@example.com" name="admin_id"/> <label for="inputEmail">Email
-												address</label>
+												placeholder="name@example.com" name="admin_id"/> <label for="inputEmail">Admin ID</label>
 										</div>
 										<div class="form-floating mb-3">
-											<input class="form-control" id="inputPassword"
-												type="password" placeholder="Password" name="admin_pass" /> <label
-												for="inputPassword">Password</label>
-										</div>
-										<div
-											class="d-flex align-items-center justify-content-between mt-4 mb-0 admin-loginbtn">
-											<button class="btn btn-primary" type="submit">Login</button>
+											<input class="form-control" id="inputPassword" type="password" placeholder="Password" name="admin_pass" /> 
+												<label for="inputPassword">Password</label>
+										</div>		
+										<div class="d-flex align-items-center justify-content-between mt-4 mb-0 admin-loginbtn">
+											<button class="btn btn-primary" type="submit" id="login_submit">Login</button>
 										</div>
 									</form>
 								</div>
@@ -70,5 +67,12 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="resources/admin/js/scripts.js"></script>
+	<script type="text/javascript">
+	// 로그인 틀린 메세지
+	let msg = "${msg}";
+	if(msg != "") {
+		alert("아이디 또는 비밀번호가 틀렸습니다.");
+	}
+	</script>
 </body>
 </html>
