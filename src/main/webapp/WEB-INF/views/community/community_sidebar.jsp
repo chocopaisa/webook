@@ -21,51 +21,53 @@
 					</div>
 					<div class="col-xs-4 col-sm-4 col-md-12">
 						<hr/>
-						<h4>국내</h4>
+						<h4>문학</h4>
 						<hr/>
 					
 					<ul>
 					<li>
-						<a href="list.do?report_kind=소설">소설/인문/시</a>
+						<a href="list.do?report_kind=소설">소설 게시판</a>
 					</li>
 					<li>
-						<a href="list.do?report_kind=만화">만화</a>
+						<a href="list.do?report_kind=만화">만화 게시판</a>
 					</li>
 					<li>
-						<a href="list.do?report_kind=정치사회">정치사회/경제경영</a>
+						<a href="list.do?report_kind=인문시">인문/시 게시판</a>
 					</li>
 					<li>
-						<a href="list.do?report_kind=종교">종교/역사/문화</a>
+						<a href="list.do?report_kind=사회">사회 게시판</a>
 					</li>
 					<li>
-						<a href="list.do?report_kind=예술">교양과학/예술</a>
+						<a href="list.do?report_kind=경제경영">경제경영 게시판</a>
 					</li>
-					<li>
-						<a href="list.do?report_kind=여행">자기계발/여행</a>
-					</li>
-		          </ul>
-		          </div>
-		          <div class="col-xs-4 col-sm-4 col-md-12">
-		          <hr/>
-						<h4>해외</h4>
+					</ul>
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-12">
 					<hr/>
-				<ul>
+						<h4>기타</h4>
+						<hr/>
+					<ul>
+					
 					<li>
-						<span>문학</span>
+						<a href="list.do?report_kind=종교">종교 게시판</a>
 					</li>
 					<li>
-						<span>인문/사회</span>
+						<a href="list.do?report_kind=한국사">한국사 게시판</a>
 					</li>
 					<li>
-						<span>예술/건축</span>
+						<a href="list.do?report_kind=해외사">세계사 게시판</a>
 					</li>
 					<li>
-						<span>아동</span>
+						<a href="list.do?report_kind=과학">과학 게시판</a>
 					</li>
 					<li>
-						<span>만화/애니/문고</span>
+						<a href="list.do?report_kind=여행">여행 게시판</a>
+					</li>
+					<li>
+						<a href="list.do?report_kind=취미">취미 게시판</a>
 					</li>
 		          </ul>
 		          </div>
+		          
 				</div>
         	</div>
