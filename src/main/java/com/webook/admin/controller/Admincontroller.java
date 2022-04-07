@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -57,15 +59,19 @@ public class Admincontroller {
 	 
 	// 관리자 로그인
 	@RequestMapping("adminlogin.do")
-	public String login(AdminVO vo,HttpSession session ) {
+	public String login(AdminVO vo,HttpSession session, RedirectAttributes redirect) {
 		AdminVO result = adminService.loginCheck(vo);
-		if(result==null && result.getAdmin_id()==null) {
-			System.out.println("실패"+result.getAdmin_id());
-			return "admin/adminindex";
+		if(result==null) {
+			redirect.addFlashAttribute("msg","logtest");
+			return "redirect:adminindex.do";
 		}else {
 			// 관리자 로그인 세션에 저장
-			System.out.println("성공"+result.getAdmin_id());
+			AdminVO admin = new AdminVO();
+			admin.setAdmin_id(result.getAdmin_id());
+			admin.setAdmin_pass(result.getAdmin_pass());
 			session.setAttribute("logname", result.getAdmin_id());
+			AdminVO avo = (AdminVO)session.getAttribute("admin");
+			
 			return "redirect:dashboard.do";
 		}
 	}
@@ -212,7 +218,7 @@ public class Admincontroller {
 		 String json5 = gson5.toJson(jArray5);
 		 m.addAttribute("json5", json5);
 		 
-		 return "admin/ChartManager"; 
+		 return "admin/charts"; 
 		 
 	}
 	
@@ -282,7 +288,27 @@ public class Admincontroller {
 		return "redirect:reportManager.do";
 	 } 
 		 
-
+	 // 회원 블랙리스트 출력
+	@RequestMapping("/blacklist.do")
+	 public String blacklistmem(HttpSession session,Model m) {
+		 if(session.getAttribute("logname") == null) return "admin/adminindex";
+		List<MemberVO> list = adminMemberService.blacklistmem();
+		if(list.isEmpty())
+			System.out.println("블랙리스트 회원이 없습니다.");
+		m.addAttribute("blackList", list);
+		
+		return "admin/blacklist"; 
+	 }
+	
+	// 블랙리스트 변경
+	@RequestMapping("/goblacklist.do")
+	 public String goblacklist(String[] user_email) {		 	
+		 	 for(String i : user_email) {
+		 		 System.out.println("i>>>" + i);
+		 	 }	 
+			 adminMemberService.goblacklist(user_email);
+		return "redirect:customerManager.do";
+	 }
 }
 
 

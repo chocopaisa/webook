@@ -20,53 +20,40 @@
         <div id="layoutSidenav">
         <jsp:include page="layoutsidenav.jsp"></jsp:include>
             <div id="layoutSidenav_content">
-            
           
             
                 <main>
                     <div class="container-fluid px-4">
-                        <h3 class="mt-4">회원 관리</h3>                          
+                        <h3 class="mt-4">블랙리스트 관리</h3>                          
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 회원 검색
-                                <button type="button" class="btn btn-danger m-2 blacklistbtn">블랙리스트 변경</button>
                             </div>
                             <div class="card-body">
-                            <form action="goblacklist.do" id="blacklistfrm">
-                                <table id="customertables">    
+                            <form action="goblacklist">
+                                <table id="blacklisttables">    
                                 	<thead>                                
-                                        <tr> 
-                                        	<th>선택</th>                                                   
+                                        <tr>                                                    
                                             <th>작성자 ID</th>
                                             <th>회원명</th>
                                             <th>전화번호</th>
-                                            <th>생년월일</th>                          
+                                            <th>생년월일</th>
                                             <th>가입 날짜</th>
                                             <th>블랙리스트 여부</th>
                                         </tr>							
 									</thead>
-									<tfoot>
-										<tr>  
-											<th><input type="checkbox" name="checkAll" id="checkAll" class="checkok"/></th>                                                  
-                                            <th>작성자 ID</th>
-                                            <th>회원명</th>
-                                            <th>전화번호</th>
-                                            <th>생년월일</th> 
-                                            <th>가입 날짜</th>
-                                            <th>블랙리스트 여부</th>
-                                        </tr>	
-									</tfoot>
 									<tbody>
-										<c:forEach items="${memberList}" var="member">		
-                                        <tr> 
-                                        	<td><input type="checkbox" class="checkok" name="user_email" value="${member.user_email }"/></td>                                                   
+										<c:forEach items="${blackList}" var="member">
+										
+                                        <tr>                                                    
                                             <td>${member.user_email }</td>
                                             <td>${member.user_name }</td>
                                             <td>${member.user_tel }</td>
                                             <td>${member.user_birth }</td>
                                             <td>${member.user_regdate }</td>
-                                            <td>${member.blacklist }</td>    
+                                            <td>${member.blacklist }</td>
+                                            
                                         </tr>
                                         </c:forEach>
                                     </tbody>

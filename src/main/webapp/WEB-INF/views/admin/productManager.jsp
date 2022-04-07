@@ -18,6 +18,8 @@
             div.submitbtn {text-align: right;}
             #datatablesSimplee {text-align: center;}
             #datatablesSimplee .btn {height: 30px;}
+            #datatablesSimplee td {vertical-align: middle;}
+            .modifybtn {height: 100px; }
         </style>
     </head>
     <body class="sb-nav-fixed">
@@ -73,7 +75,7 @@
                                                     <td>${product.product_writer }</td>
                                                     <td class="updatecnt">${product.product_cnt }</td>
                                                     <td><input type="text" class="modifycnt" name="product_cnt" style="width: 50px;"></td>
-                                                    <td><button type="button" class="btn btn-success align-middle modifybtn" data-productNo="${product.product_no}">입고</button></td>
+                                                    <td><button type="button" class="btn btn-success align-self-center modifybtn" data-productNo="${product.product_no}">입고</button></td>
                                                 </tr>
                                                 </c:forEach>
                                                 </tbody>

@@ -1,8 +1,10 @@
 $(function(){
 
+	
+	
     // 게시글 옵션기능 삭제 
     
-    $('#datatablesSimple').DataTable( {
+    $('#datatablesSimple').DataTable({
 
         "ordering": false,
         "info":     false
@@ -15,8 +17,7 @@ $(function(){
     })
     
     // 수량 수정 버튼
-    $(".modifybtn").click(function(){
-    
+    $(document).on('click',".modifybtn",function(){
     const tr = $(this).parent().parent();
     const product_no = tr.find('.product_no').text();
     const modifycnt = tr.find('.modifycnt').val();
@@ -25,6 +26,11 @@ $(function(){
     console.log(product_no)
     console.log(modifycnt)
     
+    if( modifycnt == '' ){
+    alert('입고할 수량을 입력해주세요');
+    return;
+    }
+    	
     	
     	$.ajax({
     		type : 'get',
@@ -35,12 +41,13 @@ $(function(){
     				product_cnt : modifycnt },
     		success : function(data) {
     			alert(data)
-    			if(data=="성공"){
+    			//if(data=="성공"){
+    			 //   alert(updatecnt.text());
     				updatecnt.text(Number(updatecnt.text())+Number(modifycnt))
-    			}
+    			//}
     		},
     		error : function(err) {
-    			alert('입고할 수량을 입력해주세요')
+    			alert('실패');
     			console.log(err);
     		}
     		
@@ -76,10 +83,18 @@ $(function(){
     	} 
     })
     
+    $(".blacklistbtn").click(function(){
+    	let delok = confirm("블랙리스트로 변경하시겠습니까?")
+    	if(delok) {
+    		$("#blacklistfrm").submit()
+    	} 
+    })
+    
+    })
+    
     
     
     
     
     
   
-})// 완전 끝
