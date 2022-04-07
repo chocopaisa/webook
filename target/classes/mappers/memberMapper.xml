@@ -32,7 +32,7 @@ SELECT *
 FROM customer_info
 </select>
 
-<select id="passwordfind" parameterType="com.webook.domain.MemberVO">
+<select id="passwordfind" resultType="com.webook.domain.MemberVO" parameterType="com.webook.domain.MemberVO">
 SELECT *
 FROM customer_info
 WHERE user_email = #{user_email} and user_name = #{user_name} and user_tel = #{user_tel}  

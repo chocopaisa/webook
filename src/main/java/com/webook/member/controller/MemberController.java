@@ -26,9 +26,9 @@ public class MemberController {
 
 	}
 
-	@RequestMapping("passwordfind.do")
+	@RequestMapping("pwfind.do")
 	public String passwordfind(MemberVO vo, Model m) {
-		String member = (memberService.passwordfind(vo));
+		MemberVO member = (memberService.passwordfind(vo));
 		
 		if(member == null) {
 			m.addAttribute("check", 1);
@@ -36,10 +36,15 @@ public class MemberController {
 			m.addAttribute("check", 0);
 			m.addAttribute("user_email", vo.getUser_email());
 			m.addAttribute("user_pass", member);
-			System.out.println(vo);
 		}
-		return "passwordfind.do";
+		return "passwordfind";
 	}
+	
+	@RequestMapping("passwordfind.do")
+	public void test2() {
+		
+	}
+	
 	
 	// 비밀번호 변경 경로
 	@RequestMapping("mypage/modify.do")

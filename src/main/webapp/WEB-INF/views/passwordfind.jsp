@@ -62,7 +62,7 @@ FACEBOOK: https://www.facebook.com/themefisher
             <h1>WEBOOK</h1>
           </a>
           <h2 class="text-center">비밀번호 찾기</h2>
-          <form class="text-left clearfix" action="index.html">
+          <form class="text-left clearfix" action="pwfind.do" id="box">
            이메일
                   <input
                     type="text"
@@ -79,7 +79,7 @@ FACEBOOK: https://www.facebook.com/themefisher
             <div class="form-group text-center">
               <input type="tel" name="user_tel" class="form-control"><br/>
             </div>
-              <button type="submit" class="btn btn-main w-100">확인</button>
+              <button type="button" class="btn btn-main w-100" id="findbtn">비밀번호 찾기</button>
             </div>
           </form>
         </div>
@@ -116,7 +116,15 @@ FACEBOOK: https://www.facebook.com/themefisher
     <!-- Main Js File -->
     <script src="resources/js/script.js"></script>
     
-
+    <script type="text/javascript">
+    $(function(){
+    	$("#findbtn").click(function(){
+    		if(confirm('비밀번호를 찾으시겠습니까?')){
+    			$("#box").submit();
+    		}
+    	})
+    })
+    </script>
 
   </body>
   </html>

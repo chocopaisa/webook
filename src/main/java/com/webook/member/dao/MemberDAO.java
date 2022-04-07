@@ -14,6 +14,6 @@ public interface MemberDAO {
 	
 	public List<MemberVO> getMemberList(HashMap map);
 
-	public String passwordfind(MemberVO vo);
+	public MemberVO passwordfind(MemberVO vo);
 
 }

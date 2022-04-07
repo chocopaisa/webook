@@ -38,7 +38,7 @@ public class MemberDAOImpl implements MemberDAO{
 		return mybatis.selectList("member.mapper.getMemberList", map);
 	}
 
-	public String passwordfind(MemberVO vo) {
+	public MemberVO passwordfind(MemberVO vo) {
 		System.out.println("===> Mybatis passwordfind() 호출");
 		return mybatis.selectOne("member.mapper.passwordfind", vo);
 	}

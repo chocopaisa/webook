@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!-- 
 THEME: Aviato | E-commerce template
 VERSION: 1.0.0
@@ -68,10 +69,15 @@ FACEBOOK: https://www.facebook.com/themefisher
             </div>
             <div class="form-group">
               <input type="password" name="user_pass" id="password" class="form-control" placeholder="Password">
+        	   <c:if test="${fail ne null}">
+        	   <div class="alert alert-danger alert-common" role="alert" id="alert-danger" style= "width:100%"><i class="tf-ion-close-circled"></i>
+        	   <div>아이디 또는 비밀번호가 일치하지 않습니다. 입력하신 내용을 다시 확인해주세요.</div>
+        	   </div>
+        	   </c:if>
             </div>
             <div class="text-center">
               <a href="join.do" class="btn btn-main text-right" >회원가입</a>
-              <button type="submit" class="btn btn-main text-center" >로그인</button>
+              <button type="submit" class="btn btn-main text-center" id="Submit" >로그인</button>
               <a href="passwordfind.do" class="btn btn-main text-left" >비밀번호 찾기</a>
             </div>
           </form>
@@ -109,7 +115,26 @@ FACEBOOK: https://www.facebook.com/themefisher
 
     <!-- Main Js File -->
     <script src="js/script.js"></script>
-    
+	
+	<script type="text/javascript">
+	$(function(){
+		$("#Submit").click(function(){ //아이디, 비밀번호 공백일때
+			var id = $("#email").val();
+			var pass = $("#password").val();
+			
+			if(id == "" && pass =="") { //비밀번호만 공백일 때
+			  $("#email").focus();
+			  return false;
+			} else if(pass==""){
+			  $("#password").focus();
+			  return false;
+			} else if(id =="" && pass != "") { // 아이디만 공백일 때
+			  $("#email").focus();
+			  return false;
+			}
+		}); // end of (#Submit 버튼)
+	})
+	</script>    
 
 
   </body>

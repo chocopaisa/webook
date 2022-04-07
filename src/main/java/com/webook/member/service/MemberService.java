@@ -18,6 +18,6 @@ public interface MemberService {
 	public int deleteMember(MemberVO vo);
 	
 	// 비밀번호 찾기
-	public String passwordfind(MemberVO vo);
+	public MemberVO passwordfind(MemberVO vo);
 	
 }
