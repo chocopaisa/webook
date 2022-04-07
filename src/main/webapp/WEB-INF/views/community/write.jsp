@@ -284,15 +284,17 @@ pageEncoding="UTF-8"%>
                 <div class="media-body">
                   <div class="write_">
                     <select class="report_type" name="report_kind">
-                      <option value="역사">역사</option>
+                      <option value="소설">소설</option>
                       <option value="만화">만화</option>
+                      <option value="인문시">인문/시</option>
+                      <option value="사회">사회</option>
+                      <option value="경제경영">경제경영</option>
                       <option value="종교">종교</option>
-                      <option value="역사">역사</option>
-                      <option value="만화">만화</option>
-                      <option value="종교">종교</option>
-                      <option value="역사">역사</option>
-                      <option value="만화">만화</option>
-                      <option value="종교">종교</option>
+                      <option value="한국사">한국사</option>
+                      <option value="세계사">세계사</option>
+                      <option value="과학">과학</option>
+                      <option value="여행">여행</option>
+                      <option value="취미">취미</option>
                     </select>
                     <button
                       type="button"

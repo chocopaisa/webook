@@ -52,9 +52,12 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 </head>
 <style>
-	.bookreport_list {
-		text-align: center;
-		height: 350px;
+	.bookreport_list td {
+		padding : 10px;
+		vertical-align: middle;
+	}
+	.bookreport_list th, .bookreport_list td{
+		border-bottom: 1px solid #eee;
 	}
 	
 	.hidden_notice {
@@ -118,7 +121,30 @@ FACEBOOK: https://www.facebook.com/themefisher
 	  .pl-2 {
 		padding-left: 20px;
 	  }
-
+.post-content table tr> td {
+		vertical-align: middle;
+	}
+	.post > div {
+		margin: 0px;
+		padding : 0px;
+	}
+	.post ul {
+		margin-bottom: 20px;
+	}
+	.post ul > li {
+		padding: 10px;
+	
+	}
+	.post ul > li:hover {
+		background-color: #f7f7f7;
+		text-decoration: underline;
+	}
+	.post-content {
+		margin-top : 20px;
+	}
+	.page-wrapper {
+		padding : 0px;
+	}
 </style>
 <body id="body">
 
@@ -170,73 +196,24 @@ FACEBOOK: https://www.facebook.com/themefisher
 <div class="page-wrapper" >
 	<div class="container">
 		<div class="row" >
-      		<div class="col-md-2">
-		        <div class="post text-center" >
-					<table border="1" width="165px" class="bookreport_type_select">
-						<tr>
-							<td class=""><strong><a href="list.do">전체 독후감</a></strong></td>
-						</tr>
-						<tr>
-							<td class=""><strong>베스트 독후감</strong></td>
-						</tr>
-						<tr>
-							<td class=""><strong>화제의 독후감</strong></td>
-						</tr>
-						<tr>
-							<td class=""><strong>국내</strong></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=소설">소설/인문/시</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=만화">만화</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=정치사회">정치사회/경제경영</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=종교">종교/역사/문화</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=예술">교양과학/예술</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=여행">자기계발/여행</a></td>
-						</tr>
-					  </table>
-					  <br/>
-					  <table border="1" width="165px" class="bookreport_type_select">
-						<tr>
-							<td class=""><strong>해외</strong></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외문학">문학</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외인문">인문/사회</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외예술">예술/건축</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외아동">아동</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외만화">만화/애니/문고</a></td>
-						</tr>
-					  </table>
-				</div>
-        	</div>
-			<div class="col-md-7 offset-md-1">
+      		<%@ include file="/WEB-INF/views/community/community_sidebar.jsp" %>
+			<div class="col-md-9">
 		        <div class="post">
 	          		<div class="post-thumb pull-right">
 	          		</div>
 	          <div class="post-content">
-				  <h5 style="text-align: center" >${param.report_kind} 게시판</h5>
-	           <table border="1" border-bottom width="900" class="bookreport_list">
+				  <h3>${param.report_kind} 게시판</h3>
+				  <hr/>
+	           <table class="bookreport_list w-100">
+	           		<thead class="text-center">
 	           		<tr>
-	           			<td width="80">글번호</td><td>제목</td><td width="100">작성자</td><td width="100">작성일</td><td width="70">조회</td><td width="70">좋아요</td>
+	           			<th class="text-center">글번호</th><th class="text-center">제목</th><th class="text-center">작성자</th><th class="text-center">작성일</th><th class="text-center">조회</th><th class="text-center">좋아요</th>
 	           		</tr>
+	           		</thead>
+	           		<tbody>
+	           		<c:if test="${empty bookreportList}">
+	           			<tr><td rowspan="10" colspan="6" class="text-center">작성된 글이 없습니다</td></tr>
+	           		</c:if>
 	           		<c:forEach items="${bookreportList }" var="bookreport">
 					   <tr>
 						<td>${bookreport.bookreport_no }</td>
@@ -250,6 +227,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 						<td>${bookreport.jjoa_count }</td>
 					</tr>
  					</c:forEach>
+ 					</tbody>
 	           </table>
 	            
 	            <div class="text-center">
