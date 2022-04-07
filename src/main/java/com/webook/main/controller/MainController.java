@@ -1,5 +1,6 @@
 package com.webook.main.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class MainController {
 	@RequestMapping("main.do")
 	public String showMain(Model m) {
 		List<HashMap> reviews = mainService.showReviews(); // 리뷰 
+		List<HashMap> resultList = new ArrayList<HashMap>();
 		for(int idx = reviews.size()-1; idx >= 0; idx--) {
 			String content = (String) reviews.get(idx).get("BOOKREPORT_CONTENT");
 			System.out.println(content);
@@ -32,10 +34,12 @@ public class MainController {
 				continue;
 			}
 			int end = content.indexOf("</blockquote>");
-			reviews.get(idx).put("BOOKREPORT_CONTENT", content.substring(start + 12, end));
+			HashMap map = reviews.get(idx);
+			map.put("BOOKREPORT_CONTENT", content.substring(start + 12, end));
+			resultList.add(map);
 			System.out.println(content.substring(start + 12, end));
 		}
-		m.addAttribute("reviews", reviews);
+		m.addAttribute("reviews", resultList);
 		List<ProductVO> bestSellers = mainService.showBestSeller(); // 베스트셀러 15개
 		
 		m.addAttribute("bestSellers", bestSellers);

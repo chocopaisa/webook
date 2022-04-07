@@ -170,11 +170,9 @@ pageEncoding="UTF-8"%>
     }
 
     .write_title {
-      min-width: 620px;
-      min-height: 30px;
-      max-width: 300px;
-      max-height: 30px;
-      border-radius: 5px;
+    	width : 100%;
+    	margin-top : 10px;
+    	margin-bottom : 10px;
     }
 
     .write_hanjul_content {
@@ -189,6 +187,8 @@ pageEncoding="UTF-8"%>
     #bookSearch {
       position: fixed;
       z-index: 10;
+      left: -400px;
+      top : -400px;
     }
 
     #bookSearch > div {
@@ -288,6 +288,12 @@ pageEncoding="UTF-8"%>
                       <option value="역사">역사</option>
                       <option value="만화">만화</option>
                       <option value="종교">종교</option>
+                      <option value="역사">역사</option>
+                      <option value="만화">만화</option>
+                      <option value="종교">종교</option>
+                      <option value="역사">역사</option>
+                      <option value="만화">만화</option>
+                      <option value="종교">종교</option>
                     </select>
                     <button
                       type="submit"
@@ -305,14 +311,12 @@ pageEncoding="UTF-8"%>
                 </div>
 
                 <div class="write_hanjul">
-                  <h4>
                     <input
                       class="write_hanjul_title"
                       placeholder="책 제목"
                       autocomplete="off"
                     />
                     <input id="bookId" name="product_no" value="책번호" hidden="hidden" />
-                  </h4>
                   <div class="star">
                   <div >
                   <h4 class="review-star">
