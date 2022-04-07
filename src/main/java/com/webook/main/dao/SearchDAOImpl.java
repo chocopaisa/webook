@@ -21,9 +21,17 @@ public class SearchDAOImpl implements SearchDAO {
 	public List<HashMap> getReviews(ProductVO vo, int pnum) {
 		RowBounds row = new RowBounds(pnum*10,10);
 		List<HashMap> list = session.selectList("search.mapper.getReviews", vo, row);
-		//return list;
+		return list;
 		
-		return null;
+		
+	}
+
+
+	@Override
+	public List<ProductVO> bookSearch(ProductVO vo, int pnum) {
+		RowBounds row = new RowBounds(pnum*12,12);
+		List<ProductVO> list = session.selectList("product.mapper.genreKo", vo, row);
+		return list;
 	}
 
 }

@@ -21,7 +21,15 @@ public class SearchServiceImpl implements SearchService{
 		if(pnum == null) pnum = "0";
 		int page = Integer.parseInt(pnum);
 		List<HashMap> list = searchDAO.getReviews(vo, page);
-		return null;
+		return list;
+	}
+
+	@Override
+	public List<ProductVO> bookSearch(ProductVO vo, String pnum) {
+		if(pnum == null) pnum = "0";
+		int page = Integer.parseInt(pnum);
+		List<ProductVO> list = searchDAO.bookSearch(vo, page);
+		return list;
 	}
 
 

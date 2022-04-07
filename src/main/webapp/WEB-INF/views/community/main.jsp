@@ -183,75 +183,9 @@
 		<div class="col-md-12">
 			<img class="w-100" src="../resources/images/testbanner2.png">
 			</div>
-      		<div class="col-md-3">
-		        <div class="row post" >
-		        <div class="col-xs-4 col-sm-4 col-md-12">
-		        <hr/>
-		        <h4>커뮤니티</h4>
-		        <hr/>
-		          <ul>
-					<li>
-						<a href="list.do">전체 독후감</a>
-					</li>
-					<li>
-						베스트 독후감
-					</li>
-					<li>
-						화제의 독후감
-					</li>
-					
-					</ul>
-					</div>
-					<div class="col-xs-4 col-sm-4 col-md-12">
-						<hr/>
-						<h4>국내</h4>
-						<hr/>
-					
-					<ul>
-					<li>
-						<a href="list.do?report_kind=소설">소설/인문/시</a>
-					</li>
-					<li>
-						<a href="list.do?report_kind=만화">만화</a>
-					</li>
-					<li>
-						<a href="list.do?report_kind=정치사회">정치사회/경제경영</a>
-					</li>
-					<li>
-						<a href="list.do?report_kind=종교">종교/역사/문화</a>
-					</li>
-					<li>
-						<a href="list.do?report_kind=예술">교양과학/예술</a>
-					</li>
-					<li>
-						<a href="list.do?report_kind=여행">자기계발/여행</a>
-					</li>
-		          </ul>
-		          </div>
-		          <div class="col-xs-4 col-sm-4 col-md-12">
-		          <hr/>
-						<h4>해외</h4>
-					<hr/>
-				<ul>
-					<li>
-						<span>문학</span>
-					</li>
-					<li>
-						<span>인문/사회</span>
-					</li>
-					<li>
-						<span>예술/건축</span>
-					</li>
-					<li>
-						<span>아동</span>
-					</li>
-					<li>
-						<span>만화/애니/문고</span>
-					</li>
-		          </ul>
-		          </div>
-				</div>
-        	</div>
+      		<!-- 사이드바 -->
+      		<%@ include file="/WEB-INF/views/community/community_sidebar.jsp" %>
+      		<!-- 사이드바 -->
 			<div class="col-md-9" >
 			<!-- 베스트 독후감 -->
 			<div class="row">
@@ -260,7 +194,11 @@
 				<caption class="text-center"><strong>베스트 독후감</strong></caption>
 	           		<c:forEach items="${bestList }" var="best">
 					   <tr>
-						<td class="text-left"><span>[${best.REPORT_KIND}]</span> <a href="getcontent.do?bookreport_no=${best.BOOKREPORT_NO }">${best.BOOKREPORT_TITLE }</a> <span>[${best.COMMENTS }]</span></td>
+						<td class="text-left"><span>[${best.REPORT_KIND}]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${best.BOOKREPORT_NO }">${best.BOOKREPORT_TITLE }</a> 
+						<c:if test="${best.COMMENTS ne 0 }">
+						<span>[${best.COMMENTS }]</span>
+						</c:if>
+						</td>
 					</tr>
 					</c:forEach>
 
@@ -286,7 +224,11 @@
 				<caption class="text-center"><strong>소설 게시판</strong></caption>
 	           		<c:forEach items="${novelList }" var="novel">
 					   <tr>
-						<td class="text-left"><span>[${novel.REPORT_KIND }]</span> <a href="getcontent.do?bookreport_no=${novel.BOOKREPORT_NO }">${novel.BOOKREPORT_TITLE }</a> <span>[${novel.COMMENTS }]</span></td>
+						<td class="text-left"><span>[${novel.REPORT_KIND }]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${novel.BOOKREPORT_NO }">${novel.BOOKREPORT_TITLE }</a> 
+						<c:if test="${novel.COMMENTS ne 0 }">
+						<span>[${novel.COMMENTS }]</span>
+						</c:if>
+						</td>
 						
 					</tr>
 					</c:forEach>
@@ -301,7 +243,11 @@
 				<caption class="text-center"><strong>만화 게시판</strong></caption>
 	           		<c:forEach items="${manhwaList }" var="manhwa">
 					   <tr>
-						<td class="text-left"><span>[${manhwa.REPORT_KIND }]</span> <a href="getcontent.do?bookreport_no=${manhwa.BOOKREPORT_NO }">${manhwa.BOOKREPORT_TITLE }</a> <span>[${manhwa.COMMENTS }]</span></td>
+						<td class="text-left"><span>[${manhwa.REPORT_KIND }]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${manhwa.BOOKREPORT_NO }">${manhwa.BOOKREPORT_TITLE }</a> 
+						<c:if test="${manhwa.COMMENTS ne 0 }">
+						<span>[${manhwa.COMMENTS }]</span>
+						</c:if>
+						</td>
 					</tr>
 					</c:forEach>
 	           </table>
@@ -324,7 +270,11 @@
 				<caption class="text-center"><strong>종교 게시판</strong></caption>
 	           		<c:forEach items="${religionList }" var="religion">
 					   <tr>
-						<td class="text-left"><span>[${religion.REPORT_KIND }]</span> <a href="getcontent.do?bookreport_no=${religion.BOOKREPORT_NO }">${religion.BOOKREPORT_TITLE }</a> <span>[${religion.COMMENTS }]</span></td>
+						<td class="text-left"><span>[${religion.REPORT_KIND }]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${religion.BOOKREPORT_NO }">${religion.BOOKREPORT_TITLE }</a> 
+						<c:if test="${religion.COMMENTS ne 0 }">
+						<span>[${religion.COMMENTS }]</span>
+						</c:if>
+						</td>
 						
 					</tr>
 					</c:forEach>
@@ -339,7 +289,11 @@
 				<caption class="text-center"><strong>여행 게시판</strong></caption>
 	           		<c:forEach items="${travelList }" var="travel">
 					   <tr>
-						<td class="text-left"><span>[${travel.REPORT_KIND }]</span> <a href="getcontent.do?bookreport_no=${travel.BOOKREPORT_NO }">${travel.BOOKREPORT_TITLE }</a> <span>[${travel.COMMENTS }]</span></td>
+						<td class="text-left"><span>[${travel.REPORT_KIND }]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${travel.BOOKREPORT_NO }">${travel.BOOKREPORT_TITLE }</a> 
+						<c:if test="${travel.COMMENTS ne 0 }">
+						<span>[${travel.COMMENTS }]</span>
+						</c:if>
+						</td>
 					</tr>
 					</c:forEach>
 	           </table>
@@ -431,6 +385,15 @@
 		$('.issue-img').height(imgWidth * 1.48);
 	}
 	</script>
-
+	<script type="text/javascript">
+	$(".reportTitle").each(function(){
+		let title = $(this).text();
+		if(title.length > 20){
+			$(this).text(title.substring(0,18)+'...')	
+		}
+		
+	});
+	</script>
+	
   </body>
   </html>
