@@ -37,9 +37,10 @@ public class CommunityController {
 	
 	// 게시글 목록 검색
 	@RequestMapping("list.do")
-	public void getBookreportList(CommunityVO vo, Model model, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
+	public void getBookreportList(CommunityVO vo, Model m, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
+		//vo.setJjoa_count(communityService.countJjoa(vo));
+		m.addAttribute("bookreportList", communityService.getBookreportList(vo, pNum));
 		
-		model.addAttribute("bookreportList", communityService.getBookreportList(vo, pNum));
 		
 	}
 	// 게시글 등록
@@ -56,7 +57,7 @@ public class CommunityController {
 	
 	// 게시글 상세 / 댓글
 	@RequestMapping("getcontent.do")
-	public void getBookreport(CommunityVO vo, Model m, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
+	public void getBookreport(CommunityVO vo, Model m, HttpSession session, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
 		CommunityVO result = communityService.getBookreport(vo);
 		CommentVO re = new CommentVO();
 		ProductVO pr = new ProductVO();
@@ -73,7 +74,12 @@ public class CommunityController {
 		m.addAttribute("commentList", commentService.getCommentList(re, pNum));
 		// 좋아요 갯수
 		m.addAttribute("jjoa", communityService.countJjoa(vo));
-		
+		if(session.getAttribute("user") != null) {
+			
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		result.setUser_email(user.getUser_email());
+		m.addAttribute("checkJjoa", communityService.checkJjoa(result));
+		}
 	}
 	
 	//게시글 검색
@@ -172,6 +178,21 @@ public class CommunityController {
 			} else {
 				communityService.deleteJjoa(vo);
 				
+			}
+		}
+		return "1";
+	}
+	
+	@RequestMapping("checkJjoa.do")
+	@ResponseBody
+	public String checkJjoa(CommunityVO vo, HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			vo.setUser_email(user.getUser_email());
+			
+			if(communityService.checkJjoa(vo) == null) {
+				
+				return "0";
 			}
 		}
 		return "1";

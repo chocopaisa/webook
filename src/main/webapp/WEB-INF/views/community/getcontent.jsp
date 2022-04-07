@@ -133,7 +133,7 @@
 	}
 	.btn-book {
   
-  color: #fff;
+  
   display: inline-block;
   font-size: 13px;
   letter-spacing: 1px;
@@ -146,9 +146,72 @@
 	background-color: black;
 }
 
-.btn-book.delete-btn {
-	background-color: skyblue;
+/*  .btn-secondary {
+	background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    color: white;
+}  */
+
+@keyframes ring {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
 }
+
+.btn-secondary {
+    position: relative;
+    border: none;
+    min-width: 200px;
+    min-height: 50px;
+    background: linear-gradient(
+        90deg,
+        rgba(129, 230, 217, 1) 0%,
+        rgba(79, 209, 197, 1) 100%
+    );
+    border-radius: 1000px;
+    color: darkslategray;
+    cursor: pointer;
+    box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-secondary:hover {
+    transform: scale(1.2);
+}
+
+.btn-secondary:hover::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid #00ffcb;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+}
+
+
 .btn-book.singo-btn {
 	background-color: black;
 }
@@ -269,8 +332,9 @@
 
 				<div class="media-body">
 					<div class="comment-info">
-						<h4 class="comment-author">
-							<a href="" nam >${bookreport.user_name }</a>
+						<h4 style="text-align: center" >${bookreport.bookreport_title}</h4>
+						<h5 class="comment-author">
+							<a >${bookreport.user_name }</a>
 							
 						</h4>
 						<time>
@@ -298,20 +362,32 @@
 					${bookreport.star }</h4>
 					<hr/>
 					<div class="">
-					<p class="productDesc">${product.product_desc }</p>
+					<p class="productDesc" style="overflow: hidden; height: 85px; width: 490px;  text-overflow: ellipsis;" >${product.product_desc }...</p>
 					</div>
 					<div class="text-right align-text-bottom">
-					<a><p class="writer">${product.product_writer}</p></a>
+					<a><p class="writer" >${product.product_writer}</p></a>
 				</div>
 				</div>
 			</div>
 				  <div class="post-comments">
-				  	<c:if test="${sessionScope.user ne null }">
-					  <button type="button" class="btn btn-book jjoayo-btn" id="jjoayo-btn" style="background-color: grey" >좋아요 ${jjoa.jjoa_count}</button>
-					</c:if>
+				  	<c:choose>
+				  		<c:when test="${not empty sessionScope.user }">
+				  			<c:choose>
+				  				<c:when test="${checkJjoa.user_email ne null }"  >
+					  				<button type="button" class="btn btn-book btn-danger jjoayo-btn" id="jjoayo-btn" >좋아요 ${jjoa.jjoa_count}</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" class="btn btn-book btn-secondary jjoayo-btn" id="jjoayo-btn" >좋아요 ${jjoa.jjoa_count}</button>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<button class="btn btn-book btn-secondary jjoayo-btn" id="jjoayo-btn">좋아요 ${jjoa.jjoa_count}</button>
+						</c:otherwise>
+					</c:choose>
 					  <button type="button" class="btn btn-book singo-btn pull-right" id="singo-btn" data-toggle="modal" data-target="#reportBookModal" >신고</button>
 					  <c:if test="${sessionScope.user.user_email eq bookreport.user_email }">
-					  <button type="submit" class="btn btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
+					  <button type="submit" class="btn btn-danger btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
 					</c:if>
 					  
 					<h3 class="post-sub-heading">댓글</h3>
@@ -355,7 +431,6 @@
 										<fmt:parseDate value="${cl.comment_write_date }" var="write_date2" pattern="yyyy-mm-dd HH:mm:ss" />
 										<fmt:formatDate value="${write_date2 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
 									</time>
-									<a class="comment-button pull-right" ><i class="tf-ion-chatbubbles"></i>신고</a>
 									
 									<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>
 									
@@ -404,7 +479,7 @@
         	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color: white;" >취소</button>
         <button type="button" class="btn btn-success" id="reportBook">신고</button>
       </div>
     
@@ -414,51 +489,7 @@
 
 <br/>
 <br/>
-<footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.html">CONTACT</a>
-					</li>
-					<li>
-						<a href="shop.html">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.html">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.html">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
-			</div>
-		</div>
-	</div>
-</footer>
+<%@ include file="/WEB-INF/views/footer.jsp" %> 
 
     <!-- 
     Essential Scripts
@@ -572,7 +603,6 @@
 						str += '<a href="">'+result[i].user_name+'</a></h4>'
 						str += '<input type="hidden" name="comment_no" value="'+result[i].comment_no+'" />'
 						str += '<time>'+date.toLocaleString()+'</time>'
-						str += '<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>'
 						str += '<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>'
 						str += '</div><p>'+result[i].comment_content+'</p></div></li>'
 						htmls +=str;
@@ -627,9 +657,22 @@
     			success: function(result){
     				console.log(result);
     				if(result=='0'){
-    					$('#jjoayo-btn').attr("style", "background-color : red");
-    				} else{
-    					$('#jjoayo-btn').attr("style", "background-color : grey");
+    					//$('#jjoayo-btn').attr("style", "background-color : red");
+    					$('#jjoayo-btn').removeClass('btn-secondary');
+    					$('#jjoayo-btn').addClass('btn-danger');
+    						if(${jjoa.jjoa_count}=='0'){
+    						$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count+1}");
+    							} else {
+    		    					$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count}");    								
+    							}
+    					} else{
+    						$('#jjoayo-btn').removeClass('btn-danger');
+    						$('#jjoayo-btn').addClass('btn-secondary');
+    						if(${jjoa.jjoa_count}=='0') {
+    							$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count}");
+    						} else {
+    							$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count-1}");
+    						}
     					}
     				},
     			error : function(err){

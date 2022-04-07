@@ -230,11 +230,9 @@ FACEBOOK: https://www.facebook.com/themefisher
 			<div class="col-md-7 offset-md-1">
 		        <div class="post">
 	          		<div class="post-thumb pull-right">
-						<input type="checkbox" class="hidden_notice">공지숨기기
-
 	          		</div>
 	          <div class="post-content">
-				  
+				  <h5 style="text-align: center" >${param.report_kind} 게시판</h5>
 	           <table border="1" border-bottom width="900" class="bookreport_list">
 	           		<tr>
 	           			<td width="80">글번호</td><td>제목</td><td width="100">작성자</td><td width="100">작성일</td><td width="70">조회</td><td width="70">좋아요</td>
@@ -249,7 +247,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 						<fmt:formatDate value="${write_date1 }" pattern="MM-dd" />
 						</td>
 						<td>${bookreport.view_count }</td>
-						<td>${bookreport.report_kind }</td>
+						<td>${bookreport.jjoa_count }</td>
 					</tr>
  					</c:forEach>
 	           </table>
@@ -395,52 +393,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 		</div>
   </div>
 </div>
+<%@ include file="/WEB-INF/views/footer.jsp" %> 
 
-<footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.html">CONTACT</a>
-					</li>
-					<li>
-						<a href="shop.html">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.html">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.html">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
-			</div>
-		</div>
-	</div>
-</footer>
 
     <!-- 
     Essential Scripts
