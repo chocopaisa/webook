@@ -124,9 +124,9 @@ white-space: pre-wrap;
 			<div class="row">
 				<div class="col-md-6">
 					<ol class="breadcrumb">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="shop_korean.do">Shop</a></li>
-						<li><a href="/webook/community/list.do"> community</a></li>
+						<li><a href="main.do">Home</a></li>
+						<li>Shop</li>
+						
 					</ol>
 				</div>
 
@@ -220,6 +220,9 @@ white-space: pre-wrap;
 							</div>
 
 							<div id="reviews" class="tab-pane fade">
+							
+						
+							
 								<c:forEach items="${reviews}" var="review">
 
 									<div class="bookreport" style="margin-top: 30px;">
@@ -281,7 +284,10 @@ white-space: pre-wrap;
 
 
 
+		
+			
 			<div class="row">
+			
 				<c:forEach items="${ result}" var="products">
 					<div class="col-xs-3">
 						<div class="product-item">

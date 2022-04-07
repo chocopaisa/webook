@@ -99,6 +99,9 @@ ul.top-menu {
 		background-color: #f7f7f7;
 		text-decoration: underline;
 	}
+	.page-wrapper {
+   padding: 0px;
+}
 </style>
 
 <script
@@ -136,7 +139,7 @@ ul.top-menu {
 				<!-- 사이드 닫음 -->
 				
 				
-	<div class="page-wrapper">
+	<div class="page-wrapper" >
 		<div class="container">
 			<div class="row">
 			<%@ include file="/WEB-INF/views/mypage/mypage_sidebar.jsp"%>
@@ -296,7 +299,7 @@ ul.top-menu {
 
 						</div>
 					</section>
-
+</div></div>
 
 					<!-- footer -->
 
