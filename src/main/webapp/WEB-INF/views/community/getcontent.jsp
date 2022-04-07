@@ -115,6 +115,7 @@
 			font-size : 20px;
 		}
 	#get_reportContent {
+		padding : 10px;
 		min-height: 400px;
 		width: 100%;
 		background-color: #D1C6BA;
@@ -124,13 +125,19 @@
 		background-color: #AA9281;
 	}
 	.post-comments {
-		background-color: #D1C6BA;
+		
+		padding: 10px;
 	}
 	.media {
 		background-color: #D1C6BA;
-		padding-left: 20px;
-		padding-right: 20px;
+		padding : 20px;
 	}
+	
+	#write_comment {
+	background-color: #D1C6BA;
+	padding : 10px;
+	}
+	
 	.btn-book {
   
   
@@ -175,20 +182,56 @@
     }
 }
 
+.btn-jjoa {
+    position: relative;
+    border: none;
+    min-width: 100px;
+    min-height: 40px;
+    background: linear-gradient(
+        90deg,
+        red 0%,
+        red 100%
+    );
+    border-radius: 1000px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 12px 12px 24px #B22222;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-jjoa:hover {
+    transform: scale(1.2);
+}
+
+.btn-jjoa:hover::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid red;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+}
+
 .btn-secondary {
     position: relative;
     border: none;
-    min-width: 200px;
-    min-height: 50px;
+    min-width: 100px;
+    min-height: 40px;
     background: linear-gradient(
         90deg,
-        rgba(129, 230, 217, 1) 0%,
-        rgba(79, 209, 197, 1) 100%
+        gray 0%,
+        gray 100%
     );
     border-radius: 1000px;
     color: darkslategray;
     cursor: pointer;
-    box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
+    box-shadow: 12px 12px 24px gray;
     font-weight: 700;
     transition: 0.3s;
 }
@@ -202,7 +245,7 @@
     width: 30px;
     height: 30px;
     border-radius: 100%;
-    border: 6px solid #00ffcb;
+    border: 6px solid gray;
     position: absolute;
     z-index: -1;
     top: 50%;
@@ -214,6 +257,7 @@
 
 .btn-book.singo-btn {
 	background-color: black;
+	color: white;
 }
 #comment_textarea {
 	width: 95%;
@@ -357,9 +401,8 @@
 						<img class="media-object" src="${product.product_image }" alt="Image">
 					</a>
 				<div class="media-body">
-					<h4 class="media-heading"><a class="productTitle" href="product_single.do?product_no=${bookreport.product_no }">${product.product_name }</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					${bookreport.star }</h4>
+					<h4 class="media-heading"><a class="productTitle" href="../shop/product_single.do?product_no=${bookreport.product_no }">${product.product_name }</a></h4>
+					<h4 class="review-star text-left mb-1">${bookreport.star }</h4>
 					<hr/>
 					<div class="">
 					<p class="productDesc" style="overflow: hidden; height: 85px; width: 490px;  text-overflow: ellipsis;" >${product.product_desc }...</p>
@@ -369,12 +412,12 @@
 				</div>
 				</div>
 			</div>
-				  <div class="post-comments">
+				<div style="text-align: center; padding-top: 30px;" >
 				  	<c:choose>
 				  		<c:when test="${not empty sessionScope.user }">
 				  			<c:choose>
 				  				<c:when test="${checkJjoa.user_email ne null }"  >
-					  				<button type="button" class="btn btn-book btn-danger jjoayo-btn" id="jjoayo-btn" >좋아요 ${jjoa.jjoa_count}</button>
+					  				<button type="button" class="btn btn-book btn-jjoa jjoayo-btn" id="jjoayo-btn" >좋아요 ${jjoa.jjoa_count}</button>
 								</c:when>
 								<c:otherwise>
 									<button type="button" class="btn btn-book btn-secondary jjoayo-btn" id="jjoayo-btn" >좋아요 ${jjoa.jjoa_count}</button>
@@ -384,7 +427,10 @@
 						<c:otherwise>
 							<button class="btn btn-book btn-secondary jjoayo-btn" id="jjoayo-btn">좋아요 ${jjoa.jjoa_count}</button>
 						</c:otherwise>
-					</c:choose>
+					</c:choose>				
+				
+				</div>
+				  <div class="post-comments">
 					  <button type="button" class="btn btn-book singo-btn pull-right" id="singo-btn" data-toggle="modal" data-target="#reportBookModal" >신고</button>
 					  <c:if test="${sessionScope.user.user_email eq bookreport.user_email }">
 					  <button type="submit" class="btn btn-danger btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
@@ -399,7 +445,7 @@
 								<div class="row">
 									
 									<!-- Comment -->
-									<div class="form-group col-md-12">
+									<div class="form-group col-md-12" id="write_comment">
 										<h4 class="comment-author" style="padding-left: 20px;" >
 											<input type="hidden" name="bookreport_no" value="${bookreport.bookreport_no }" />
 											<a href="" class="writerId">${sessionScope.user.user_name }</a>
@@ -409,10 +455,10 @@
 	
 									<!-- Send Button -->
 									<div class="form-group col-md-12 text-right">
-										<button class="btn btn-book insert-btn" id="insert_btn" >등록</button>
+										<button class="btn btn-book insert-btn" id="insert_btn" style="color: white;" >등록</button>
 									</div>
 	
-	
+									<hr/>
 								</div>
 						<!-- </form>  -->
 								</c:if>
@@ -432,7 +478,7 @@
 										<fmt:formatDate value="${write_date2 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
 									</time>
 									
-									<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>
+									<button class="deleteComment btn-danger pull-right"><i class="tf-ion-chatbubbles" style="border-radius: 100%;" ></i>삭제</button>
 									
 								</div>
 								<p>${cl.comment_content}</p>
@@ -442,7 +488,7 @@
 						</c:forEach>
 						</div>
 						<!-- End Comment Item -->
-
+						
 					</ul> <!-- End commentList -->
 				</div>
 		        </div>
@@ -479,7 +525,7 @@
         	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color: white;" >취소</button>
+        <button type="button" class="btn" data-dismiss="modal" style="color: white; background-color: gray;" >취소</button>
         <button type="button" class="btn btn-success" id="reportBook">신고</button>
       </div>
     
@@ -603,7 +649,7 @@
 						str += '<a href="">'+result[i].user_name+'</a></h4>'
 						str += '<input type="hidden" name="comment_no" value="'+result[i].comment_no+'" />'
 						str += '<time>'+date.toLocaleString()+'</time>'
-						str += '<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>'
+						str += '<button class="deleteComment btn-danger pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>'
 						str += '</div><p>'+result[i].comment_content+'</p></div></li>'
 						htmls +=str;
 						
@@ -659,14 +705,14 @@
     				if(result=='0'){
     					//$('#jjoayo-btn').attr("style", "background-color : red");
     					$('#jjoayo-btn').removeClass('btn-secondary');
-    					$('#jjoayo-btn').addClass('btn-danger');
+    					$('#jjoayo-btn').addClass('btn-jjoa');
     						if(${jjoa.jjoa_count}=='0'){
     						$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count+1}");
     							} else {
     		    					$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count}");    								
     							}
     					} else{
-    						$('#jjoayo-btn').removeClass('btn-danger');
+    						$('#jjoayo-btn').removeClass('btn-jjoa');
     						$('#jjoayo-btn').addClass('btn-secondary');
     						if(${jjoa.jjoa_count}=='0') {
     							$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count}");
@@ -680,6 +726,34 @@
     			}
     		}); //end of ajax
     	}); //end on
+    	
+    	$('.review-star').each(function(){
+            const stars = $(this).text().trim() * 2;
+            console.log(stars);
+            let result = "";
+            const starCnt = Math.floor(stars/2)
+            if(Math.floor(stars%2) == 0){
+              
+              for(let i=0; i< starCnt; i++){
+                result += "<i class='tf-ion-ios-star'></i>";
+              }
+              for(let i=0; i < 5-starCnt; i++){
+                result += '<i class="tf-ion-ios-star-outline"></i>';
+              }
+            } else {
+              for(let i=0; i< starCnt; i++){
+                result += "<i class='tf-ion-ios-star'></i>";
+              }
+              result += "<i class='tf-ion-ios-star-half'></i>";
+              
+              for(let i=0; i < 5-starCnt; i++){
+                result += '<i class="tf-ion-ios-star-outline"></i>';
+              }
+            }
+            $(this).prepend(result);
+
+            
+          });
 
 </script>
 
