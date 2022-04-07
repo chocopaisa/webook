@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.webook.domain.MemberVO;
 import com.webook.member.service.LoginService;
@@ -31,9 +32,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping("checkLogin.do")
-	public String checkLogin(MemberVO vo, HttpSession session) {
+	public String checkLogin(MemberVO vo, HttpSession session, RedirectAttributes redirect) {
 		MemberVO mem = loginservice.checkLogin(vo);
-		if(mem.getUser_name() == null) {
+		if(mem == null) {
+			redirect.addFlashAttribute("fail", 1 );
 			return "redirect:login.do";
 		}
 		MemberVO user = new MemberVO();
@@ -43,6 +45,7 @@ public class LoginController {
 		MemberVO a = (MemberVO)session.getAttribute("user");
 		System.out.println(a.getUser_name());
 		return "redirect:main.do";
+	
 	}
 	
 	@RequestMapping("logout.do")

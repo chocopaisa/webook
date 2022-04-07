@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.webook.domain.MemberVO;
@@ -26,20 +27,25 @@ public class MemberController {
 
 	}
 
-	@RequestMapping("passwordfind.do")
-	public String passwordfind(MemberVO vo, Model m) {
-		String member = (memberService.passwordfind(vo));
-		
+	@RequestMapping("idfind.do")
+	public String emailfind(MemberVO vo, Model model) {
+		MemberVO member = (memberService.emailfind(vo));
+
 		if(member == null) {
-			m.addAttribute("check", 1);
+			model.addAttribute("check", 1);
 		} else {
-			m.addAttribute("check", 0);
-			m.addAttribute("user_email", vo.getUser_email());
-			m.addAttribute("user_pass", member);
-			System.out.println(vo);
+			model.addAttribute("check", 0);
+			model.addAttribute("user_email", vo.getUser_email()); 
+
 		}
-		return "passwordfind.do";
+		 return "emailfind";
 	}
+	
+	@RequestMapping("emailfind.do")
+	public void test2() {
+		
+	}
+	
 	
 	// 비밀번호 변경 경로
 	@RequestMapping("mypage/modify.do")

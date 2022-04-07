@@ -118,23 +118,23 @@
 		padding : 10px;
 		min-height: 400px;
 		width: 100%;
-		background-color: #D1C6BA;
+		background-color: #f7f7f7;
 	}
 	#getcontent {
 		padding: 30px;
-		background-color: #AA9281;
+		background-color: #EDEDED;
 	}
 	.post-comments {
 		
 		padding: 10px;
 	}
 	.media {
-		background-color: #D1C6BA;
+		background-color: #f7f7f7;
 		padding : 20px;
 	}
 	
 	#write_comment {
-	background-color: #D1C6BA;
+	background-color: #f7f7f7;
 	padding : 10px;
 	}
 	
@@ -225,11 +225,11 @@
     min-height: 40px;
     background: linear-gradient(
         90deg,
-        gray 0%,
-        gray 100%
+        lightgray 0%,
+        lightgray 100%
     );
     border-radius: 1000px;
-    color: darkslategray;
+    color: black;
     cursor: pointer;
     box-shadow: 12px 12px 24px gray;
     font-weight: 700;
@@ -245,7 +245,7 @@
     width: 30px;
     height: 30px;
     border-radius: 100%;
-    border: 6px solid gray;
+    border: 6px solid lightgray;
     position: absolute;
     z-index: -1;
     top: 50%;
@@ -376,7 +376,7 @@
 
 				<div class="media-body">
 					<div class="comment-info">
-						<h4 style="text-align: center" >${bookreport.bookreport_title}</h4>
+						<h3>${bookreport.bookreport_title}</h3>
 						<h5 class="comment-author">
 							<a >${bookreport.user_name }</a>
 							
@@ -425,7 +425,7 @@
 							</c:choose>
 						</c:when>
 						<c:otherwise>
-							<button class="btn btn-book btn-secondary jjoayo-btn" id="jjoayo-btn">좋아요 ${jjoa.jjoa_count}</button>
+							<button class="btn btn-book btn-secondary jjoayo-btn"  >좋아요 ${jjoa.jjoa_count}</button>
 						</c:otherwise>
 					</c:choose>				
 				
@@ -703,7 +703,6 @@
     			success: function(result){
     				console.log(result);
     				if(result=='0'){
-    					//$('#jjoayo-btn').attr("style", "background-color : red");
     					$('#jjoayo-btn').removeClass('btn-secondary');
     					$('#jjoayo-btn').addClass('btn-jjoa');
     						if(${jjoa.jjoa_count}=='0'){

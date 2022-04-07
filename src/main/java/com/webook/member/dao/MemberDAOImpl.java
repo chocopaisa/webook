@@ -38,8 +38,8 @@ public class MemberDAOImpl implements MemberDAO{
 		return mybatis.selectList("member.mapper.getMemberList", map);
 	}
 
-	public String passwordfind(MemberVO vo) {
-		System.out.println("===> Mybatis passwordfind() 호출");
-		return mybatis.selectOne("member.mapper.passwordfind", vo);
+	public MemberVO emailfind(MemberVO vo) {
+		System.out.println("===> Mybatis emailfind() 호출");
+		return mybatis.selectOne("member.mapper.emailfind", vo);
 	}
 }

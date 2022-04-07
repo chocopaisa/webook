@@ -65,7 +65,7 @@
                 <ul class="dropdown-menu search-dropdown">
                   <li>
 					  <div>
-                    <form id="total-search-frm" action="total_search.do">
+                    <form id="total-search-frm" action="/webook/total_search.do">
                       <input
 						            id="total-search"
                         type="text"

@@ -55,8 +55,10 @@ FACEBOOK: https://www.facebook.com/themefisher
 	.bookreport_list td {
 		padding : 10px;
 		vertical-align: middle;
+		border-bottom: 1px solid #eee;
 	}
-	.bookreport_list th, .bookreport_list td{
+	.bookreport_list th {
+		padding : 10px;
 		border-bottom: 1px solid #eee;
 	}
 	
@@ -145,6 +147,12 @@ FACEBOOK: https://www.facebook.com/themefisher
 	.page-wrapper {
 		padding : 0px;
 	}
+	#pagination > li {
+		padding: 0px;
+	}
+	#pagination {
+		margin : 0px;
+	}
 </style>
 <body id="body">
 
@@ -202,7 +210,15 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          		<div class="post-thumb pull-right">
 	          		</div>
 	          <div class="post-content">
+	          	<c:if test="${param.report_kind ne null and param.search_text eq null}">
 				  <h3>${param.report_kind} 게시판</h3>
+				  </c:if>
+				  <c:if test="${param.report_kind eq null and param.search_text eq null }">
+				  <h3>전체 게시판</h3>
+				  </c:if>
+				  <c:if test="${param.search_text ne null }">
+				  <h3>검색 결과</h3>
+				  </c:if>
 				  <hr/>
 	           <table class="bookreport_list w-100">
 	           		<thead class="text-center">
@@ -211,27 +227,31 @@ FACEBOOK: https://www.facebook.com/themefisher
 	           		</tr>
 	           		</thead>
 	           		<tbody>
-	           		<c:if test="${empty bookreportList}">
-	           			<tr><td rowspan="10" colspan="6" class="text-center">작성된 글이 없습니다</td></tr>
+	           		<c:if test="${empty bookreportList and param.search_text eq null}">
+	           			<tr><td colspan="6" class="text-center">작성된 글이 없습니다</td></tr>
+	           		</c:if>
+	           		<c:if test="${empty bookreportList and param.search_text ne null}">
+	           			<tr><td colspan="6" class="text-center">검색된 결과가 없습니다</td></tr>
 	           		</c:if>
 	           		<c:forEach items="${bookreportList }" var="bookreport">
 					   <tr>
-						<td>${bookreport.bookreport_no }</td>
+						<td class="text-center">${bookreport.bookreport_no }</td>
 						<td><a href="getcontent.do?bookreport_no=${bookreport.bookreport_no }" >${bookreport.bookreport_title }</a></td>
-						<td>${bookreport.user_name }</td>
-						<td>
+						<td class="text-center">${bookreport.user_name }</td>
+						<td class="text-center">
 						<fmt:parseDate value="${bookreport.write_date }" var="write_date1" pattern="yyyy-mm-dd" />
 						<fmt:formatDate value="${write_date1 }" pattern="MM-dd" />
 						</td>
-						<td>${bookreport.view_count }</td>
-						<td>${bookreport.jjoa_count }</td>
+						<td class="text-center">${bookreport.view_count }</td>
+						<td class="text-center">${bookreport.jjoa_count }</td>
 					</tr>
  					</c:forEach>
  					</tbody>
 	           </table>
-	            
+	            <div class="text-right"><a href="write.do?report_kind=${param.report_kind }" class="btn btn-main">글쓰기</a></div>
 	            <div class="text-center">
-				<ul class="pagination post-pagination">
+	            
+				<ul id="pagination" class="pagination post-pagination">
 					<li><a href="blog-left-sidebar.html">Prev</a>
 						</li>
 					<li class="active"><a href="blog-left-sidebar.html">1</a>
@@ -270,7 +290,6 @@ FACEBOOK: https://www.facebook.com/themefisher
 						
 						
 				</ul>
-				<a href="write.do" class="btn btn-main">글쓰기</a>
 				</div>
 				<form action="searchBookreportList.do">
 				<div class="search_tap text-center">

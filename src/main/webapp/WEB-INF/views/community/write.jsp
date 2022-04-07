@@ -193,7 +193,7 @@ pageEncoding="UTF-8"%>
       width: 400px;
       padding-top: 20px;
       padding-bottom: 20px;
-      border: 1px thin solid;
+      border: 1px black solid;
       margin:0px;
     }
 
@@ -283,7 +283,7 @@ pageEncoding="UTF-8"%>
               <div class="post-content">
                 <div class="media-body">
                   <div class="write_">
-                    <select class="report_type" name="report_kind">
+                    <select class="report_type" name="report_kind" >
                       <option value="소설">소설</option>
                       <option value="만화">만화</option>
                       <option value="인문시">인문/시</option>
@@ -526,6 +526,11 @@ pageEncoding="UTF-8"%>
     	
     	
 	
+    </script>
+    <script>
+    	// 기본 선택된 게시판
+    	const report_kind = '${param.report_kind }';
+    	$('.report_type').val(report_kind).prop("selected",true);
     </script>
   </body>
 </html>

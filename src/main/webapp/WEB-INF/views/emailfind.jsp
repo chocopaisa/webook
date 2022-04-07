@@ -61,25 +61,17 @@ FACEBOOK: https://www.facebook.com/themefisher
           <a class="logo" href="index.html">
             <h1>WEBOOK</h1>
           </a>
-          <h2 class="text-center">비밀번호 찾기</h2>
-          <form class="text-left clearfix" action="index.html">
-           이메일
-                  <input
-                    type="text"
-                    name="user_email"
-                    id="email"
-                    class="form-control"
-                    placeholder="이메일을 입력하세요."
-                  />
+          <h2 class="text-center">아이디 찾기</h2>
+          <form class="text-left clearfix" action="emailfind.do" id="box"> 
             이름
             <div class="form-group">
-              <input type="text" name="user_name" class="form-control" >
+              <input type="text" name="user_name" class="form-control">
             </div>
             휴대전화
             <div class="form-group text-center">
               <input type="tel" name="user_tel" class="form-control"><br/>
             </div>
-              <button type="submit" class="btn btn-main w-100">확인</button>
+              <button type="button" class="btn btn-main w-100" id="findbtn">아이디 찾기</button>
             </div>
           </form>
         </div>
@@ -116,7 +108,15 @@ FACEBOOK: https://www.facebook.com/themefisher
     <!-- Main Js File -->
     <script src="resources/js/script.js"></script>
     
-
+    <script type="text/javascript">
+    $(function(){
+    	$("#findbtn").click(function(){
+    		if(confirm('아이디를 찾으시겠습니까?')){
+    			$("#box").submit();
+    		}
+    	})
+    })
+    </script>
 
   </body>
   </html>

@@ -71,7 +71,8 @@ FACEBOOK: https://www.facebook.com/themefisher
                     class="form-control"
                     placeholder="이메일을 입력하세요."
                   />
-                  <div id="checkMsg"></div>
+                  <div class="alert alert-success alert-common" role="alert" id="success" style="width:100%"><i class="tf-ion-thumbsup"></i>사용 가능한 아이디입니다.</div>
+        		  <div class="alert alert-danger alert-common" role="alert" id="danger" style="width:100%"><i class="tf-ion-close-circled"></i>중복된 아이디입니다.</div>
                   <button type="button" id="checkbtn" class="btn btn-default">중복확인</button>
                 </div>
                 비밀번호
@@ -83,6 +84,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                     class="form-control"
                     placeholder="비밀번호를 입력하세요."
                   />
+                  <span class="pass"></span>
                 </div>
                 비밀번호 확인
                 <div class="form-group">
@@ -93,8 +95,8 @@ FACEBOOK: https://www.facebook.com/themefisher
                     class="form-control"
                     placeholder="비밀번호를 재입력하십시오."
                   />   
-                   <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
-   				   <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+                <div class="alert alert-success alert-common" role="alert" id="alert-success" style= "width:100%"><i class="tf-ion-thumbsup"></i>비밀번호 일치합니다.</div>
+        		<div class="alert alert-danger alert-common" role="alert" id="alert-danger" style= "width:100%"><i class="tf-ion-close-circled"></i>비밀번호가 일치하지 않습니다.</div>
                 </div>
                 이름
                 <div class="form-group">
@@ -197,6 +199,7 @@ FACEBOOK: https://www.facebook.com/themefisher
           }
       });
 
+
       function checks() {
         var getEmail =
           /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -228,7 +231,7 @@ FACEBOOK: https://www.facebook.com/themefisher
        //비밀번호 공백 확인
        if ($("#password").val() == "") {
           const err =
-          '<div class="alert alert-danger alert-common" role="alert" id="frm"><i class="tf-ion-close-circled"></i> 비밀번호를 작성해주세요.</div>';
+          '<div class="alert alert-danger alert-common" role="alert" id="frm"><i class="tf-ion-close-circled"></i>영어대문자, 소문자, 숫자 중에서 4~12자로만 입력 가능합니다.</div>';
 
           $("#password").parent().append(err);
           $("#password").focus();
@@ -249,7 +252,6 @@ FACEBOOK: https://www.facebook.com/themefisher
        if ($("#password_check").val() == "") {
           const err =
           '<div class="alert alert-danger alert-common" role="alert" id="frm"><i class="tf-ion-close-circled"></i> 비밀번호를 다시 한번 작성해주세요.</div>';
-
           $("#password_check").parent().append(err);
           $("#password_check").focus();
           return false;
@@ -268,7 +270,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         //이름 공백 확인
         if ($("#name").val() == "") {
           const err =
-          '<div class="alert alert-danger alert-common" role="alert" id="frm"><i class="tf-ion-close-circled"></i> 이름을 작성해주세요</div>';
+          '<div class="alert alert-danger alert-common" role="alert" id="frm"><i class="tf-ion-close-circled"></i> 한글로 2~6자까지 가능합니다.</div>';
 
           $("#name").parent().append(err);
           $("#name").focus();
@@ -309,7 +311,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         //휴대전화 공백 확인
           if ($("#tel").val() == "") {
           const err =
-          '<div class="alert alert-danger alert-common" role="alert" id="frm"><i class="tf-ion-close-circled"></i> 휴대전화번호를 작성해주세요</div>';
+          '<div class="alert alert-danger alert-common" role="alert" id="frm"><i class="tf-ion-close-circled"></i> 휴대전화번호를 작성해주세요 ex)010-1234-5678</div>';
 
           $("#tel").parent().append(err);
           $("#tel").focus();
@@ -330,6 +332,8 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script type="text/javascript">
 
     // 아이디 중복확인 체크
+     $("#success").css('display', 'none');
+     $("#danger").css('display', 'none');
     $(function(){
     	$('#checkbtn').on('click',function(){
     		$.ajax({
@@ -340,9 +344,11 @@ FACEBOOK: https://www.facebook.com/themefisher
     				},
     			success: function(data){
     				if(data=='0'){
-    					$('#checkMsg').html('<p style="color:blue">사용가능한 아이디입니다.</p>');
+    					$('#success').css('display', 'inline-block');
+    					$("#danger").css('display', 'none');
     				} else{
-    					$('#checkMsg').html('<p style="color:red">중복된 아이디입니다.</p>');
+    					$("#success").css('display', 'none');
+    					$('#danger').css('display', 'inline-block');
     					}
     				},
     			error : function(err){
@@ -353,6 +359,8 @@ FACEBOOK: https://www.facebook.com/themefisher
     });
     
     // 비밀번호 비밀번호 확인 일치 불일치 여부
+     $("#alert-success").css('display', 'none');
+     $("#alert-danger").css('display', 'none');
     $('.form-control').focusout(function () {
         var pwd1 = $("#password").val();
         var pwd2 = $("#password_check").val();
