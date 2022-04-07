@@ -57,27 +57,28 @@ FACEBOOK: https://www.facebook.com/themefisher
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
+        <form class="text-left clearfix" action="idfind.do" id="box"> 
         <div class="block text-center">
           <a class="logo" href="index.html">
             <h1>WEBOOK</h1>
           </a>
           <h2 class="text-center">아이디 찾기</h2>
-          <form class="text-left clearfix" action="emailfind.do" id="box"> 
-            이름
+        
+            <p style="text-align : left">이름</p>
             <div class="form-group">
               <input type="text" name="user_name" class="form-control">
             </div>
-            휴대전화
+            <p  style="text-align : left">휴대전화</p>
             <div class="form-group text-center">
               <input type="tel" name="user_tel" class="form-control"><br/>
+              <input type="text" value="${user_email}">
             </div>
-              <button type="button" class="btn btn-main w-100" id="findbtn">아이디 찾기</button>
+              <button type="submit" class="btn btn-main w-100" id="findbtn">아이디 찾기</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-  </div>
 </section>
 
     <!-- 
@@ -109,13 +110,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script src="resources/js/script.js"></script>
     
     <script type="text/javascript">
-    $(function(){
-    	$("#findbtn").click(function(){
-    		if(confirm('아이디를 찾으시겠습니까?')){
-    			$("#box").submit();
-    		}
-    	})
-    })
+
     </script>
 
   </body>
