@@ -261,12 +261,7 @@ white-space: pre-wrap;
 
 						</div>
 					</div>
-					<div class="main" style="margin-bottom: 30px;">
-						<p class="productDescImage">
-							<img class="main"
-								style="width: 1000px; height: 1000px; margin-bottom: 30px;" src="${product.product_desc_image }"/>
-						</p>
-					</div>
+					
 
 
 				</div>

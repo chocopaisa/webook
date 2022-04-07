@@ -9,4 +9,5 @@ public interface SearchDAO {
 
 	List<HashMap> getReviews(ProductVO vo, int pnum);
 	
+	List<ProductVO> bookSearch(ProductVO vo, int pnum);
 }

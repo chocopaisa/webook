@@ -80,8 +80,21 @@ public class ProductController {
 	
 		List<ProductVO> result = service.getOtherBook(vo);
 		
-		List<HashMap>  reviews = service.getReport(vo);
-	
+		
+		
+		List<HashMap> reviews = service.getReport(vo); // 리뷰 
+		for(int idx = reviews.size()-1; idx >= 0; idx--) {
+			String content = (String) reviews.get(idx).get("BOOKREPORT_CONTENT");
+			System.out.println(content);
+			int start = content.indexOf("<blockquote>");
+			if(start < 0) {
+				continue;
+			}
+			int end = content.indexOf("</blockquote>");
+			reviews.get(idx).put("BOOKREPORT_CONTENT",content.substring(start + 12, end));
+			System.out.println(content.substring(start + 12, end));
+		}
+		
 		m.addAttribute("product",service.getProduct(vo));
 		m.addAttribute("result", result);
 		m.addAttribute("reviews", reviews);
