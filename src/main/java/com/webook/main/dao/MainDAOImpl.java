@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.webook.domain.CommunityVO;
 import com.webook.domain.ProductVO;
 
 @Repository("MainDAO")
@@ -46,6 +47,20 @@ public class MainDAOImpl implements MainDAO {
 	public List<ProductVO> showIssueItems() { // 4개
 		RowBounds rowBounds = new RowBounds(0,4);
 		List<ProductVO> lst = mybatis.selectList("main.mapper.showIssueItems", null, rowBounds);
+		return lst;
+	}
+
+	@Override
+	public List<HashMap> showReportAtBoard(CommunityVO vo) {
+		RowBounds rowBounds = new RowBounds(0,5);
+		List<HashMap> lst = mybatis.selectList("main.mapper.showReportAtBoard", vo, rowBounds);
+		return lst;
+	}
+
+	@Override
+	public List<HashMap> showReportBest() {
+		RowBounds rowBounds = new RowBounds(0,5);
+		List<HashMap> lst = mybatis.selectList("main.mapper.showReportBest", null, rowBounds);
 		return lst;
 	}
 	

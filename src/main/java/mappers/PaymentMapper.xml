@@ -41,6 +41,7 @@
 			<![CDATA[
 			coupon_date > sysdate
 			]]>
+			AND clist.order_no is null
 			<if test="coupon_no!=null">
 			AND clist.coupon_no = #{coupon_no}
 			</if>

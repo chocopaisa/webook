@@ -6,9 +6,11 @@
 	<!-- 게시글 목록 페이지 리스트 -->
 	<select id="getBookreportList" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
 		
-		SELECT a.*, b.user_name, c.jjoa_no FROM bookreport a
+		SELECT a.*, b.user_name, nvl(c.jjoa_count,0) jjoa_count FROM bookreport a
 		INNER JOIN customer_info b ON a.user_email = b.user_email
-		LEFT OUTER JOIN jjoa c ON a.bookreport_no = c.bookreport_no and a.user_email = c.user_email
+		LEFT OUTER JOIN (SELECT count(*) jjoa_count, bookreport_no FROM jjoa
+							group by bookreport_no) c 
+		ON a.bookreport_no = c.bookreport_no
 		<if test="report_kind != null">
 		WHERE a.report_kind = #{report_kind}
 		</if>
@@ -71,13 +73,30 @@
 		SELECT * FROM report_article
 		WHERE article_no = #{article_no} and rep_article_email = #{rep_article_email}
 	</select>
-<!-- 	
-	<select id="getBookreportCount" resultType="com.webook.domain.CommunityVO">
-		SELECT count(*) FROM bookreport
-		<if test="report_kind != null">
-		WHERE report_kind = #{report_kind}
-		</if> 
-	</select> -->
+	
+	<!-- 좋아요 등록 -->
+	<insert id="insertJjoa" parameterType="com.webook.domain.CommunityVO">
+		INSERT INTO jjoa(jjoa_no, bookreport_no, user_email)
+		VALUES(jjoa_seq.nextval, #{bookreport_no}, #{user_email})
+	</insert>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteJjoa" parameterType="com.webook.domain.CommunityVO">
+		DELETE FROM jjoa
+		WHERE bookreport_no = #{bookreport_no} and user_email = #{user_email}
+	</delete>
+	
+	<!-- 좋아요 중복 체크 -->
+	<select id="checkJjoa" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
+		SELECT * FROM jjoa
+		WHERE bookreport_no = #{bookreport_no} and user_email = #{user_email}
+	</select>
+	
+	<!-- 좋아요 갯수 -->
+	<select id="countJjoa" parameterType="com.webook.domain.CommunityVO" resultType="com.webook.domain.CommunityVO">
+		SELECT count(*) jjoa_count FROM jjoa
+		WHERE bookreport_no = #{bookreport_no}
+	</select>	
 
 
 

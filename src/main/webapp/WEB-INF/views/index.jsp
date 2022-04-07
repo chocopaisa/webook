@@ -163,7 +163,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	          <div class="product-thumb">
 	          <img class="img-responsive bestseller-img" src="${bestSellers[idx].product_image}" alt="product-img"/>
 	          <div class="preview-meta bg-gray">
-	          <h4><a href="shop/shop_search.do?searchKeyword=${bestSellers[idx].product_writer }">${bestSellers[idx].product_writer}</a></h4>
+	          <h4><a href="shop/product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_writer}</a></h4>
 	          </div></div>
 	          <div class="product-content product-best">
 	          <h4><a href="shop/product_single.do?product_no=${bestSellers[idx].product_no }">${bestSellers[idx].product_name}</a></h4>

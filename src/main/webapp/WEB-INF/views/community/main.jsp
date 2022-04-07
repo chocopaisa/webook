@@ -106,7 +106,31 @@
 			font-size : 20px;
 		}
 
-
+	.post-content table tr> td {
+		vertical-align: middle;
+	}
+	.post > div {
+		margin: 0px;
+		padding : 0px;
+	}
+	.post ul {
+		margin-bottom: 20px;
+	}
+	.post ul > li {
+		padding: 10px;
+	
+	}
+	.post ul > li:hover {
+		background-color: #f7f7f7;
+		text-decoration: underline;
+	}
+	.post-content {
+		margin-top : 20px;
+	}
+	.page-wrapper {
+		padding : 0px;
+	}
+	
 </style>
 <body id="body">
 
@@ -156,303 +180,168 @@
 <div class="page-wrapper" >
 	<div class="container">
 		<div class="row justify-content-around" >
-      		<div class="col-md-4 col-md-offset-2">
-		        <div class="post text-center" >
-		          <table border="1" width="165px" class="bookreport_type">
-					<tr>
-						<td class="bookreport_type_main"><strong>전체 독후감</strong></td>
-					</tr>
-					<tr>
-						<td class="bookreport_type_main"><strong>베스트 독후감</strong></td>
-					</tr>
-					<tr>
-						<td class="bookreport_type_main"><strong>화제의 독후감</strong></td>
-					</tr>
-					<tr>
-						<td class="bookreport_type_main"><strong>국내</strong></td>
-					</tr>
-					<tr>
-						<td>소설/인문/시</td>
-					</tr>
-					<tr>
-						<td>만화</td>
-					</tr>
-					<tr>
-						<td>정치사회/경제경영</td>
-					</tr>
-					<tr>
-						<td>종교/역사/문화</td>
-					</tr>
-					<tr>
-						<td>교양과학/예술</td>
-					</tr>
-					<tr>
-						<td>자기계발/여행</td>
-					</tr>
-		          </table>
-				  <br/>
-				  <table border="1" width="165px" class="bookreport_type">
-					<tr>
-						<td class="bookreport_type_main"><strong>해외</strong></td>
-					</tr>
-					<tr>
-						<td>문학</td>
-					</tr>
-					<tr>
-						<td>인문/사회</td>
-					</tr>
-					<tr>
-						<td>예술/건축</td>
-					</tr>
-					<tr>
-						<td>아동</td>
-					</tr>
-					<tr>
-						<td>만화/애니/문고</td>
-					</tr>
-		          </table>
-				</div>
-        	</div>
-			<div class="col-md-6" >
-	          <div class="post-content">
-	           <table  width="500" class="table" id="best_report_list">
+		<div class="col-md-12">
+			<img class="w-100" src="../resources/images/testbanner2.png">
+			</div>
+      		<!-- 사이드바 -->
+      		<%@ include file="/WEB-INF/views/community/community_sidebar.jsp" %>
+      		<!-- 사이드바 -->
+			<div class="col-md-9" >
+			<!-- 베스트 독후감 -->
+			<div class="row">
+	          <div class="post-content col-xs-6">
+	           <table class="table" id="best_report_list">
 				<caption class="text-center"><strong>베스트 독후감</strong></caption>
-	           		<tr>
-	           			<td>제목</td><td width="100">작성자</td><td width="70">조회</td><td width="70">좋아요</td>
-	           		</tr>
+	           		<c:forEach items="${bestList }" var="best">
 					   <tr>
-						<td>1</td><td>1</td><td>1</td><td>1</td>
+						<td class="text-left"><span>[${best.REPORT_KIND}]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${best.BOOKREPORT_NO }">${best.BOOKREPORT_TITLE }</a> 
+						<c:if test="${best.COMMENTS ne 0 }">
+						<span>[${best.COMMENTS }]</span>
+						</c:if>
+						</td>
 					</tr>
-					<tr>
-						<td>2</td><td>2</td><td>2</td><td>2</td>
-					</tr>
-					<tr>
-						<td>3</td><td>2</td><td>2</td><td>2</td>
-					</tr> 
-					<tr>
-						<td>4</td><td>2</td><td>2</td><td>2</td>
-					</tr> 
-					<tr>
-						<td>5</td><td>2</td><td>2</td><td>2</td>
-					</tr>
-					<tr>
-						<td>1</td><td>1</td><td>1</td><td>1</td>
-					</tr>
-					<tr>
-						<td>2</td><td>2</td><td>2</td><td>2</td>
-					</tr>
-					<tr>
-						<td>3</td><td>2</td><td>2</td><td>2</td>
-					</tr> 
-					<tr>
-						<td>4</td><td>2</td><td>2</td><td>2</td>
-					</tr> 
-					<tr>
-						<td>5</td><td>2</td><td>2</td><td>2</td>
-					</tr>
+					</c:forEach>
 
 	           </table>
 	            
 
 		          </div>
+			<!-- 베스트 독후감 끝 -->		 
+			<!-- 광고 -->         
+		          <div class="post-content col-xs-offset-1 col-xs-4">
+	           <img class="w-100" src="../resources/images/ads.png">
+	            
+
+		          </div>
+		          <!-- 광고 끝 -->
+		          </div>
+		          
+		          
+		          <div class="row">
+		          <!-- 베스트 독후감 -->
+	          <div class="post-content col-xs-6">
+	           <table class="table" id="best_report_list">
+				<caption class="text-center"><strong>소설 게시판</strong></caption>
+	           		<c:forEach items="${novelList }" var="novel">
+					   <tr>
+						<td class="text-left"><span>[${novel.REPORT_KIND }]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${novel.BOOKREPORT_NO }">${novel.BOOKREPORT_TITLE }</a> 
+						<c:if test="${novel.COMMENTS ne 0 }">
+						<span>[${novel.COMMENTS }]</span>
+						</c:if>
+						</td>
+						
+					</tr>
+					</c:forEach>
+	           </table>
+	            
+
+		          </div>
+			<!-- 베스트 독후감 끝 -->		 
+			<!-- 화제의 글 -->         
+		          <div class="post-content col-xs-6">
+	           <table class="table" id="best_report_list">
+				<caption class="text-center"><strong>만화 게시판</strong></caption>
+	           		<c:forEach items="${manhwaList }" var="manhwa">
+					   <tr>
+						<td class="text-left"><span>[${manhwa.REPORT_KIND }]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${manhwa.BOOKREPORT_NO }">${manhwa.BOOKREPORT_TITLE }</a> 
+						<c:if test="${manhwa.COMMENTS ne 0 }">
+						<span>[${manhwa.COMMENTS }]</span>
+						</c:if>
+						</td>
+					</tr>
+					</c:forEach>
+	           </table>
+	            
+
+		          </div>
+		          <!-- 화제의 글 끝 -->
+		          </div>
+		          <!-- 배너 -->
+		          <div class="col-xs-12">
+		          <img class="w-100" src="../resources/images/testbanner.png">
+		          
+		          
+		          </div>
+		          <!-- 배너 끝 -->
+		           <div class="row">
+		          <!-- 게시판 -->
+	          <div class="post-content col-xs-6">
+	           <table class="table" id="best_report_list">
+				<caption class="text-center"><strong>종교 게시판</strong></caption>
+	           		<c:forEach items="${religionList }" var="religion">
+					   <tr>
+						<td class="text-left"><span>[${religion.REPORT_KIND }]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${religion.BOOKREPORT_NO }">${religion.BOOKREPORT_TITLE }</a> 
+						<c:if test="${religion.COMMENTS ne 0 }">
+						<span>[${religion.COMMENTS }]</span>
+						</c:if>
+						</td>
+						
+					</tr>
+					</c:forEach>
+	           </table>
+	            
+
+		          </div>
+			<!-- 게시판 끝 -->		 
+			<!-- 게시판 글 -->         
+		          <div class="post-content col-xs-6">
+	           <table class="table" id="best_report_list">
+				<caption class="text-center"><strong>여행 게시판</strong></caption>
+	           		<c:forEach items="${travelList }" var="travel">
+					   <tr>
+						<td class="text-left"><span>[${travel.REPORT_KIND }]</span> <a class="reportTitle" href="getcontent.do?bookreport_no=${travel.BOOKREPORT_NO }">${travel.BOOKREPORT_TITLE }</a> 
+						<c:if test="${travel.COMMENTS ne 0 }">
+						<span>[${travel.COMMENTS }]</span>
+						</c:if>
+						</td>
+					</tr>
+					</c:forEach>
+	           </table>
+	            
+
+		          </div>
+		          <!-- 게시판 끝 -->
+		          <!-- 화제의 책 -->
+		          <div class="col-xs-12 best-div">
+				<h3 class="text-center">화제의 책</h3>
+				<hr/>
+				<div id="bestseller">
+
+					
+        
+          <!-- 화제의 책 -->
+          <!-- 한묶음 -->
+          
+	        
+	         <c:forEach items="${issueList}" var="issue">
+		      	<div class="col-xs-3">
+	          <div class="product-item">
+	          <div class="product-thumb">
+	          <img class="img-responsive issue-img" src="${issue.product_image }" alt="product-img"/>
+	          <div class="preview-meta bg-gray">
+	          <h4><a href="../shop/product_single.do?product_no=${issue.product_no }">${issue.product_writer }</a></h4>
+	          </div></div>
+	          <div class="product-content product-best">
+	          <h4><a href="../shop/product_single.do?product_no=${issue.product_no }">${issue.product_name }</a></h4>
+	          </div>
+	          </div>
+	          </div>
+	         </c:forEach>
+          
+          <!-- 한묶음 끝-->
+          
+          <!-- 화제의 책-->
+        	
+				</div>
+			</div>
+		          
 		        </div>
 	      	</div>
       				
 	</div>
-			<!-- 화제글 -->
-<section>
-	<div class="container">
-		<div class="row">
-		<div class="title text-center">
-			<a href="#"><h2>화제의 글</h2></a>
-			<br/><br/>
-		</div>
-	</div>
-		<div class="row">
-			<div class="col-md-4">
-			<div class="media">
-					<a class="pull-left" href="#!">
-						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
-					</a>
-				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
-					<hr/>
-					<div class="">
-					<p>대충 재밌다는 내용</p>
-					</div>
-					<div class="text-right align-text-bottom">
-					<a href="#"><p>글쓴이</p></a>
-				</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="media">
-					<a class="pull-left" href="#!">
-						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
-					</a>
-				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
-					<hr/>
-					<div class="">
-					<p>대충 재밌다는 내용 대충 재밌다는 내용 대충 재밌다는 내용 대충 재밌다는 내용</p>
-					</div>
-					<div class="text-right">
-					<a href="#"><p>글쓴이</p></a>
-				</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="media">
-					<a class="pull-left" href="#!">
-						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
-					</a>
-				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
-					<hr/>
-					<div class="">
-					<p>대충 재밌다는 내용</p>
-					</div>
-					<div class="text-right">
-					<a href="#"><p>글쓴이</p></a>
-				</div>
-				</div>
-			</div>
-		</div>
-		</div>
-		<hr/>
-	</div>
-</section>
-<!-- 화제글 끝-->
-		<br/>
-		
-			<!-- 한줄평-->
-			<section>
-				<div class="container">
-					<div class="row">
-					<div class="title text-center">
-						<a href="#"><h2>한 줄 평</h2></a>
-						<br/><br/>
-					</div>
-				</div>
-					<div class="row">
-						<div class="col-md-4">
-						<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
-								</a>
-							<div class="media-body">
-								<h4 class="media-heading"><a href="#">책 제목</a></h4>
-								<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-								3.5</h4>
-								<hr/>
-								<div class="">
-								<p>한줄평</p>
-								</div>
-								<div class="text-right align-text-bottom">
-								<a href="#"><p>글쓴이</p></a>
-							</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
-								</a>
-							<div class="media-body">
-								<h4 class="media-heading"><a href="#">책 제목</a></h4>
-								<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-								3.5</h4>
-								<hr/>
-								<div class="">
-								<p>한줄평</p>
-								</div>
-								<div class="text-right">
-								<a href="#"><p>글쓴이</p></a>
-							</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
-								</a>
-							<div class="media-body">
-								<h4 class="media-heading"><a href="#">책 제목</a></h4>
-								<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-								3.5</h4>
-								<hr/>
-								<div class="">
-								<p>한줄평</p>
-								</div>
-								<div class="text-right">
-								<a href="#"><p>글쓴이</p></a>
-							</div>
-							</div>
-						</div>
-					</div>
-					</div>
-					
-				</div>
-			</section>
-			<!-- 한줄평 끝-->
-<br/>
-<br/>
-<footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.html">CONTACT</a>
-					</li>
-					<li>
-						<a href="shop.html">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.html">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.html">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
-			</div>
-		</div>
-	</div>
-</footer>
+</div>
 
+<%@ include file="/WEB-INF/views/footer.jsp" %>
     <!-- 
     Essential Scripts
     =====================================-->
@@ -481,7 +370,30 @@
     <!-- Main Js File -->
     <script src="../resources/js/script.js"></script>
     
+	<script>
+	$(function() {
+		issueImgResize()
+		
+	});
 
-
+	$(window).resize(function() {
+		issueImgResize();
+		
+	});
+	function issueImgResize() {
+		let imgWidth = $('.issue-img').width();
+		$('.issue-img').height(imgWidth * 1.48);
+	}
+	</script>
+	<script type="text/javascript">
+	$(".reportTitle").each(function(){
+		let title = $(this).text();
+		if(title.length > 20){
+			$(this).text(title.substring(0,18)+'...')	
+		}
+		
+	});
+	</script>
+	
   </body>
   </html>

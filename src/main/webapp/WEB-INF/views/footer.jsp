@@ -56,3 +56,13 @@
 	<a class='btn_gotop btn-main btn-community' href="/webook/community/main.do"><i class="tf-ion-ios-home"></i></a>
 	<a class='btn_gotop btn-main btn-shop' href="/webook/shop/cart.do"><i class="tf-ion-ios-cart"></i></a>
 	<a class='btn_gotop btn-main btn-chatbox' href="#commentList"><i class="tf-ion-ios-chatboxes"></i></a>
+	<!-- 알림창 -->
+	<div id="page-alert" class="alert alert-success alert-common alert-dismissible page-alert" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		[알림] <span class="alert-message"></span>
+	</div>
+	<!-- 경고창 -->
+	<div id="page-warn" class="alert alert-danger alert-common alert-dismissible page-alert" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		[알림] <span class="alert-message"></span>
+	</div>

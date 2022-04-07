@@ -63,5 +63,35 @@ public class CommunityDAOImpl implements CommunityDAO {
 		System.out.println("===> Mybatis reportBook() 호출");
 		mybatis.insert("community.mapper.reportBook", vo);
 	}
+	
+	//게시글 신고 중복체크
+	public ReportcommunityVO reportBookCheck(ReportcommunityVO vo) {
+		System.out.println("===> Mybatis reportBook() 호출");
+		return mybatis.selectOne("community.mapper.reportBookCheck", vo);
+	}
+	
+	//좋아요 등록
+	public void insertJjoa(CommunityVO vo) {
+		System.out.println("===> Mybatis insertJjoa() 호출");
+		mybatis.insert("community.mapper.insertJjoa", vo);
+	}
+	
+	//좋아요 취소
+	public void deleteJjoa(CommunityVO vo) {
+		System.out.println("===> Mybatis deleteJjoa() 호출");
+		mybatis.delete("community.mapper.deleteJjoa", vo);
+	}
+	
+	//좋아요 중복 체크
+	public CommunityVO checkJjoa(CommunityVO vo) {
+		System.out.println("===> Mybatis checkJjoa() 호출");
+		return mybatis.selectOne("community.mapper.checkJjoa", vo);
+	}
+	
+	//좋아요 count
+	public CommunityVO countJjoa(CommunityVO vo) {
+		System.out.println("===> Mybatis countJjoa() 호출");
+		return mybatis.selectOne("community.mapper.countJjoa", vo);
+	}	
 
 }
