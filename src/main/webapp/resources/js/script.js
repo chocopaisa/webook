@@ -186,7 +186,12 @@
 		'top' : '0px',
 		'width' : '100%'
 	});
-	// 알림창
+	
+	
+	
+})(jQuery);
+
+// 알림창
 	function alertMessage(msg){
 		$('#page-alert').show();
 		$('#page-alert .alert-message').text(msg);
@@ -194,6 +199,7 @@
 			$('#page-alert').fadeOut();
 		},3000);
 	}
+	
 	// 경고창
 	function alertWarnMessage(msg){
 		$('#page-warn').show();
@@ -202,5 +208,3 @@
 			$('#page-alert').fadeOut();
 		},3000);
 	}
-
-})(jQuery);
