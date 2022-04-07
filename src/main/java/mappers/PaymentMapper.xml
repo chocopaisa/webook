@@ -7,11 +7,17 @@
 	<insert id="insertOrder" parameterType="com.webook.domain.OrderVO">
 		INSERT INTO order_list
 		(
-		order_no, user_email, payment_method, delivery_fee, delivery_place, delivery_requirements, payment_date, delivery_info
+		order_no, payment_method, delivery_fee, delivery_place, delivery_requirements, payment_date, delivery_info
+		<if test="user_email != null">
+		,user_email
+		</if>
 		)
 		
 		VALUES (
-		#{order_no}, #{user_email}, #{payment_method}, #{delivery_fee}, #{delivery_place}, #{delivery_requirements}, sysdate, '상품준비중'
+		#{order_no}, #{payment_method}, #{delivery_fee}, #{delivery_place}, #{delivery_requirements}, sysdate, '상품준비중'
+		<if test="user_email != null">
+		,#{user_email}
+		</if>
 		)
 	</insert>
 	

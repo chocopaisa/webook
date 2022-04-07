@@ -272,9 +272,9 @@ public class PaymentController {
 		Map<String, Object> map = list.get(0);
 		
 		String order_no = (String)map.get("order_no");
-		int totalPrice = ((Double)map.get("price")).intValue();
+		int totalPrice = ((Integer)map.get("price"));
 		
-		int delivery_fee = ((Double)map.get("delivery_fee")).intValue();
+		int delivery_fee = (Integer)map.get("delivery_fee");
 		System.out.println("totalPrice : " + totalPrice);
 		int realPrice = 0;
 		ArrayList<OrderItemVO> orderItemVOList = new ArrayList<OrderItemVO>();
@@ -288,7 +288,7 @@ public class PaymentController {
 			ProductVO result = paymentService.searchProduct(vo);
 			int price = result.getProduct_price();
 			int sale = result.getProduct_sale();
-			int cnt = ((Double)list.get(i).get("product_cnt")).intValue();
+			int cnt = (Integer)list.get(i).get("product_cnt");
 			realPrice += ( price - sale) * cnt;
 			
 			OrderItemVO itemVO = new OrderItemVO();
