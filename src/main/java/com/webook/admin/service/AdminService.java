@@ -13,5 +13,14 @@ public interface AdminService {
 	
 	// 월별 회원가입 수
 	public List<ChartVO> MonthMemCnt();
+	
+	// 월별 매출
+	public List<ChartVO> MonthSales();
+	
+	// 카테고리별 매출
+	public List<ChartVO> TopCategory();
+	
+	// 연령대 별 가입자 수
+	public List<ChartVO> AgeNewMember();
 
 }

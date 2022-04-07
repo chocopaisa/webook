@@ -9,20 +9,23 @@ import org.springframework.stereotype.Repository;
 import com.webook.domain.ReportcommunityVO;
 
 @Repository("adminCommunityDAO")
-public class AdminCommunityDAOImpl implements AdminCommunityDAO{
+public class AdminCommunityDAOImpl implements AdminCommunityDAO {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
+
 	public List<ReportcommunityVO> getReportCommuList() {
 		return mybatis.selectList("admin.mapper.getReportCommuList");
 	}
 
-	/*
-	 * public void Deletecommu(ReportcommunityVO vo) {
-	 * mybatis.delete("admin.mapper.deleteCommunity"); }
-	 */
-
+	// 신고 게시글 삭제
+	public void deleteCommunity(Integer[] list) {
+		for( Integer i : list) {
+		mybatis.delete("admin.mapper.deleteCommunity", i); 
+		}
+	}
+	  
+	 
 	@Override
 	public int selectTodayBoard() {
 		int count = 0;

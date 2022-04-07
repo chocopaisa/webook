@@ -19,6 +19,7 @@ import com.webook.domain.CommentVO;
 import com.webook.domain.CommunityVO;
 import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
+import com.webook.domain.ReportcommunityVO;
 import com.webook.member.service.MemberService;
 import com.webook.shop.sevice.ProductService;
 
@@ -32,8 +33,7 @@ public class CommunityController {
 	private CommentService commentService;
 	@Autowired 
 	private ProductService productService;
-	@Autowired
-	private MemberService memberService;
+
 	
 	// 게시글 목록 검색
 	@RequestMapping("list.do")
@@ -60,13 +60,9 @@ public class CommunityController {
 		CommunityVO result = communityService.getBookreport(vo);
 		CommentVO re = new CommentVO();
 		ProductVO pr = new ProductVO();
-		MemberVO mem = new MemberVO();
 		pr.setProduct_no(result.getProduct_no());
 		re.setBookreport_no(vo.getBookreport_no());
-		mem.setUser_email(vo.getUser_email());
-		
-		//유저명
-		m.addAttribute("member", mem);
+
 		//조회수 증가
 		communityService.viewCount(vo);
 		//게시글 상세
@@ -75,6 +71,8 @@ public class CommunityController {
 		m.addAttribute("product", productService.getProduct(pr));
 		// 댓글 목록
 		m.addAttribute("commentList", commentService.getCommentList(re, pNum));
+		// 좋아요 갯수
+		m.addAttribute("jjoa", communityService.countJjoa(vo));
 		
 	}
 	
@@ -143,5 +141,39 @@ public class CommunityController {
 		
 	}
 	
+	//게시글 신고
+	@RequestMapping("reportBook.do")
+	@ResponseBody
+	public String reportBook(ReportcommunityVO vo, String ref_article_info, HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			vo.setRep_article_info(ref_article_info);
+			vo.setRep_article_email(user.getUser_email());
+			//System.out.println("communityService.reportBookCheck(vo)");
+			if(communityService.reportBookCheck(vo) == null){
+				communityService.reportBook(vo);
+				return "0";
+			} 
+		}
+		return "1";
+	}
 	
+	//좋아요
+	@RequestMapping("jjoa.do")
+	@ResponseBody
+	public String jjoa(CommunityVO vo, HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			vo.setUser_email(user.getUser_email());
+			
+			if(communityService.checkJjoa(vo) == null) {
+				communityService.insertJjoa(vo);
+				return "0";
+			} else {
+				communityService.deleteJjoa(vo);
+				
+			}
+		}
+		return "1";
+	}
 }

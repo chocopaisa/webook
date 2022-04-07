@@ -19,15 +19,21 @@ public class AdminCommServiceImpl implements AdminCommService {
 		return adminCommunityDAO.getReportCommuList();
 	}
 	
-	/*
-	 * // 신고 게시글 삭제 public void deleteCommunity(ReportcommunityVO vo) {
-	 * adminCommunityDAO.Deletecommu(vo); }
-	 */
+	
+	// 신고 게시글 삭제 
+	public void deleteCommunity(Integer[] list) {
+	 adminCommunityDAO.deleteCommunity(list); 
+	 
+	}
+	 
 	
 	// 오늘 게시글 수
 	public int selectTodayBoard() {
 		return adminCommunityDAO.selectTodayBoard();
 	}
+
+
+
 
 	
 }

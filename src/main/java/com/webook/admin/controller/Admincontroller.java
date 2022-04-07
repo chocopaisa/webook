@@ -48,20 +48,20 @@ public class Admincontroller {
 	 @Autowired
 	 private AdminOrderService adminOrderService;
 	 
-	
 
-//	@RequestMapping("/{step}.do")
-//	public String dashboard(@PathVariable String step) {
-//		return "/admin/" + step;		
-//	}
-	
+	// 관리자 인덱스
+	 @RequestMapping("adminindex.do")
+	 public String goAdmin(Model m) {
+		 return "admin/adminindex";
+	 }
+	 
 	// 관리자 로그인
 	@RequestMapping("adminlogin.do")
 	public String login(AdminVO vo,HttpSession session ) {
 		AdminVO result = adminService.loginCheck(vo);
 		if(result==null && result.getAdmin_id()==null) {
 			System.out.println("실패"+result.getAdmin_id());
-			return "adminindex";
+			return "admin/adminindex";
 		}else {
 			// 관리자 로그인 세션에 저장
 			System.out.println("성공"+result.getAdmin_id());
@@ -73,7 +73,8 @@ public class Admincontroller {
 	// DASHBOARD
 	// 오늘 주문 건수, 오늘 매출, 오늘 게시글 수 조회
 	@RequestMapping(value="dashboard.do", method= {RequestMethod.GET})
-	public void DashChartManager(HttpSession session, Model m) {
+	public String DashChartManager(HttpSession session, Model m) {
+		if(session.getAttribute("logname") == null) return "admin/adminindex";
 		// 오늘 주문건
 		 int count = adminOrderService.selectTodayOrder();
 		 m.addAttribute("selectTodayOrder",count);
@@ -86,9 +87,9 @@ public class Admincontroller {
 		 int cnt = adminCommService.selectTodayBoard();
 		 m.addAttribute("selectTodayBoard", cnt);
 
-	// 차트
-	// 지난주 일일 매출
 	
+	// 지난주 일일 매출
+		 
 		 List<ChartVO> LastWeekList = adminService.LastWeekSales();
 	
 		 Gson gson = new Gson();
@@ -109,10 +110,10 @@ public class Admincontroller {
 	
 		 String json = gson.toJson(jArray);
 		 m.addAttribute("json", json);
+		 // 지난주 일일 매출 끝
 		 
 	// 월별 회원가입 수
-		 
-		 System.out.println("ChartManager 호출 ????");
+
 		 List<ChartVO> MonthMemCnt = adminService.MonthMemCnt();
 	
 		 Gson gson2 = new Gson();
@@ -124,7 +125,6 @@ public class Admincontroller {
 			 ChartVO chartvo2 = cvo2.next();
 			 JsonObject object2 = new JsonObject();
 			 String MonthList = chartvo2.getChartTitle();
-			 System.out.println(MonthList);
 			 int NewMemCnt = chartvo2.getChartResult();
 	
 			 object2.addProperty("MonthList", MonthList);
@@ -134,24 +134,105 @@ public class Admincontroller {
 	
 		 String json2 = gson2.toJson(jArray2);
 		 m.addAttribute("json2", json2);
-	
+		 // 월별 회원가입 수 끝
+		 
+	 return "admin/dashboard";
 	}
+	
+	// Chart	
 	@RequestMapping("charts.do")
-	public void Chart() {}
+	public String ChartManager(HttpSession session,Model m) {
+		if(session.getAttribute("logname") == null) return "admin/adminindex";
+		// 월별 매출
+		 List<ChartVO> MonthSales = adminService.MonthSales();
+	
+		 Gson gson3 = new Gson();
+		 JsonArray jArray3 = new JsonArray();
+	
+		 Iterator<ChartVO> cvo3 = MonthSales.iterator();
+	
+		 while(cvo3.hasNext()) {
+			 ChartVO chartvo3 = cvo3.next();
+			 JsonObject object3 = new JsonObject();
+			 String MonthListname = chartvo3.getChartTitle();
+			 int MonthMoney = chartvo3.getChartResult();
+	
+			 object3.addProperty("MonthListname", MonthListname);
+			 object3.addProperty("MonthMoney", MonthMoney);
+			 jArray3.add(object3);
+		 }
+	
+		 String json3 = gson3.toJson(jArray3);
+		 System.out.println(json3 + "월월월");
+		 m.addAttribute("json3", json3);
+
+		 // 월별 매출 끝
+	
+	// 카테고리별 매출
+
+		 List<ChartVO> TopCategory = adminService.TopCategory();
+	
+		 Gson gson4 = new Gson();
+		 JsonArray jArray4 = new JsonArray();
+	
+		 Iterator<ChartVO> cvo4 = TopCategory.iterator();
+	
+		 while(cvo4.hasNext()) {
+			 ChartVO chartvo4 = cvo4.next();
+			 JsonObject object4 = new JsonObject();
+			 String CategoryName = chartvo4.getChartTitle();
+			 int CategorySales = chartvo4.getChartResult();
+			 object4.addProperty("CategoryName", CategoryName);
+			 object4.addProperty("CategorySales", CategorySales);
+			 jArray4.add(object4);
+		 }
+	
+		 String json4 = gson4.toJson(jArray4);
+		 m.addAttribute("json4", json4); 
+		 
+	// 연령대 별 가입자 수
+		 
+		 List<ChartVO> AgeNewMember = adminService.AgeNewMember();
+			
+		 Gson gson5 = new Gson();
+		 JsonArray jArray5 = new JsonArray();
+	
+		 Iterator<ChartVO> cvo5 = AgeNewMember.iterator();
+	
+		 while(cvo5.hasNext()) {
+			 ChartVO chartvo5 = cvo5.next();
+			 JsonObject object5 = new JsonObject();
+			 String AgeName = chartvo5.getChartTitle();
+			 int AgeSales = chartvo5.getChartResult();
+			 object5.addProperty("AgeName", AgeName);
+			 object5.addProperty("AgeSales", AgeSales);
+			 jArray5.add(object5);
+		 }
+	
+		 String json5 = gson5.toJson(jArray5);
+		 m.addAttribute("json5", json5);
+		 
+		 return "admin/ChartManager"; 
+		 
+	}
 	
 	// 회원 목록 출력	
 
 	 @RequestMapping("/customerManager.do")
-	 public void getMemberList(Model m) {
+	 public String getMemberList(HttpSession session,Model m) {
+		 if(session.getAttribute("logname") == null) return "admin/adminindex";
 		List<MemberVO> list = adminMemberService.getMemberList();
 		if(list.isEmpty())
 			System.out.println("가입한 회원이 없습니다.");
 		m.addAttribute("memberList", list);
+		
+		return "admin/customerManager"; 
 	 }
 	 
 	 // 상품 등록하고 DB에 저장
 	 @RequestMapping("/saveProduct.do")
-	 public String insertProduct(ProductVO productvo) { 
+	 public String insertProduct(HttpSession session,ProductVO productvo) {
+		 if(session.getAttribute("logname") == null) return "admin/adminindex";
 		 System.out.println(productvo.getProduct_image());
 		 adminProductService.insertProduct(productvo);
 		 return "redirect:productManager.do";
@@ -159,11 +240,14 @@ public class Admincontroller {
 	 
 	 // 재고 목록 출력
 	 @RequestMapping("/productManager.do")
-	 public void getProductList(Model m) {
+	 public String getProductList(HttpSession session,Model m) {
+		 if(session.getAttribute("logname") == null) return "admin/adminindex";
 		 List<ProductVO> list = adminProductService.getProductList();
 		 if(list.isEmpty())
 			 System.out.println("등록된 상품이 없습니다.");
 		 m.addAttribute("productList", list);
+		 
+		 return "admin/productManager"; 
 	 }
 	 
 	 //상품 수량 변경
@@ -177,19 +261,27 @@ public class Admincontroller {
 	 
 	 // 신고 게시글 목록 출력
 	 @RequestMapping("/reportManager.do")
-	 public void getReportCommuList(Model m) {
+	 public String getReportCommuList(HttpSession session,Model m) {
+		 if(session.getAttribute("logname") == null) return "admin/adminindex";
 		 List<ReportcommunityVO> list = adminCommService.getReportCommuList();
 		 if(list.isEmpty())
 			 System.out.println("신고된 게시글이 없습니다.");
 		 m.addAttribute("getReportCommuList", list);
+		 
+		 return "admin/reportManager";  
 	 }
 	 
-		/*
-		 * // 신고된 게시글 삭제
-		 * 
-		 * @RequestMapping("/deletereport.do")
-		 */
-
+		
+	 // 신고된 게시글 삭제		 
+	 @RequestMapping("/deletereport.do")
+	 public String deleteCommunity(Integer[] rep_article_no) {		 	
+		 	 for(Integer i : rep_article_no) {
+		 		 System.out.println("i>>>" + i);
+		 	 }	 
+			 adminCommService.deleteCommunity(rep_article_no);
+		return "redirect:reportManager.do";
+	 } 
+		 
 
 }
 

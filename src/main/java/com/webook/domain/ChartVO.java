@@ -4,7 +4,7 @@ public class ChartVO {
 	// 차트
 	private String chartTitle;
 	private int chartResult;
-	
+	// 원형 차트
 	
 	public String getChartTitle() {
 		return chartTitle;

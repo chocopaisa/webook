@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.bg-a {
+	background-color: #FFC7C7;	
+}
+
+.bg-b {
+	background-color: #FFE2E2;
+}
+
+.bg-c {
+	background-color: #F6F6F6;
+}
+
+.bg-d {
+	background-color: #8785A2;
+}
+
+.color-a{
+	color: #FFC7C7;
+}
+.color-b{
+	color: #FFE2E2;
+}
+.color-c{
+	color: #F6F6F6;
+}
+.color-d{
+	color: #8785A2;
+}
