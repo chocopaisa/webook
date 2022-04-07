@@ -143,7 +143,7 @@ img {
 	<!-- Start Top Header Bar -->
 	<%@ include file="/WEB-INF/views/header.jsp"%>
 
-	<%@ include file="/WEB-INF/views/shop/shopheader.jsp"%>
+
 	<!-- End Top Header Bar -->
 
 
@@ -151,7 +151,7 @@ img {
 
 	<!-- 검색어 입력 -->
 	<section class="call-to-action bg-gray section"
-		style="background-color: white; padding-top: 10px; padding-bottom: 50px;">
+		style="background-color: white; padding-top: 10px; padding-bottom: 50px; margin-top: 89.8px;" >
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
@@ -184,24 +184,26 @@ img {
 
 
 	<!-- ************************************ 도서 리뷰 버튼  *************************************************************** -->
+	
+	<!-- *************************************     상품 목록   (class, name)  *************************************** -->
+	<section class="products section" style="padding-top: 30px;">
+	
 	<div>
 		<ul class="nav nav-tabs"
-			style="position: relative; left: 200px; width: 1150px">
-			<li class="active"><a style="width: 150px; text-align: center;"
+			>
+			<li class="active" style="width: 50%" ><a style=" text-align: center; height: 55px; font-size: 22px;"
 				data-toggle="tab" href="#book" aria-expanded="true">BOOK</a></li>
-			<li class="active2"><a style="width: 150px; text-align: center;"
+			<li class="active2" style="width: 50%"><a style="text-align: center; height: 55px; font-size: 22px;"
 				data-toggle="tab" href="#reviews" aria-expanded="false">reviews</a></li>
 		</ul>
 
 	</div>
-	<!-- *************************************     상품 목록   (class, name)  *************************************** -->
-	<section class="products section" style="padding-top: 30px;">
 
 		<div id="book" class="tab-pane fade active in">
 			<div class="container">
 				<div class="row">
 					<div class="title text-center">
-						<h2>BOOK</h2>
+						<h2 style="margin-top: 50px">BOOK</h2>
 						<hr />
 					</div>
 					<div id="booklist" >
@@ -209,22 +211,12 @@ img {
 						<div class="col-md-4">
 							<div class="col-md-5">
 								<div class="product-item">
-									<div class="product-thumb">
+									
 
-										<img class="img-responsive" src="${product.product_image }"
-											alt="product-img" />
-										<div class="preview-meta">
-											<ul>
-												<li><a
-													href="product_single.do?product_no=${product.product_no }"><i
-														class="tf-ion-ios-search-strong"></i></a></li>
-
-												<li><a
-													href="addCart.do?product_no=${product.product_no } "><i
-														class="tf-ion-android-cart"></i></a></li>
-											</ul>
-										</div>
-									</div>
+										<a href="shop/product_single.do?product_no=${product.product_no }"><img class="img-responsive" src="${product.product_image }"
+											alt="product-img" /></a>
+										
+									
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -255,7 +247,7 @@ img {
 			</div>
 <div class="text-center">
 				<button class="btn btn-main btn-small btn-round" id="addBtn"
-					onclick="bookList();" style="text-align: center; width: 600px; background-color: ">더보기 +</button>
+					onclick="bookList();" style="text-align: center; width: 600px; height:40px; background-color: ">더보기 +</button>
 			</div>
 
 		</div>
@@ -265,7 +257,7 @@ img {
 		<div class="container" id="review">
 			<div class="row">
 				<div class="title text-center">
-					<h2>Review</h2>
+					<h2 style="margin-top: 50px">Review</h2>
 					<hr />
 				</div>
 			</div>
@@ -348,7 +340,7 @@ img {
 		src="../resources/plugins/google-map/gmap.js"></script>
 
 	<!-- Main Js File -->
-	<script src="../resources/js/script.js"></script>
+	<script src="resources/js/script.js"></script>
 	<script type="text/javascript">
 	
 	$(document).ready(function() {

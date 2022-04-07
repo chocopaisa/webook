@@ -27,7 +27,7 @@ public class TotalSearchController {
 
 
 	/*통합 검색*/
-	@RequestMapping("total_search.do")
+	@RequestMapping("/total_search.do")
 	public String totalSearch (ProductVO vo, String pnum, Model m) {
 
 		//한줄평 검색
