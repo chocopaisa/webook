@@ -78,6 +78,23 @@ FACEBOOK: https://www.facebook.com/themefisher
   #nav-mypage li > a {
   	font-size: 14px;
   }
+  
+  .sidebar > div {
+		margin: 0px;
+		padding : 0px;
+	}
+	.sidebar ul {
+		margin-bottom: 20px;
+	}
+	.sidebar ul > li {
+		padding: 10px;
+	
+	}
+	.sidebar ul > li:hover {
+		background-color: #f7f7f7;
+		text-decoration: underline;
+	}
+  
   </style>
 
 
@@ -105,30 +122,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     <div class="container">
       <div class="row">
         <!--사이드 -->
-        <div class="col-md-3">
-          <aside class="sidebar">
-            <div class="navigation">
-              <div class="menuToggle"></div>
-                  <ul id="nav-mypage">
-                     <li class="list">
-                       <h4>마이룸<hr/></h4>
-                     </li>
-                     <li class="list">
-                       <a href="p_history.do" class="btn btn-solid-border w-100" >상품 주문 관리</a>
-                     </li>
-                    <li class="list">
-                       <a href="modify.do" class="btn btn-solid-border w-100">회원 정보 관리</a>
-                    </li>
-                     <li class="list">
-                      <a href="#" class="btn btn-main w-100">글 관리</a>
-                    </li>
-                    <li class="list">
-                      <a href="signout.do" class="btn btn-solid-border w-100">회원탈퇴</a>
-                    </li>
-                 </ul>
-              </div>
-            </aside>
-            </div>
+        <%@ include file="/WEB-INF/views/mypage/mypage_sidebar.jsp" %>
           <!-- 사이드 닫음 -->
         <div class="col-md-9">
           <!-- 게시글 관리 -->
@@ -150,12 +144,12 @@ FACEBOOK: https://www.facebook.com/themefisher
              
              <c:forEach items="${reports }" var="report">
               <tr>
-                <td><a href="../community/getcontent.do?bookreport_no=${report.bookreport_no }"><h4>${report.bookreport_title }</h4></a></td>
+                <td><a href="../community/getcontent.do?bookreport_no=${report.bookreport_no }"><h4 class="boardTitle">${report.bookreport_title }</h4></a></td>
                 <td class="text-right">${report.report_kind } 게시판</td>
                 <td class="text-right">${report.write_date }</td>
               </tr>
               <tr>
-                <td colspan="3"><div class="report-content">${report.bookreport_content }</div></td>
+                <td colspan="3">내용 : <span class="report-content">${report.bookreport_content }</span></td>
               </tr>
               </c:forEach>
               
@@ -182,10 +176,10 @@ FACEBOOK: https://www.facebook.com/themefisher
              </c:if>
              <c:forEach items="${comments}" var="comment">
               <tr>
-                <td colspan="3"><div class="report-content"><h4>${comment.COMMENT_CONTENT }</h4></div></td>
+                <td colspan="3"><div ><h4 class="report-content">${comment.COMMENT_CONTENT }</h4></div></td>
               </tr>
               <tr>
-                <td><a href="../community/getcontent.do?bookreport_no=${comment.BOOKREPORT_NO }">${comment.BOOKREPORT_TITLE }</a></td>
+                <td>제목 : <a href="../community/getcontent.do?bookreport_no=${comment.BOOKREPORT_NO }" class="boardTitle">${comment.BOOKREPORT_TITLE }</a></td>
                 <td class="text-right">${comment.REPORT_KIND } 게시판</td>
                 <td class="text-right">${comment.COMMENT_WRITE_DATE }</td>
               </tr>
@@ -328,8 +322,22 @@ FACEBOOK: https://www.facebook.com/themefisher
 		
 		// 게시글, 댓글 내용 태그 제거
 		$('.report-content').each(function(){
-			$(this).html($(this).text());
+			let txt = $(this).text();
+			if(txt.length > 25){
+				txt = txt.substring(0,22)+'...';
+			}
+			$(this).html(txt);
 		})
+	</script>
+
+	<script type="text/javascript">
+		$('.boardTitle').each(function(){
+			let title = $(this).text();
+			if(title.length > 15){
+				$(this).text(title.substring(0,12)+'...')
+			}
+		})
+		
 	</script>
 
   </body>

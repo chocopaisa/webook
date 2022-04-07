@@ -197,7 +197,7 @@
 		$('#page-alert .alert-message').text(msg);
 		setTimeout(function(){
 			$('#page-alert').fadeOut();
-		},3000);
+		},2000);
 	}
 	
 	// 경고창
@@ -205,6 +205,6 @@
 		$('#page-warn').show();
 		$('#page-warn .alert-message').text(msg);
 		setTimeout(function(){
-			$('#page-alert').fadeOut();
-		},3000);
+			$('#page-warn').fadeOut();
+		},2000);
 	}

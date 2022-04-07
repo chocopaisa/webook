@@ -304,9 +304,11 @@ pageEncoding="UTF-8"%>
                   </div>
                   <input
                     class="write_title"
-                    maxlength="300"
+                    maxlength="25"
                     placeholder="글 제목"
                     name="bookreport_title"
+                    id="bookreport_title"
+                    
                   />
                 </div>
 
@@ -506,12 +508,12 @@ pageEncoding="UTF-8"%>
     </script>
     <script>
     	$('#insertBtn').click(function(){
-    		const title = $('.write_title').text();
+    		const title = $('#bookreport_title').val();
     		if(title == ''){
     			alertWarnMessage("제목을 입력해주세요")
     			return;
     		}
-    		const content = $('.ck').text();
+    		const content = $('.ck-content').first().text();
     		if(content.length < 10){
     			alertWarnMessage("내용을 10자 이상 작성해주세요");
     			return;
