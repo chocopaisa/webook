@@ -252,43 +252,17 @@ FACEBOOK: https://www.facebook.com/themefisher
 	            <div class="text-center">
 	            
 				<ul id="pagination" class="pagination post-pagination">
-					<li><a href="blog-left-sidebar.html">Prev</a>
-						</li>
-					<li class="active"><a href="blog-left-sidebar.html">1</a>
-						</li>
-					<li><a href="blog-left-sidebar.html">2</a>
-						</li>
-					<li><a href="blog-left-sidebar.html">3</a>
-						</li>
-					<li><a href="blog-left-sidebar.html">4</a>
-						</li>
-					<li><a href="blog-left-sidebar.html">5</a>
-						</li>
-					<li><a href="blog-left-sidebar.html">Next</a>
-						</li>
-<%-- 											<c:choose>
-						<c:when test="${bookreportCount.prev_pnum<=0}">
-						<li class="disabled">
-							<a href="list.do?report_kind=${report_kind }&pNum=${bookreportCount.prev_pnum}">Prev</a>
-						</li>
+				<c:forEach var="idx" begin="1" end="5">
+					<c:choose>
+						<c:when test="${idx eq param.pNum or (idx eq 1 and param.pNum eq null)}">
+							<li class="active"><a href="list.do?report_kind=${param.report_kind}&pNum=${idx}">${idx }</a></li>
 						</c:when>
+						<c:otherwise>
+							<li><a href="list.do?report_kind=${param.report_kind}&pNum=${idx}">${idx }</a></li>
+						</c:otherwise>
 					</c:choose>
-						<c:forEach var="idx" begin="${bookreportCount.min }" end="${bookreportCount.max }">
-						<c:choose>
-							<c:when test="${idx==bookreportCount.current_pnum}">
-						<li class="active"><a href="list.do?report_kind=${report_kind }&pNum=${idx}">${idx}</a>
-						</li>
-							</c:when>
-							<c:otherwise>
-						<li class="active"><a href="list.do?report_kind=${report_kind }&pNum=${idx}">${idx}</a>
-						</li>							
-							</c:otherwise>
-						</c:choose>
-						</c:forEach>
-					<li><a href="list.do?report_kind=${report_kind }&pNum=${bookreportCount.next_pnum}">Next</a>
-						</li> --%>
-						
-						
+				</c:forEach>
+					
 				</ul>
 				</div>
 				<form action="searchBookreportList.do">
