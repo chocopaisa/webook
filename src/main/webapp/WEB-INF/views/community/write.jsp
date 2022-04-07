@@ -506,9 +506,22 @@ pageEncoding="UTF-8"%>
     </script>
     <script>
     	$('#insertBtn').click(function(){
+    		const title = $('.write_title').text();
+    		if(title == ''){
+    			alertWarnMessage("제목을 입력해주세요")
+    			return;
+    		}
+    		const content = $('.ck').text();
+    		if(content.length < 10){
+    			alertWarnMessage("내용을 10자 이상 작성해주세요");
+    			return;
+    		}
+    		
     		$('#boardForm').submit();
     	})
     	
+    	
+	
     </script>
   </body>
 </html>
