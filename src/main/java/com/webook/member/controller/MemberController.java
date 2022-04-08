@@ -35,9 +35,13 @@ public class MemberController {
 			model.addAttribute("check", 1);
 		} else {
 			model.addAttribute("check", 0);
-			model.addAttribute("user_email", vo.getUser_email()); 
-
+			
+			
 		}
+		System.out.println("dddd"+member.getUser_email());
+		model.addAttribute("user_email", member.getUser_email()); 
+		
+		
 		 return "emailfind";
 	}
 	

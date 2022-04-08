@@ -30,7 +30,7 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h3 class="mt-4">상품 관리</h3> 
-                        <div class="submitbtn"><button type="submit" class="btn btn-outline-dark m-2" onclick="location='productRegistration.do'">상품 등록</button></div>                       
+                        <div class="submitbtn"><button type="button" class="btn btn-outline-dark m-2" onClick="location.href='productRegistration.do'">상품 등록</button></div>                       
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
                             재고 수량

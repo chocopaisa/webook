@@ -22,7 +22,7 @@ FACEBOOK: https://www.facebook.com/themefisher
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Webook | E-commerce template</title>
+  <title>WEBOOK | 아이디 찾기</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -57,19 +57,19 @@ FACEBOOK: https://www.facebook.com/themefisher
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <div class="block text-center">
-          <a class="logo" href="index.html">
-            <h1>WEBOOK</h1>
-          </a>
+        <form class="text-left clearfix" action="idfind.do" id="box" method="post"> 
+        <div class="block text-center"><h1>
+          <a class="logo" href="/webook/main.do">
+            WEBOOK
+          </a></h1>
           <h2 class="text-center">아이디 찾기</h2>
-          <form class="text-left clearfix" action="emailfind.do" id="box"> 
-            이름
+            <p class="text-left">이름</p>
             <div class="form-group">
               <input type="text" name="user_name" class="form-control">
             </div>
-            휴대전화
+            <p class="text-left">휴대전화</p>
             <div class="form-group text-center">
-              <input type="tel" name="user_tel" class="form-control"><br/>
+              <input type="tel" name="user_tel" class="form-control">
             </div>
               <button type="button" class="btn btn-main w-100" id="findbtn">아이디 찾기</button>
             </div>
@@ -77,7 +77,6 @@ FACEBOOK: https://www.facebook.com/themefisher
         </div>
       </div>
     </div>
-  </div>
 </section>
 
     <!-- 
@@ -109,13 +108,20 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script src="resources/js/script.js"></script>
     
     <script type="text/javascript">
-    $(function(){
-    	$("#findbtn").click(function(){
-    		if(confirm('아이디를 찾으시겠습니까?')){
-    			$("#box").submit();
-    		}
-    	})
-    })
+		$('#findbtn').click(function(){
+			const formBox = $('#box');
+			const user_name = formBox.find('input[name=user_name]').val();
+			if(user_name == ''){
+				alert('이름을 입력해주세요')
+				return;
+			}
+			const user_tel = formBox.find('input[name=user_tel]').val();
+			if(user_tel == ''){
+				alert('전화번호를 입력해주세요')
+				return;
+			}
+			$('#box').submit();
+		})
     </script>
 
   </body>

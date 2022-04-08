@@ -1,5 +1,8 @@
 package com.webook.member.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,10 @@ public class LoginController {
 	private LoginService loginservice;
 	
 	@RequestMapping("login.do")
-	public void login() {
+	public void login(HttpServletRequest request, HttpSession session) {
+		String referer = request.getHeader("Referer");
+		System.out.println(referer);
+		session.setAttribute("prevPage", referer);
 		
 	}
 	
@@ -44,16 +50,32 @@ public class LoginController {
 		session.setAttribute("user", user);
 		MemberVO a = (MemberVO)session.getAttribute("user");
 		System.out.println(a.getUser_name());
-		return "redirect:main.do";
+		
+		String redirectUrl = (String) session.getAttribute("prevPage");
+		if(redirectUrl==null) {
+			return "redirect:main.do";
+		} else {
+			return "redirect:" + redirectUrl;
+		}
 	
 	}
 	
 	@RequestMapping("logout.do")
-	public String logout(MemberVO vo, HttpSession session) {
-
+	public String logout(HttpServletRequest request, MemberVO vo, HttpSession session) {
+		
+		String referer = request.getHeader("Referer");
+		System.out.println(referer);
+		session.setAttribute("prevPage", referer);
+		String redirectUrl = (String) session.getAttribute("prevPage");
 		session.invalidate();
-		return "redirect:main.do";
+		if(redirectUrl==null) {
+			return "redirect:main.do";
+		} else {
+			
+			return "redirect:" + redirectUrl;
+		}
+		
+	
 	}
 	
-
 }

@@ -11,10 +11,7 @@
 						<a href="list.do">전체 독후감</a>
 					</li>
 					<li>
-						베스트 독후감
-					</li>
-					<li>
-						화제의 독후감
+						<a href="list.do?report_kind=best">베스트 독후감</a>
 					</li>
 					
 					</ul>

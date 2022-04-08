@@ -92,6 +92,14 @@ public class CommunityDAOImpl implements CommunityDAO {
 	public CommunityVO countJjoa(CommunityVO vo) {
 		System.out.println("===> Mybatis countJjoa() 호출");
 		return mybatis.selectOne("community.mapper.countJjoa", vo);
+	}
+
+	// 베스트 게시글 목록
+	@Override
+	public List<CommunityVO> searchBestReportList(int pNum) {
+		System.out.println("===> Mybatis searchBestReportList() 호출");
+		RowBounds row = new RowBounds(((pNum-1)*10) ,10);
+		return mybatis.selectList("community.mapper.searchBestReport", null, row);
 	}	
 
 }

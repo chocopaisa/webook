@@ -42,4 +42,7 @@ public interface CommunityService {
 	
 	//좋아요 count
 	CommunityVO countJjoa(CommunityVO vo);	
+	
+	// 베스트 게시판 글
+	List<CommunityVO> searchBestReportList(int pNum);
 }

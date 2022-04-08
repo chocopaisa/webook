@@ -39,8 +39,11 @@ public class CommunityController {
 	@RequestMapping("list.do")
 	public void getBookreportList(CommunityVO vo, Model m, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
 		//vo.setJjoa_count(communityService.countJjoa(vo));
-		m.addAttribute("bookreportList", communityService.getBookreportList(vo, pNum));
-		
+		if(vo.getReport_kind() != null && vo.getReport_kind().equals("best")) {
+			m.addAttribute("bookreportList", communityService.searchBestReportList(pNum));
+		} else {
+			m.addAttribute("bookreportList", communityService.getBookreportList(vo, pNum));
+		}
 		
 	}
 	// 게시글 등록
@@ -61,9 +64,10 @@ public class CommunityController {
 		CommunityVO result = communityService.getBookreport(vo);
 		CommentVO re = new CommentVO();
 		ProductVO pr = new ProductVO();
+		CommunityVO reset = new CommunityVO();
 		pr.setProduct_no(result.getProduct_no());
 		re.setBookreport_no(vo.getBookreport_no());
-
+		reset.setUser_email(result.getUser_email());
 		//조회수 증가
 		communityService.viewCount(vo);
 		//게시글 상세
@@ -80,6 +84,7 @@ public class CommunityController {
 		result.setUser_email(user.getUser_email());
 		m.addAttribute("checkJjoa", communityService.checkJjoa(result));
 		}
+		result.setUser_email(reset.getUser_email());
 	}
 	
 	//게시글 검색
