@@ -43,5 +43,6 @@ public interface CommunityDAO {
 	//좋아요 count
 	public CommunityVO countJjoa(CommunityVO vo);	
 
+	public List<CommunityVO> searchBestReportList(int pNum);
 	
 }

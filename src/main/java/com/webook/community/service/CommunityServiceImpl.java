@@ -73,5 +73,13 @@ public class CommunityServiceImpl implements CommunityService{
 	public CommunityVO countJjoa(CommunityVO vo) {
 		return communityDAO.countJjoa(vo);
 	}
+
+	
+	// 베스트 게시글 목록 가져오기
+	@Override
+	public List<CommunityVO> searchBestReportList(int pNum) {
+		
+		return communityDAO.searchBestReportList(pNum);
+	}
 	
 }

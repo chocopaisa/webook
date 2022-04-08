@@ -39,8 +39,11 @@ public class CommunityController {
 	@RequestMapping("list.do")
 	public void getBookreportList(CommunityVO vo, Model m, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
 		//vo.setJjoa_count(communityService.countJjoa(vo));
-		m.addAttribute("bookreportList", communityService.getBookreportList(vo, pNum));
-		
+		if(vo.getReport_kind() != null && vo.getReport_kind().equals("best")) {
+			m.addAttribute("bookreportList", communityService.searchBestReportList(pNum));
+		} else {
+			m.addAttribute("bookreportList", communityService.getBookreportList(vo, pNum));
+		}
 		
 	}
 	// 게시글 등록
