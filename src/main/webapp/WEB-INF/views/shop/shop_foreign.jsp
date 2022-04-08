@@ -291,7 +291,7 @@ table, td, th {
 					<ul class="pagination post-pagination">
 						<li><a href="shop_foreign.do?pnum=0&genre_no=${param.genre_no }">Prev</a>
 						</li>
-						<li class="active"><a href="shop_foreign.do?pnum=1&genre_no=${param.genre_no }">1</a>
+						<li ><a href="shop_foreign.do?pnum=1&genre_no=${param.genre_no }">1</a>
 						</li>
 						<li><a href="shop_foreign.do?pnum=2&genre_no=${param.genre_no }">2</a>
 						</li>

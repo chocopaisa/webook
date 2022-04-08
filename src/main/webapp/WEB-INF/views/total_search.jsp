@@ -134,6 +134,10 @@ ul.top-menu {
 img {
 	max-height: 360px;
 }
+
+.searchResult {
+	text-align: center;
+}
 </style>
 
 </head>
@@ -151,19 +155,21 @@ img {
 
 	<!-- 검색어 입력 -->
 	<section class="call-to-action bg-gray section"
-		style="background-color: white; padding-top: 10px; padding-bottom: 50px; margin-top: 89.8px;" >
+		style="background-color: white; padding-top: 10px; padding-bottom: 50px; margin-top: 89.8px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<form action="total_search.do">
+					<form action="total_search.do" id="frm" method="post">
 						<div class="col-lg-6 col-md-offset-3">
 							<div class="input-group subscription-form">
 
 
 								<input type="text" class="form-control" placeholder="검색어를 검색하세요"
-									name="searchKeyword" value="${param.searchKeyword }"> <span class="input-group-btn">
-									<input hidden value="${param.searchKeyword }" id="searchKeyword">
-									<button class="btn btn-main" type="submit">
+									name="searchKeyword" value="${param.searchKeyword }" id="search"  
+									onkeyup="if(window.event.keyCode==13){test()}"> <span
+									class="input-group-btn"> <input hidden
+									value="${param.searchKeyword }" id="searchKeyword">
+									<button class="btn btn-main" type="button" id="searchBtn">
 										<i class="tf-ion-ios-search-strong" style="size: 50px;"></i>
 									</button>
 								</span>
@@ -184,20 +190,21 @@ img {
 
 
 	<!-- ************************************ 도서 리뷰 버튼  *************************************************************** -->
-	
+
 	<!-- *************************************     상품 목록   (class, name)  *************************************** -->
 	<section class="products section" style="padding-top: 30px;">
-	
-	<div>
-		<ul class="nav nav-tabs"
-			>
-			<li class="active" style="width: 50%" ><a style=" text-align: center; height: 55px; font-size: 22px;"
-				data-toggle="tab" href="#book" aria-expanded="true">BOOK</a></li>
-			<li class="active2" style="width: 50%"><a style="text-align: center; height: 55px; font-size: 22px;"
-				data-toggle="tab" href="#reviews" aria-expanded="false">reviews</a></li>
-		</ul>
 
-	</div>
+		<div>
+			<ul class="nav nav-tabs">
+				<li class="active" style="width: 50%"><a
+					style="text-align: center; height: 55px; font-size: 22px;"
+					data-toggle="tab" href="#book" aria-expanded="true">BOOK</a></li>
+				<li class="active2" style="width: 50%"><a
+					style="text-align: center; height: 55px; font-size: 22px;"
+					data-toggle="tab" href="#reviews" aria-expanded="false">reviews</a></li>
+			</ul>
+
+		</div>
 
 		<div id="book" class="tab-pane fade active in">
 			<div class="container">
@@ -206,50 +213,59 @@ img {
 						<h2 style="margin-top: 50px">BOOK</h2>
 						<hr />
 					</div>
-					<div id="booklist" >
-					<c:forEach items="${products}" var="product">
-						<div class="col-md-4">
-							<div class="col-md-5">
-								<div class="product-item">
-									
+					<div id="booklist">
 
-										<a href="shop/product_single.do?product_no=${product.product_no }"><img class="img-responsive" src="${product.product_image }"
+						<c:if test="${products.isEmpty()}">
+							<h2 class="searchResult">검색 결과가 없습니다.</h2>
+						</c:if>
+
+						<c:forEach items="${products}" var="product">
+							<div class="col-md-4">
+								<div class="col-md-5">
+									<div class="product-item">
+
+
+										<a
+											href="shop/product_single.do?product_no=${product.product_no }"><img
+											class="img-responsive" src="${product.product_image }"
 											alt="product-img" /></a>
-										
-									
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="product-content">
-									<h4>
-										<a class="productTitle"
-											href="product_single.do?product_no=${product.product_no }">${product.product_name }</a>
-									</h4>
-									<p class="writer" style="font-size: smaller;">${product.product_writer}</p>
-									<p class="price" style="font-weight: bolder;">
-										<fmt:formatNumber value="${product.product_price }"
-											pattern="#,###" />
-										원
-									</p>
 
-									<hr />
-									<p class="productDesc">${product.product_desc }</p>
+
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="product-content">
+										<h4>
+											<a class="productTitle"
+												href="shop/product_single.do?product_no=${product.product_no }">${product.product_name }</a>
+										</h4>
+										<p class="writer" style="font-size: smaller;">${product.product_writer}</p>
+										<p class="price" style="font-weight: bolder;">
+											<fmt:formatNumber value="${product.product_price }"
+												pattern="#,###" />
+											원
+										</p>
+
+										<hr />
+										<p class="productDesc">${product.product_desc }</p>
+									</div>
 								</div>
 							</div>
-						</div>
-					</c:forEach>
-				</div>
+						</c:forEach>
+					</div>
 
 					<!-- Modal -->
 					<!-- /.modal -->
 
 				</div>
 			</div>
-<div class="text-center">
-				<button class="btn btn-main btn-small btn-round" id="addBtn"
-					onclick="bookList();" style="text-align: center; width: 600px; height:40px; background-color: ">더보기 +</button>
-			</div>
-
+			<c:if test="${not empty products}">
+				<div class="text-center">
+					<button class="btn btn-main btn-small btn-round" id="addBtn"
+						onclick="bookList();"
+						style="text-align: center; width: 30%; height: 30%;">더보기 +</button>
+				</div>
+			</c:if>
 		</div>
 
 
@@ -262,6 +278,11 @@ img {
 				</div>
 			</div>
 			<div class="row" id="reviews">
+
+				<c:if test="${reviews.isEmpty()}">
+					<h2 class="searchResult">검색 결과가 없습니다.</h2>
+				</c:if>
+
 				<!-- 리뷰 들어갈 자리 -->
 				<c:forEach items="${reviews}" var="review">
 					<!-- 한 묶음 -->
@@ -294,11 +315,13 @@ img {
 				</c:forEach>
 				<!-- 리뷰끝 -->
 			</div>
-
-			<div class="text-center">
-				<button class="btn btn-main btn-small btn-round" id="addBtn"
-					onclick="reviewList();" style="text-align: center; width: 600px; background-color: ">더보기</button>
-			</div>
+			<c:if test="${not empty reviews }">
+				<div class="text-center">
+					<button class="btn btn-main btn-small btn-round" id="add2Btn"
+						onclick="reviewList();"
+						style="text-align: center; width: 40%; height: 30%">더보기 +</button>
+				</div>
+			</c:if>
 		</div>
 
 	</section>
@@ -342,22 +365,22 @@ img {
 	<!-- Main Js File -->
 	<script src="resources/js/script.js"></script>
 	<script type="text/javascript">
-	
-	$(document).ready(function() {
-		$('#review').hide();
-
-		//버튼 누르면 도서, 리뷰 바뀜
-		$('.active2').click(function() {
-			$('#book').hide();
-			$('#review').show();
-
-		})
-		$('.active').click(function() {
-			$('#book').show();
+		$(document).ready(function() {
 			$('#review').hide();
+
+			//버튼 누르면 도서, 리뷰 바뀜
+			$('.active2').click(function() {
+				$('#book').hide();
+				$('#review').show();
+
+			})
+			$('.active').click(function() {
+				$('#book').show();
+				$('#review').hide();
+			});
 		});
-	});	
-	
+
+		// 한줄평 별점
 		$('.review-star').each(function() {
 			const stars = $(this).text().trim() * 2;
 			console.log(stars);
@@ -383,167 +406,186 @@ img {
 			$(this).prepend(result);
 
 		});
-			
+		
+		//검색창에 엔터 쳤을 때 검색어 없으면 검색어를 입력해주세요
+		function test() {
+			if($.trim($("#search").val())==''){
+				alertWarnMessage("검색어를 입력해주세요.");
+		        return false;
+		      } else {
+		      $("#frm").submit();
+		      }
+		    }
+		
+		//도서, 리뷰 바뀌는 
 		$(document).ready(function() {
 			$('#review').hide();
 
 			//버튼 누르면 도서, 리뷰 바뀜
 			$('.active2').click(function() {
-				$('#book').hide();
 				$('#review').show();
+				$('#book').hide();
+				
 
 			})
 			$('.active').click(function() {
 				$('#book').show();
 				$('#review').hide();
+				
 			});
-		});	
-		
-		
-		
-	  let pnum= 0;
-			function bookList() {
-		  		
 			
-			
-		    	pnum++;
-		    console.log(pnum)
-		    
-		    
-		    //ijax *****
-		     $.ajax({
-		        url : "bookList.do",
-		        type : "post",
-		        data : {"pnum":pnum, "searchKeyword" : $('#searchKeyword').val()},
-		        contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		        error : function(err) { console.log(err)}, 
-		        success : function(data) {
-		        
-		        	console.log(data);
-		            var addListHtml ="";
-		           
-		            if(data.length > 0){
-		                
-		                for(var i=0; i<data.length;i++) {
-		               
-		                	addListHtml += "<div class='col-md-4'>";
-		     	               addListHtml += "	<div class='col-md-5'>";
-		     	               addListHtml += "<div class='product-item'>";
-		     	               addListHtml += "<div class='product-thumb'>";
-		     	               addListHtml += "	<img class='img-responsive' src='"+ data[i].product_image +"' alt='product-img' />";
-		     	               addListHtml += "<div class='preview-meta'>";
-		     	               addListHtml += "<ul>";
-		     	               addListHtml += "<li>";
-		     	               addListHtml += "<a href='product_single.do?product_no='" + data[i].product_no +"'>";
-		     	               addListHtml += "<i class='tf-ion-ios-search-strong'>";
-		     	               addListHtml += "</i>";
-		     	               addListHtml += "</a>";
-		     	               addListHtml += "</li>";
-		     	               addListHtml += "<li>";
-		     	               addListHtml += "<a href='addCart.do?product_no='" + data[i].product_no +"'>";
-		     	               addListHtml += "<i class='tf-ion-android-cart'>";
-		     	               addListHtml += "</i>";
-		     	               addListHtml += "</a>";
-		     	               addListHtml += "</li>";
-		     	               addListHtml += "</ul>";
-		     	               addListHtml += "</div>";
-		     	               addListHtml += "</div>";
-		     	               addListHtml += "</div>";
-		     	               addListHtml += "</div>";
-		     	               addListHtml += "<div class='col-md-6'>";
-		     	               addListHtml += "<div class='product-content'>";
-		     	               addListHtml += "<h4>";
-		     	               addListHtml += "<a class='productTitle' href='product_single.do?product_no='"+ data[i].product_no +"'>"
-		     	            		   			+ data[i].product_name + "</a>";
-		     	               addListHtml += "</h4>";
-		     	               addListHtml += "<p class='writer' style='font-size: smaller;'>" + data[i].product_writer + "</p>";
-		     	               addListHtml += "<p class='price' style='font-weight: bolder;'>" + data[i].product_price  + "</p>";
-		     	               addListHtml += "<hr/>";
-		     	               addListHtml += "<p class='productDesc'>" + data[i].product_desc  + "</p>";
-		     	               addListHtml += "</div>";
-		     	               addListHtml += "</div>";
-		     	               addListHtml += "</div>";
-		                        
-		                }
-		                $("#booklist").append(addListHtml);
-		                
-		            }
-		            
-		        }
-		    });
-					
-				}	 
-			
-			
-			
-		
-			function reviewList() {
-		  		
-				
-			    	pnum++;
-			    console.log(pnum)
-			    
-			    
-			    //ijax *****
-			     $.ajax({
-			        url : "reviewList.do",
-			        type : "post",
-			        data : {"pnum":pnum, "searchKeyword" : $('#searchKeyword').val()},
-			        contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-			        error : function(err) { console.log(err)}, 
-			        success : function(data) {
-			        
-			        	console.log(data);
-			            var raddListHtml ="";
-			           
-			            if(data.length > 0){
-			                
-			                for(var i=0; i<data.length;i++) {
-			               
-			                raddListHtml += "<div class='col-xs-6' style='height: 300px;'>";
-			                raddListHtml += "<div class='media' style='height: 300px;'>"
-			                raddListHtml += "<a class='pull-left' href='shop/product_single.do?product_no='" + data[i].PRODUCT_NO  + "'>";
-			                raddListHtml += "<img class='media-object review-img' src='" + data[i].PRODUCT_IMAGE + "' alt='Image'>";
-			                raddListHtml += "</a>";
-			                raddListHtml += "<div class='media-body'>";
-			                raddListHtml += "<h4 class='media-heading'>";
-			                raddListHtml += "<a href='shop/product_single.do?product_no='" + data[i].PRODUCT_NO  + "'>"
-			                		+ data[i].PRODUCT_NAME + "</a>";
-			                raddListHtml += "</h4>";
-			                raddListHtml += "<h5 class='review-star'>";
-			                raddListHtml += "<span class='star'>" + data[i].STAR  + "</span>";
-			                raddListHtml += "</h5>";
-			                raddListHtml += "<hr/>";
-			                raddListHtml += "<div>";
-			                raddListHtml += "<p>" + data[i].BOOKREPORT_CONTENT + "</p>";
-			                raddListHtml += "</div>";
-			                raddListHtml += "<div class='text-right align-text-bottom'>";
-			                raddListHtml += "<p>" + data[i].USER_NAME  + "</p>";
-			                raddListHtml += "</div>";
-			                raddListHtml += "</div>";
-			                raddListHtml += "</div>";
-			                raddListHtml += "</div>";
-			                	
-			                	
-			                        
-			                }
-			                $("#reviews").append(raddListHtml);
-			                
-			            }
-			            
-			        }
+			// 검색 버튼 눌렀을 때 검색어 없으면 검색어를 입력해주세요
+			$('#searchBtn').click(function() {
+			    if($.trim($("#search").val())==''){
+			    	alertWarnMessage("검색어를 입력해주세요.");
+			        return false;
+			      } else {
+			      $("#frm").submit();
+			      }
 			    });
-						
-					}	  
-				
-						
-					
-				
-			
+
+		});
 		
-			
-			
-</script>
+		
+		
+	// 도서 더보기 
+		let pnum = 0;
+		function bookList() {
+
+			pnum++;
+			console.log(pnum)
+
+			//ajax *****
+			$.ajax({
+						url : "bookList.do",
+						type : "post",
+						data : {
+							"pnum" : pnum,
+							"searchKeyword" : $('#searchKeyword').val()
+						},
+						contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+						error : function(err) {
+							console.log(err)
+						},
+						success : function(data) {
+
+							console.log(data);
+							var addListHtml = "";
+
+							if (data.length > 0) {
+
+								for (var i = 0; i < data.length; i++) {
+
+									addListHtml += "<div class='col-md-4'>";
+									addListHtml += "	<div class='col-md-5'>";
+									addListHtml += "<div class='product-item'>";
+							
+									addListHtml += "<a href='shop/product_single.do?product_no="
+											+ data[i].product_no + "'>";
+									addListHtml += "<img class='img-responsive' src='"+ data[i].product_image +"' alt='product-img' />";		
+									addListHtml += "</a>";		
+								
+									addListHtml += "</div>";
+									addListHtml += "</div>";
+								
+									addListHtml += "<div class='col-md-6'>";
+									addListHtml += "<div class='product-content'>";
+									addListHtml += "<h4>";
+									addListHtml += "<a class='productTitle' href='shop/product_single.do?product_no="
+											+ data[i].product_no
+											+ "'>"
+											+ data[i].product_name + "</a>";
+									addListHtml += "</h4>";
+									addListHtml += "<p class='writer' style='font-size: smaller;'>"
+											+ data[i].product_writer + "</p>";
+									addListHtml += "<p class='price' style='font-weight: bolder;'>"
+											+ data[i].product_price + "</p>";
+									addListHtml += "<hr/>";
+									addListHtml += "<p class='productDesc'>"
+											+ data[i].product_desc + "</p>";
+									addListHtml += "</div>";
+									addListHtml += "</div>";
+									addListHtml += "</div>";
+
+								}
+								$("#booklist").append(addListHtml);
+
+							}$('#addBtn').hide();
+
+						}
+					});
+
+		}
+
+		//리뷰 더보기
+		function reviewList() {
+
+			pnum++;
+			console.log(pnum)
+
+			//ijax *****
+			$
+					.ajax({
+						url : "reviewList.do",
+						type : "post",
+						data : {
+							"pnum" : pnum,
+							"searchKeyword" : $('#searchKeyword').val()
+						},
+						contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+						error : function(err) {
+							console.log(err)
+						},
+						success : function(data) {
+
+							console.log(data);
+							var raddListHtml = "";
+
+							if (data.length > 0) {
+
+								for (var i = 0; i < data.length; i++) {
+
+									raddListHtml += "<div class='col-xs-6' style='height: 300px;'>";
+									raddListHtml += "<div class='media' style='height: 300px;'>"
+									raddListHtml += "<a class='pull-left' href='shop/product_single.do?product_no='"
+											+ data[i].PRODUCT_NO + "'>";
+									raddListHtml += "<img class='media-object review-img' src='" + data[i].PRODUCT_IMAGE + "' alt='Image'>";
+									raddListHtml += "</a>";
+									raddListHtml += "<div class='media-body'>";
+									raddListHtml += "<h4 class='media-heading'>";
+									raddListHtml += "<a href='shop/product_single.do?product_no='"
+											+ data[i].PRODUCT_NO
+											+ "'>"
+											+ data[i].PRODUCT_NAME + "</a>";
+									raddListHtml += "</h4>";
+									raddListHtml += "<h5 class='review-star'>";
+									raddListHtml += "<span class='star'>"
+											+ data[i].STAR + "</span>";
+									raddListHtml += "</h5>";
+									raddListHtml += "<hr/>";
+									raddListHtml += "<div>";
+									raddListHtml += "<p>"
+											+ data[i].BOOKREPORT_CONTENT
+											+ "</p>";
+									raddListHtml += "</div>";
+									raddListHtml += "<div class='text-right align-text-bottom'>";
+									raddListHtml += "<p>" + data[i].USER_NAME
+											+ "</p>";
+									raddListHtml += "</div>";
+									raddListHtml += "</div>";
+									raddListHtml += "</div>";
+									raddListHtml += "</div>";
+
+								}
+								$("#reviews").append(raddListHtml);
+
+							}$('#add2Btn').hide();
+
+						}
+					});
+
+		}
+	</script>
 
 </body>
 </html>

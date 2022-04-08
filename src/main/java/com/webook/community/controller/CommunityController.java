@@ -64,9 +64,10 @@ public class CommunityController {
 		CommunityVO result = communityService.getBookreport(vo);
 		CommentVO re = new CommentVO();
 		ProductVO pr = new ProductVO();
+		CommunityVO reset = new CommunityVO();
 		pr.setProduct_no(result.getProduct_no());
 		re.setBookreport_no(vo.getBookreport_no());
-
+		reset.setUser_email(result.getUser_email());
 		//조회수 증가
 		communityService.viewCount(vo);
 		//게시글 상세
@@ -83,6 +84,7 @@ public class CommunityController {
 		result.setUser_email(user.getUser_email());
 		m.addAttribute("checkJjoa", communityService.checkJjoa(result));
 		}
+		result.setUser_email(reset.getUser_email());
 	}
 	
 	//게시글 검색

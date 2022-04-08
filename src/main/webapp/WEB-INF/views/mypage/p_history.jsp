@@ -84,23 +84,31 @@ ul.top-menu {
 	position: relative;
 	right: 40px;
 }
-.sidebar > div {
-		margin: 0px;
-		padding : 0px;
-	}
-	.sidebar ul {
-		margin-bottom: 20px;
-	}
-	.sidebar ul > li {
-		padding: 10px;
-	
-	}
-	.sidebar ul > li:hover {
-		background-color: #f7f7f7;
-		text-decoration: underline;
-	}
-	.page-wrapper {
-   padding: 0px;
+
+.sidebar>div {
+	margin: 0px;
+	padding: 0px;
+}
+
+.sidebar ul {
+	margin-bottom: 20px;
+}
+
+.sidebar ul>li {
+	padding: 10px;
+}
+
+.sidebar ul>li:hover {
+	background-color: #f7f7f7;
+	text-decoration: underline;
+}
+
+.page-wrapper {
+	padding: 0px;
+}
+
+.purHis {
+	text-align: center;
 }
 </style>
 
@@ -118,46 +126,42 @@ ul.top-menu {
 
 	<!-- end header bar -->
 
-<section class="page-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="content">
-            <h1 class="page-name">My Page</h1>
-            <ol class="breadcrumb">
-              <li><a href="../">Home</a></li>
-              <li class="active">MyPage</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-				<!--사이드 -->
-				
-				<!-- 사이드 닫음 -->
-				
-				
-	<div class="page-wrapper" >
+	<section class="page-header">
 		<div class="container">
 			<div class="row">
-			<%@ include file="/WEB-INF/views/mypage/mypage_sidebar.jsp"%>
+				<div class="col-md-12">
+					<div class="content">
+						<h1 class="page-name">My Page</h1>
+						<ol class="breadcrumb">
+							<li><a href="../">Home</a></li>
+							<li class="active">MyPage</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--사이드 -->
+
+	<!-- 사이드 닫음 -->
+
+
+	<div class="page-wrapper">
+		<div class="container">
+			<div class="row">
+				<%@ include file="/WEB-INF/views/mypage/mypage_sidebar.jsp"%>
 				<div class="col-md-9">
 					<div class="block text-center w-50" style="margin-left: 10px;">
 						<h2 class="text-left">배송조회 및 구매내역</h2>
-
-					</div>
-				</div>
+						</div>
 				
 				<section class="user-dashboard page-wrapper">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-4">
+					
 
 								<div class="dashboard-wrapper user-dashboard"
-									style="width: 800px; margin-left: 10px;">
-									<div class="table-responsive">
+									style="width: 100%; margin-left: 10px;">
+									<div class="">
 										<table class="table">
 											<thead>
 												<tr>
@@ -172,7 +176,13 @@ ul.top-menu {
 												</tr>
 											</thead>
 											<tbody>
-
+												<c:if test="${list.isEmpty() }">
+													<tr>
+														<td colspan="6">
+															<h4 class="purHis">구매하신 상품이 없습니다.</h4>
+														</td>
+													</tr>
+												</c:if>
 												<c:forEach items="${list }" var="lst">
 
 													<tr>
@@ -217,33 +227,21 @@ ul.top-menu {
 										</table>
 									</div>
 								</div>
-							</div>
-						</div>
-					</div>
+							</section>
+							
 
 
 
-				</section>
 
-				<section class="user-dashboard page-wrapper">
-
-
-					<div class="col-md-3" style="margin-bottom: 500px;"></div>
-
-					<div class="col-md-9">
+					
 						<div class="block text-center w-50">
 							<h2 class="text-left" style="margin-left: 10px;">이전 구매내역</h2>
 
 						</div>
-					</div>
-					<section class="user-dashboard page-wrapper">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-4">
 
 									<div class="dashboard-wrapper user-dashboard"
-										style="width: 800px; margin-left: 10px;">
-										<div class="table-responsive">
+										style="width: 100%; margin-left: 10px;">
+										<div class="">
 											<table class="table" id="addList">
 												<thead>
 													<tr>
@@ -258,7 +256,13 @@ ul.top-menu {
 												</thead>
 												<tbody id="listBody">
 
-
+													<c:if test="${lis.isEmpty() }">
+														<tr>
+															<td colspan="5">
+																<h4 class="purHis">구매하신 상품이 없습니다.</h4>
+															</td>
+														</tr>
+													</c:if>
 													<c:forEach items="${lis }" var="li">
 
 														<tr>
@@ -291,57 +295,70 @@ ul.top-menu {
 											</table>
 										</div>
 									</div>
-									<button class="btn btn-main btn-small btn-round" id="addBtn"
+									<c:if test="${not empty lis }">
+										<button class="btn btn-main btn-small btn-round" id="addBtn"
 										onclick="moreList();"
 										style="margin-left: 365px; margin-top: 10px;">더보기</button>
+
+
+
+									<button class="btn btn-main btn-small btn-round" id="hideBtn"
+										style="margin-left: 365px; margin-top: 10px;" th>접기</button>
+									</c:if>
+									
 								</div>
 							</div>
-
 						</div>
-					</section>
-</div></div>
+						</div>
+					
 
-					<!-- footer -->
+		<!-- footer -->
 
-					<%@ include file="/WEB-INF/views/footer.jsp"%>
-					<!-- 
+		<%@ include file="/WEB-INF/views/footer.jsp"%>
+		<!-- 
     Essential Scripts
     =====================================-->
 
-					<!-- Main jQuery -->
-					<script src="../resources/plugins/jquery/dist/jquery.min.js"></script>
-					<!-- Bootstrap 3.1 -->
-					<script src="../resources/plugins/bootstrap/js/bootstrap.min.js"></script>
-					<!-- Bootstrap Touchpin -->
-					<script
-						src="../resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-					<!-- Instagram Feed Js -->
-					<script src="../resources/plugins/instafeed/instafeed.min.js"></script>
-					<!-- Video Lightbox Plugin -->
-					<script
-						src="../resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
-					<!-- Count Down Js -->
-					<script
-						src="../resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+		<!-- Main jQuery -->
+		<script src="../resources/plugins/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap 3.1 -->
+		<script src="../resources/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<!-- Bootstrap Touchpin -->
+		<script
+			src="../resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+		<!-- Instagram Feed Js -->
+		<script src="../resources/plugins/instafeed/instafeed.min.js"></script>
+		<!-- Video Lightbox Plugin -->
+		<script
+			src="../resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+		<!-- Count Down Js -->
+		<script
+			src="../resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
-					<!-- slick Carousel -->
-					<script src="../resources/plugins/slick/slick.min.js"></script>
-					<script src="../resources/plugins/slick/slick-animation.min.js"></script>
+		<!-- slick Carousel -->
+		<script src="../resources/plugins/slick/slick.min.js"></script>
+		<script src="../resources/plugins/slick/slick-animation.min.js"></script>
 
-					<!-- Google Mapl -->
-					<script
-						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-					<script type="text/javascript"
-						src="../resources/plugins/google-map/gmap.js"></script>
+		<!-- Google Mapl -->
+		<script
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+		<script type="text/javascript"
+			src="../resources/plugins/google-map/gmap.js"></script>
 
-					<!-- Main Js File -->
-					<script src="../resources/js/script.js"></script>
-					<script src="../resources/js/shop-total.js"></script>
-					<!--********************** 자바스크립트 파일 옮기고 경로 다시 설정********************** -->
+		<!-- Main Js File -->
+		<script src="../resources/js/script.js"></script>
+		<script src="../resources/js/shop-total.js"></script>
+		<!--********************** 자바스크립트 파일 옮기고 경로 다시 설정********************** -->
 
-					<script type="text/javascript">
+		<script type="text/javascript">
     
-    
+    $('#hideBtn').hide();
+    $('#hideBtn').click(function() {
+		$('tr:nth-child(n+4)').remove(); 
+		 $('#hideBtn').hide();
+		 $('#addBtn').show();
+	 })
+		
   	//구매내역 더보기 구현
 	
   	//버튼 onclick() 함수
@@ -394,16 +411,20 @@ ul.top-menu {
                 }
                 $("#listBody").append(addListHtml);
                 
+            }else { $('#addBtn').hide();
+            $('#hideBtn').show();
             }
             
         }
     });
     
- 
-
-	
-	}
-
+}
+	 $('#hideBtn').click(function() {
+		$('tr:nth-child(n+4)').remove(); 
+		pnum=0;
+		 $('#hideBtn').hide();
+		 $('#addBtn').show();
+	 })
 	
     
     </script>

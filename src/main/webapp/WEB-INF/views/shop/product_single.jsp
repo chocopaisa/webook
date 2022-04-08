@@ -221,8 +221,14 @@ white-space: pre-wrap;
 
 							<div id="reviews" class="tab-pane fade">
 							
-						
-							
+						<c:if test="${ reviews.isEmpty()}">
+							<h4 style="text-align: center; ">작성된 한줄평이 없습니다. </h4>
+							<div class="text-center">
+				<button class="btn btn-main btn-small btn-round"
+				 style="text-align: center; width: 600px; height:40px; background-color: "> 글 작성하러 가기</button>
+			</div>
+						</c:if>
+					
 								<c:forEach items="${reviews}" var="review">
 
 									<div class="bookreport" style="margin-top: 30px;">
@@ -245,20 +251,15 @@ white-space: pre-wrap;
 													<p align="right" style="font-size: smaller; font-weight: 700;">${review.USER_NAME}</p>
 												</div>
 
+												</div>
 											</div>
+
 										</div>
 
-									</div>
-
-								</c:forEach>
-
+									</c:forEach>
+							
 							</div>
-							<!-- *************************** 책 상세 이미지******************-->
-
-
-
-
-
+						
 
 							<!--  ******************  독후감   ****************************-->
 
@@ -283,9 +284,6 @@ white-space: pre-wrap;
 			</div>
 
 
-
-		
-			
 			<div class="row">
 			
 				<c:forEach items="${ result}" var="products">

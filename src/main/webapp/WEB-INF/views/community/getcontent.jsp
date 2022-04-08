@@ -301,6 +301,10 @@
 		padding : 0px;
 	}
 	
+	.comment_div {
+		border-bottom: 1px solid lightgray; 
+	}
+	
 </style>
 
 <body id="body">
@@ -399,15 +403,15 @@
 				  		<c:when test="${not empty sessionScope.user }">
 				  			<c:choose>
 				  				<c:when test="${checkJjoa.user_email ne null }"  >
-					  				<button type="button" class="btn btn-book btn-jjoa jjoayo-btn" id="jjoayo-btn" >좋아요 ${jjoa.jjoa_count}</button>
+					  				<button type="button" class="btn btn-book btn-jjoa jjoayo-btn" id="jjoayo-btn" >좋아요 <span class="jjoa_count">${jjoa.jjoa_count}</span></button>
 								</c:when>
 								<c:otherwise>
-									<button type="button" class="btn btn-book btn-secondary jjoayo-btn" id="jjoayo-btn" >좋아요 ${jjoa.jjoa_count}</button>
+									<button type="button" class="btn btn-book btn-secondary jjoayo-btn" id="jjoayo-btn" >좋아요 <span class="jjoa_count">${jjoa.jjoa_count}</span></button>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:otherwise>
-							<button class="btn btn-book btn-secondary jjoayo-btn"  >좋아요 ${jjoa.jjoa_count}</button>
+							<button class="btn btn-book btn-secondary jjoayo-btn"  >좋아요 <span class="jjoa_count">${jjoa.jjoa_count}</span></button>
 						</c:otherwise>
 					</c:choose>				
 				
@@ -415,7 +419,7 @@
 				  <div class="post-comments">
 					  <button type="button" class="btn btn-book singo-btn pull-right" id="singo-btn" data-toggle="modal" data-target="#reportBookModal" >신고</button>
 					  <c:if test="${sessionScope.user.user_email eq bookreport.user_email }">
-					  <button type="submit" class="btn btn-danger btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
+					  <button type="button" class="btn btn-danger btn-book delete-btn pull-right" id="delete-btn" data-toggle="modal" data-target="#deleteBookreportModal" >삭제</button>
 					</c:if>
 					  
 					<h3 class="post-sub-heading">댓글</h3>
@@ -424,7 +428,7 @@
 							<!-- 폼태그 사용시 redirect됨 -->
 							<!-- <form method="post"  id="form" role="form" autocomplete="off" > -->
 								<c:if test="${sessionScope.user ne null }">
-								<div class="row">
+								<div class="row comment_div">
 									
 									<!-- Comment -->
 									<div class="form-group col-md-12" id="write_comment">
@@ -443,8 +447,9 @@
 									<hr/>
 								</div>
 						<!-- </form>  -->
-								</c:if>
+								</c:if><hr/>
 						</div>
+						
 						<!-- Comment Item start-->
 						<div id="commentList">
  						<c:forEach items="${commentList }" var="cl" >
@@ -510,7 +515,28 @@
         <button type="button" class="btn" data-dismiss="modal" style="color: white; background-color: gray;" >취소</button>
         <button type="button" class="btn btn-success" id="reportBook">신고</button>
       </div>
-    
+    </div>
+  </div>
+</div>
+
+	<!-- 게시글 삭제 확인 -->
+<div class="modal fade" id="deleteBookreportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">게시글 삭제 확인</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body text-center">
+        정말로 삭제 하시겠습니까? 복구가 불가능합니다.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" style="color: white; background-color: gray;" >취소</button>
+        <button type="button" class="btn btn-success" id="deleteBookreport">삭제</button>
+      </div>
     </div>
   </div>
 </div>
@@ -552,18 +578,19 @@
 		// 댓글 작성
 	
 		$("#insert_btn").on('click', function() {
-		
+		var comment_content = $('textarea[name=comment_content]').val();
+		var bookreport_no = $('input[name=bookreport_no]').val();
+			if (comment_content.length > 1) {
 			$.ajax({
 				type:'GET',
 				contentType:"application/json",
 				url:'insertComment.do',
 				data:{
- 					"comment_content" : $('textarea[name=comment_content]').val(),
-					"bookreport_no" : $('input[name=bookreport_no]').val()
+ 					comment_content,
+					bookreport_no
 				},
 				dataType : "text",
-				success : function(data) {
-					
+				success : function(data) {				
 					 console.log(data);
 					$('textarea[name=comment_content]').val("");
 					getCommentList();
@@ -574,6 +601,10 @@
 				}
 				
 			})
+			
+			} else {
+				alertWarnMessage("댓글을 한글자 이상 작성해 주세욧!");
+			}
 		})
 		
 		//댓글 삭제
@@ -675,9 +706,16 @@
     			}
     		}); //end of ajax
     	}); //end on
+
+    	//게시글 삭제 확인
+       	$('#deleteBookreport').on("click", function(){
+    		var bookreport_no = ${bookreport.bookreport_no};
+    		location.href='delete.do?bookreport_no='+bookreport_no;
+    	}); //end on
+    	
     	
     	$('#jjoayo-btn').on("click", function(){
-		
+    		let jjoa_count = Number($('span.jjoa_count').text());
     		$.ajax({
     			type:'GET',
     			url:'jjoa.do',
@@ -687,19 +725,16 @@
     				if(result=='0'){
     					$('#jjoayo-btn').removeClass('btn-secondary');
     					$('#jjoayo-btn').addClass('btn-jjoa');
-    						if(${jjoa.jjoa_count}=='0'){
-    						$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count+1}");
-    							} else {
-    		    					$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count}");    								
-    							}
+
+    						$('span.jjoa_count').text(jjoa_count+1);
+
     					} else{
     						$('#jjoayo-btn').removeClass('btn-jjoa');
     						$('#jjoayo-btn').addClass('btn-secondary');
-    						if(${jjoa.jjoa_count}=='0') {
-    							$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count}");
-    						} else {
-    							$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count-1}");
-    						}
+
+
+    							$('span.jjoa_count').text(jjoa_count-1);
+    						
     					}
     				},
     			error : function(err){

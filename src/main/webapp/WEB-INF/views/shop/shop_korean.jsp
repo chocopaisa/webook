@@ -150,10 +150,12 @@ table, td, th {
 						<div class="input-group subscription-form">
 						
 						
-						  <input type="text" class="form-control" placeholder="도서를 검색하세요"  name="searchKeyword">
+						  <input type="text" class="form-control" id="searchKeyword" placeholder="도서를 검색하세요"  name="searchKeyword">
 						  <span class="input-group-btn">
-							<button class="btn btn-main" type="submit"><i class="tf-ion-ios-search-strong" style="size: 50px;"></i></button>
-						  </span>
+							<button class="btn btn-main" id="searchBtn" type="submit">
+										<i class="tf-ion-ios-search-strong" style="size: 50px;"></i>
+									</button>
+								</span>
 						  
 						  
 						</div><!-- /input-group -->
@@ -168,6 +170,8 @@ table, td, th {
 	<section class="products section" style="padding-top: 20px; padding-bottom: 50px;">
 		<div class="container">
 			<div class="row">
+
+			
 
 				<!-- ************************************장르 선택  *************************************************************** -->
 
@@ -366,11 +370,17 @@ table, td, th {
 	<script src="../resources/js/script.js"></script>
 	<script type="text/javascript">
 	
+	$('.page1').addClass("active");
 	
-	$('#page1').click(function(){
-	
-		$('#page1').addClass('active');
+	$(function () {
+
+//페이징 색깔
+$('.page').click
+$('.page1').addClass("active");
+
+
 	});
+
 	</script>
 
 
