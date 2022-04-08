@@ -195,9 +195,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 						<td class="text-center">${bookreport.bookreport_no }</td>
 						<td><a href="getcontent.do?bookreport_no=${bookreport.bookreport_no }" >${bookreport.bookreport_title }</a></td>
 						<td class="text-center">${bookreport.user_name }</td>
-						<td class="text-center">
-						<fmt:parseDate value="${bookreport.write_date }" var="write_date1" pattern="yyyy-mm-dd" />
-						<fmt:formatDate value="${write_date1 }" pattern="MM-dd" />
+						<td class="text-center date-time">
+						${bookreport.write_date }
 						</td>
 						<td class="text-center">${bookreport.view_count }</td>
 						<td class="text-center">${bookreport.jjoa_count }</td>
@@ -359,7 +358,13 @@ FACEBOOK: https://www.facebook.com/themefisher
     <!-- Main Js File -->
     <script src="../resources/js/script.js"></script>
     
-
+	<script type="text/javascript">
+	$('.date-time').each(function(){
+		const datetime = $(this).text().trim().split(' ')[0].split('-');
+		$(this).text(datetime[1]+'-'+datetime[2]);
+	})
+	</script>
+	
 
   </body>
   </html>

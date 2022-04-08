@@ -118,7 +118,7 @@ FACEBOOK: https://www.facebook.com/themefisher
               <div class="col-xs-12">
               <a href="main.do" class="btn btn-solid-border mt-20 mr-1"
                 >다른 상품 보러가기</a
-              ><a href="purchase.do" class="btn btn-solid-border mt-20 ml-1"
+              ><a href="../mypage/p_history.do" class="btn btn-solid-border mt-20 ml-1"
                 >주문 확인 하러가기</a
               ></div>
             </div>
