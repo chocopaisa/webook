@@ -78,8 +78,7 @@ FACEBOOK: https://www.facebook.com/themefisher
             <div class="form-group">
               <input type="password" name="user_pass" id="password" class="form-control" placeholder="Password">
         	   <c:if test="${fail ne null}">
-        	   <div class="alert alert-danger alert-common" role="alert" id="alert-danger" style= "width:100%"><i class="tf-ion-close-circled"></i>
-        	   <div>아이디 또는 비밀번호가 일치하지 않습니다. 입력하신 내용을 다시 확인해주세요.</div>
+        	   <div class="alert alert-danger alert-common" role="alert" id="alert-danger" style= "width:100%">아이디 또는 비밀번호가 일치하지 않습니다.<i class="tf-ion-close-circled"></i>
         	   </div>
         	   </c:if>
             </div>
