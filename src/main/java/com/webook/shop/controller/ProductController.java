@@ -116,7 +116,12 @@ public class ProductController {
 		}
 		//선택한 상품의 정보를 cart에 넣기
 		ProductVO result = service.getProduct(vo);
-		result.setProduct_cnt(vo.getProduct_cnt());
+		int cnt = vo.getProduct_cnt();
+		
+		if(cnt < 1) cnt=1; 
+		
+		result.setProduct_cnt(cnt);
+		
 		list.add(result); 
 		session.setAttribute("cart", list);
 		ArrayList<ProductVO> r = (ArrayList<ProductVO>)session.getAttribute("cart");

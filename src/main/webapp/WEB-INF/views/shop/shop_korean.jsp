@@ -320,20 +320,19 @@ table, td, th {
 				
 <!-- ******************************페이징*******************-->
 				<div class="text-center">
-					<ul class="pagination post-pagination">
-						<li ><a href="shop_korean.do?pnum=0&genre_no=${param.genre_no }">Prev </a>
-				
-						<li id="page1" ><a class="page" href="shop_korean.do?pnum=1&genre_no=${param.genre_no }">1</a>
-						</li>
-						<li ><a class="page" href="shop_korean.do?pnum=2&genre_no=${param.genre_no }">2</a>
-						</li>
-						<li ><a class="page" href="shop_korean.do?pnum=3&genre_no=${param.genre_no }">3</a>
-						</li>
-						<li ><a class="page" href="shop_korean.do?pnum=4&genre_no=${param.genre_no }">4</a>
-						
-						<li><a href="shop_korean.do?pnum=4&genre_no=${param.genre_no }">Next</a>
-						</li>
-					</ul>
+				<ul id="pagination" class="pagination post-pagination">
+				<c:forEach var="idx" begin="1" end="4">
+					<c:choose>
+						<c:when test="${idx eq param.pnum or (idx eq 1 and param.pnum eq null)}">
+							<li class="active"><a href="shop_korean.do?genre_no=${param.genre_no }&pnum=${idx}">${idx }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="shop_korean.do?genre_no=${param.genre_no }&pnum=${idx}">${idx }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+					
+				</ul>
 				</div>
 	
 

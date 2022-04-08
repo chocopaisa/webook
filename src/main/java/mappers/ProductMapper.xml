@@ -71,16 +71,12 @@ where ROWNUM<3 and product_no= #{product_no}
 
 <!-- 현재 구매내역 나오기 -->
 <select id="getPurchase" parameterType="com.webook.domain.MemberVO" resultType="hashmap" >
-SELECT 
-pl.product_name product_name,
-it.order_cnt order_cnt, 
-it.total_price total_price, 
-To_CHAR(li.payment_date, 'yy-mm-dd') payment_date, 
-li.order_no order_no,
-li.delivery_info delivery_info
-FROM order_list li, order_items it, product_list pl
-WHERE li.order_no = it.order_no
-and it.product_no  = pl.product_no and li.USER_EMAIL = #{user_email} and li.delivery_info !='배송완료' and li.delivery_info !='결제취소'
+select product_name product_name, item.order_cnt order_cnt,item.total_price total_price, to_char(lst.payment_date, 'yy-mm-dd') payment_date, lst.order_no order_no, lst.delivery_info delivery_info
+from order_list lst, product_list plst, (select count(*) order_cnt, sum(total_price) total_price, order_no, max(product_no) product_no
+from order_items
+GROUP BY order_no) item
+where lst.order_no = item.order_no and item.product_no=plst.product_no and lst.USER_EMAIL =#{user_email}  and lst.delivery_info !='배송완료' and lst.delivery_info !='결제취소'
+
  </select>
 
 <!-- 이전 구매내역 나오기 -->

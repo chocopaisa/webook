@@ -224,8 +224,8 @@ white-space: pre-wrap;
 						<c:if test="${ reviews.isEmpty()}">
 							<h4 style="text-align: center; ">작성된 한줄평이 없습니다. </h4>
 							<div class="text-center">
-				<button class="btn btn-main btn-small btn-round"
-				 style="text-align: center; width: 600px; height:40px; background-color: "> 글 작성하러 가기</button>
+				<a class="btn btn-main btn-small btn-round" href="../community/write.do"
+				 style="text-align: center; width: 300px; height:40px; font-size: 15px;"> 글 작성하러 가기</a>
 			</div>
 						</c:if>
 					
