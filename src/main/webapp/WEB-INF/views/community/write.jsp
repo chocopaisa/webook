@@ -318,9 +318,9 @@ pageEncoding="UTF-8"%>
                     <input
                       class="write_hanjul_title"
                       placeholder="책 제목"
-                      autocomplete="off"
+                      autocomplete="off" readonly="readonly"
                     />
-                    <input id="bookId" name="product_no" value="책번호" hidden="hidden" />
+                    <input id="bookId" name="product_no" hidden="hidden" />
                     
                   <div class="star">
                   <div >
@@ -520,7 +520,11 @@ pageEncoding="UTF-8"%>
     			alertWarnMessage("내용을 10자 이상 작성해주세요");
     			return;
     		}
-    		
+    		const bookId = $('#bookId').val();
+    		if(bookId == ''){
+    			alertWarnMessage("책을 지정해주세요");
+    			return;
+    		}
     		$('#boardForm').submit();
     	})
     	
