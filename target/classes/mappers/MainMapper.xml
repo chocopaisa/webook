@@ -19,7 +19,7 @@
 		        ON br.product_no = pl.product_no
 		    LEFT OUTER JOIN customer_info ci
 		        ON br.user_email = ci.user_email
-		ORDER BY br.write_date DESC
+		ORDER BY br.write_date
 		
 	</select>
 
@@ -73,7 +73,7 @@
 		SELECT br.bookreport_no bookreport_no, br.bookreport_title bookreport_title, NVL(cl.comments,0) comments, br.report_kind report_kind
 		FROM 
 		    bookreport br LEFT OUTER JOIN (
-		        SELECT bookreport_no, count(*) comments
+		        SELECT bookreport_no, NVL(count(*),0) comments
 		        FROM comment_list
 		        GROUP BY bookreport_no) cl
 		    ON br.bookreport_no = cl.bookreport_no
@@ -90,12 +90,12 @@
 			br.report_kind report_kind
 		FROM bookreport br 
 		    left outer join (
-		        SELECT count(*) jj, bookreport_no
+		        SELECT NVL(count(*),0) jj, bookreport_no
 		        FROM jjoa
 		        GROUP BY bookreport_no) ja
 		    ON br.bookreport_no = ja.bookreport_no
 		    left outer join (
-		        SELECT bookreport_no, count(*) comments
+		        SELECT bookreport_no, NVL(count(*),0) comments
 		        FROM comment_list
 		        GROUP BY bookreport_no) cl
 		    on br.bookreport_no = cl.bookreport_no

@@ -26,18 +26,23 @@ public class MainController {
 	public String showMain(Model m) {
 		List<HashMap> reviews = mainService.showReviews(); // 리뷰 
 		List<HashMap> resultList = new ArrayList<HashMap>();
-		for(int idx = reviews.size()-1; idx >= 0; idx--) {
-			String content = (String) reviews.get(idx).get("BOOKREPORT_CONTENT");
-			System.out.println(content);
-			int start = content.indexOf("<blockquote>");
-			if(start < 0) {
-				continue;
+		if(!reviews.isEmpty()) {
+			for(int idx = reviews.size()-1; idx >= 0; idx--) {
+				String content = (String) reviews.get(idx).get("BOOKREPORT_CONTENT");
+				if(content == null) {
+					continue;
+				}
+				System.out.println(content);
+				int start = content.indexOf("<blockquote>");
+				if(start < 0) {
+					continue;
+				}
+				int end = content.indexOf("</blockquote>");
+				HashMap map = reviews.get(idx);
+				map.put("BOOKREPORT_CONTENT", content.substring(start + 12, end));
+				resultList.add(map);
+				System.out.println(content.substring(start + 12, end));
 			}
-			int end = content.indexOf("</blockquote>");
-			HashMap map = reviews.get(idx);
-			map.put("BOOKREPORT_CONTENT", content.substring(start + 12, end));
-			resultList.add(map);
-			System.out.println(content.substring(start + 12, end));
 		}
 		m.addAttribute("reviews", resultList);
 		List<ProductVO> bestSellers = mainService.showBestSeller(); // 베스트셀러 15개

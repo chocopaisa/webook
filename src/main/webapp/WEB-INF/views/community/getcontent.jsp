@@ -115,25 +115,32 @@
 			font-size : 20px;
 		}
 	#get_reportContent {
+		padding : 10px;
 		min-height: 400px;
 		width: 100%;
-		background-color: #D1C6BA;
+		background-color: #f7f7f7;
 	}
 	#getcontent {
 		padding: 30px;
-		background-color: #AA9281;
+		background-color: #EDEDED;
 	}
 	.post-comments {
-		background-color: #D1C6BA;
+		
+		padding: 10px;
 	}
 	.media {
-		background-color: #D1C6BA;
-		padding-left: 20px;
-		padding-right: 20px;
+		background-color: #f7f7f7;
+		padding : 20px;
 	}
+	
+	#write_comment {
+	background-color: #f7f7f7;
+	padding : 10px;
+	}
+	
 	.btn-book {
   
-  color: #fff;
+  
   display: inline-block;
   font-size: 13px;
   letter-spacing: 1px;
@@ -146,11 +153,111 @@
 	background-color: black;
 }
 
-.btn-book.delete-btn {
-	background-color: skyblue;
+/*  .btn-secondary {
+	background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    color: white;
+}  */
+
+@keyframes ring {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
 }
+
+.btn-jjoa {
+    position: relative;
+    border: none;
+    min-width: 100px;
+    min-height: 40px;
+    background: linear-gradient(
+        90deg,
+        red 0%,
+        red 100%
+    );
+    border-radius: 1000px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 12px 12px 24px #B22222;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-jjoa:hover {
+    transform: scale(1.2);
+}
+
+.btn-jjoa:hover::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid red;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+}
+
+.btn-secondary {
+    position: relative;
+    border: none;
+    min-width: 100px;
+    min-height: 40px;
+    background: linear-gradient(
+        90deg,
+        lightgray 0%,
+        lightgray 100%
+    );
+    border-radius: 1000px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 12px 12px 24px gray;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-secondary:hover {
+    transform: scale(1.2);
+}
+
+.btn-secondary:hover::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid lightgray;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+}
+
+
 .btn-book.singo-btn {
 	background-color: black;
+	color: white;
 }
 #comment_textarea {
 	width: 95%;
@@ -158,6 +265,42 @@
 	margin-left: 20px;
 }
 
+  .productDesc{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 3.6em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+  }
+  
+	.post-content table tr> td {
+		vertical-align: middle;
+	}
+	.post > div {
+		margin: 0px;
+		padding : 0px;
+	}
+	.post ul {
+		margin-bottom: 20px;
+	}
+	.post ul > li {
+		padding: 10px;
+	
+	}
+	.post ul > li:hover {
+		background-color: #f7f7f7;
+		text-decoration: underline;
+	}
+	.post-content {
+		margin-top : 20px;
+	}
+	.page-wrapper {
+		padding : 0px;
+	}
+	
 </style>
 
 <body id="body">
@@ -206,71 +349,18 @@
 <div class="page-wrapper" >
 	<div class="container">
 		<div class="row justify-content-around" >
-      		<div class="col-md-4">
-		        <div class="post text-center" >
-					<table border="1" width="165px" class="bookreport_type1">
-						<tr>
-							<td class=""><strong><a href="list.do">전체 독후감</a></strong></td>
-						</tr>
-						<tr>
-							<td class=""><strong>베스트 독후감</strong></td>
-						</tr>
-						<tr>
-							<td class=""><strong>화제의 독후감</strong></td>
-						</tr>
-						<tr>
-							<td class=""><strong>국내</strong></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=소설">소설/인문/시</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=만화">만화</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=정치사회">정치사회/경제경영</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=종교">종교/역사/문화</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=예술">교양과학/예술</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=여행">자기계발/여행</a></td>
-						</tr>
-					  </table>
-				  <br/>
-					  <table border="1" width="165px" class="bookreport_type2">
-						<tr>
-							<td class=""><strong>해외</strong></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외문학">문학</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외인문">인문/사회</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외예술">예술/건축</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외아동">아동</a></td>
-						</tr>
-						<tr>
-							<td><a href="list.do?report_kind=해외만화">만화/애니/문고</a></td>
-						</tr>
-					  </table>
-				</div>
-        	</div>
-			<div class="col-md-8" id="getcontent">
+ 
+ <%@ include file="/WEB-INF/views/community/community_sidebar.jsp" %> 
+ 
+			<div class="col-md-8 col-xs-offset-1" id="getcontent">
 	          <div class="post-content">
 				
 
 				<div class="media-body">
 					<div class="comment-info">
-						<h4 class="comment-author">
-							<a href="" nam >${bookreport.user_name }</a>
+						<h3>${bookreport.bookreport_title}</h3>
+						<h5 class="comment-author">
+							<a >${bookreport.user_name }</a>
 							
 						</h4>
 						<time>
@@ -293,25 +383,39 @@
 						<img class="media-object" src="${product.product_image }" alt="Image">
 					</a>
 				<div class="media-body">
-					<h4 class="media-heading"><a class="productTitle" href="product_single.do?product_no=${bookreport.product_no }">${product.product_name }</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					${bookreport.star }</h4>
+					<h4 class="media-heading"><a class="productTitle" href="../shop/product_single.do?product_no=${bookreport.product_no }">${product.product_name }</a></h4>
+					<h4 class="review-star text-left mb-1">${bookreport.star }</h4>
 					<hr/>
 					<div class="">
 					<p class="productDesc">${product.product_desc }</p>
 					</div>
 					<div class="text-right align-text-bottom">
-					<a><p class="writer">${product.product_writer}</p></a>
+					<a><p class="writer" >${product.product_writer}</p></a>
 				</div>
 				</div>
 			</div>
+				<div style="text-align: center; padding-top: 30px;" >
+				  	<c:choose>
+				  		<c:when test="${not empty sessionScope.user }">
+				  			<c:choose>
+				  				<c:when test="${checkJjoa.user_email ne null }"  >
+					  				<button type="button" class="btn btn-book btn-jjoa jjoayo-btn" id="jjoayo-btn" >좋아요 ${jjoa.jjoa_count}</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" class="btn btn-book btn-secondary jjoayo-btn" id="jjoayo-btn" >좋아요 ${jjoa.jjoa_count}</button>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<button class="btn btn-book btn-secondary jjoayo-btn"  >좋아요 ${jjoa.jjoa_count}</button>
+						</c:otherwise>
+					</c:choose>				
+				
+				</div>
 				  <div class="post-comments">
-				  	<c:if test="${sessionScope.user ne null }">
-					  <button type="button" class="btn btn-book jjoayo-btn" id="jjoayo-btn" style="background-color: grey" >좋아요 ${jjoa.jjoa_count}</button>
-					</c:if>
 					  <button type="button" class="btn btn-book singo-btn pull-right" id="singo-btn" data-toggle="modal" data-target="#reportBookModal" >신고</button>
 					  <c:if test="${sessionScope.user.user_email eq bookreport.user_email }">
-					  <button type="submit" class="btn btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
+					  <button type="submit" class="btn btn-danger btn-book delete-btn pull-right" id="delete-btn" onclick="location.href='delete.do?user_email=${bookreport.user_email}&bookreport_no=${param.bookreport_no}'">삭제</button>
 					</c:if>
 					  
 					<h3 class="post-sub-heading">댓글</h3>
@@ -323,20 +427,20 @@
 								<div class="row">
 									
 									<!-- Comment -->
-									<div class="form-group col-md-12">
-										<h4 class="comment-author" style="padding-left: 20px;" >
+									<div class="form-group col-md-12" id="write_comment">
+										<h5 class="comment-writer" >
 											<input type="hidden" name="bookreport_no" value="${bookreport.bookreport_no }" />
 											<a href="" class="writerId">${sessionScope.user.user_name }</a>
-										</h4>
+										</h5>
 										<textarea id="write_content" class="form-control" placeholder="경고문" maxlength="400" style="resize: none; height: 120px;" name="comment_content" ></textarea>
 									</div>
 	
 									<!-- Send Button -->
 									<div class="form-group col-md-12 text-right">
-										<button class="btn btn-book insert-btn" id="insert_btn" >등록</button>
+										<button class="btn btn-book insert-btn" id="insert_btn" style="color: white;" >등록</button>
 									</div>
 	
-	
+									<hr/>
 								</div>
 						<!-- </form>  -->
 								</c:if>
@@ -347,17 +451,16 @@
 						<li class="media">
 							<div class="media-body">
 								<div class="comment-info">
-									<h4 class="comment-author">
+									<h5 class="comment-writer">
 										<a name="comment_author">${cl.user_name }</a>
-									</h4>
+									</h5>
 									<input type="hidden" name="comment_no" value="${cl.comment_no }" />
 									<time>
 										<fmt:parseDate value="${cl.comment_write_date }" var="write_date2" pattern="yyyy-mm-dd HH:mm:ss" />
 										<fmt:formatDate value="${write_date2 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
 									</time>
-									<a class="comment-button pull-right" ><i class="tf-ion-chatbubbles"></i>신고</a>
 									
-									<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>
+									<button class="deleteComment btn-danger pull-right">삭제</button>
 									
 								</div>
 								<p>${cl.comment_content}</p>
@@ -367,7 +470,7 @@
 						</c:forEach>
 						</div>
 						<!-- End Comment Item -->
-
+						
 					</ul> <!-- End commentList -->
 				</div>
 		        </div>
@@ -404,7 +507,7 @@
         	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn" data-dismiss="modal" style="color: white; background-color: gray;" >취소</button>
         <button type="button" class="btn btn-success" id="reportBook">신고</button>
       </div>
     
@@ -414,51 +517,7 @@
 
 <br/>
 <br/>
-<footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.html">CONTACT</a>
-					</li>
-					<li>
-						<a href="shop.html">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.html">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.html">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
-			</div>
-		</div>
-	</div>
-</footer>
+<%@ include file="/WEB-INF/views/footer.jsp" %> 
 
     <!-- 
     Essential Scripts
@@ -572,8 +631,7 @@
 						str += '<a href="">'+result[i].user_name+'</a></h4>'
 						str += '<input type="hidden" name="comment_no" value="'+result[i].comment_no+'" />'
 						str += '<time>'+date.toLocaleString()+'</time>'
-						str += '<a class="comment-button pull-right" href=""><i class="tf-ion-chatbubbles"></i>신고</a>'
-						str += '<button class="deleteComment pull-right"><i class="tf-ion-chatbubbles"></i>삭제</button>'
+						str += '<button class="deleteComment btn-danger pull-right">삭제</button>'
 						str += '</div><p>'+result[i].comment_content+'</p></div></li>'
 						htmls +=str;
 						
@@ -605,10 +663,10 @@
     			success: function(result){
     				console.log(result);
     				if(result=='0'){
-    					alert("신고완료");
+    					alertMessage("신고완료");
     					$('#reportBookModal').modal('hide');
     				} else{
-						alert("신고는 한번만 할 수 있습니다");
+						alertWarnMessage("신고는 한번만 할 수 있습니다");
 						$('#reportBookModal').modal('hide');
     					}
     				},
@@ -627,9 +685,21 @@
     			success: function(result){
     				console.log(result);
     				if(result=='0'){
-    					$('#jjoayo-btn').attr("style", "background-color : red");
-    				} else{
-    					$('#jjoayo-btn').attr("style", "background-color : grey");
+    					$('#jjoayo-btn').removeClass('btn-secondary');
+    					$('#jjoayo-btn').addClass('btn-jjoa');
+    						if(${jjoa.jjoa_count}=='0'){
+    						$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count+1}");
+    							} else {
+    		    					$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count}");    								
+    							}
+    					} else{
+    						$('#jjoayo-btn').removeClass('btn-jjoa');
+    						$('#jjoayo-btn').addClass('btn-secondary');
+    						if(${jjoa.jjoa_count}=='0') {
+    							$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count}");
+    						} else {
+    							$('#jjoayo-btn').html("좋아요 ${jjoa.jjoa_count-1}");
+    						}
     					}
     				},
     			error : function(err){
@@ -637,6 +707,34 @@
     			}
     		}); //end of ajax
     	}); //end on
+    	
+    	$('.review-star').each(function(){
+            const stars = $(this).text().trim() * 2;
+            console.log(stars);
+            let result = "";
+            const starCnt = Math.floor(stars/2)
+            if(Math.floor(stars%2) == 0){
+              
+              for(let i=0; i< starCnt; i++){
+                result += "<i class='tf-ion-ios-star'></i>";
+              }
+              for(let i=0; i < 5-starCnt; i++){
+                result += '<i class="tf-ion-ios-star-outline"></i>';
+              }
+            } else {
+              for(let i=0; i< starCnt; i++){
+                result += "<i class='tf-ion-ios-star'></i>";
+              }
+              result += "<i class='tf-ion-ios-star-half'></i>";
+              
+              for(let i=0; i < 5-starCnt; i++){
+                result += '<i class="tf-ion-ios-star-outline"></i>';
+              }
+            }
+            $(this).prepend(result);
+
+            
+          });
 
 </script>
 

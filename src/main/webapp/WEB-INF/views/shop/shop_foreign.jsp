@@ -190,28 +190,28 @@ table, td, th {
 											<td>
 
 												<ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">인문/사회</a>
+													<li><a href="shop_foreign.do?genre_no=120">인문/사회</a>
 														</li>
 												</ul>
 											</td>
 											<td>
 												<ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">예술/건축 </a>
+													<li><a href="shop_foreign.do?genre_no=210">예술/건축 </a>
 														</li>
 												</ul>
 											</td>
 											<td>
 												<ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">취미</a>
+													<li><a href="shop_foreign.do?genre_no=290080">취미</a>
 														</li>
 												</ul>
 											</td>
 											<td><ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">아동</a>
+													<li><a href="shop_foreign.do?genre_no=320">아동</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="shop_foreign.do?genre_no=">과학기술</a>
+													<li><a href="shop_foreign.do?genre_no=250">과학기술</a>
 														
 
 														</li>
@@ -313,30 +313,30 @@ table, td, th {
     =====================================-->
 
 	<!-- Main jQuery -->
-	<script src="../plugins/jquery/dist/jquery.min.js"></script>
+	<script src="../resources/plugins/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap 3.1 -->
-	<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../resources/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<!-- Bootstrap Touchpin -->
 	<script
-		src="../plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+		src="../resources/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
 	<!-- Instagram Feed Js -->
-	<script src="../plugins/instafeed/instafeed.min.js"></script>
+	<script src="../resources/plugins/instafeed/instafeed.min.js"></script>
 	<!-- Video Lightbox Plugin -->
-	<script src="../plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+	<script src="../resources/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
 	<!-- Count Down Js -->
-	<script src="../plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+	<script src="../resources/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
 
 	<!-- slick Carousel -->
-	<script src="../plugins/slick/slick.min.js"></script>
-	<script src="../plugins/slick/slick-animation.min.js"></script>
+	<script src="../resources/plugins/slick/slick.min.js"></script>
+	<script src="../resources/plugins/slick/slick-animation.min.js"></script>
 
 	<!-- Google Mapl -->
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-	<script type="text/javascript" src="../plugins/google-map/gmap.js"></script>
+	<script type="text/javascript" src="../resources/plugins/google-map/gmap.js"></script>
 
 	<!-- Main Js File -->
-	<script src="../resources/js/script.js"></script>
+		<script src="../resources/js/script.js"></script>
 
 
 

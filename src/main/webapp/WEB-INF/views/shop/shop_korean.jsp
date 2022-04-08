@@ -165,7 +165,7 @@ table, td, th {
 	</section>   <!-- End section -->
 
 
-	<section class="products section" style="padding-top: 20px;">
+	<section class="products section" style="padding-top: 20px; padding-bottom: 50px;">
 		<div class="container">
 			<div class="row">
 
@@ -212,7 +212,7 @@ table, td, th {
 												</ul>
 											</td>
 											<td><ul class="dropdown">
-													<li ><a href="shop_korean.do?genre_no=">경제/경영</a>
+													<li ><a href="shop_korean.do?genre_no=160">경제/경영</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
@@ -229,11 +229,11 @@ table, td, th {
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="shop_korean.do?genre_no=12">종교</a>
+													<li><a href="shop_korean.do?genre_no=120070">종교</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="shop_korean.do?genre_no=">교양과학</a>
+													<li><a href="shop_korean.do?genre_no=250">교양과학</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
@@ -241,7 +241,7 @@ table, td, th {
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">
-													<li><a href="shop_korean.do?genre_no=">자기계발</a>
+													<li><a href="shop_korean.do?genre_no=170">자기계발</a>
 														</li>
 												</ul></td>
 											<td><ul class="dropdown">

@@ -115,7 +115,7 @@ ul.top-menu {
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<form action="shop_koreana.do" >
+					<form action="shop_search.do" >
 					<div class="col-lg-6 col-md-offset-3">
 						<div class="input-group subscription-form">
 						

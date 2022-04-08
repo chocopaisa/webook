@@ -42,6 +42,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원 관리
                             </a>
+                            <a class="nav-link" href="blacklist.do">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                블랙리스트 관리
+                            </a>
                             <a class="nav-link" href="reportManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 신고 관리

@@ -116,7 +116,7 @@ pageEncoding="UTF-8"%>
     ul.top-menu {
       font-size: 20px;
     }
-    #get_reportContent {
+    /* #get_reportContent {
       min-height: 400px;
       width: 100%;
       background-color: grey;
@@ -153,7 +153,7 @@ pageEncoding="UTF-8"%>
     .btn-book.singo-btn {
       background-color: black;
     }
-
+ */
     #comment_textarea {
       max-width: 100%;
       min-width: 100%;
@@ -185,17 +185,16 @@ pageEncoding="UTF-8"%>
     }
 
     #bookSearch {
-      position: fixed;
+      position: relative;
       z-index: 10;
-      left: -400px;
-      top : -400px;
     }
 
     #bookSearch > div {
       width: 400px;
       padding-top: 20px;
       padding-bottom: 20px;
-      border: 1px thin solid;
+      border: 1px black solid;
+      margin:0px;
     }
 
     #bookSearch input {
@@ -215,7 +214,7 @@ pageEncoding="UTF-8"%>
     }
 
     .searchBookList > li > div:hover {
-      background: gray;
+      background: white;
     }
     .star > div {
     	display: inline-block;
@@ -280,23 +279,26 @@ pageEncoding="UTF-8"%>
       <div class="container">
         <div class="row justify-content-around">
           <div class="col-md-8 col-md-offset-2" id="getcontent">
-            <form action="insert.do" method="get">
+            <form action="insert.do" method="get" id="boardForm">
               <div class="post-content">
                 <div class="media-body">
                   <div class="write_">
-                    <select class="report_type text-center" name="report_kind">
-                      <option value="역사">역사</option>
+                    <select class="report_type" name="report_kind" >
+                      <option value="소설">소설</option>
                       <option value="만화">만화</option>
+                      <option value="인문시">인문/시</option>
+                      <option value="사회">사회</option>
+                      <option value="경제경영">경제경영</option>
                       <option value="종교">종교</option>
-                      <option value="역사">역사</option>
-                      <option value="만화">만화</option>
-                      <option value="종교">종교</option>
-                      <option value="역사">역사</option>
-                      <option value="만화">만화</option>
-                      <option value="종교">종교</option>
+                      <option value="한국사">한국사</option>
+                      <option value="세계사">세계사</option>
+                      <option value="과학">과학</option>
+                      <option value="여행">여행</option>
+                      <option value="취미">취미</option>
                     </select>
                     <button
-                      type="submit"
+                      type="button"
+                      id="insertBtn"
                       class="btn btn-book insert-btn pull-right"
                     >
                       등록
@@ -304,9 +306,11 @@ pageEncoding="UTF-8"%>
                   </div>
                   <input
                     class="write_title"
-                    maxlength="300"
+                    maxlength="25"
                     placeholder="글 제목"
                     name="bookreport_title"
+                    id="bookreport_title"
+                    
                   />
                 </div>
 
@@ -317,6 +321,7 @@ pageEncoding="UTF-8"%>
                       autocomplete="off"
                     />
                     <input id="bookId" name="product_no" value="책번호" hidden="hidden" />
+                    
                   <div class="star">
                   <div >
                   <h4 class="review-star">
@@ -351,20 +356,19 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
 
-    <br />
-    <br />
-    <!-- 책검색창 -->
-    <div id="bookSearch">
-      <div class="container bg-gray">
-        <div>
-          <input class="bookKeyword" placeholder="책검색" />
-          <button id="btnBookSearch" class="text-center btn">검색</button>
-        </div>
-        <hr />
-        <ul class="searchBookList"></ul>
-      </div>
-    </div>
-
+    
+<!-- 책검색창 -->
+				    <div id="bookSearch">
+				      <div class="container bg-gray">
+				        <div>
+				          <input type="text" class="bookKeyword" placeholder="책검색" />
+				          <button type="button" id="btnBookSearch" class="text-center btn">검색</button>
+				        </div>
+				        <hr />
+				        <ul class="searchBookList"></ul>
+				      </div>
+				    </div>
+				    <!-- 책검색 끝 -->
     <%@ include file="/WEB-INF/views/footer.jsp" %>
 
     <!-- 
@@ -400,15 +404,17 @@ pageEncoding="UTF-8"%>
 
     <script type="text/javascript">
       // 검색창 숨겨지는 기본 위치
-      const offset = $("#bookSearch").offset();
+      let offset = $('.write_hanjul_title').offset()
+      $('#bookSearch').offset({
+    	  left : offset.left,
+    	  top : offset.top+80
+      })
+      
+      $("#bookSearch").hide();
 
       // 책 이름 클릭시 검색창 보이기
       $(".write_hanjul_title").click(function () {
-        const offset2 = $(this).offset();
-        $("#bookSearch").offset({
-          left: offset2.left + 1,
-          top: offset2.top + 30,
-        });
+        $("#bookSearch").show();
         $("#bookSearch .bookKeyword").focus();
       });
 
@@ -427,6 +433,7 @@ pageEncoding="UTF-8"%>
           success: function (result) {
             console.log(result);
             $(".searchBookList > li").remove();
+            let cnt = 0;
             for (let book of result) {
               let txt = "<li value='" + book.product_no + "'>";
               txt += "<div class='col-xs-12'>";
@@ -434,13 +441,16 @@ pageEncoding="UTF-8"%>
                 "<div class='col-xs-3'><img class='w-100' src=" +
                 book.product_image +
                 "></div>";
-              txt += "<div class='col-xs-9'><h4>" + book.product_name + "</h4>";
+              txt += "<div class='col-xs-9'><h5>" + book.product_name + "</h5>";
               txt += book.product_writer + "/" + book.product_publisher;
               txt += "</div>";
               txt += "</div>";
               txt += "</li>";
 
               $(".searchBookList").append(txt);
+              if(++cnt == 5){
+            	  break;
+              }
             }
           },
         });
@@ -450,16 +460,16 @@ pageEncoding="UTF-8"%>
       $(document).mouseup(function (e) {
         var LayerPopup = $("#bookSearch");
         if (LayerPopup.has(e.target).length === 0) {
-          LayerPopup.offset(offset);
+          LayerPopup.hide();
         }
       });
       $('.star').hide();
       $(document).on("click", ".searchBookList > li > div", function () {
-    	const bookName = $(this).find('h4').text();
+    	const bookName = $(this).find('h5').text();
         const bookNo = $(this).parent().attr("value");
         $('.write_hanjul_title').val(bookName);
         $('#bookId').val(bookNo);
-        $('#bookSearch').offset(offset);
+        $('#bookSearch').hide();
         $('.star').show()
       });
     </script>
@@ -497,6 +507,30 @@ pageEncoding="UTF-8"%>
 	        }
 	        $('.review-star').html(result);
     	}
+    </script>
+    <script>
+    	$('#insertBtn').click(function(){
+    		const title = $('#bookreport_title').val();
+    		if(title == ''){
+    			alertWarnMessage("제목을 입력해주세요")
+    			return;
+    		}
+    		const content = $('.ck-content').first().text();
+    		if(content.length < 10){
+    			alertWarnMessage("내용을 10자 이상 작성해주세요");
+    			return;
+    		}
+    		
+    		$('#boardForm').submit();
+    	})
+    	
+    	
+	
+    </script>
+    <script>
+    	// 기본 선택된 게시판
+    	const report_kind = '${param.report_kind }';
+    	$('.report_type').val(report_kind).prop("selected",true);
     </script>
   </body>
 </html>

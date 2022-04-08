@@ -18,5 +18,15 @@ public class AdminMemberImpl implements AdminMemberDAO {
 		return mybatis.selectList("admin.mapper.getMemberList");
 	}
 	
+	// 블랙리스트 목록 출력
+	public List<MemberVO> blacklistmem() {
+		return mybatis.selectList("admin.mapper.blacklistmem");
+	}
 	
+	// 블랙리스트 변경
+	public void goblacklist(String[] black) {
+		for(String i : black) {
+			mybatis.update("admin.mapper.goblacklist",i);
+		}
+	}
 }

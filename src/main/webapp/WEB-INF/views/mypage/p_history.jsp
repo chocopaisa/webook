@@ -84,6 +84,24 @@ ul.top-menu {
 	position: relative;
 	right: 40px;
 }
+.sidebar > div {
+		margin: 0px;
+		padding : 0px;
+	}
+	.sidebar ul {
+		margin-bottom: 20px;
+	}
+	.sidebar ul > li {
+		padding: 10px;
+	
+	}
+	.sidebar ul > li:hover {
+		background-color: #f7f7f7;
+		text-decoration: underline;
+	}
+	.page-wrapper {
+   padding: 0px;
+}
 </style>
 
 <script
@@ -100,42 +118,38 @@ ul.top-menu {
 
 	<!-- end header bar -->
 
+<section class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="content">
+            <h1 class="page-name">My Page</h1>
+            <ol class="breadcrumb">
+              <li><a href="../">Home</a></li>
+              <li class="active">MyPage</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<div class="page-wrapper">
+				<!--사이드 -->
+				
+				<!-- 사이드 닫음 -->
+				
+				
+	<div class="page-wrapper" >
 		<div class="container">
 			<div class="row">
-				<!--사이드 -->
-				<div class="col-md-3">
-					<aside class="sidebar">
-						<div class="navigation">
-							<div class="menuToggle"></div>
-							<ul>
-								<li class="list">
-									<h4>
-										마이룸
-										<hr />
-									</h4>
-								</li>
-								<li class="list"><a href="#"
-									class="btn btn-solid-border w-100">상품 주문 관리</a></li>
-								<li class="list"><a href="#"
-									class="btn btn-solid-border w-100">회원 정보 관리</a></li>
-								<li class="list"><a href="#"
-									class="btn btn-solid-border w-100">글 관리</a></li>
-								<li class="list"><a href="#" class="btn btn-main w-100">회원탈퇴</a>
-								</li>
-							</ul>
-						</div>
-					</aside>
-				</div>
-				<!-- 사이드 닫음 -->
-
+			<%@ include file="/WEB-INF/views/mypage/mypage_sidebar.jsp"%>
 				<div class="col-md-9">
 					<div class="block text-center w-50" style="margin-left: 10px;">
 						<h2 class="text-left">배송조회 및 구매내역</h2>
 
 					</div>
 				</div>
+				
 				<section class="user-dashboard page-wrapper">
 					<div class="container">
 						<div class="row">
@@ -169,11 +183,11 @@ ul.top-menu {
 
 														<td><c:choose>
 																<c:when test="${lst.ORDER_CNT-1 gt 0}">
-     		${lst.PRODUCT_NAME} 외 ${lst.ORDER_CNT-1 }권
-     		</c:when>
+     																${lst.PRODUCT_NAME} 외 ${lst.ORDER_CNT-1 }권
+     															</c:when>
 																<c:otherwise>
-     		${lst.PRODUCT_NAME} 
-     		</c:otherwise>
+     																${lst.PRODUCT_NAME} 
+     															</c:otherwise>
 															</c:choose></td>
 
 														<td
@@ -255,11 +269,11 @@ ul.top-menu {
 
 															<td><c:choose>
 																	<c:when test="${li.ORDER_CNT-1 gt 0}">
-     		${li.PRODUCT_NAME} 외 ${li.ORDER_CNT-1 }권
-     		</c:when>
+     																	${li.PRODUCT_NAME} 외 ${li.ORDER_CNT-1 }권
+     																</c:when>
 																	<c:otherwise>
-     		${li.PRODUCT_NAME} 
-     		</c:otherwise>
+     																	${li.PRODUCT_NAME} 
+     																</c:otherwise>
 																</c:choose></td>
 
 															<td class="price"><fmt:formatNumber
@@ -279,13 +293,13 @@ ul.top-menu {
 									</div>
 									<button class="btn btn-main btn-small btn-round" id="addBtn"
 										onclick="moreList();"
-										style="margin-left: 450px; margin-top: 10px;">더보기</button>
+										style="margin-left: 365px; margin-top: 10px;">더보기</button>
 								</div>
 							</div>
 
 						</div>
 					</section>
-
+</div></div>
 
 					<!-- footer -->
 
@@ -385,7 +399,7 @@ ul.top-menu {
         }
     });
     
-    function numberWithCommas(x) { return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+ 
 
 	
 	}
