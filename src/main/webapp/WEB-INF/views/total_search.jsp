@@ -410,7 +410,7 @@ img {
 		//검색창에 엔터 쳤을 때 검색어 없으면 검색어를 입력해주세요
 		function test() {
 			if($.trim($("#search").val())==''){
-		        alert("검색어를 입력해주세요.");
+				alertWarnMessage("검색어를 입력해주세요.");
 		        return false;
 		      } else {
 		      $("#frm").submit();
@@ -437,7 +437,7 @@ img {
 			// 검색 버튼 눌렀을 때 검색어 없으면 검색어를 입력해주세요
 			$('#searchBtn').click(function() {
 			    if($.trim($("#search").val())==''){
-			        alert("검색어를 입력해주세요.");
+			    	alertWarnMessage("검색어를 입력해주세요.");
 			        return false;
 			      } else {
 			      $("#frm").submit();
