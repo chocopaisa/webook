@@ -22,7 +22,7 @@ FACEBOOK: https://www.facebook.com/themefisher
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Webook | E-commerce template</title>
+  <title>WEBOOK | 아이디 찾기</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -57,23 +57,21 @@ FACEBOOK: https://www.facebook.com/themefisher
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <form class="text-left clearfix" action="idfind.do" id="box"> 
-        <div class="block text-center">
-          <a class="logo" href="index.html">
-            <h1>WEBOOK</h1>
-          </a>
+        <form class="text-left clearfix" action="idfind.do" id="box" method="post"> 
+        <div class="block text-center"><h1>
+          <a class="logo" href="/webook/main.do">
+            WEBOOK
+          </a></h1>
           <h2 class="text-center">아이디 찾기</h2>
-        
-            <p style="text-align : left">이름</p>
+            <p class="text-left">이름</p>
             <div class="form-group">
               <input type="text" name="user_name" class="form-control">
             </div>
-            <p  style="text-align : left">휴대전화</p>
+            <p class="text-left">휴대전화</p>
             <div class="form-group text-center">
-              <input type="tel" name="user_tel" class="form-control"><br/>
-              <input type="text" value="${user_email}">
+              <input type="tel" name="user_tel" class="form-control">
             </div>
-              <button type="submit" class="btn btn-main w-100" id="findbtn">아이디 찾기</button>
+              <button type="button" class="btn btn-main w-100" id="findbtn">아이디 찾기</button>
             </div>
           </form>
         </div>
@@ -110,7 +108,20 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script src="resources/js/script.js"></script>
     
     <script type="text/javascript">
-
+		$('#findbtn').click(function(){
+			const formBox = $('#box');
+			const user_name = formBox.find('input[name=user_name]').val();
+			if(user_name == ''){
+				alert('이름을 입력해주세요')
+				return;
+			}
+			const user_tel = formBox.find('input[name=user_tel]').val();
+			if(user_tel == ''){
+				alert('전화번호를 입력해주세요')
+				return;
+			}
+			$('#box').submit();
+		})
     </script>
 
   </body>
