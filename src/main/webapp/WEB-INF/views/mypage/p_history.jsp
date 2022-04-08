@@ -110,6 +110,11 @@ ul.top-menu {
 .purHis {
 	text-align: center;
 }
+.btndiv{
+margin: 10px;
+margin-bottom: 50px;
+
+}
 </style>
 
 <script
@@ -239,8 +244,8 @@ ul.top-menu {
 
 						</div>
 
-									<div class="dashboard-wrapper user-dashboard"
-										style="width: 100%; margin-left: 10px;">
+									<div class="dashboard-wrapper user-dashboard w-100"
+										style="margin-left: 10px;">
 										<div class="">
 											<table class="table" id="addList">
 												<thead>
@@ -294,18 +299,16 @@ ul.top-menu {
 												</tbody>
 											</table>
 										</div>
-									</div>
+									</div><div class="text-center w-100 btndiv">
 									<c:if test="${not empty lis }">
 										<button class="btn btn-main btn-small btn-round" id="addBtn"
-										onclick="moreList();"
-										style="margin-left: 365px; margin-top: 10px;">더보기</button>
+										onclick="moreList();">더보기</button>
 
 
 
-									<button class="btn btn-main btn-small btn-round" id="hideBtn"
-										style="margin-left: 365px; margin-top: 10px;" th>접기</button>
+									<button class="btn btn-main btn-small btn-round" id="hideBtn" >접 기</button>
 									</c:if>
-									
+									</div>
 								</div>
 							</div>
 						</div>
@@ -363,6 +366,8 @@ ul.top-menu {
 	
   	//버튼 onclick() 함수
 	let pnum= 0;
+    
+	
 	function moreList() {
   		
 	
@@ -399,7 +404,7 @@ ul.top-menu {
                   addListHtml += "<td>" + data[i].PRODUCT_NAME + "외" +(data[i].ORDER_CNT-1)+"권" + "</td>";
                   }else { addListHtml += "<td>" + data[i].PRODUCT_NAME + "</td>";
                   }
-              addListHtml += "<td class='price'>" + data[i].TOTAL_PRICE+ "원" + "</td>";
+              addListHtml += "<td class='money price'>" + data[i].TOTAL_PRICE+ "원" + "</td>";
               addListHtml += "<td>" ;
               if(data[i].DELIVERY_INFO == info) {
            	  addListHtml += "<span class='label label-primary'>" + data[i].DELIVERY_INFO + "</span>";
@@ -410,12 +415,13 @@ ul.top-menu {
                         
                 }
                 $("#listBody").append(addListHtml);
-                
+                coma()
             }else { $('#addBtn').hide();
             $('#hideBtn').show();
             }
             
-        }
+        } 
+        
     });
     
 }
@@ -425,7 +431,15 @@ ul.top-menu {
 		 $('#hideBtn').hide();
 		 $('#addBtn').show();
 	 })
-	
+	 coma()
+	function coma(){
+		$(".money").each(function () {
+        let price = Number($(this).text().replace(/[^0-9]/g,''));
+        $(this).text(price.toLocaleString() + "원");
+      }); 
+		 
+	 }
+	 
     
     </script>
 </body>
