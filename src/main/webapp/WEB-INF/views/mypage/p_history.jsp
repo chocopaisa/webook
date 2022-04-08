@@ -25,7 +25,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 <!-- Basic Page Needs
   ================================================== -->
 <meta charset="utf-8">
-<title>Webook | 구매내역</title>
+<title>Webook | 마이페이지</title>
 
 <!-- Mobile Specific Metas
   ================================================== -->

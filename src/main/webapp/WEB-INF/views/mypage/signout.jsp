@@ -22,7 +22,7 @@ FACEBOOK: https://www.facebook.com/themefisher
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Webook | E-commerce template</title>
+  <title>WEBOOK | 마이페이지</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -84,7 +84,7 @@ FACEBOOK: https://www.facebook.com/themefisher
           <div class="content">
             <h1 class="page-name">My Page</h1>
             <ol class="breadcrumb">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="../main.do">Home</a></li>
               <li class="active">MyPage</li>
             </ol>
           </div>
