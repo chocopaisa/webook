@@ -10,6 +10,9 @@ public interface CommunityDAO {
 	//게시글 목록 페이지 리스트
 	public List<CommunityVO> getBookreportList(CommunityVO vo, int pNum);
 	
+	//게시글 목록 페이지 총 갯수
+	public int totalPageCount(CommunityVO vo);
+	
 	//게시글 등록
 	public void insertBookreport(CommunityVO vo);
 	

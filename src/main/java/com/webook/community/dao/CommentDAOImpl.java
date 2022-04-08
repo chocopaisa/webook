@@ -19,7 +19,7 @@ public class CommentDAOImpl implements CommentDAO{
 	//댓글 목록 페이지 리스트
 	public List<CommentVO> getCommentList(CommentVO vo, int pNum) {
 		System.out.println("===> Mybatis getCommentList() 호출");
-		RowBounds rowBounds = new RowBounds(((pNum-1)*5), 5);
+		RowBounds rowBounds = new RowBounds(((pNum-1)*100), 100);
 		return mybatis.selectList("comment.mapper.getCommentList", vo, rowBounds);
 	}
 	

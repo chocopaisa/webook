@@ -25,6 +25,12 @@ public class CommunityDAOImpl implements CommunityDAO {
 		return mybatis.selectList("community.mapper.getBookreportList", vo, rowBounds);
 	}
 	
+	//게시글 목록 페이지 총 갯수
+	public int totalPageCount(CommunityVO vo) {
+		System.out.println("===> Mybatis totalPageCount() 호출");
+		return mybatis.selectOne("community.mapper.totalPageCount", vo);
+	}
+	
 	//게시물 등록
 	public void insertBookreport(CommunityVO vo) {
 		System.out.println("===> Mybatis insertBookreport() 호출");

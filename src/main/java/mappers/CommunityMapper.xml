@@ -18,6 +18,14 @@
 				
 	</select>
 	
+	<!-- 게시글 목록 페이지 총 갯수 -->
+	<select id="totalPageCount" parameterType="com.webook.domain.CommunityVO" resultType="int">
+		SELECT count(*) total_count FROM bookreport
+		<if test="report_kind != null">
+		WHERE report_kind = #{report_kind}
+		</if>	
+	</select>
+	
 	<!-- 게시물등록 -->
 	<insert id="insertBookreport" parameterType="com.webook.domain.CommunityVO" >
 		INSERT INTO bookreport(bookreport_no, user_email, product_no, write_date,
