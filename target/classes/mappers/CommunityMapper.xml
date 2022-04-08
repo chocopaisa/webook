@@ -35,10 +35,6 @@
 		LEFT OUTER JOIN jjoa c ON a.bookreport_no = c.bookreport_no and a.user_email = c.user_email
 		WHERE a.bookreport_no = #{bookreport_no}
 	</select>
-	<!-- 게시물 수정 -->
-	<update id="updateBookreport" parameterType="com.webook.domain.CommunityVO">
-		
-	</update>
 	
 	<!-- 게시물 삭제 -->
 	<delete id="deleteBookreport" parameterType="com.webook.domain.CommunityVO">

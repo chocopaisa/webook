@@ -224,3 +224,28 @@ INSERT INTO book_admin(admin_Id,admin_Pass)VALUES('webook','admin');
 ALTER TABLE coupon_list add order_no varchar2(30);
 
 ALTER TABLE coupon_list ADD CONSTRAINT fk_coupon_list_order foreign KEY(order_no) references order_list(order_no);
+
+-- delete cascade 적용을 위한 foreign key 삭제 및 재입력
+
+ALTER TABLE bookreport drop constraint fk_bookreport_user_email;
+ALTER TABLE report_article drop constraint fk_REPORT_ARTICLE_ARTICLE_NO;
+ALTER TABLE report_article drop constraint fk_ARTICLE_EMAIL;
+ALTER TABLE comment_list drop constraint fk_comment_user_email;
+ALTER TABLE coupon_list drop constraint fk_conpon_list_user;
+ALTER TABLE jjoa drop constraint fk_jjoa_user_email;
+ALTER TABLE jjoa drop constraint fk_jjoa_bookreport_no;
+
+ALTER TABLE bookreport ADD CONSTRAINT fk_bookreport_user_email FOREIGN KEY (user_email) 
+REFERENCES customer_info(user_email) ON DELETE CASCADE;
+ALTER TABLE report_article ADD CONSTRAINT fk_REPORT_ARTICLE_ARTICLE_NO FOREIGN KEY (ARTICLE_NO) 
+REFERENCES bookreport(bookreport_no) ON DELETE CASCADE;
+ALTER TABLE report_article ADD CONSTRAINT fk_ARTICLE_EMAIL FOREIGN KEY (REP_ARTICLE_EMAIL) 
+REFERENCES customer_info(user_email) ON DELETE CASCADE;
+ALTER TABLE comment_list ADD CONSTRAINT fk_comment_user_email FOREIGN KEY (user_email) 
+REFERENCES customer_info(user_email) ON DELETE CASCADE;
+ALTER TABLE coupon_list ADD CONSTRAINT fk_conpon_list_user FOREIGN KEY (user_email) 
+REFERENCES customer_info(user_email) ON DELETE CASCADE;
+ALTER TABLE jjoa ADD CONSTRAINT fk_jjoa_user_email FOREIGN KEY (user_email) 
+REFERENCES customer_info(user_email) ON DELETE CASCADE;
+ALTER TABLE jjoa ADD CONSTRAINT fk_jjoa_bookreport_no FOREIGN KEY (bookreport_no) 
+REFERENCES bookreport(bookreport_no) ON DELETE CASCADE;
