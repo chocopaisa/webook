@@ -108,18 +108,18 @@
 	<select id="MonthSales" resultType="com.webook.domain.ChartVO">
 	<![CDATA[
 		SELECT chartTitle.dt chartTitle, NVL(chartResult.total_price,0) chartResult
-		FROM ( 	select lpad(level,2,'0') as dt
-        		from dual 
-        		connect by level <= 12) chartTitle left outer join (
-        			SELECT to_char(olist.payment_date,'MM') payment_date, NVL(sum(total_price),0) total_price
- 					FROM order_list olist left outer join ( 
-									                   select sum(total_price) total_price, order_no
-									                   from order_items  
-									                   group by order_no) oitem 
- 					ON olist.order_no=oitem.order_no
- 					GROUP BY payment_date) chartResult
-		ON chartTitle.dt = chartResult.payment_date
-		ORDER BY chartTitle
+      	FROM (    select lpad(level,2,'0') as dt
+              from dual 
+              connect by level <= 12) chartTitle left outer join (
+                 SELECT to_char(olist.payment_date,'MM') payment_date, NVL(sum(total_price),0) total_price
+                FROM order_list olist left outer join ( 
+                                              select sum(total_price) total_price, order_no
+                                              from order_items  
+                                              group by order_no) oitem 
+                ON olist.order_no=oitem.order_no
+                GROUP BY to_char(olist.payment_date,'MM')) chartResult
+     	ON chartTitle.dt = chartResult.payment_date
+        ORDER BY chartTitle
 	]]>
 	</select>
 	
