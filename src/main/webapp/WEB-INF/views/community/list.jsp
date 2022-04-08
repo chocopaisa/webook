@@ -364,7 +364,38 @@ FACEBOOK: https://www.facebook.com/themefisher
 		$(this).text(datetime[1]+'-'+datetime[2]);
 	})
 	</script>
-	
+	<script>
+      
+
+      // 리뷰 별점에 따라 만들기
+      $('.review-star').each(function(){
+        const stars = $(this).text().trim() * 2;
+        console.log(stars);
+        let result = "";
+        if(stars%2 == 0){
+          
+          for(let i=0; i< stars/2; i++){
+            result += "<i class='tf-ion-ios-star'></i>";
+          }
+          for(let i=0; i < 5-(stars/2); i++){
+            result += '<i class="tf-ion-ios-star-outline"></i>';
+          }
+        } else {
+          for(let i=0; i< stars/2 -1; i++){
+            result += "<i class='tf-ion-ios-star'></i>";
+          }
+          result += "<i class='tf-ion-ios-star-half'></i>";
+          
+          for(let i=0; i < 5-(stars/2)-1; i++){
+            result += '<i class="tf-ion-ios-star-outline"></i>';
+          }
+        }
+        $(this).prepend(result);
+
+        
+      });
+      
+    </script>
 
   </body>
   </html>
