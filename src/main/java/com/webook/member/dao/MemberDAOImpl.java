@@ -23,9 +23,9 @@ public class MemberDAOImpl implements MemberDAO{
 		mybatis.insert("member.mapper.insertMember", vo);
 	}
 
-	public void updateMember(HashMap map) {
+	public int updateMember(HashMap map) {
 		System.out.println("===> Mybatis updateMember() 호출");
-		mybatis.update("member.mapper.updateMember", map);
+		return mybatis.update("member.mapper.updateMember", map);
 	}
 
 	public int deleteMember(MemberVO vo) {

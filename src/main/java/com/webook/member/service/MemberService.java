@@ -12,7 +12,7 @@ public interface MemberService {
 	public void insertMember(MemberVO vo);
 	
 	//회원 수정
-	public void updateMember(HashMap map);
+	public int updateMember(HashMap map);
 	
 	//회원 탈퇴
 	public int deleteMember(MemberVO vo);

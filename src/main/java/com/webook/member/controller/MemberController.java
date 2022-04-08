@@ -99,15 +99,17 @@ public class MemberController {
 	
 	// 비밀번호 수정
 	@RequestMapping("/mypage/userUpdate.do")
-	public String updateMember(String user_pass, String new_pass, HttpSession session) {
+	public String updateMember(String user_pass, String new_pass, HttpSession session, RedirectAttributes redirect) {
 		HashMap map = new HashMap();
 		MemberVO member = (MemberVO)session.getAttribute("user");
 		String user_email = member.getUser_email();
 		map.put("user_email", user_email);
 		map.put("user_pass", user_pass);
 		map.put("new_pass", new_pass);
+		int result = memberService.updateMember(map);
+		System.out.println("비번 변경 결과 여부 : " + result);
 		
-		memberService.updateMember(map);
+		redirect.addFlashAttribute("check", result);
 		return "redirect:modify.do";
 	}
 	

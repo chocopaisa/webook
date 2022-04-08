@@ -161,22 +161,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script src="../resources/js/script.js"></script>
     
     <script type="text/javascript">
-    $('.form-control').focusout(function () {
-        var pass = $("#newpassword").val();
-        var pass1 = $("#repassword").val();
-  
-        if ( pass != '' && pass1 == '' ) {
-            null;
-        } else if (pass != "" || pass1 != "") {
-            if (pass == pass1) {
-                $("#alert-success").css('display', 'inline-block');
-                $("#alert-danger").css('display', 'none');
-            } else {
-                $("#alert-success").css('display', 'none');
-                $("#alert-danger").css('display', 'inline-block');
-            }
-        }
-    });
+    
     
     $('#btnModify').click(function(){
     	if($('input[name=user_pass]').val() == ''){
@@ -195,6 +180,14 @@ FACEBOOK: https://www.facebook.com/themefisher
     	}
     	$('#frm').submit();
     })
+    
+    const check = '${check}';
+    if(check == '0'){
+    	alertWarnMessage("기존 비밀번호가 일치하지않습니다")
+    }
+    if(check == '1'){
+    	alertMessage("비밀번호가 변경되었습니다")
+    }
     </script>
 
 

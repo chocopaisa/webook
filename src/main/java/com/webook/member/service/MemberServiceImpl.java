@@ -20,9 +20,9 @@ public class MemberServiceImpl implements MemberService{
 		memberDAO.insertMember(vo);
 	}
 
-	public void updateMember(HashMap map) {
+	public int updateMember(HashMap map) {
 		
-		memberDAO.updateMember(map);
+		return memberDAO.updateMember(map);
 		
 	}
 
