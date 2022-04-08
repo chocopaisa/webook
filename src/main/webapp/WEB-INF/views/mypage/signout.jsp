@@ -52,10 +52,29 @@ FACEBOOK: https://www.facebook.com/themefisher
    .w-50 {
      width:50%;
   }
+  .sidebar > div {
+		margin: 0px;
+		padding : 0px;
+	}
+	.sidebar ul {
+		margin-bottom: 20px;
+	}
+	.sidebar ul > li {
+		padding: 10px;
+	
+	}
+	.sidebar ul > li:hover {
+		background-color: #f7f7f7;
+		text-decoration: underline;
+	}
+	.page-wrapper {
+   padding: 0px;
+}
   </style>
 
 
 </head>
+<%@ include file="/WEB-INF/views/header.jsp" %>
 
 <body id="body">
   <section class="page-header">
@@ -73,34 +92,12 @@ FACEBOOK: https://www.facebook.com/themefisher
       </div>
     </div>
   </section>
+  <section>
   <div class="page-wrapper">
     <div class="container">
       <div class="row">
         <!--사이드 -->
-        <div class="col-md-3">
-          <aside class="sidebar">
-            <div class="navigation">
-              <div class="menuToggle"></div>
-                  <ul>
-                     <li class="list">
-                       <h4>마이룸<hr/></h4>
-                     </li>
-                     <li class="list">
-                       <a href="#" class="btn btn-solid-border w-100" >상품 주문 관리</a>
-                     </li>
-                    <li class="list">
-                       <a href="modify.do" class="btn btn-solid-border w-100">회원 정보 관리</a>
-                    </li>
-                     <li class="list">
-                      <a href="#" class="btn btn-solid-border w-100">글 관리</a>
-                    </li>
-                    <li class="list">
-                      <a href="signout.do" class="btn btn-main w-100">회원탈퇴</a>
-                    </li>
-                 </ul>
-              </div>
-            </aside>
-            </div>
+        <%@ include file="/WEB-INF/views/mypage/mypage_sidebar.jsp" %>
           <!-- 사이드 닫음 -->
         <div class="col-md-9">
           <div class="block text-left w-50">
@@ -117,9 +114,12 @@ FACEBOOK: https://www.facebook.com/themefisher
             </form>
           </div>
         </div>
+        </div>
+        </div>
+        </div>
   </section>
 
-
+<%@ include file="/WEB-INF/views/footer.jsp" %>
     <!-- 
     Essential Scripts
     =====================================-->

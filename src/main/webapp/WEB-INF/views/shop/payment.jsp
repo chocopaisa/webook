@@ -445,7 +445,7 @@ FACEBOOK: https://www.facebook.com/themefisher
                       </td>
                     </tr>
                     </c:forEach>
-                    <c:if test="${coupons eq null }">
+                    <c:if test="${coupons eq null or empty coupons}">
                     <tr>
                       <td colspan="4" class="text-center">쿠폰이 없습니다</td>
                     </tr>
