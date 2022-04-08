@@ -330,10 +330,7 @@
 							<a >${bookreport.user_name }</a>
 							
 						</h4>
-						<time>
-							<fmt:parseDate value="${bookreport.write_date }" var="write_date1" pattern="yyyy-mm-dd HH:mm:ss" />
-							<fmt:formatDate value="${write_date1 }" pattern="yyyy-MM-dd ' at ' HH:mm" />
-						</time>
+							${bookreport.write_date }
 						
 					</div>
 
