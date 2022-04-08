@@ -20,7 +20,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     <!-- Basic Page Needs
   ================================================== -->
     <meta charset="utf-8" />
-    <title>Aviato | E-commerce template</title>
+    <title>WEBOOK | 결제완료</title>
 
     <!-- Mobile Specific Metas
   ================================================== -->
@@ -115,11 +115,12 @@ FACEBOOK: https://www.facebook.com/themefisher
                 <h4>주문상품:</h4>
               </div>
               <div class="col-xs-8 text-right"><h4>${productName}</h4></div>
+              <div class="col-xs-12">
               <a href="main.do" class="btn btn-solid-border mt-20 mr-1"
                 >다른 상품 보러가기</a
               ><a href="purchase.do" class="btn btn-solid-border mt-20 ml-1"
                 >주문 확인 하러가기</a
-              >
+              ></div>
             </div>
           </div>
         </div>

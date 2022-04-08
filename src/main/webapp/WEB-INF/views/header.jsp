@@ -39,7 +39,7 @@
                   <h5><a href="/webook/login.do">비회원 님</a></h5>
                 </c:if>
                 	<c:if test="${sessionScope.user ne null}">
-                  <h5><a href="/webook/mypage/p_history.do">${sessionScope.user.user_name } 님</a></h5>
+                  <h5><i class="tf-ion-ios-person"></i><a href="/webook/mypage/p_history.do">${sessionScope.user.user_name } 님</a></h5>
                 </c:if>
                 </div>
               </li>

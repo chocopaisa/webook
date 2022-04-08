@@ -118,7 +118,6 @@ FACEBOOK: https://www.facebook.com/themefisher
       </div>
     </div>
   </section>
-  <div class="page-wrapper">
     <div class="container">
       <div class="row">
         <!--사이드 -->
@@ -196,7 +195,6 @@ FACEBOOK: https://www.facebook.com/themefisher
         </div>
         
       </div>
-  </div>
   </div>
   </div>
   
