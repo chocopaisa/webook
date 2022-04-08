@@ -159,7 +159,7 @@ img {
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<form action="shop_search.do" method="post" id="frm">
+					<form action="shop_search.do" method="get" id="frm">
 						<div class="col-lg-6 col-md-offset-3">
 							<div class="input-group subscription-form">
 
@@ -262,10 +262,10 @@ img {
 				<c:forEach var="idx" begin="1" end="2">
 					<c:choose>
 						<c:when test="${idx eq param.pnum or (idx eq 1 and param.pnum eq null)}">
-							<li class="active"><a href="shop_korean.do?genre_no=${param.genre_no }&pnum=${idx}">${idx }</a></li>
+							<li class="active"><a href="shop_search.do?&pnum=${idx}">${idx }</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="shop_search.do?&pnum=${idx}">${idx }</a></li>
+							<li><a href="shop_search.do?&searchKeyword=${param.searchKeyword }&pnum=${idx}">${idx }</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>

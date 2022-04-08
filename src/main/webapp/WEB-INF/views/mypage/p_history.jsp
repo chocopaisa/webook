@@ -366,6 +366,8 @@ margin-bottom: 50px;
 	
   	//버튼 onclick() 함수
 	let pnum= 0;
+    
+	
 	function moreList() {
   		
 	
@@ -402,7 +404,7 @@ margin-bottom: 50px;
                   addListHtml += "<td>" + data[i].PRODUCT_NAME + "외" +(data[i].ORDER_CNT-1)+"권" + "</td>";
                   }else { addListHtml += "<td>" + data[i].PRODUCT_NAME + "</td>";
                   }
-              addListHtml += "<td class='price'>" + data[i].TOTAL_PRICE+ "원" + "</td>";
+              addListHtml += "<td class='money price'>" + data[i].TOTAL_PRICE+ "원" + "</td>";
               addListHtml += "<td>" ;
               if(data[i].DELIVERY_INFO == info) {
            	  addListHtml += "<span class='label label-primary'>" + data[i].DELIVERY_INFO + "</span>";
@@ -413,12 +415,13 @@ margin-bottom: 50px;
                         
                 }
                 $("#listBody").append(addListHtml);
-                
+                coma()
             }else { $('#addBtn').hide();
             $('#hideBtn').show();
             }
             
-        }
+        } 
+        
     });
     
 }
@@ -428,7 +431,15 @@ margin-bottom: 50px;
 		 $('#hideBtn').hide();
 		 $('#addBtn').show();
 	 })
-	
+	 coma()
+	function coma(){
+		$(".money").each(function () {
+        let price = Number($(this).text().replace(/[^0-9]/g,''));
+        $(this).text(price.toLocaleString() + "원");
+      }); 
+		 
+	 }
+	 
     
     </script>
 </body>

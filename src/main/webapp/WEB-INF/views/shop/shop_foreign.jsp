@@ -141,7 +141,7 @@ table, td, th {
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<form action="shop_search.do" >
+					<form action="shop_search.do" method="post">
 					<div class="col-lg-6 col-md-offset-3">
 						<div class="input-group subscription-form">
 						
