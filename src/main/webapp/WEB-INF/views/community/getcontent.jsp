@@ -399,7 +399,7 @@
 											<input type="hidden" name="bookreport_no" value="${bookreport.bookreport_no }" />
 											<a href="" class="writerId">${sessionScope.user.user_name }</a>
 										</h5>
-										<textarea id="write_content" class="form-control" placeholder="경고문" maxlength="400" style="resize: none; height: 120px;" name="comment_content" ></textarea>
+										<textarea id="write_content" class="form-control" placeholder="댓글을 입력해주세요" maxlength="400" style="resize: none; height: 120px;" name="comment_content" ></textarea>
 									</div>
 	
 									<!-- Send Button -->

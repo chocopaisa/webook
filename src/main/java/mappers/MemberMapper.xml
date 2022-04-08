@@ -5,9 +5,9 @@
 
 <insert id="insertMember" parameterType="com.webook.domain.MemberVO">
 INSERT INTO customer_info(user_email, user_pass, user_name,
-gender, user_birth, user_tel, user_regdate)
+gender, user_birth, user_tel, user_regdate, blacklist)
 VALUES (#{user_email}, #{user_pass}, #{user_name}
-, #{gender}, #{user_birth}, #{user_tel}, sysdate)
+, #{gender}, #{user_birth}, #{user_tel}, sysdate, 'N')
 </insert>
 
 <update id="updateMember" parameterType="hashmap">

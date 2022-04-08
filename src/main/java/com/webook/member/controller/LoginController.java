@@ -23,7 +23,7 @@ public class LoginController {
 	public void login(HttpServletRequest request, HttpSession session) {
 		String referer = request.getHeader("Referer");
 		System.out.println(referer.indexOf("login.do"));
-		if(referer.indexOf("login.do") < 0) {
+		if(referer.indexOf("login.do") < 0 && referer.indexOf("join.do") < 0 && referer.indexOf("emailfind.do") < 0 && referer.indexOf("webook") >= 0) {
 			session.setAttribute("prevPage", referer);
 		}
 		
