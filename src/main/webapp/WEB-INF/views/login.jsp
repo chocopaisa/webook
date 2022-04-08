@@ -49,7 +49,15 @@ FACEBOOK: https://www.facebook.com/themefisher
   
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="resources/css/style.css">
-
+	
+	<style type="text/css">
+	.loginBtns > button, #btnAccount {
+		color:white;
+		width : 120px;
+	
+	}
+	
+	</style>
 </head>
 
 <body id="body">
@@ -75,13 +83,13 @@ FACEBOOK: https://www.facebook.com/themefisher
         	   </div>
         	   </c:if>
             </div>
-            <div class="text-center">
-              <a href="join.do" class="btn btn-main text-right" style="color:white;">회원가입</a>
+            <div class="text-center loginBtns">
+              <a href="join.do" class="btn btn-main text-right" id="btnAccount">회원가입</a>
               <button type="submit" class="btn btn-main text-center" id="Submit" >로그인</button>
-              <a href="emailfind.do" class="btn btn-main text-left" style="color:white;">아이디 찾기</a>
             </div>
           </form>
-          <p class="mt-20"><a href="signin.html"> 새로운 계정 만들기</a></p>
+          <p class="mt-20">
+              <a href="emailfind.do">아이디를 잊으셨나요?</a></p>
         </div>
       </div>
     </div>
