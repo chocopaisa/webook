@@ -20,7 +20,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     <!-- Basic Page Needs
   ================================================== -->
     <meta charset="utf-8" />
-    <title>WEBOOK | 뭐시기</title>
+    <title>WEBOOK | 결제</title>
 
     <!-- Mobile Specific Metas
   ================================================== -->

@@ -71,7 +71,7 @@
 		        LEFT OUTER JOIN product_list product
 		        ON item.product_no = product.product_no
 		WHERE
-		    item.order_no = 'BK_1649124446592'
+		    item.order_no = #{order_no}
 		) 
 	WHERE rownum = 1
 	

@@ -216,8 +216,8 @@ ul.top-menu {
 								<div class="product-content product-best col-xs-6 text-left">
 								<div>
 									<h3 class="text-left"><a
-											href="product_single.do?product_no=9791191056372">MD의 추천!</a></h3>
-											<h4 class="review-star text-left mb-1"> 3.2</h4>
+											href="product_single.do?product_no=9791191056372">재밌다!</a></h3>
+											<h4 class="review-star text-left mb-1"> 5.0</h4>
 								</div>
 									
 									<a href="product_single.do?product_no=9791191056372"><h4 class="text-left mb-1">돈의 심리학</h4></a>
@@ -230,7 +230,7 @@ ul.top-menu {
 			<!-- 추천 끝 -->
 			<!-- 추천 -->
 			<div class="col-md-4 col-sm-6 col-xs-6 best-div">
-			<h3 class="text-center">Recommend</h3>
+			<h3 class="text-center">MD Pick!</h3>
 			<hr/>
 			<div class="recommend">
 			
@@ -239,17 +239,17 @@ ul.top-menu {
 								
 								<div class="col-xs-6">
 									<img class="img-responsive reco-img"
-										src="http://image.kyobobook.co.kr/images/book/xlarge/143/x9791197377143.jpg" alt="product-img" />
+										src="http://image.kyobobook.co.kr/images/book/xlarge/275/x9791168030275.jpg" alt="product-img" />
 									
 								</div>
 								<div class="product-content product-best col-xs-6 text-left">
 								<div>
 									<h3 class="text-left"><a
-											href="product_single.do?product_no=9791197377143">사장님 픽!</a></h3>
-											<h4 class="review-star text-left mb-1"> 4.2</h4>
+											href="product_single.do?product_no=9791168030275">강지혜 픽!</a></h3>
+											<h4 class="review-star text-left mb-1"> 5.0</h4>
 								</div>
 									
-									<h4 class="text-left">어서 오세요, 휴남동 서점입니다</h4>
+									<h4 class="text-left">술꾼도시여자들</h4>
 								</div>
 								
 							</div>

@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.javassist.expr.Instanceof;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -272,9 +273,21 @@ public class PaymentController {
 		Map<String, Object> map = list.get(0);
 		
 		String order_no = (String)map.get("order_no");
-		int totalPrice = ((Integer)map.get("price"));
 		
-		int delivery_fee = (Integer)map.get("delivery_fee");
+		int totalPrice = 0;
+		if(map.get("price") instanceof Integer) {
+			totalPrice = ((Integer)map.get("price"));
+		} else if(map.get("price") instanceof Double) {
+			totalPrice = ((Double)map.get("price")).intValue();
+		}
+		
+		int delivery_fee = 0;
+		if(map.get("delivery_fee") instanceof Integer) {
+			delivery_fee = (Integer)map.get("delivery_fee");
+		} else if(map.get("delivery_fee") instanceof Double) {
+			delivery_fee = ((Double)map.get("delivery_fee")).intValue();
+		}
+		
 		System.out.println("totalPrice : " + totalPrice);
 		int realPrice = 0;
 		ArrayList<OrderItemVO> orderItemVOList = new ArrayList<OrderItemVO>();

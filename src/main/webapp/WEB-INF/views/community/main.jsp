@@ -7,7 +7,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>커뮤니티 메인</title>
+  <title>WEBOOK | 너와 나의 연결 고리</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -136,45 +136,7 @@
 
 <%@ include file="/WEB-INF/views/header.jsp" %> 
 
-	  <!-- Main Menu Section -->
-<section class="menu">
-	<nav class="navbar navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<h2 class="menu-title">Main Menu</h2>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-					aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-
-			</div><!-- / .navbar-header -->
-
-			<!-- Navbar Links -->
-			<div id="navbar" class="navbar-collapse collapse text-center">
-				<ul class="nav navbar-nav">
-
-					<!-- Home -->
-					<li class="dropdown ">
-						<a href="main.do">커뮤니티 메인</a>
-					</li><!-- / Home -->
-					<!-- Home -->
-					<li class="dropdown ">
-						<a href="list.do">독후감 목록</a>
-					</li><!-- / Home -->
-					<!-- Home -->
-					<li class="dropdown ">
-						<a href="write.do">독후감 작성</a>
-					</li><!-- / Home -->
-
-
-			</div>
-			<!--/.navbar-collapse -->
-		</div><!-- / .container -->
-	</nav>
-</section>
+<%@ include file="/WEB-INF/views/community/community_header.jsp" %>
 
 
 <div class="page-wrapper" >
