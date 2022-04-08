@@ -46,7 +46,7 @@
 	<select id="getMemberList" resultType="com.webook.domain.MemberVO">
 		SELECT user_email, user_name, user_tel, to_char(user_birth,'YYYY-MM-DD') user_birth, to_char(user_regdate,'YY-MM-DD') user_regdate, blacklist
 		FROM customer_info
-		WHERE blacklist = 'N'
+		WHERE blacklist != 'Y'
 	</select>
 	
 	
