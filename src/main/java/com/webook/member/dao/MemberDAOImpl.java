@@ -40,8 +40,7 @@ public class MemberDAOImpl implements MemberDAO{
 
 	public MemberVO emailfind(MemberVO vo) {
 		System.out.println("===> Mybatis emailfind() 호출");
-		System.out.println("나오니?"+vo.getUser_email());
-		MemberVO result = mybatis.selectOne("member.mapper.emailfind", vo);
-		return result;
+		System.out.println(""+vo.getUser_email());
+		return mybatis.selectOne("member.mapper.emailfind", vo);
 	}
 }
