@@ -79,7 +79,7 @@ FACEBOOK: https://www.facebook.com/themefisher
           <div class="content">
             <h1 class="page-name">My Page</h1>
             <ol class="breadcrumb">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="../main.do">Home</a></li>
               <li class="active">MyPage</li>
             </ol>
           </div>
@@ -95,9 +95,9 @@ FACEBOOK: https://www.facebook.com/themefisher
         <%@ include file="/WEB-INF/views/mypage/mypage_sidebar.jsp" %>
           <!-- 사이드 닫음 -->
         <div class="col-md-9">
-          <div class="block text-center w-50">
+          <div class="block text-center w-100">
             <h2 class="text-left">비밀번호 변경</h2>
-            <form class="text-left clearfix" action="userUpdate.do">
+            <form id="frm" class="text-left clearfix" action="userUpdate.do">
             <div class="col-md-12">
               <div class="form-group col-md-6">
                 <h4>현재 비밀번호</h4>
@@ -118,7 +118,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     			<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
               </div>
               <div class="col-md-12">
-              <button type="submit" class="btn btn-primary">수정</button>
+              <button id="btnModify" type="button" class="btn btn-primary">수정</button>
             </div>
             </div>
             </form>
@@ -177,6 +177,24 @@ FACEBOOK: https://www.facebook.com/themefisher
             }
         }
     });
+    
+    $('#btnModify').click(function(){
+    	if($('input[name=user_pass]').val() == ''){
+    		alertWarnMessage("기존 비밀번호를 입력해주세요");
+    		return;
+    	}
+    	
+    	if($('input[name=new_pass]').val() == ''){
+    		alertWarnMessage("새로운 비밀번호를 입력해주세요");
+    		return;
+    	}
+    	
+    	if($('input[name=new_pass]').val() != $('input[name=user_repass]').val()){
+    		alertWarnMessage("비밀번호가 일치하지않습니다");
+    		return;
+    	}
+    	$('#frm').submit();
+    })
     </script>
 
 
