@@ -106,7 +106,7 @@
 							<c:if test="${sessionScope.cart ne null }">
 							<c:forEach items="${sessionScope.cart }" var="product">
 							<div class="media">
-								<input value="${product.product_no }" hidden>
+								<input value="${product.product_no }" hidden="hidden">
 								<a class="pull-left" href="product_single.do?product_no=${product.product_no}">
 									<img class="media-object" src="${product.product_image }" alt="image" />
 								</a>

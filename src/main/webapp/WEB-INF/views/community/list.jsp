@@ -88,16 +88,12 @@ FACEBOOK: https://www.facebook.com/themefisher
 		width: 70px;
 	}
 	
-	#search_text {
-		vertical-align: middle;
-		min-width: 300px;
-		min-height: 30px;
-		max-width: 300px;
-		max-height: 30px;
+	.search_tap input, .search_tap select {
+		height : 30px;
 	}
-
-	.date_select {
-		height: 30px;
+	
+	.search_tap input {
+		width : 300px;
 	}
 
 	.board_select {

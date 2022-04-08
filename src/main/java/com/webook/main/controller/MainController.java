@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +31,6 @@ public class MainController {
 				if(content == null) {
 					continue;
 				}
-				System.out.println(content);
 				int start = content.indexOf("<blockquote>");
 				if(start < 0) {
 					continue;
@@ -41,7 +39,6 @@ public class MainController {
 				HashMap map = reviews.get(idx);
 				map.put("BOOKREPORT_CONTENT", content.substring(start + 12, end));
 				resultList.add(map);
-				System.out.println(content.substring(start + 12, end));
 			}
 		}
 		m.addAttribute("reviews", resultList);

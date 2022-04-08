@@ -33,6 +33,16 @@
           </div>
           <div class="col-md-4 col-xs-12 col-sm-4">
             <ul class="top-menu text-center list-inline">
+            	<li class="dropdown">
+                <div class="pr-2 pl-2">
+                  <c:if test="${sessionScope.user eq null}">
+                  <h5><a href="/webook/login.do">비회원 님</a></h5>
+                </c:if>
+                	<c:if test="${sessionScope.user ne null}">
+                  <h5><a href="/webook/login.do">${sessionScope.user.user_name } 님</a></h5>
+                </c:if>
+                </div>
+              </li>
               <li>
                 <div class="pr-2 pl-2">
                 <c:if test="${sessionScope.user eq null}">
@@ -43,11 +53,7 @@
                 </c:if>
                 </div>
               </li>
-              <li class="dropdown">
-                <div class="pr-2 pl-2">
-                  <h5><a href="#" class="">FAQ</a></h5>
-                </div>
-              </li>
+              
 
               <!-- Search -->
               <li class="dropdown search dropdown-slide">

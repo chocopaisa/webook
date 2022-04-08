@@ -98,6 +98,15 @@
 		WHERE bookreport_no = #{bookreport_no}
 	</select>	
 
+	
+	<select id="searchBestReport" resultType="com.webook.domain.CommunityVO">
+		SELECT a.*, b.user_name, nvl(c.jjoa_count,0) jjoa_count FROM bookreport a
+		INNER JOIN customer_info b ON a.user_email = b.user_email
+		LEFT OUTER JOIN (SELECT count(*) jjoa_count, bookreport_no FROM jjoa
+							group by bookreport_no) c 
+		ON a.bookreport_no = c.bookreport_no
+		ORDER BY jjoa_count desc
+	</select>
 
 
 
