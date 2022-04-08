@@ -14,8 +14,14 @@ public class CommunityVO {
 	private String user_name;
 	private int jjoa_no;
 	private int jjoa_count;
+	private int total_count;
 	
-	
+	public int getTotal_count() {
+		return total_count;
+	}
+	public void setTotal_count(int total_count) {
+		this.total_count = total_count;
+	}
 	public int getJjoa_count() {
 		return jjoa_count;
 	}

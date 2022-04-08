@@ -1,6 +1,7 @@
 package com.webook.community.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import com.webook.domain.CommunityVO;
 import com.webook.domain.MemberVO;
 import com.webook.domain.ProductVO;
 import com.webook.domain.ReportcommunityVO;
-import com.webook.member.service.MemberService;
+import com.webook.main.service.MainService;
 import com.webook.shop.sevice.ProductService;
 
 @Controller
@@ -33,16 +34,39 @@ public class CommunityController {
 	private CommentService commentService;
 	@Autowired 
 	private ProductService productService;
-
+	@Autowired
+	private MainService mainService;
 	
 	// 게시글 목록 검색
 	@RequestMapping("list.do")
 	public void getBookreportList(CommunityVO vo, Model m, @RequestParam(value="pNum", defaultValue = "1")int pNum) {
-		//vo.setJjoa_count(communityService.countJjoa(vo));
+		List<HashMap> reviews = mainService.showReviews(); // 리뷰 
+		List<HashMap> resultList = new ArrayList<HashMap>();
+		if(!reviews.isEmpty()) {
+			for(int idx = reviews.size()-1; idx >= 0; idx--) {
+				String content = (String) reviews.get(idx).get("BOOKREPORT_CONTENT");
+				if(content == null) {
+					continue;
+				}
+				int start = content.indexOf("<blockquote>");
+				if(start < 0) {
+					continue;
+				}
+				int end = content.indexOf("</blockquote>");
+				HashMap map = reviews.get(idx);
+				map.put("BOOKREPORT_CONTENT", content.substring(start + 12, end));
+				resultList.add(map);
+			}
+		}
+		m.addAttribute("reviews", resultList);
+		
 		if(vo.getReport_kind() != null && vo.getReport_kind().equals("best")) {
+			m.addAttribute("totalCount", communityService.totalPageCount(vo));
 			m.addAttribute("bookreportList", communityService.searchBestReportList(pNum));
 		} else {
+			m.addAttribute("totalCount", communityService.totalPageCount(vo));
 			m.addAttribute("bookreportList", communityService.getBookreportList(vo, pNum));
+			
 		}
 		
 	}

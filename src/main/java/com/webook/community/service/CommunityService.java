@@ -10,6 +10,9 @@ public interface CommunityService {
 	//게시글 목록 페이지 리스트
 	List<CommunityVO> getBookreportList(CommunityVO vo, int pNum);
 	
+	//게시글 목록 페이지 총 갯수
+	int totalPageCount(CommunityVO vo);
+	
 	//게시물 등록
 	void insertBookreport(CommunityVO vo);
 	

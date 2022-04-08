@@ -248,17 +248,62 @@ FACEBOOK: https://www.facebook.com/themefisher
 	            <div class="text-center">
 	            
 				<ul id="pagination" class="pagination post-pagination">
-				<c:forEach var="idx" begin="1" end="5">
+				<c:set var = "page" value = "${(param.pNum==null)? 1: param.pNum}"/>
+				<c:set var ="startNum" value = "${page-(page-1)%5}"/>
+				<c:set var="lastNum" value="${(totalCount+9)/10}"/>
+					
+				<c:choose>
+					<c:when test="${param.report_kind ne null}">
+					<c:if test="${startNum gt 1}">
+						<li><a href="list.do?report_kind=${param.report_kind}&pNum=${startNum-1}" >이전</a></li>
+					</c:if>
+					<c:if test="${startNum-1 le 1}">
+						<li><a onclick="alertWarnMessage('이전 페이지가 없습니다.');">이전</a></li>
+					</c:if>								
+				<c:forEach var="idx" begin="0" end="4">
 					<c:choose>
-						<c:when test="${idx eq param.pNum or (idx eq 1 and param.pNum eq null)}">
-							<li class="active"><a href="list.do?report_kind=${param.report_kind}&pNum=${idx}">${idx }</a></li>
+						<c:when test="${startNum+idx eq param.pNum or (startNum+idx eq 1 and param.pNum eq null)}">
+							<li class="active"><a href="list.do?report_kind=${param.report_kind}&pNum=${startNum+idx}">${startNum+idx }</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="list.do?report_kind=${param.report_kind}&pNum=${idx}">${idx }</a></li>
+							<li><a href="list.do?report_kind=${param.report_kind}&pNum=${startNum+idx}">${startNum+idx }</a></li>
 						</c:otherwise>
-					</c:choose>
+					</c:choose>		
 				</c:forEach>
+					<c:if test="${startNum+5 lt lastNum}">
+						<li><a href="list.do?report_kind=${param.report_kind}&pNum=${startNum+5}" >다음</a></li>
+					</c:if>
+					<c:if test="${startNum+5 ge lastNum}">
+						<li><a onclick="alertWarnMessage('다음 페이지가 없습니다.');">다음</a></li>
+					</c:if>					
+					</c:when>
 					
+					
+					<c:otherwise>
+					<c:if test="${startNum gt 1}">
+						<li><a href="list.do?report_kind=${param.report_kind}&pNum=${startNum-1}" >이전</a></li>
+					</c:if>
+					<c:if test="${startNum-1 le 1}">
+						<li><a onclick="alertWarnMessage('이전 페이지가 없습니다.');">이전</a></li>
+					</c:if>								
+				<c:forEach var="idx" begin="0" end="4">
+					<c:choose>
+						<c:when test="${startNum+idx eq param.pNum or (startNum+idx eq 1 and param.pNum eq null)}">
+							<li class="active"><a href="list.do?pNum=${startNum+idx}">${startNum+idx }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="list.do?pNum=${startNum+idx}">${startNum+idx }</a></li>
+						</c:otherwise>
+					</c:choose>		
+				</c:forEach>
+					<c:if test="${startNum+5 lt lastNum}">
+						<li><a href="list.do?report_kind=${param.report_kind}&pNum=${startNum+5}" >다음</a></li>
+					</c:if>
+					<c:if test="${startNum+5 ge lastNum}">
+						<li><a onclick="alertWarnMessage('다음 페이지가 없습니다.');">다음</a></li>
+					</c:if>	
+					</c:otherwise>
+				</c:choose>
 				</ul>
 				</div>
 				<form action="searchBookreportList.do">
@@ -282,77 +327,39 @@ FACEBOOK: https://www.facebook.com/themefisher
 	      	</div>
       				
 	</div>
-			<!-- 한줄평 -->
+	
+	<!-- 한줄평 -->
 <section>
 	<div class="container">
 		<div class="row">
 		<div class="title text-center">
-			<a href=""><h2>화제의 글</h2></a>
-			<br/><br/>
+			<a href="/webook/community/main.do"><h2>Review</h2></a>
+			<hr/>
 		</div>
 	</div>
-		<div class="row">
-			<div class="col-md-4">
-			<div class="media">
-					<a class="pull-left" href="#!">
-						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
-					</a>
-				<div class="media-body">
-					<h4 class="media-heading"><a href="">책 제목</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
-					<hr/>
-					<div class="">
-					<p>대충 재밌다는 내용</p>
-					</div>
-					<div class="text-right align-text-bottom">
-					<a href="#"><p>글쓴이</p></a>
-				</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="media">
-					<a class="pull-left" href="#!">
-						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
-					</a>
-				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
-					<hr/>
-					<div class="">
-					<p>대충 재밌다는 내용 대충 재밌다는 내용 대충 재밌다는 내용 대충 재밌다는 내용</p>
-					</div>
-					<div class="text-right">
-					<a href="#"><p>글쓴이</p></a>
-				</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="media">
-					<a class="pull-left" href="#!">
-						<img class="media-object" src="../resources/images/book1.jpg" alt="Image">
-					</a>
-				<div class="media-body">
-					<h4 class="media-heading"><a href="#">책 제목</a></h4>
-					<h4><i class="tf-ion-ios-star"></i><i class="tf-ion-ios-star-half"></i><i class="tf-ion-ios-star-outline"></i>
-					3.5</h4>
-					<hr/>
-					<div class="">
-					<p>대충 재밌다는 내용</p>
-					</div>
-					<div class="text-right">
-					<a href="#"><p>글쓴이</p></a>
-				</div>
-				</div>
-			</div>
-		</div>
+		<div class="row" id="reviews">
+			<!-- 리뷰 들어갈 자리 -->
+		<c:forEach var="idx" begin="0" end="2">
+      <!-- 한 묶음 -->
+      <div class="col-md-4">
+        <div class="media">
+        <a class="pull-left" href="shop/product_single.do?product_no=${reviews[idx].PRODUCT_NO }">
+        <img class="media-object review-img" src="${reviews[idx].PRODUCT_IMAGE }" alt="Image">
+        </a>
+        <div class="media-body">
+        <h4 class="media-heading"><a href="shop/product_single.do?product_no=${reviews[idx].PRODUCT_NO }">${ reviews[idx].PRODUCT_NAME }</a></h4>
+        <h4 class="review-star"><span class="star"> ${reviews[idx].STAR }</span></h4><hr/>
+        <div><a href='community/getcontent.do?bookreport_no=${reviews[idx].BOOKREPORT_NO }'><p>${reviews[idx].BOOKREPORT_CONTENT }</p></a></div>
+        <div class="text-right align-text-bottom">
+        <a href="#"><p>${reviews[idx].USER_NAME }</p></a></div></div></div></div>
+        <!-- 한묶음 끝-->
+        </c:forEach>
+        <!-- 리뷰끝 -->
 		</div>
 	</div>
 </section>
 <!-- 한줄평 끝-->
+
 		<br/>
 		<br/>
 		<div>

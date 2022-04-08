@@ -21,6 +21,11 @@ public class CommunityServiceImpl implements CommunityService{
 		return communityDAO.getBookreportList(vo, pNum);
 	}
 	
+	//게시글 목록 페이지 총 갯수
+	public int totalPageCount(CommunityVO vo) {
+		return communityDAO.totalPageCount(vo);
+	}
+	
 	//게시물 등록
 	public void insertBookreport(CommunityVO vo) {
 		communityDAO.insertBookreport(vo);
