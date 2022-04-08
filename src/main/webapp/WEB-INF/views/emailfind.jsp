@@ -60,7 +60,7 @@ FACEBOOK: https://www.facebook.com/themefisher
         <form class="text-left clearfix" action="idfind.do" id="box" method="post"> 
         <div class="block text-center"><h1>
           <a class="logo" href="/webook/main.do">
-            WEBOOK
+            WEBOOK 
           </a></h1>
           <h2 class="text-center">아이디 찾기</h2>
             <p class="text-left">이름</p>
@@ -112,16 +112,31 @@ FACEBOOK: https://www.facebook.com/themefisher
 			const formBox = $('#box');
 			const user_name = formBox.find('input[name=user_name]').val();
 			if(user_name == ''){
-				alert('이름을 입력해주세요')
+				alert('이름을 입력해주세요');
 				return;
 			}
 			const user_tel = formBox.find('input[name=user_tel]').val();
 			if(user_tel == ''){
-				alert('전화번호를 입력해주세요')
+				alert('전화번호를 입력해주세요');
 				return;
 			}
 			$('#box').submit();
-		})
+			
+			
+			
+		});
+		
+		const userEmail = '${user_email}';
+		
+		if(userEmail != ''){
+			alert(userEmail);
+			console.log(userEmail);
+		}
+		
+		const fail = '${check}';
+		if(fail != ''){
+			alert("해당 하는 아이디가 없습니다");
+		}
     </script>
 
   </body>

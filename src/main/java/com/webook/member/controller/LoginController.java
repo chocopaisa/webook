@@ -22,8 +22,10 @@ public class LoginController {
 	@RequestMapping("login.do")
 	public void login(HttpServletRequest request, HttpSession session) {
 		String referer = request.getHeader("Referer");
-		System.out.println(referer);
-		session.setAttribute("prevPage", referer);
+		System.out.println(referer.indexOf("login.do"));
+		if(referer.indexOf("login.do") < 0) {
+			session.setAttribute("prevPage", referer);
+		}
 		
 	}
 	
@@ -32,7 +34,7 @@ public class LoginController {
 	public String checkId(MemberVO vo) {
 		MemberVO result= loginservice.idcheck(vo);
 		if(result != null) {
-			return "1";
+			return "1"; 
 		} 
 		return "0";
 	}
@@ -43,6 +45,7 @@ public class LoginController {
 		if(mem == null) {
 			redirect.addFlashAttribute("fail", 1 );
 			return "redirect:login.do";
+
 		}
 		MemberVO user = new MemberVO();
 		user.setUser_email(mem.getUser_email());
