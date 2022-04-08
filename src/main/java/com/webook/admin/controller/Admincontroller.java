@@ -50,6 +50,7 @@ public class Admincontroller {
 	 @Autowired
 	 private AdminOrderService adminOrderService;
 	 
+	
 
 	// 관리자 인덱스
 	 @RequestMapping("adminindex.do")
@@ -264,6 +265,12 @@ public class Admincontroller {
 		 if( result == 1) return "입고가 완료되었습니다";
 		 return "입고가 완료되지 않았습니다";
 	 }
+	 
+	 //상품등록 버튼 눌러서 이동
+		 @RequestMapping("productRegistration.do")
+		 public String productRegistration() {
+			 return "admin/productRegistration";
+		 }
 	 
 	 // 신고 게시글 목록 출력
 	 @RequestMapping("/reportManager.do")
