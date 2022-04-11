@@ -512,7 +512,10 @@ img {
 								}
 								$("#booklist").append(addListHtml);
 
-							}$('#addBtn').hide();
+							} else {
+								$('#addBtn').hide();
+								
+							}
 
 						}
 					});
